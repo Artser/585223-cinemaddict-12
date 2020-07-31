@@ -93,8 +93,8 @@ const footerElement = document.querySelector(`.footer`);
 
 // Попап (расширенная информация о фильме)
 const createFilmPopupTemplate = () => {
-  return `
-      <section class="film-details">
+  return (
+    `<section class="film-details">
         <form class="film-details__inner" action="" method="get">
           <div class="form-details__top-container">
             <div class="film-details__close">
@@ -262,17 +262,18 @@ const createFilmPopupTemplate = () => {
             </section>
           </div>
         </form>
-    </section>
-  `;
+    </section>`
+  );
 };
 // функция для рендеринга (вставки в DOM)
 const render = (container, template, place) => {
   container.insertAdjacentHTML(place, template);
 };
 
-const mainElement = document.querySelector('.films-list__container');
+const mainElement = document.querySelector(`.films-list__container`);
 
-const films = [{
+const films = [
+  {
     title: "The Dance of Life",
     rating: 8.3,
     year: "1929",
@@ -323,6 +324,8 @@ films.forEach((film) => {
 render(siteHeaderElement, createProfileTemplate(), `beforeend`);
 render(siteMainElement, createNavigationTemplate(), `afterbegin`);
 render(siteMainElement, createSortTemplate(), `afterbegin`);
+
+//render(siteMainElement, createFilmsTemplate());
 
 render(siteMainElement, createShowMoreButtonTemplate(), `beforeend`);
 render(siteMainElement, createTopRatedTemplate(), `beforeend`);
