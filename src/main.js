@@ -6,6 +6,7 @@ import {createFilmTemplate} from "./view/film.js";
 import {createShowMoreButtonTemplate} from "./view/show-more-button.js";
 import {createTopRatedTemplate} from "./view/top-rated.js";
 import {createMostCommentedTemplate} from "./view/most-commented.js";
+import {generateFilm} from "./mock/film.js";
 import {createFilmPopupTemplate} from "./view/film-popup.js";
 
 const siteHeaderElement = document.querySelector(`.header`);
@@ -93,3 +94,4 @@ render(siteMainElement, createShowMoreButtonTemplate(), `beforeend`);
 render(siteMainElement, createTopRatedTemplate(), `beforeend`);
 render(siteMainElement, createMostCommentedTemplate(), `beforeend`);
 render(footerElement, createFilmPopupTemplate(), `afterend`);
+generateFilm();
