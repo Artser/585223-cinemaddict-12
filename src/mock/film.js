@@ -5,19 +5,185 @@ const getRandomInteger = (a = 0, b = 1) => {
   return Math.floor(lower + Math.random() * (upper - lower + 1));
 };
 
-
-const textFilm = `Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras aliquet varius magna, non porta ligula feugiat eget. Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra. Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante. Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum. Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui. Sed sed nisi sed augue convallis suscipit in sed felis. Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus. In rutrum ac purus sit amet tempus.`;
-
+const text = [
+  `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+  `Cras aliquet varius magna, non porta ligula feugiat eget.`,
+  `Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra.`,
+  `Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.`,
+  `Phasellus eros mauris, condimentum sed nibh vitae, sodales efficitur ipsum.`,
+  `Sed blandit, eros vel aliquam faucibus, purus ex euismod diam, eu luctus nunc ante ut dui.`,
+  `Sed sed nisi sed augue convallis suscipit in sed felis.`,
+  `Aliquam erat volutpat. Nunc fermentum tortor ac porta dapibus.`,
+  `In rutrum ac purus sit amet tempus.`,
+];
 
 export const generateFilm = () => {
-
-  const numberSentence = getRandomInteger(1, 5);
-  const sentences = textFilm.split(`. `);
   return {
-    title: `The Dance of Life`,
-    poster: `./images/posters/the-dance-of-life.jpg`,
-    description: sentences.slice(0, numberSentence).join(`. `),
-
-    comments: [],
+    title: generateTitle(),
+    poster: generatePoster(),
+    description: generateDescription(),
+    comments: generateComments(),
+    genre: generateGenre(),
+    duration: generateDuration(),
+    year: generateYear(),
+    rating: generateRating(),
   };
+};
+
+const generateRating = () => {
+  return rating[getRandomInteger(0, rating.length - 1)];
+};
+
+const rating = [
+  `9.8`,
+  `5.6`,
+  `3.5`,
+  `7.9`,
+  `8.7`,
+  `4.0`,
+  `5.6`,
+  `7.2`,
+  `6.8`,
+  `4.8`,
+];
+
+const generateYear = () => {
+  return year[getRandomInteger(0, year.length - 1)];
+};
+
+const year = [
+  `1960`,
+  `1970`,
+  `1980`,
+  `1990`,
+  `2000`,
+  `2010`,
+  `2020`,
+  `2012`,
+  `2015`,
+  `2017`,
+
+];
+const generateDuration = () => {
+  return duration[getRandomInteger(0, duration.length - 1)];
+};
+
+const duration = [
+  `60 минут`,
+  `90 минут`,
+  `120 минут`,
+  `75 минут`,
+  `110 минут`,
+  `85 минут`,
+  `65 минут`,
+  `105 минут`,
+  `95 минут`,
+  `70 минут`,
+];
+
+const generateGenre = () => {
+  return genre[getRandomInteger(0, genre.length - 1)];
+};
+
+const genre = [
+  `драма`,
+  `комедия`,
+  `боевик`,
+  `мелодрама`,
+  `триллер`,
+];
+const generateDescription = () => {
+  const numberSentence = getRandomInteger(1, 5); // получаем количество  предложений
+  const result = [];
+  for (let i = 0; i < numberSentence; ++i) {
+    result.push(text[getRandomInteger(0, text.length - 1)]); // добавляем в result по одному
+  }
+  return result.join(` `);
+}; // получаем описание
+
+// создали массив с эмоциями
+const emotions = [
+  `angry.png`,
+  `puke.png`,
+  `sleeping.png`,
+  `smile.png`,
+];
+
+const generateEmotion = () => {
+  return `/images/emoji/${emotions[getRandomInteger(0, emotions.length - 1)]}`;
+}; // получаем индекс эмоции
+
+const titles = [
+  `Бриллиантовая рука`,
+  `Кавказская пленница`,
+  `12 стульев`,
+  `Мебиус`,
+  `Карнавальная ночь`,
+  `любовь и голуби`,
+  `Стажер`,
+  `Лысый нянь`,
+  `Беверли хилс`,
+  `Сваты`,
+  `Близнецы`,
+];
+
+const generateTitle = () => {
+  return titles[getRandomInteger(0, titles.length - 1)];
+};
+
+const posters = [
+  `made-for-each-other.png`,
+  `popeye-meets-sinbad.png`,
+  `sagebrush-trail.jpg`,
+  `santa-claus-conquers-the-martians.jpg`,
+  `the-dance-of-life.jpg`,
+  `the-great-flamarion.jpg`,
+  `the-man-with-the-golden-arm.jpg`,
+];
+
+const generatePoster = () => {
+  return `/images/posters/${posters[getRandomInteger(0, posters.length - 1)]}`;
+};
+
+const generateText = () => {
+  return text[getRandomInteger(0, text.length - 1)];
+};
+
+const generateComment = () => {
+  return {
+    text: generateText(),
+    emotion: generateEmotion(),
+    author: generateAuthor(),
+    date: generateDate(),
+  };
+};
+const author = [`Дмитрий`, `Василий`, `Иван`, `Михаил`, `Константин`, `Петр`, `Ирина`, `Елена`, `Марина`, `Екатерина`];
+
+const generateAuthor = () => {
+  return author[getRandomInteger(0, author.length - 1)];
+};
+
+const generateDate = () => {
+  const yearComments = getRandomInteger(1960, 2020);
+  const month = getRandomInteger(0, 11);
+  const day = getRandomInteger(0, 30);
+  return new Date(yearComments, month, day).toString();
+};
+
+const generateComments = () => {
+  const result = [];
+  const count = getRandomInteger(0, 100);
+  for (let i = 0; i < count; ++i) {
+    result.push(generateComment());
+  }
+  return result;
+};
+
+
+export const generateFilms = () => {
+  const films = [];
+  for (let i = 0; i < 40; ++i) {
+    films.push(generateFilm());
+  }
+  return films;
 };
