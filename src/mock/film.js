@@ -17,6 +17,7 @@ const text = [
   `In rutrum ac purus sit amet tempus.`,
 ];
 
+// карточка фильма
 export const generateFilm = () => {
   return {
     title: generateTitle(),
@@ -27,7 +28,29 @@ export const generateFilm = () => {
     duration: generateDuration(),
     year: generateYear(),
     rating: generateRating(),
+    watchlist: trueOrFalse(),
+    favorites: trueOrFalse(),
+    watched: trueOrFalse(),
+    director: generateDirector(),
+    writers: generateWriters(),
+    actors: generateActors(),
+    release: generateYear(),
+    country: generateCountry(),
+    emotion: generateEmotion(),
+    author: generateAuthor(),
+    date: generateDate(),
   };
+};
+
+let trueOrFalse = () => {
+  let ch = !!getRandomInteger(0, 1);
+  let ch1 = ``;
+  if (ch === true) {
+    ch1 = `checked`;
+  } else {
+    ch1 = ``;
+  }
+  return ch1;
 };
 
 const generateRating = () => {
@@ -62,7 +85,6 @@ const year = [
   `2012`,
   `2015`,
   `2017`,
-
 ];
 const generateDuration = () => {
   return duration[getRandomInteger(0, duration.length - 1)];
@@ -85,13 +107,7 @@ const generateGenre = () => {
   return genre[getRandomInteger(0, genre.length - 1)];
 };
 
-const genre = [
-  `драма`,
-  `комедия`,
-  `боевик`,
-  `мелодрама`,
-  `триллер`,
-];
+const genre = [`драма`, `комедия`, `боевик`, `мелодрама`, `триллер`];
 const generateDescription = () => {
   const numberSentence = getRandomInteger(1, 5); // получаем количество  предложений
   const result = [];
@@ -102,12 +118,7 @@ const generateDescription = () => {
 }; // получаем описание
 
 // создали массив с эмоциями
-const emotions = [
-  `angry.png`,
-  `puke.png`,
-  `sleeping.png`,
-  `smile.png`,
-];
+const emotions = [`angry.png`, `puke.png`, `sleeping.png`, `smile.png`];
 
 const generateEmotion = () => {
   return `/images/emoji/${emotions[getRandomInteger(0, emotions.length - 1)]}`;
@@ -157,7 +168,18 @@ const generateComment = () => {
     date: generateDate(),
   };
 };
-const author = [`Дмитрий`, `Василий`, `Иван`, `Михаил`, `Константин`, `Петр`, `Ирина`, `Елена`, `Марина`, `Екатерина`];
+const author = [
+  `Дмитрий`,
+  `Василий`,
+  `Иван`,
+  `Михаил`,
+  `Константин`,
+  `Петр`,
+  `Ирина`,
+  `Елена`,
+  `Марина`,
+  `Екатерина`,
+];
 
 const generateAuthor = () => {
   return author[getRandomInteger(0, author.length - 1)];
@@ -179,7 +201,6 @@ const generateComments = () => {
   return result;
 };
 
-
 export const generateFilms = () => {
   const films = [];
   for (let i = 0; i < 40; ++i) {
@@ -187,3 +208,69 @@ export const generateFilms = () => {
   }
   return films;
 };
+
+
+const directors = [
+  `Тимур Бекмамбетов`,
+  `Леван Габриадзе`,
+  `Фёдор Бондарчук`,
+  `Николай Лебедев`,
+  `Дмитрий Дьяченко`,
+  `Жора Крыжовников`,
+  `Марюс Вайсберг`,
+  `Сарик Андреасян`,
+  `Андрей Кравчук`,
+  `Кирилл Кузин`,
+];
+
+const generateDirector = () => {
+  return directors[getRandomInteger(0, directors.length - 1)];
+};
+
+const writers = [
+  `Роман Кантор`,
+  `Рената Литвинова‎`,
+  `Алексей Баталов`,
+  `Андрей Тарковский`,
+  `Эльдар Рязанов`,
+  `Михаил Зощенко`,
+  `Эмиль Брагинский`,
+  `Юрий Нагибин`,
+  `Григорий Чухрай`,
+  `Дмитрий Марьянов`,
+];
+
+const generateWriters = () => {
+  return writers[getRandomInteger(0, writers.length - 1)];
+};
+
+const actors = [
+  `Данила Козловский`,
+  `Александр Петров`,
+  `Владимир Машков`,
+  `Дмитрий Нагиев`,
+  `Константин Хабенский`,
+  `Евгений Миронов`,
+  `Федор Бондарчук`,
+  `Павел Прилучный`,
+  `Владимир Вдовиченко`,
+  `Владимир Вдовиченко`,
+];
+
+const generateActors = () => {
+  return actors[getRandomInteger(0, actors.length - 1)];
+};
+
+const countrys = [
+  `Россия`,
+  `США`,
+  `Италия`,
+  `Германия`,
+  `Франция`,
+  `Австралия`,
+];
+
+const generateCountry = () => {
+  return countrys[getRandomInteger(0, countrys.length - 1)];
+};
+
