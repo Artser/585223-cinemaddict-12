@@ -1,5 +1,5 @@
 // Попап (расширенная информация о фильме)
-import { createPopupComments } from "./comments.js";
+import {createPopupComments} from "./comments.js";
 import {createElement} from "../utils.js";
 
 export const createFilmPopupTemplate = (film) => {

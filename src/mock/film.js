@@ -39,7 +39,7 @@ export const generateFilm = () => {
 
 let trueOrFalse = () => {
   return !!getRandomInteger(0, 1);
- };
+};
 
 const generateRating = () => {
   return rating[getRandomInteger(0, rating.length - 1)];

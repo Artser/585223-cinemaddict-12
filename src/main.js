@@ -47,14 +47,13 @@ const FilmListElement = siteMainElement.querySelector(`.films-list .films-list__
 // ограничиваем количество карточек пятью и отображаем сразу
 for (let i = 0; i < 5; ++i) {
   renderElement(FilmListElement, new Film(films[i]).getElement(), RenderPosition.AFTERBEGIN);
-  //render(FilmListElement, filmTemplate, `beforeend`);
+  // render(FilmListElement, filmTemplate, `beforeend`);
 }
 
 const generateFiveElement = (lineCount) => {
   for (let i = lineCount; i < lineCount + 5; ++i) {
     renderElement(FilmListElement, new Film(films[i]).getElement(), RenderPosition.AFTERBEGIN);
 
-    //render(FilmListElement, filmTemplate, `beforeend`);
   }
   lineCount += 5;
   if (lineCount >= films.length) {
@@ -66,7 +65,6 @@ const generateFiveElement = (lineCount) => {
 render(siteMainElement, createShowMoreButtonTemplate(), `beforeend`);
 render(siteMainElement, createTopRatedTemplate(), `beforeend`);
 render(siteMainElement, createMostCommentedTemplate(), `beforeend`);
-//render(footerElement, createFilmPopupTemplate(films[0]), `afterend`);
 renderElement(footerElement, new FilmPopup(films[0]).getElement(), RenderPosition.AFTERBEGIN);
 
 
