@@ -1,4 +1,7 @@
-export const createNavigationTemplate = (navigationChecked) => {
+import {createElement} from "../utils.js";
+
+
+const createNavigationTemplate = (navigationChecked) => {
   return (
     `<nav class="main-navigation">
       <div class="main-navigation__items">
@@ -11,3 +14,27 @@ export const createNavigationTemplate = (navigationChecked) => {
     </nav>`
   );
 };
+
+
+export default class Navigation {
+  constructor(navigationChecked) {
+    this._element = null;
+    this._navigationChecked = navigationChecked;
+  }
+
+  getTemplate() {
+    return createNavigationTemplate(this._navigationChecked);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

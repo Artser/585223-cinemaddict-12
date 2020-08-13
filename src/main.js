@@ -1,17 +1,14 @@
-import {createProfileTemplate} from "./view/profile.js";
-import {createNavigationTemplate} from "./view/navigation.js";
-import {createSortTemplate} from "./view/sort.js";
-import {createFilmsTemplate} from "./view/films.js";
+import Profile from "./view/profile.js";
+import Navigation from "./view/navigation.js";
+import Sorting from "./view/sort.js";
+import Films from "./view/films.js";
 import Film from "./view/film.js";
-import {createShowMoreButtonTemplate} from "./view/show-more-button.js";
+import ShowMoreButton from "./view/show-more-button.js";
 import {createTopRatedTemplate} from "./view/top-rated.js";
-import {createMostCommentedTemplate} from "./view/most-commented.js";
+import MostCommented from "./view/most-commented.js";
 import {generateFilms} from "./mock/film.js";
-import FilmPopup from "./view/film-popup.js";
-import {RenderPosition, renderElement} from "./utils.js";
-const siteHeaderElement = document.querySelector(`.header`);
-const siteMainElement = document.querySelector(`.main`);
-const footerElement = document.querySelector(`.footer`);
+import {RenderPosition, renderElement, siteHeaderElement, siteMainElement} from "./utils.js";
+
 
 // функция для рендеринга (вставки в DOM)
 const render = (container, template, place) => {
@@ -24,30 +21,30 @@ let navigationChecked = {
   favorites: 0,
   history: 0,
 };
-
 films.forEach((film) => {
-  if ((film.watchlist === `checked`)) {
+  if ((film.watchlist === true)) {
     navigationChecked.watchlist++;
   }
-  if ((film.favorites === `checked`)) {
+  if ((film.favorites === true)) {
     navigationChecked.favorites++;
   }
-  if ((film.watched === `checked`)) {
+  if ((film.watched === true)) {
     navigationChecked.history++;
   }
 });
 
-render(siteHeaderElement, createProfileTemplate(), `beforeend`);
-render(siteMainElement, createNavigationTemplate(navigationChecked), `beforeend`);
-render(siteMainElement, createSortTemplate(), `beforeend`);
-render(siteMainElement, createFilmsTemplate(), `beforeend`);
+renderElement(siteHeaderElement, new Profile(films).getElement(), RenderPosition.BEFOREEND);
+renderElement(siteMainElement, new Navigation(navigationChecked).getElement(), RenderPosition.AFTERBEGIN);
+
+renderElement(siteMainElement, new Sorting().getElement(), RenderPosition.BEFOREEND);
+
+renderElement(siteMainElement, new Films(films).getElement(), RenderPosition.BEFOREEND);
 
 const FilmListElement = siteMainElement.querySelector(`.films-list .films-list__container`);
 
 // ограничиваем количество карточек пятью и отображаем сразу
 for (let i = 0; i < 5; ++i) {
-  renderElement(FilmListElement, new Film(films[i]).getElement(), RenderPosition.AFTERBEGIN);
-  // render(FilmListElement, filmTemplate, `beforeend`);
+  renderElement(FilmListElement, new Film(films[i]).getElement(), RenderPosition.BEFOREEND);
 }
 
 const generateFiveElement = (lineCount) => {
@@ -62,11 +59,10 @@ const generateFiveElement = (lineCount) => {
   return lineCount;
 };
 
-render(siteMainElement, createShowMoreButtonTemplate(), `beforeend`);
-render(siteMainElement, createTopRatedTemplate(), `beforeend`);
-render(siteMainElement, createMostCommentedTemplate(), `beforeend`);
-renderElement(footerElement, new FilmPopup(films[0]).getElement(), RenderPosition.AFTERBEGIN);
+renderElement(siteMainElement, new ShowMoreButton(films).getElement(), RenderPosition.BEFOREEND);
 
+render(siteMainElement, createTopRatedTemplate(), `beforeend`);
+renderElement(siteMainElement, new MostCommented(films).getElement(), RenderPosition.BEFOREEND);
 
 let renderCount = 5;
 

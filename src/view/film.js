@@ -1,4 +1,5 @@
-import {createElement} from "../utils.js";
+import {createElement, RenderPosition, renderElement, footerElement} from "../utils.js";
+import FilmPopup from "./film-popup.js";
 
 const createFilmTemplate = (film) => {
   return (
@@ -37,10 +38,28 @@ export default class Film {
       this._element = createElement(this.getTemplate());
     }
 
+    this._element.addEventListener(`click`, (evt) => {
+      evt.preventDefault();
+
+      let PopupFilmExm = new FilmPopup(this._film).getElement();
+
+      renderElement(footerElement, PopupFilmExm, RenderPosition.AFTERBEGIN);
+
+      PopupFilmExm.querySelector(`#close-btn`).addEventListener(`click`, function (e) {
+        e.preventDefault();
+
+        PopupFilmExm.remove();
+      });
+    }
+    );
+
     return this._element;
   }
 
   removeElement() {
     this._element = null;
   }
+
+
 }
+

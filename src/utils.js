@@ -1,4 +1,6 @@
-
+export const siteHeaderElement = document.querySelector(`.header`);
+export const siteMainElement = document.querySelector(`.main`);
+export const footerElement = document.querySelector(`.footer`);
 export const RenderPosition = {
   AFTERBEGIN: `afterbegin`,
   BEFOREEND: `beforeend`

@@ -1,3 +1,6 @@
+import {createElement} from "../utils.js";
+
+
 export const createProfileTemplate = () => {
   return (
     `<section class="header__profile profile">
@@ -6,3 +9,27 @@ export const createProfileTemplate = () => {
     </section>`
   );
 };
+
+
+export default class Profile {
+  constructor(film) {
+    this._element = null;
+    this._film = film;
+  }
+
+  getTemplate() {
+    return createProfileTemplate(this._film);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
