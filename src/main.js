@@ -2,13 +2,13 @@ import {createProfileTemplate} from "./view/profile.js";
 import {createNavigationTemplate} from "./view/navigation.js";
 import {createSortTemplate} from "./view/sort.js";
 import {createFilmsTemplate} from "./view/films.js";
-import {createFilmTemplate} from "./view/film.js";
+import Film from "./view/film.js";
 import {createShowMoreButtonTemplate} from "./view/show-more-button.js";
 import {createTopRatedTemplate} from "./view/top-rated.js";
 import {createMostCommentedTemplate} from "./view/most-commented.js";
 import {generateFilms} from "./mock/film.js";
-import {createFilmPopupTemplate} from "./view/film-popup.js";
-
+import FilmPopup from "./view/film-popup.js";
+import {RenderPosition, renderElement} from "./utils.js";
 const siteHeaderElement = document.querySelector(`.header`);
 const siteMainElement = document.querySelector(`.main`);
 const footerElement = document.querySelector(`.footer`);
@@ -46,14 +46,15 @@ const FilmListElement = siteMainElement.querySelector(`.films-list .films-list__
 
 // ограничиваем количество карточек пятью и отображаем сразу
 for (let i = 0; i < 5; ++i) {
-  const filmTemplate = createFilmTemplate(films[i]);
-  render(FilmListElement, filmTemplate, `beforeend`);
+  renderElement(FilmListElement, new Film(films[i]).getElement(), RenderPosition.AFTERBEGIN);
+  //render(FilmListElement, filmTemplate, `beforeend`);
 }
 
 const generateFiveElement = (lineCount) => {
   for (let i = lineCount; i < lineCount + 5; ++i) {
-    const filmTemplate = createFilmTemplate(films[i]);
-    render(FilmListElement, filmTemplate, `beforeend`);
+    renderElement(FilmListElement, new Film(films[i]).getElement(), RenderPosition.AFTERBEGIN);
+
+    //render(FilmListElement, filmTemplate, `beforeend`);
   }
   lineCount += 5;
   if (lineCount >= films.length) {
@@ -65,7 +66,9 @@ const generateFiveElement = (lineCount) => {
 render(siteMainElement, createShowMoreButtonTemplate(), `beforeend`);
 render(siteMainElement, createTopRatedTemplate(), `beforeend`);
 render(siteMainElement, createMostCommentedTemplate(), `beforeend`);
-render(footerElement, createFilmPopupTemplate(films[0]), `afterend`);
+//render(footerElement, createFilmPopupTemplate(films[0]), `afterend`);
+renderElement(footerElement, new FilmPopup(films[0]).getElement(), RenderPosition.AFTERBEGIN);
+
 
 let renderCount = 5;
 

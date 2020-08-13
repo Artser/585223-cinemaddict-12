@@ -1,5 +1,6 @@
 // Попап (расширенная информация о фильме)
-import {createPopupComments} from "./comments.js";
+import { createPopupComments } from "./comments.js";
+import {createElement} from "../utils.js";
 
 export const createFilmPopupTemplate = (film) => {
   return (
@@ -68,13 +69,13 @@ export const createFilmPopupTemplate = (film) => {
             </div>
 
             <section class="film-details__controls">
-              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watchlist} id="watchlist" name="watchlist">
+              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watchlist ? `checked` : ``} id="watchlist" name="watchlist">
               <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
 
-              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watched} id="watched" name="watched">
+              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watched ? `checked` : ``} id="watched" name="watched">
               <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
 
-              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.favorites} id="favorite" name="favorite">
+              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.favorites ? `checked` : ``} id="favorite" name="favorite">
               <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add to favorites</label>
             </section>
           </div>
@@ -84,9 +85,9 @@ export const createFilmPopupTemplate = (film) => {
               <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${film.comments.length}</span></h3>
 
               <ul class="film-details__comments-list">`
-              + createPopupComments(film) +
+    + createPopupComments(film) +
 
-              `</ul>
+    `</ul>
 
 
               <div class="film-details__new-comment">
@@ -124,3 +125,27 @@ export const createFilmPopupTemplate = (film) => {
     </section>`
   );
 };
+
+
+export default class FilmPopup {
+  constructor(film) {
+    this._element = null;
+    this._film = film;
+  }
+
+  getTemplate() {
+    return createFilmPopupTemplate(this._film);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}

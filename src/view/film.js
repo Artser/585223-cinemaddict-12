@@ -1,4 +1,6 @@
-export const createFilmTemplate = (film) => {
+import {createElement} from "../utils.js";
+
+const createFilmTemplate = (film) => {
   return (
     `<article class="film-card">
           <h3 class="film-card__title">${film.title}</h3>
@@ -19,3 +21,26 @@ export const createFilmTemplate = (film) => {
         </article>`
   );
 };
+
+export default class Film {
+  constructor(film) {
+    this._element = null;
+    this._film = film;
+  }
+
+  getTemplate() {
+    return createFilmTemplate(this._film);
+  }
+
+  getElement() {
+    if (!this._element) {
+      this._element = createElement(this.getTemplate());
+    }
+
+    return this._element;
+  }
+
+  removeElement() {
+    this._element = null;
+  }
+}
