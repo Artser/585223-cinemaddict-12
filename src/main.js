@@ -4,16 +4,11 @@ import Sorting from "./view/sort.js";
 import Films from "./view/films.js";
 import Film from "./view/film.js";
 import ShowMoreButton from "./view/show-more-button.js";
-import {createTopRatedTemplate} from "./view/top-rated.js";
+import TopRated from "./view/top-rated.js";
 import MostCommented from "./view/most-commented.js";
 import {generateFilms} from "./mock/film.js";
 import {RenderPosition, renderElement, siteHeaderElement, siteMainElement} from "./utils.js";
 
-
-// функция для рендеринга (вставки в DOM)
-const render = (container, template, place) => {
-  container.insertAdjacentHTML(place, template);
-};
 
 const films = generateFilms(); // отрисовываем карточки
 let navigationChecked = {
@@ -60,8 +55,8 @@ const generateFiveElement = (lineCount) => {
 };
 
 renderElement(siteMainElement, new ShowMoreButton(films).getElement(), RenderPosition.BEFOREEND);
+renderElement(siteMainElement, new TopRated().getElement(), RenderPosition.BEFOREEND);
 
-render(siteMainElement, createTopRatedTemplate(), `beforeend`);
 renderElement(siteMainElement, new MostCommented(films).getElement(), RenderPosition.BEFOREEND);
 
 let renderCount = 5;
