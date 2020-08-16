@@ -1,5 +1,5 @@
-import {createElement, RenderPosition, renderElement, footerElement} from "../utils.js";
-import FilmPopup from "./film-popup.js";
+
+import AbstractView from "./abstract.js";
 
 const createFilmTemplate = (film) => {
   return (
@@ -23,43 +23,16 @@ const createFilmTemplate = (film) => {
   );
 };
 
-export default class Film {
+
+export default class Film extends AbstractView {
   constructor(film) {
-    this._element = null;
+    super();
     this._film = film;
   }
 
   getTemplate() {
     return createFilmTemplate(this._film);
   }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    this._element.addEventListener(`click`, (evt) => {
-      evt.preventDefault();
-
-      let PopupFilmExm = new FilmPopup(this._film).getElement();
-
-      renderElement(footerElement, PopupFilmExm, RenderPosition.AFTERBEGIN);
-
-      PopupFilmExm.querySelector(`#close-btn`).addEventListener(`click`, function (e) {
-        e.preventDefault();
-
-        PopupFilmExm.remove();
-      });
-    }
-    );
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
-  }
-
 
 }
 

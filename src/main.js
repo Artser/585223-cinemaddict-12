@@ -3,11 +3,12 @@ import Navigation from "./view/navigation.js";
 import Sorting from "./view/sort.js";
 import Films from "./view/films.js";
 import Film from "./view/film.js";
+import NoMovies from "./view/nomovies.js";
 import ShowMoreButton from "./view/show-more-button.js";
 import TopRated from "./view/top-rated.js";
 import MostCommented from "./view/most-commented.js";
 import {generateFilms} from "./mock/film.js";
-import {RenderPosition, renderElement, siteHeaderElement, siteMainElement} from "./utils.js";
+import {RenderPosition, renderElement, siteHeaderElement, siteMainElement} from "./utils/render.js";
 
 
 const films = generateFilms(); // отрисовываем карточки
@@ -35,13 +36,19 @@ renderElement(siteMainElement, new Sorting().getElement(), RenderPosition.BEFORE
 
 renderElement(siteMainElement, new Films(films).getElement(), RenderPosition.BEFOREEND);
 
+
 const FilmListElement = siteMainElement.querySelector(`.films-list .films-list__container`);
+let renderCount = 5;
 
-// ограничиваем количество карточек пятью и отображаем сразу
-for (let i = 0; i < 5; ++i) {
-  renderElement(FilmListElement, new Film(films[i]).getElement(), RenderPosition.BEFOREEND);
-}
+const buttonShow = new ShowMoreButton(films);
+// renderElement(siteMainElement, buttonShow.getElement(), RenderPosition.BEFOREEND);
 
+buttonShow.setClickHandler(() => {
+
+  renderCount = generateFiveElement(renderCount);
+
+
+});
 const generateFiveElement = (lineCount) => {
   for (let i = lineCount; i < lineCount + 5; ++i) {
     renderElement(FilmListElement, new Film(films[i]).getElement(), RenderPosition.AFTERBEGIN);
@@ -54,15 +61,21 @@ const generateFiveElement = (lineCount) => {
   return lineCount;
 };
 
-renderElement(siteMainElement, new ShowMoreButton(films).getElement(), RenderPosition.BEFOREEND);
+if (films.length === 0) {
+  renderElement(siteMainElement, new NoMovies().getElement(), RenderPosition.BEFOREEND);
+} else {
+  // ограничиваем количество карточек пятью и отображаем сразу
+  for (let i = 0; i < 5; ++i) {
+    renderElement(FilmListElement, new Film(films[i]).getElement(), RenderPosition.BEFOREEND);
+  }
+  renderElement(siteMainElement, buttonShow.getElement(), RenderPosition.BEFOREEND);
+
+
+}
+
+
 renderElement(siteMainElement, new TopRated().getElement(), RenderPosition.BEFOREEND);
 
 renderElement(siteMainElement, new MostCommented(films).getElement(), RenderPosition.BEFOREEND);
 
-let renderCount = 5;
 
-const buttonShow = document.querySelector(`.films-list__show-more`);
-buttonShow.addEventListener(`click`, function (evt) {
-  evt.preventDefault();
-  renderCount = generateFiveElement(renderCount);
-});

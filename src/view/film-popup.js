@@ -1,5 +1,5 @@
 // Попап (расширенная информация о фильме)
-import {createElement} from "../utils.js";
+import AbstractView from "./abstract.js";
 
 
 const createPopupComments = (film) => {
@@ -151,9 +151,9 @@ export const createFilmPopupTemplate = (film) => {
 };
 
 
-export default class FilmPopup {
+export default class FilmPopup extends AbstractView {
   constructor(film) {
-    this._element = null;
+    super();
     this._film = film;
   }
 
@@ -161,16 +161,7 @@ export default class FilmPopup {
     return createFilmPopupTemplate(this._film);
   }
 
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-    return this._element;
-  }
 
-  removeElement() {
-    this._element = null;
-  }
 }
 
 

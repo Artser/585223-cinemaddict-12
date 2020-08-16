@@ -1,4 +1,4 @@
-import {createElement} from "../utils.js";
+import AbstractView from "./abstract.js";
 
 
 export const createProfileTemplate = () => {
@@ -10,26 +10,8 @@ export const createProfileTemplate = () => {
   );
 };
 
-
-export default class Profile {
-  constructor(film) {
-    this._element = null;
-    this._film = film;
-  }
-
+export default class Profile extends AbstractView {
   getTemplate() {
-    return createProfileTemplate(this._film);
-  }
-
-  getElement() {
-    if (!this._element) {
-      this._element = createElement(this.getTemplate());
-    }
-
-    return this._element;
-  }
-
-  removeElement() {
-    this._element = null;
+    return createProfileTemplate();
   }
 }
