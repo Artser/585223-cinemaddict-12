@@ -85,6 +85,7 @@ if (films.length === 0) {
   renderElement(siteMainElement, new NoMovies().getElement(), RenderPosition.BEFOREEND);
 } else {
   // ограничиваем количество карточек пятью и отображаем сразу
+  // отрисовываем первые пять карточек
   for (let i = 0; i < 5; ++i) {
     const filmView = new Film(films[i]);
     renderElement(FilmListElement, filmView.getElement(), RenderPosition.BEFOREEND);

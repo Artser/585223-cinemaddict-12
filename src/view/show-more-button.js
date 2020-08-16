@@ -1,4 +1,4 @@
-import AbstractClickable from "./abstract-Clickable.js";
+import AbstractClickable from "./abstract-clickable.js";
 
 
 const createShowMoreButtonTemplate = () => `<button class="films-list__show-more">Show more</button>`;
