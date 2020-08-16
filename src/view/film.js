@@ -1,5 +1,5 @@
 
-import AbstractView from "./abstract.js";
+import AbstractClickable from "./abstract-clickable.js";
 
 const createFilmTemplate = (film) => {
   return (
@@ -24,10 +24,12 @@ const createFilmTemplate = (film) => {
 };
 
 
-export default class Film extends AbstractView {
+export default class Film extends AbstractClickable {
   constructor(film) {
     super();
     this._film = film;
+    this._clickHandler = this._clickHandler.bind(this);
+
   }
 
   getTemplate() {

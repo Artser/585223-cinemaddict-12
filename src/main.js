@@ -6,9 +6,10 @@ import Film from "./view/film.js";
 import NoMovies from "./view/nomovies.js";
 import ShowMoreButton from "./view/show-more-button.js";
 import TopRated from "./view/top-rated.js";
+import FilmPopup from "./view/film-popup.js";
 import MostCommented from "./view/most-commented.js";
 import {generateFilms} from "./mock/film.js";
-import {RenderPosition, renderElement, siteHeaderElement, siteMainElement} from "./utils/render.js";
+import {RenderPosition, renderElement, siteHeaderElement, siteMainElement, footerElement} from "./utils/render.js";
 
 
 const films = generateFilms(); // отрисовываем карточки
@@ -41,7 +42,6 @@ const FilmListElement = siteMainElement.querySelector(`.films-list .films-list__
 let renderCount = 5;
 
 const buttonShow = new ShowMoreButton(films);
-// renderElement(siteMainElement, buttonShow.getElement(), RenderPosition.BEFOREEND);
 
 buttonShow.setClickHandler(() => {
 
@@ -50,15 +50,35 @@ buttonShow.setClickHandler(() => {
 
 });
 const generateFiveElement = (lineCount) => {
-  for (let i = lineCount; i < lineCount + 5; ++i) {
-    renderElement(FilmListElement, new Film(films[i]).getElement(), RenderPosition.AFTERBEGIN);
+  const max = lineCount + 5 >= films.length ? films.length : lineCount + 5;
+  for (let i = lineCount; i < max; ++i) {
+    const filmView = new Film(films[i]);
+    renderElement(FilmListElement, filmView.getElement(), RenderPosition.BEFOREEND);
+    filmView.setClickHandler(() => {
+      const filmPopupView = new FilmPopup(films[i]);
+      renderElement(footerElement, filmPopupView.getElement(), RenderPosition.BEFOREEND);
+      filmPopupView.setClickHandler((evt) => {
+        const target = evt.target;
+        if (target.id === `close-btn`) {
+          filmPopupView.getElement().remove();
+        }
+      });
+      filmPopupView.setEscKeyDownHandler((evt) => {
+        if (evt.key === `Escape` || evt.key === `Esc`) {
+          evt.preventDefault();
+          filmPopupView.getElement().remove();
+
+        }
+      });
+
+    });
+
 
   }
-  lineCount += 5;
-  if (lineCount >= films.length) {
-    buttonShow.remove();
+  if (max >= films.length) {
+    buttonShow.getElement().remove();
   }
-  return lineCount;
+  return max;
 };
 
 if (films.length === 0) {
@@ -66,7 +86,25 @@ if (films.length === 0) {
 } else {
   // ограничиваем количество карточек пятью и отображаем сразу
   for (let i = 0; i < 5; ++i) {
-    renderElement(FilmListElement, new Film(films[i]).getElement(), RenderPosition.BEFOREEND);
+    const filmView = new Film(films[i]);
+    renderElement(FilmListElement, filmView.getElement(), RenderPosition.BEFOREEND);
+    filmView.setClickHandler(() => {
+      const filmPopupView = new FilmPopup(films[i]);
+      renderElement(footerElement, filmPopupView.getElement(), RenderPosition.BEFOREEND);
+      filmPopupView.setClickHandler((evt) => {
+        const target = evt.target;
+        if (target.id === `close-btn`) {
+          filmPopupView.getElement().remove();
+        }
+      });
+      filmPopupView.setEscKeyDownHandler((evt) => {
+        if (evt.key === `Escape` || evt.key === `Esc`) {
+          evt.preventDefault();
+          filmPopupView.getElement().remove();
+
+        }
+      });
+    });
   }
   renderElement(siteMainElement, buttonShow.getElement(), RenderPosition.BEFOREEND);
 

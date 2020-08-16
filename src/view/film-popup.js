@@ -1,5 +1,5 @@
 // Попап (расширенная информация о фильме)
-import AbstractView from "./abstract.js";
+import AbstractClickable from "./abstract-clickable.js";
 
 
 const createPopupComments = (film) => {
@@ -151,10 +151,32 @@ export const createFilmPopupTemplate = (film) => {
 };
 
 
-export default class FilmPopup extends AbstractView {
+export default class FilmPopup extends AbstractClickable {
   constructor(film) {
     super();
     this._film = film;
+    this._clickHandler = this._clickHandler.bind(this);
+    this._escCallback = {};
+    this._escKeyDownHandler = this._escKeyDownHandler.bind(this);
+
+  }
+
+
+  _escKeyDownHandler(evt) {
+    // 3. А внутри абстрактного обработчика вызовем колбэк
+    this._escCallback.keydown(evt);
+  }
+
+  setEscKeyDownHandler(callback) {
+    // Мы могли бы сразу передать callback в addEventListener,
+    // но тогда бы для удаления обработчика в будущем,
+    // нам нужно было бы производить это снаружи, где-то там,
+    // где мы вызывали setClickHandler, что не всегда удобно
+
+    // 1. Поэтому колбэк мы запишем во внутреннее свойство
+    this._escCallback.keydown = callback;
+    // 2. В addEventListener передадим абстрактный обработчик
+    document.addEventListener(`keydown`, this._escKeyDownHandler);
   }
 
   getTemplate() {
