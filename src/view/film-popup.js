@@ -1,5 +1,30 @@
 // Попап (расширенная информация о фильме)
-import {createPopupComments} from "./comments.js";
+import AbstractClickable from "./abstract-clickable.js";
+
+
+const createPopupComments = (film) => {
+
+  let textComments = ``;
+
+  film.comments.forEach((comments) => {
+    textComments += `<li class="film-details__comment">
+                  <span class="film-details__comment-emoji">
+                    <img src=${comments.emotion} width="55" height="55" alt="emoji">
+                  </span>
+                  <div>
+                    <p class="film-details__comment-text">${comments.text}</p>
+                    <p class="film-details__comment-info">
+                      <span class="film-details__comment-author">${comments.author}</span>
+                      <span class="film-details__comment-day">${comments.date}</span>
+                      <button class="film-details__comment-delete">Delete</button>
+                    </p>
+                  </div>
+                </li>`;
+  });
+  return textComments;
+
+
+};
 
 export const createFilmPopupTemplate = (film) => {
   return (
@@ -7,7 +32,7 @@ export const createFilmPopupTemplate = (film) => {
         <form class="film-details__inner" action="" method="get">
           <div class="form-details__top-container">
             <div class="film-details__close">
-              <button class="film-details__close-btn" type="button">close</button>
+              <button id="close-btn" class="film-details__close-btn" type="button">close</button>
             </div>
             <div class="film-details__info-wrap">
               <div class="film-details__poster">
@@ -68,13 +93,13 @@ export const createFilmPopupTemplate = (film) => {
             </div>
 
             <section class="film-details__controls">
-              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watchlist} id="watchlist" name="watchlist">
+              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watchlist ? `checked` : ``} id="watchlist" name="watchlist">
               <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
 
-              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watched} id="watched" name="watched">
+              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watched ? `checked` : ``} id="watched" name="watched">
               <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
 
-              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.favorites} id="favorite" name="favorite">
+              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.favorites ? `checked` : ``} id="favorite" name="favorite">
               <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add to favorites</label>
             </section>
           </div>
@@ -84,9 +109,9 @@ export const createFilmPopupTemplate = (film) => {
               <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${film.comments.length}</span></h3>
 
               <ul class="film-details__comments-list">`
-              + createPopupComments(film) +
+    + createPopupComments(film) +
 
-              `</ul>
+    `</ul>
 
 
               <div class="film-details__new-comment">
@@ -124,3 +149,41 @@ export const createFilmPopupTemplate = (film) => {
     </section>`
   );
 };
+
+
+export default class FilmPopup extends AbstractClickable {
+  constructor(film) {
+    super();
+    this._film = film;
+    this._clickHandler = this._clickHandler.bind(this);
+    this._escCallback = {};
+    this._escKeyDownHandler = this._escKeyDownHandler.bind(this);
+
+  }
+
+
+  _escKeyDownHandler(evt) {
+    // 3. А внутри абстрактного обработчика вызовем колбэк
+    this._escCallback.keydown(evt);
+  }
+
+  setEscKeyDownHandler(callback) {
+    // Мы могли бы сразу передать callback в addEventListener,
+    // но тогда бы для удаления обработчика в будущем,
+    // нам нужно было бы производить это снаружи, где-то там,
+    // где мы вызывали setClickHandler, что не всегда удобно
+
+    // 1. Поэтому колбэк мы запишем во внутреннее свойство
+    this._escCallback.keydown = callback;
+    // 2. В addEventListener передадим абстрактный обработчик
+    document.addEventListener(`keydown`, this._escKeyDownHandler);
+  }
+
+  getTemplate() {
+    return createFilmPopupTemplate(this._film);
+  }
+
+
+}
+
+

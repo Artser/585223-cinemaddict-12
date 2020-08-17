@@ -1,3 +1,6 @@
+import AbstractView from "./abstract.js";
+
+
 export const createProfileTemplate = () => {
   return (
     `<section class="header__profile profile">
@@ -6,3 +9,9 @@ export const createProfileTemplate = () => {
     </section>`
   );
 };
+
+export default class Profile extends AbstractView {
+  getTemplate() {
+    return createProfileTemplate();
+  }
+}
