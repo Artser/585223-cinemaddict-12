@@ -1,0 +1,27 @@
+$font--primary: "Arial", "Helvetica", sans-serif;
+$font--play: "Play", "Arial", sans-serif;
+
+@font-face {
+  font-weight: normal;
+  font-family: "Play";
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/playregular.woff2") format("woff2");
+}
+
+@font-face {
+  font-weight: bold;
+  font-family: "Play";
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/playbold.woff2");
+}
+
+@font-face {
+  font-weight: bonormalld;
+  font-family: "lg";
+  font-style: normal;
+  font-display: swap;
+  src: url("../fonts/lg.woff");
+}
+

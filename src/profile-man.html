@@ -1,0 +1,1441 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+
+<head>
+  <title>Дмитрий Переход (Санкт-Петербург)</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.min.css" rel="stylesheet">
+</head>
+
+<body>
+
+  <!--класс для главной страницы main-page, для зарегистрированного пользователя login-in-->
+  <div class="login-in">
+    <header class="header">
+  <div class="container header__wrap">
+
+    <a href="/" class="header__logo">
+      <img class="header__logo-img" src="img/logo.svg" width="154" height="36" lang="en" alt="Miss future">
+    </a>
+
+    <nav class="header__nav nav">
+      <button type="button" class="nav__btn">Меню</button>
+      <ul class="nav__list">
+        <li class="nav__item"><a href="#" class="nav__link">Голосование</a></li>
+        <li class="nav__item">
+          <a href="#" class="nav__link nav__link--submenu">О конкурсе</a>
+          <button class="nav__item-btn" type="button">Раскрыть/скрыть вложенное меню</button>
+          <ul class="nav__second-list">
+            <li class="nav__second-item"><a href="#" class="nav__second-link">Miss Future</a></li>
+            <li class="nav__second-item"><a href="#" class="nav__second-link">Правила конкурса</a></li>
+            <li class="nav__second-item"><a href="#" class="nav__second-link">Фотогалерея</a></li>
+            <li class="nav__second-item"><a href="#" class="nav__second-link">Партнеры конкурса</a></li>
+            <li class="nav__second-item"><a href="#" class="nav__second-link">СМИ о нас</a></li>
+            <li class="nav__second-item"><a href="#" class="nav__second-link">Блог Miss Future</a></li>
+            <li class="nav__second-item"><a href="#" class="nav__second-link">Призы победителям</a></li>
+            <li class="nav__second-item"><a href="#" class="nav__second-link">Политика безопасности</a></li>
+            <li class="nav__second-item"><a href="#" class="nav__second-link">Поддержка</a></li>
+          </ul>
+        </li>
+        <li class="nav__item"><a href="#" class="nav__link">Финалисты</a></li>
+        <li class="nav__item nav__item--mobile-only nav__item--login-in"><a href="#" class="nav__link">Мой профиль</a></li>
+        <li class="nav__item nav__item--mobile-only nav__item--login-in"><a href="#" class="nav__link">Мой рейтинг</a></li>
+        <li class="nav__item nav__item--mobile-only nav__item--login-in"><a href="#" class="nav__link">Цветочек</a></li>
+        <li class="nav__item nav__item--mobile-only nav__item--login-in"><a href="#" class="nav__link">Приглашения</a></li>
+        <li class="nav__item nav__item--mobile-only nav__item--login-in"><a href="#" class="nav__link">Настройки</a></li>
+        <li class="nav__item nav__item--mobile-only nav__item--login-in"><a href="#" class="nav__link">Выйти</a></li>
+      </ul>
+    </nav>
+
+    <div class="header__search-container">
+
+      <form class="header__search-form" action="/search">
+        <input type="text" autocomplete="off" class="header__search-input" name="search-value" aria-label="Поиск по сайту">
+        <button type="submit" class="header__search-btn">Найти</button>
+      </form>
+
+      <section class="header__popular-profiles popular-profiles">
+        <h3 class="popular-profiles__heading">Популярные профили</h3>
+        <ul class="popular-profiles__list">
+
+          <li class="popular-profiles__item">
+            <a href="#" class="popular-profiles__link">
+              <div class="popular-profiles__img-wrap">
+                <img class="popular-profiles__img" src="http://via.placeholder.com/62x62" alt="">
+              </div>
+              <div class="popular-profiles__text-wrap">
+                <h4 class="popular-profiles__item-heading">Имя Фамилия</h4>
+                <div class="popular-profiles__item-about">
+                  <p class="popular-profiles__item-city">Москва</p>
+                  <p class="popular-profiles__item-age">20 лет</p>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="popular-profiles__item">
+            <a href="#" class="popular-profiles__link">
+              <div class="popular-profiles__img-wrap">
+                <img class="popular-profiles__img" src="http://via.placeholder.com/100x62" alt="">
+              </div>
+              <div class="popular-profiles__text-wrap">
+                <h4 class="popular-profiles__item-heading">Имя Фамилия</h4>
+                <div class="popular-profiles__item-about">
+                  <p class="popular-profiles__item-city">Москва</p>
+                  <p class="popular-profiles__item-age">20 лет</p>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="popular-profiles__item">
+            <a href="#" class="popular-profiles__link">
+              <div class="popular-profiles__img-wrap">
+                <img class="popular-profiles__img" src="http://via.placeholder.com/100x200" alt="">
+              </div>
+              <div class="popular-profiles__text-wrap">
+                <h4 class="popular-profiles__item-heading">Имя Фамилия</h4>
+                <div class="popular-profiles__item-about">
+                  <p class="popular-profiles__item-city">Москва</p>
+                  <p class="popular-profiles__item-age">20 лет</p>
+                </div>
+              </div>
+            </a>
+          </li>
+
+          <li class="popular-profiles__item">
+            <a href="#" class="popular-profiles__link">
+              <div class="popular-profiles__img-wrap">
+                <img class="popular-profiles__img" src="http://via.placeholder.com/200x50" alt="">
+              </div>
+              <div class="popular-profiles__text-wrap">
+                <h4 class="popular-profiles__item-heading">Имя Фамилия</h4>
+                <div class="popular-profiles__item-about">
+                  <p class="popular-profiles__item-city">Москва</p>
+                  <p class="popular-profiles__item-age">20 лет</p>
+                </div>
+              </div>
+            </a>
+          </li>
+
+        </ul>
+      </section>
+
+    </div>
+
+    <div class="header__user-wrap">
+      <a href="#" class="header__login">Войти <span class="header__mobile-hidden">в аккаунт</span></a>
+
+      <a href="#" class="header__user">
+        <div class="header__user-img-wrap">
+          <img class="header__user-img" src="img/profile/avatar.jpg" alt="">
+        </div>
+        <h3 class="header__user-heading">Александра Полякова </h3>
+      </a>
+
+      <a href="#" class="header__purse" title="Мой кошелёк">0</a>
+
+      <a href="#" class="header__message" title="Мои сообщения"></a>
+    </div>
+
+  </div>
+</header>
+
+  </div>
+
+
+  <main>
+    <div class="container page profile-man">
+      <div class="page__wrap">
+        <section class="main-sidebar page__main-sidebar">
+          <h2 class="visually-hidden">Навигация по&nbsp;профилю</h2>
+
+          <ul class="main-sidebar__menu">
+
+            <li class="main-sidebar__menu-item">
+              <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--home active">Мой профиль</a>
+              <ul class="main-sidebar__submenu">
+                <li class="main-sidebar__submenu-item">
+                  <a href="#" class="main-sidebar__submenu-link">Настройки</a>
+                </li>
+                <li class="main-sidebar__submenu-item">
+                  <a href="#" class="main-sidebar__submenu-link">Приглашения</a>
+                </li>
+                <li class="main-sidebar__submenu-item">
+                  <a href="#" class="main-sidebar__submenu-link">Мои друзья <sup class="main-sidebar__submenu-item-amount">10</sup></a>
+                </li>
+                <li class="main-sidebar__submenu-item">
+                  <a href="#" class="main-sidebar__submenu-link">Фотографии <sup class="main-sidebar__submenu-item-amount">45</sup></a>
+                </li>
+                <li class="main-sidebar__submenu-item">
+                  <a href="#" class="main-sidebar__submenu-link">Видеозаписи <sup class="main-sidebar__submenu-item-amount">1</sup></a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="main-sidebar__menu-item">
+              <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--message">
+                Сообщения
+                <span class="main-sidebar__menu-item-count">+1</span>
+              </a>
+            </li>
+
+            <li class="main-sidebar__menu-item">
+              <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--rating">
+                Мой рейтинг
+                <span class="main-sidebar__menu-item-amount">120</span>
+              </a>
+              <ul class="main-sidebar__submenu">
+                <li class="main-sidebar__submenu-item">
+                  <a href="#" class="main-sidebar__submenu-link">Цветочек</a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="main-sidebar__menu-item">
+              <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--blog">Мой блог</a>
+              <ul class="main-sidebar__submenu">
+                <li class="main-sidebar__submenu-item">
+                  <a href="#" class="main-sidebar__submenu-link">Добавить запись</a>
+                </li>
+                <li class="main-sidebar__submenu-item">
+                  <a href="#" class="main-sidebar__submenu-link">Мои записи <sup class="main-sidebar__submenu-item-amount">13</sup></a>
+                </li>
+                <li class="main-sidebar__submenu-item">
+                  <a href="#" class="main-sidebar__submenu-link">Мои достижения <sup class="main-sidebar__submenu-item-amount">6</sup></a>
+                </li>
+              </ul>
+            </li>
+
+            <li class="main-sidebar__menu-item">
+              <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--logout">Выйти</a>
+            </li>
+
+          </ul>
+
+        </section>
+
+        <div class="page__main-wrap page__main-wrap--man">
+
+          <section class="profile">
+            <header>
+
+              <div class="profile__header  profile__header--man">
+
+                <div class="profile__info profile__info--man">
+                  <div class="profile__img-container profile__img-container--man">
+                    <a href="#" class="profile__img-wrap">
+                      <img src="img/profile/avatar_963.jpg" class="profile__img" alt="">
+                    </a>
+                    <div class="profile__status profile__status--man profile__status--online"></div>
+                  </div>
+                  <div class="profile__description profile__description--man">
+
+                    <a href="#" class="profile__name-link">
+                      <h1 class="profile__name">Дмитрий Переход</h1>
+                    </a>
+
+                    <div class="profile__description-row">
+                      <a href="#" class="profile__location">Санкт-Петербург</a>
+                      <span class="profile__age">35&nbsp;лет</span>
+                    </div>
+
+                    <div>
+                      <span class="profile__description-statistic">
+                        <a href="#" class="profile__friends">9</a>
+                      </span>
+                      <a class="profile__description-message-btn-mobile" data-id="486">Добавить
+                        в&nbsp;друзья</a>
+                      <a class="profile__description-message-btn-mobile profile__description-message-btn-mobile--message" data-id="486">Написать
+                        &nbsp;сообщение</a>
+                    </div>
+
+                  </div>
+                </div>
+
+                <div class="profile__rating-block">
+                  <p class="profile__rating-text profile__rating-text--man">Зритель</p>
+                </div>
+
+              </div>
+
+              <div class="profile-nav profile-nav--man">
+                <div class="profile-nav__status profile-nav__status--man status-offline">
+                  <a href="profile//friends"><span class="icon icon-friends"></span>9</a>Offline</div>
+                <ul class="profile-nav__list profile-nav__list--man">
+                  <li class="profile-nav__item">
+                    <a href="#" class="profile-nav__link profile-nav__link--man">О&nbsp;себе</a>
+                  </li>
+                  <li class="profile-nav__item">
+                    <a href="#" class="profile-nav__link profile-nav__link--man">Фото</a>
+                  </li>
+                  <li class="profile-nav__item">
+                    <a href="#" class="profile-nav__link profile-nav__link--man">Видео</a>
+                  </li>
+                  <li class="profile-nav__item profile-nav__item--restrict">
+                    <a href="#" class="profile-nav__link profile-nav__link--man">Блог</a>
+                  </li>
+                  <li class="profile-nav__item profile-nav__item--restrict">
+                    <a href="#" class="profile-nav__link profile-nav__link--man">Друзья</a>
+                  </li>
+                </ul>
+                <div class="profile-nav__write-message">
+                  <a href="chats/checkChat/490" class="profile-nav__write-message-btn">Написать сообщение <span class="icon icon-write-message"></span> </a>
+                </div>
+              </div>
+
+            </header>
+
+            <section class="profile-main photo-profile">
+
+              <div class="profile-main__left-column profile-main__left-column--man">
+                <div class="profile-main__img-wrap profile-main__img-wrap--man">
+                  <img src="img/profile/avatar_963.jpg" class="profile-main__img" alt="">
+                </div>
+                <a href="#" class="profile-main__like profile-main__like--man">
+                  <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="26px" height="26px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 30000 30000" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <defs>
+                    </defs>
+                    <g id="Layer_x0020_1">
+                      <polygon class="fil0" points="29754,6896 27132,4260 10822,20481 2881,12497 244,15119 8186,23104 10808,25741 13446,23118 "></polygon>
+                    </g>
+                  </svg>Заявка отправлена</a>
+
+                <a href="#" class="profile-main__like profile-main__like--man profile-main__like--heart">
+                  <svg xmlns="http://www.w3.org/2000/svg" width="15" height="15" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                    <path d="M15001 6257a7925 7925 0 0 1 14772 3991c0 5784-10955 13832-14744 17374v54l-28-27-31 27v-54C11182 24080 227 16032 227 10248a7925 7925 0 0 1 14773-3991z">
+                    </path>
+                  </svg>Мне нравится</a>
+              </div>
+
+              <div class="profile-main__head-column">
+                <div class="content profile-main__wrap-content profile-main__wrap-content--man">
+                  <p>
+                    Я&nbsp;ХОРОШИЙ МАЛЬЧИК.....
+                  </p>
+                </div>
+              </div>
+              <div class="profile-main__right-column profile-main__right-column--man">
+                <p class="profile-main__location profile-main__location--man">Местоположение
+                  <a href="#" class="profile-main__right-column-link">Санкт-Петербург</a>
+                </p>
+                <p class="profile-main__age profile-main__age--man">Возраст: 35&nbsp;лет</p>
+                <h3 class="profile-main__interest profile-main__interest--man"><span class="profile-man__icon profile-man__icon-interests"></span>Интересы
+
+                    <div class="photo-profile__section-title-count-mobile photo-profile__section-title-count-mobile--man">
+                    14</div>
+                </h3>
+                <div class="profile-main__interest-list profile-main__interest-list--man profile-main__interest-list--man-desktop">
+                  <div class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--activity">Активный
+                      отдых</a>
+                  </div>
+
+                  <div class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--household">Домохозяйство</a>
+                  </div>
+                  <div class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--friendship">Дружба</a>
+                  </div>
+                  <div class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--health">Здоровье</a>
+                  </div>
+                  <div class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--dating">Знакомства</a>
+                  </div>
+                  <div class="profile-main__items">
+                    <div class="profile-main__interest-item profile-main__interest-item--man">
+                      <a href="#" class="profile-main__interest-link profile-main__interest-link--career">Карьера</a>
+                    </div>
+                    <div class="profile-main__interest-item profile-main__interest-item--man">
+                      <a href="#" class="profile-main__interest-link profile-main__interest-link--cinema">Кино</a>
+                    </div>
+                    <div class="profile-main__interest-item profile-main__interest-item--man">
+                      <a href="#" class="profile-main__interest-link profile-main__interest-link--comfort">Комфорт</a>
+                    </div>
+                    <div class="profile-main__interest-item profile-main__interest-item--man">
+                      <a href="#" class="profile-main__interest-link profile-main__interest-link--cooking">Кулинария</a>
+                    </div>
+                    <div class="profile-main__interest-item profile-main__interest-item--man">
+                      <a href="#" class="profile-main__interest-link profile-main__interest-link--boarg-games">Настольные
+                        игры</a>
+                    </div>
+                    <div class="profile-main__interest-item profile-main__interest-item--man">
+                      <a href="#" class="profile-main__interest-link profile-main__interest-link--vacation">Отдых с
+                        друзьями</a>
+                    </div>
+                    <div class="profile-main__interest-item profile-main__interest-item--man">
+                      <a href="#" class="profile-main__interest-link profile-main__interest-link--entertainment">Развлечения</a>
+                    </div>
+                    <div class="profile-main__interest-item profile-main__interest-item--man">
+                      <a href="#" class="profile-main__interest-link profile-main__interest-link--family">Семья и
+                        отношения</a>
+                    </div>
+                  </div>
+                </div>
+
+                <ul class="profile-main__interest-list profile-main__interest-list--man profile-main__interest-list--man-mobile">
+                  <li class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--activity">Активный
+                      отдых</a>
+                  </li>
+                  <li class="profile-main__interest-item  profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--video">Видео</a>
+                  </li>
+                  <li class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--household">Домохозяйство</a>
+                  </li>
+                  <li class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--friendship">Дружба</a>
+                  </li>
+                  <li class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--health">Здоровье</a>
+                  </li>
+                  <li class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--dating">Знакомства</a>
+                  </li>
+                  <li class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--career">Карьера</a>
+                  </li>
+                  <li class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--cinema">Кино</a>
+                  </li>
+                  <li class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--comfort">Комфорт</a>
+                  </li>
+                  <li class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--cooking">Кулинария</a>
+                  </li>
+                  <li class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--boarg-games">Настольные
+                      игры</a>
+                  </li>
+                  <li class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--vacation">Отдых с
+                      друзьями</a>
+                  </li>
+                  <li class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--entertainment">Развлечения</a>
+                  </li>
+                  <li class="profile-main__interest-item profile-main__interest-item--man">
+                    <a href="#" class="profile-main__interest-link profile-main__interest-link--family">Семья и
+                      отношения</a>
+                  </li>
+                </ul>
+                <p class="profile-info-list-item-name profile-info-list-item-name-interest">
+                  <a href="#" class="profile-info-list-item-name-interest-btn">Посмотреть все интересы</a>
+                  <a href="#" class="profile-info-list-item-name-interest-btn--hide">Скрыть все интересы</a>
+                </p>
+              </div>
+            </section>
+
+            <section class="profile-activity profile-activity--man">
+              <header class="profile-activity__header">
+                <h3 class="profile-activity__heading profile-activity__heading--man">Лента активности</h3>
+                <ul class="profile-activity__time-period-list">
+                  <li class="profile-activity__time-period-item">
+                    <a href="#" class="profile-activity__time-period-link">Сегодня</a>
+                  </li>
+                  <li class="profile-activity__time-period-item">
+                    <a href="#" class="profile-activity__time-period-link">Вчера</a>
+                  </li>
+                  <li class="profile-activity__time-period-item">
+                    <a href="#" class="profile-activity__time-period-link active">За&nbsp;неделю</a>
+                  </li>
+                </ul>
+                <div class="profile-activity__mobile">
+                  <button type="button" class="profile-activity__mobile-btn">Лента активности</button>
+                  <div class="profile-activity__mobile-wrap">
+                    <div class="search search--small search--small-mobile">
+                      <div class="search__filter">
+                        <form action="#">
+                          <select class="select-single select-single--period" name="timeActivity" data-placeholder="За неделю">
+                            <option value="today">Сегодня</option>
+                            <option value="yesterday">Вчера</option>
+                            <option value="week" selected="">За&nbsp;неделю</option>
+                          </select>
+                          <select class="select-single select-single--type-post" name="type-post" data-placeholder="Новые записи">
+                            <option value="new">Новые записи</option>
+                            <option value="popular">Популярное</option>
+                            <option value="photo">Фотографии</option>
+                            <option value="video">Видеозаписи</option>
+                            <option value="blog">Блоги</option>
+                            <option value="progress">Достижения</option>
+                          </select>
+                          <div class="search__tag" data-tags-input-name="tag" id="tagBoxMobile" data-no-duplicate-text="Повторяющийся хэштэг"></div>
+                          <div class="search__place">
+                            <select class="chosen-container-single chosen-container-single--custom" id="city-selection" name="city" data-placeholder="Место жительства">
+                              <option value="">Все города</option>
+                              <option value="Абакан">Абакан</option>
+                              <option value="Азов">Азов</option>
+                              <option value="Альметьевск">Альметьевск</option>
+                              <option value="Ангарск">Ангарск</option>
+                              <option value="Арзамас">Арзамас</option>
+                              <option value="Армавир">Армавир</option>
+                              <option value="Архангельск">Архангельск</option>
+                              <option value="Астрахань">Астрахань</option>
+                              <option value="Ачинск">Ачинск</option>
+                              <option value="Барнаул">Барнаул</option>
+                              <option value="Белгород">Белгород</option>
+                              <option value="Бийск">Бийск</option>
+                              <option value="Благовещенск">Благовещенск</option>
+                              <option value="Братск">Братск</option>
+                              <option value="Брянск">Брянск</option>
+                              <option value="Великие Луки">Великие Луки</option>
+                              <option value="Великий Новгород">Великий Новгород</option>
+                              <option value="Владивосток">Владивосток</option>
+                              <option value="Владикавказ">Владикавказ</option>
+                              <option value="Владимир">Владимир</option>
+                              <option value="Волгоград">Волгоград</option>
+                              <option value="Волгодонск">Волгодонск</option>
+                              <option value="Волжский">Волжский</option>
+                              <option value="Вологда">Вологда</option>
+                              <option value="Воркута">Воркута</option>
+                              <option value="Воронеж">Воронеж</option>
+                              <option value="Грозный">Грозный</option>
+                              <option value="Дзержинск">Дзержинск</option>
+                              <option value="Екатеринбург">Екатеринбург</option>
+                              <option value="Елец">Елец</option>
+                              <option value="Ессентуки">Ессентуки</option>
+                              <option value="Иваново">Иваново</option>
+                              <option value="Ижевск">Ижевск</option>
+                              <option value="Иркутск">Иркутск</option>
+                              <option value="Йошкар-Ола">Йошкар-Ола</option>
+                              <option value="Казань">Казань</option>
+                              <option value="Калининград">Калининград</option>
+                              <option value="Калуга">Калуга</option>
+                              <option value="Камышин">Камышин</option>
+                              <option value="Кемерово">Кемерово</option>
+                              <option value="Киров">Киров</option>
+                              <option value="Кисловодск">Кисловодск</option>
+                              <option value="Ковров">Ковров</option>
+                              <option value="Коломна">Коломна</option>
+                              <option value="Комсомольск-на-Амуре">Комсомольск-на-Амуре</option>
+                              <option value="Кострома">Кострома</option>
+                              <option value="Красногорск">Красногорск</option>
+                              <option value="Краснодар">Краснодар</option>
+                              <option value="Красноярск">Красноярск</option>
+                              <option value="Курган">Курган</option>
+                              <option value="Курск">Курск</option>
+                              <option value="Кызыл">Кызыл</option>
+                              <option value="Липецк">Липецк</option>
+                              <option value="Магадан">Магадан</option>
+                              <option value="Магнитогорск">Магнитогорск</option>
+                              <option value="Майкоп">Майкоп</option>
+                              <option value="Междуреченск">Междуреченск</option>
+                              <option value="Миасс">Миасс</option>
+                              <option value="Москва">Москва</option>
+                              <option value="Мончегорск">Мончегорск</option>
+                              <option value="Мурманск">Мурманск</option>
+                              <option value="Муром">Муром</option>
+                              <option value="Мытищи">Мытищи</option>
+                              <option value="Набережные Челны ">Набережные Челны</option>
+                              <option value="Назрань">Назрань</option>
+                              <option value="Нальчик">Нальчик</option>
+                              <option value="Находка">Находка</option>
+                              <option value="Нефтекамск">Нефтекамск</option>
+                              <option value="Нефтеюганск">Нефтеюганск</option>
+                              <option value="Нижневартовск">Нижневартовск</option>
+                              <option value="Нижнекамск">Нижнекамск</option>
+                              <option value="Нижний Новгород">Нижний Новгород</option>
+                              <option value="Нижний Тагил">Нижний Тагил</option>
+                              <option value="Новокузнецк">Новокузнецк</option>
+                              <option value="Новокуйбышевск">Новокуйбышевск</option>
+                              <option value="Новороссийск">Новороссийск</option>
+                              <option value="Новосибирск">Новосибирск</option>
+                              <option value="Новоуральск">Новоуральск</option>
+                              <option value="Новочеркасск">Новочеркасск</option>
+                              <option value="Новый Уренгой">Новый Уренгой</option>
+                              <option value="Норильск">Норильск</option>
+                              <option value="Ноябрьск">Ноябрьск</option>
+                              <option value="Обнинск">Обнинск</option>
+                              <option value="Одинцово">Одинцово</option>
+                              <option value="Омск">Омск</option>
+                              <option value="Орел">Орел</option>
+                              <option value="Оренбург">Оренбург</option>
+                              <option value="Орехово-Зуево">Орехово-Зуево</option>
+                              <option value="Пенза">Пенза</option>
+                              <option value="Пермь">Пермь</option>
+                              <option value="Петрозаводск">Петрозаводск</option>
+                              <option value="Петропавловск-Камчатский">Петропавловск-Камчатский</option>
+                              <option value="Псков">Псков</option>
+                              <option value="Пятигорск">Пятигорск</option>
+                              <option value="Ростов-на-Дону">Ростов-на-Дону</option>
+                              <option value="Рыбинск">Рыбинск</option>
+                              <option value="Рязань">Рязань</option>
+                              <option value="Самара">Самара</option>
+                              <option value="Санкт-Петербург" selected="selected">Санкт-Петербург</option>
+                              <option value="Саранск">Саранск</option>
+                              <option value="Саратов">Саратов</option>
+                              <option value="Сергиев Посад">Сергиев Посад</option>
+                              <option value="Серпухов">Серпухов</option>
+                              <option value="Смоленск">Смоленск</option>
+                              <option value="Соликамск">Соликамск</option>
+                              <option value="Сочи">Сочи</option>
+                              <option value="Ставрополь">Ставрополь</option>
+                              <option value="Старый Оскол">Старый Оскол</option>
+                              <option value="Стерлитамак">Стерлитамак</option>
+                              <option value="Сызрань">Сызрань</option>
+                              <option value="Сыктывкар">Сыктывкар</option>
+                              <option value="Таганрог">Таганрог</option>
+                              <option value="Тамбов">Тамбов</option>
+                              <option value="Тверь">Тверь</option>
+                              <option value="Тобольск">Тобольск</option>
+                              <option value="Тольятти">Тольятти</option>
+                              <option value="Томск">Томск</option>
+                              <option value="Туапсе">Туапсе</option>
+                              <option value="Тюмень">Тюмень</option>
+                              <option value="Улан-Удэ">Улан-Удэ</option>
+                              <option value="Ульяновск">Ульяновск</option>
+                              <option value="Уссурийск">Уссурийск</option>
+                              <option value="Уфа">Уфа</option>
+                              <option value="Ухта">Ухта</option>
+                              <option value="Хабаровск">Хабаровск</option>
+                              <option value="Химки">Химки</option>
+                              <option value="Чебоксары">Чебоксары</option>
+                              <option value="Челябинск">Челябинск</option>
+                              <option value="Череповец">Череповец</option>
+                              <option value="Чита">Чита</option>
+                              <option value="Элиста">Элиста</option>
+                              <option value="Энгельс">Энгельс</option>
+                              <option value="Южно-Сахалинск">Южно-Сахалинск</option>
+                              <option value="Якутск">Якутск</option>
+                              <option value="Ярославль">Ярославль</option>
+                            </select>
+                          </div>
+                          <div class="search__checkbox">
+                            <input type="checkbox" id="search-checkbox-mob">
+                            <label for="search-checkbox-mob">Показать поблизости</label>
+                          </div>
+                          <button class="search__button-reset" type="reset">Сбросить фильтры</button>
+                        </form>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="profile-activity__main profile-activity__main--man">
+                    <ul class="profile-feed-post-list" id="noFriend">
+                      <li>Для просмотра активности участниц сначала нужно выбрать друзей.
+                        <p>
+                          <button type="button" class="profile-main__button-grey profile-main__button-grey--big">
+                            Найти друзей по&nbsp;интересам
+                          </button>
+                        </p>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+              </header>
+              <div class="profile-activity__main">
+                  <ul class="profile-activity__achievements-list achievements-list">
+
+                    <li class="achievements-list__item">
+                      <header class="achievements-list__header">
+                        <a href="#" class="achievements-list__img-wrap">
+                          <img src="img/friends/friend-10.jpg" class="achievements-list__img" alt="">
+                        </a>
+                        <div class="achievements-list__profile">
+                          <a href="#" class="achievements-list__profile-link">
+                            <h4 class="achievements-list__profile-heading">Алена Ценина</h4>
+                          </a>
+                          <time datetime="2019-10-01T07:03" class="achievements-list__date">14.11.2018&nbsp;<span class="achievements-list__time">21:50</span></time>
+                        </div>
+                      </header>
+                      <a href="#" class="achievements-list__media-wrap">
+                        <img src="img/step2/hotel.jpg" class="achievements-list__img" alt="">
+                      </a>
+                      <div class="achievements-list__control">
+                        <a href="#" class="achievements-list__like">Мне нравится <span class="achievements-list__like-amount">0</span></a>
+                        <a href="#" class="achievements-list__vote">Проголосовать</a>
+                      </div>
+                      <div class="achievements-list__item-main">
+                        <a href="#" class="achievements-list__item-heading-link">
+                          <h3 class="achievements-list__item-heading">2</h3>
+                        </a>
+                        <span class="achievements-list__personal-achievements">Личное достижение</span>
+                        <div class="achievements-list__description">
+                          <div class="achievements-list__location">
+                            <span class="achievements-list__location-icon">
+                              <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 4335 4335" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd">
+                                <script id="tinyhippos-injected"></script>
+                                <path d="M2226 98c717 0 1299 582 1299 1300 0 259-75 499-206 702h1L2226 4242V2697c-718 0-1300-581-1300-1299S1508 98 2226 98zm0 839c254 0 461 206 461 461s-207 461-461 461c-255 0-462-206-462-461s207-461 462-461zm0-368c457 0 829 371 829 829s-372 829-829 829c-458 0-829-371-829-829s371-829 829-829z" fill="#999" id="Слой_x0020_1"></path></svg>
+                            </span>
+                            <p class="achievements-list__location-address">Саблинские пещеры, поселок Кутово,
+                              Ленинградская область, Россия, 192285</p>
+                          </div>
+                        </div>
+                        <div class="achievements-list__hidden-block achievements-list__hidden-block--tegs">
+                            <ul class="achievements-list__tegs--list">
+                              <li><a href="id">#hashtag</a></li>
+                              <li><a href="id">#hashtag</a></li>
+                              <li><a href="id">#v</a></li>
+                              <li><a href="id">#v</a></li>
+                              <li><a href="id">#hashtag</a></li>
+                              <li><a href="id">#hashtag</a></li>
+                              <li><a href="id">#ksfhgkjfhgjkgh</a></li>
+                              <li><a href="id">#ksfhgkjfhgjkgh</a></li>
+                            </ul>
+                          <button type="button" class="achievements-list__hidden-btn achievements-list__hidden-btn--shadow">Скрыть запись</button>
+                        </div>
+                        <div class="achievements-list__description achievements-list__description--text">
+                          <p>33</p>
+                        </div>
+                      </div>
+                      <div class="achievements-list__buttons">
+                      <a href="#" class="achievements-list__more-info">Узнать больше <span class="achievements-list__more-info--hidden">о достижении</span></a>
+                      <a href="#" class="achievements-list__comment">Комментировать <span class="achievements-list__comment-amount">(0)</span></a>
+                      </div>
+                  </li>
+                  </ul>
+              </div>
+
+
+              <div class="search search--small">
+                <div class="search__filter">
+                  <h3>Фильтры поиска</h3>
+                  <form action="#">
+                    <select class="select-single select-single--type-post" name="type-post" data-placeholder="Новые записи">
+                      <option value="new">Новые записи</option>
+                      <option value="popular">Популярное</option>
+                      <option value="photo">Фотографии</option>
+                      <option value="video">Видеозаписи</option>
+                      <option value="blog">Блоги</option>
+                      <option value="progress">Достижения</option>
+                    </select>
+                    <div data-tags-input-name="tag" id="tagBox" data-no-duplicate-text="Повторяющийся хэштэг"></div>
+                    <select class="select-single select-single--type-post" name="type-post" data-placeholder="Местоположение">
+                      <option class="visually-hidden" value="">Местоположение</option>
+                      <option value="Абакан">Абакан</option>
+                      <option value="Азов">Азов</option>
+                      <option value="Альметьевск">Альметьевск</option>
+                      <option value="Ангарск">Ангарск</option>
+                      <option value="Арзамас">Арзамас</option>
+                      <option value="Армавир">Армавир</option>
+                      <option value="Архангельск">Архангельск</option>
+                      <option value="Астрахань">Астрахань</option>
+                      <option value="Ачинск">Ачинск</option>
+                      <option value="Барнаул">Барнаул</option>
+                      <option value="Белгород">Белгород</option>
+                      <option value="Бийск">Бийск</option>
+                      <option value="Благовещенск">Благовещенск</option>
+                      <option value="Братск">Братск</option>
+                      <option value="Брянск">Брянск</option>
+                      <option value="Великие Луки">Великие Луки</option>
+                      <option value="Великий Новгород">Великий Новгород</option>
+                      <option value="Владивосток">Владивосток</option>
+                      <option value="Владикавказ">Владикавказ</option>
+                      <option value="Владимир">Владимир</option>
+                      <option value="Волгоград">Волгоград</option>
+                      <option value="Волгодонск">Волгодонск</option>
+                      <option value="Волжский">Волжский</option>
+                      <option value="Вологда">Вологда</option>
+                      <option value="Воркута">Воркута</option>
+                      <option value="Воронеж">Воронеж</option>
+                      <option value="Грозный">Грозный</option>
+                      <option value="Дзержинск">Дзержинск</option>
+                      <option value="Екатеринбург">Екатеринбург</option>
+                      <option value="Елец">Елец</option>
+                      <option value="Ессентуки">Ессентуки</option>
+                      <option value="Иваново">Иваново</option>
+                      <option value="Ижевск">Ижевск</option>
+                      <option value="Иркутск">Иркутск</option>
+                      <option value="Йошкар-Ола">Йошкар-Ола</option>
+                      <option value="Казань">Казань</option>
+                      <option value="Калининград">Калининград</option>
+                      <option value="Калуга">Калуга</option>
+                      <option value="Камышин">Камышин</option>
+                      <option value="Кемерово">Кемерово</option>
+                      <option value="Киров">Киров</option>
+                      <option value="Кисловодск">Кисловодск</option>
+                      <option value="Ковров">Ковров</option>
+                      <option value="Коломна">Коломна</option>
+                      <option value="Комсомольск-на-Амуре">Комсомольск-на-Амуре</option>
+                      <option value="Кострома">Кострома</option>
+                      <option value="Красногорск">Красногорск</option>
+                      <option value="Краснодар">Краснодар</option>
+                      <option value="Красноярск">Красноярск</option>
+                      <option value="Курган">Курган</option>
+                      <option value="Курск">Курск</option>
+                      <option value="Кызыл">Кызыл</option>
+                      <option value="Липецк">Липецк</option>
+                      <option value="Магадан">Магадан</option>
+                      <option value="Магнитогорск">Магнитогорск</option>
+                      <option value="Майкоп">Майкоп</option>
+                      <option value="Междуреченск">Междуреченск</option>
+                      <option value="Миасс">Миасс</option>
+                      <option value="Москва">Москва</option>
+                      <option value="Мончегорск">Мончегорск</option>
+                      <option value="Мурманск">Мурманск</option>
+                      <option value="Муром">Муром</option>
+                      <option value="Мытищи">Мытищи</option>
+                      <option value="Набережные Челны ">Набережные Челны</option>
+                      <option value="Назрань">Назрань</option>
+                      <option value="Нальчик">Нальчик</option>
+                      <option value="Находка">Находка</option>
+                      <option value="Нефтекамск">Нефтекамск</option>
+                      <option value="Нефтеюганск">Нефтеюганск</option>
+                      <option value="Нижневартовск">Нижневартовск</option>
+                      <option value="Нижнекамск">Нижнекамск</option>
+                      <option value="Нижний Новгород">Нижний Новгород</option>
+                      <option value="Нижний Тагил">Нижний Тагил</option>
+                      <option value="Новокузнецк">Новокузнецк</option>
+                      <option value="Новокуйбышевск">Новокуйбышевск</option>
+                      <option value="Новороссийск">Новороссийск</option>
+                      <option value="Новосибирск">Новосибирск</option>
+                      <option value="Новоуральск">Новоуральск</option>
+                      <option value="Новочеркасск">Новочеркасск</option>
+                      <option value="Новый Уренгой">Новый Уренгой</option>
+                      <option value="Норильск">Норильск</option>
+                      <option value="Ноябрьск">Ноябрьск</option>
+                      <option value="Обнинск">Обнинск</option>
+                      <option value="Одинцово">Одинцово</option>
+                      <option value="Омск">Омск</option>
+                      <option value="Орел">Орел</option>
+                      <option value="Оренбург">Оренбург</option>
+                      <option value="Орехово-Зуево">Орехово-Зуево</option>
+                      <option value="Пенза">Пенза</option>
+                      <option value="Пермь">Пермь</option>
+                      <option value="Петрозаводск">Петрозаводск</option>
+                      <option value="Петропавловск-Камчатский">Петропавловск-Камчатский</option>
+                      <option value="Псков">Псков</option>
+                      <option value="Пятигорск">Пятигорск</option>
+                      <option value="Ростов-на-Дону">Ростов-на-Дону</option>
+                      <option value="Рыбинск">Рыбинск</option>
+                      <option value="Рязань">Рязань</option>
+                      <option value="Самара">Самара</option>
+                      <option value="Санкт-Петербург">Санкт-Петербург</option>
+                      <option value="Саранск">Саранск</option>
+                      <option value="Саратов">Саратов</option>
+                      <option value="Сергиев Посад">Сергиев Посад</option>
+                      <option value="Серпухов">Серпухов</option>
+                      <option value="Смоленск">Смоленск</option>
+                      <option value="Соликамск">Соликамск</option>
+                      <option value="Сочи">Сочи</option>
+                      <option value="Ставрополь">Ставрополь</option>
+                      <option value="Старый Оскол">Старый Оскол</option>
+                      <option value="Стерлитамак">Стерлитамак</option>
+                      <option value="Сызрань">Сызрань</option>
+                      <option value="Сыктывкар">Сыктывкар</option>
+                      <option value="Таганрог">Таганрог</option>
+                      <option value="Тамбов">Тамбов</option>
+                      <option value="Тверь">Тверь</option>
+                      <option value="Тобольск">Тобольск</option>
+                      <option value="Тольятти">Тольятти</option>
+                      <option value="Томск">Томск</option>
+                      <option value="Туапсе">Туапсе</option>
+                      <option value="Тюмень">Тюмень</option>
+                      <option value="Улан-Удэ">Улан-Удэ</option>
+                      <option value="Ульяновск">Ульяновск</option>
+                      <option value="Уссурийск">Уссурийск</option>
+                      <option value="Уфа">Уфа</option>
+                      <option value="Ухта">Ухта</option>
+                      <option value="Хабаровск">Хабаровск</option>
+                      <option value="Химки">Химки</option>
+                      <option value="Чебоксары">Чебоксары</option>
+                      <option value="Челябинск">Челябинск</option>
+                      <option value="Череповец">Череповец</option>
+                      <option value="Чита">Чита</option>
+                      <option value="Элиста">Элиста</option>
+                      <option value="Энгельс">Энгельс</option>
+                      <option value="Южно-Сахалинск">Южно-Сахалинск</option>
+                      <option value="Якутск">Якутск</option>
+                      <option value="Ярославль">Ярославль</option>
+                    </select>
+                    <button class="search__button-reset" type="reset">Сбросить фильтры</button>
+                  </form>
+                </div>
+              </div>
+
+            </section>
+
+
+            <div class="photo-profile photo-profile__section">
+              <div class="photo-profile__section-title-block">
+                <div class="photo-profile__row photo-profile__row-mobile">
+                  <div class="photo-profile__column photo-profile__column--man ">
+                    <div class="photo-profile__section-title photo-profile__section-title--man">
+                      <span class="icon icon-photos"></span>Фотографии
+                      <div class="photo-profile__section-title-count-mobile photo-profile__section-title-count-mobile--man">
+                        8</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="photo-profile photo-profile photo-profile__section-content photo-profile__section-gallery">
+                <ul class="photo-profile__photo-list photo-profile__photo-list--man">
+                  <li class="photo-profile__photo-item">
+                    <div class="photo-profile__photo-img photo-profile__photo-img--first">
+                      <img src="img/step2/square.gif" alt="">
+                    </div>
+                    <a href="#" class="photo-profile__photo photo-profile__photo-visited photo-profile__photo-hover"></a>
+                  </li>
+                  <li class="photo-profile__photo-item">
+                    <div class="photo-profile__photo-img photo-profile__photo-img--second">
+                      <img src="img/step2/square.gif" alt="">
+                    </div>
+                    <a href="#" class="photo-profile__photo photo-profile__photo-hover"></a>
+                  </li>
+                  <li class="photo-profile__photo-item">
+                    <div class="photo-profile__photo-img photo-profile__photo-img--third">
+                      <img src="img/step2/square.gif" alt="">
+                    </div>
+                    <a href="#" class="photo-profile__photo photo-profile__photo-hover"></a>
+                  </li>
+                  <li class="photo-profile__photo-item">
+                    <div class="photo-profile__photo-img photo-profile__photo-img--fourth">
+                      <img src="img/step2/square.gif" alt="">
+                    </div>
+                    <a href="#" class="photo-profile__photo photo-profile__photo-hover"></a>
+                  </li>
+                  <li class="photo-profile__photo-item">
+                    <div class="photo-profile__photo-img photo-profile__photo-img--fifth">
+                      <img src="img/step2/square.gif" alt="">
+                    </div>
+                    <a href="#" class="photo-profile__photo photo-profile__photo-hover"></a>
+                  </li>
+                  <li class="photo-profile__photo-item">
+                    <div class="photo-profile__photo-img photo-profile__photo-img--sixth">
+                      <img src="img/step2/square.gif" alt="">
+                    </div>
+                    <a href="#" class="photo-profile__photo photo-profile__photo-hover"></a>
+                  </li>
+                  <li class="photo-profile__photo-item">
+                    <div class="photo-profile__photo-img photo-profile__photo-img--seventh">
+                      <img src="img/step2/square.gif" alt="">
+                    </div>
+                    <a href="#" class="photo-profile__photo photo-profile__photo-hover"></a>
+                  </li>
+                  <li class="photo-profile__photo-item">
+                    <div class="photo-profile__photo-img photo-profile__photo-img--eight">
+                      <img src="img/step2/square.gif" alt="">
+                    </div>
+                    <a href="#" class="photo-profile__photo photo-profile__photo-hover"></a>
+                  </li>
+                </ul>
+              </div>
+              <a href="photo.html" class="profile-section-btn-show-all">
+                Все фотографии
+              </a>
+            </div>
+            <div class="photo-profile photo-profile__section-title-block">
+              <div class="photo-profile__row">
+                <div class="photo-profile__column photo-profile__column--man">
+                  <div class="photo-profile__section-title">
+                    <span class="icon icon-photos"></span>Видеозаписи
+                    <div class="photo-profile__section-title-count-mobile photo-profile__section-title-count-mobile--man photo-profile__section-title-count-mobile--video">2
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            <div class="profile-section-content profile-section-content--man">
+              <div class="profile-section-row">
+                <div class="profile-section-column">
+                  <div class="profile-video-item mainParent">
+                    <div class="profile-section-row">
+                      <div class="profile-section-column profile-section-column-picture">
+                        <div class="profile-video-item-preview">
+                          <img src="http://img.youtube.com/vi/aVkPqf659hY/default.jpg" alt="">
+
+
+
+                          <a href="#" class="profile-video-item-play open-gallery profile-video-item-visited" data-name="DWregqhty5j6u" data-content="https://www.youtube.com/embed/aVkPqf659hY" data-id="108" data-gallery="video" data-tags="" data-gallery-type="video"></a>
+                        </div>
+                      </div>
+                      <div class="profile-section-column profile-section-column-text">
+                        <div class="profile-video-item-info">
+                          <a href="#" class="profile-video-item-name">
+                            Видео 1
+                          </a>
+                          <div class="profile-video-item-date-time">
+                            <span class="icon icon-clock"></span>14:47 23.09.2019
+                          </div>
+                          <a href="" class="profile-video-item-name deleteItem" data-entity="video" data-id="108">
+                            Удалить видео
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="profile-section-column">
+                  <div class="profile-video-item mainParent">
+                    <div class="profile-section-row">
+                      <div class="profile-section-column-video profile-section-column-picture">
+                        <div class="profile-video-item-preview">
+                          <img src="http://img.youtube.com/vi/aVkPqf659hY/default.jpg" alt="">
+
+
+
+                          <div class="profile-video-item-visible open-gallery " data-name="zsdvfDSER" data-content="https://www.youtube.com/embed/aVkPqf659hY" data-id="107" data-gallery="video" data-gallery-type="video"></div>
+                        </div>
+                      </div>
+                      <div class="profile-section-column-right profile-section-column-text">
+                        <div class="profile-video-item-info">
+                          <a href="#" class="profile-video-item-name">
+                            Видео 2
+                          </a>
+                          <div class="profile-video-item-date-time">
+                            <span class="icon icon-clock"></span>14:47 23.09.2019
+                          </div>
+                          <a href="" class="profile-video-item-name deleteItem" data-entity="video" data-id="107">
+                            Удалить видео
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                </div>
+
+              </div>
+
+            </div>
+
+
+
+
+          </section>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- --------------- P O P U P    П Р О С М О Т Р    А В Ы ----------------------------- -->
+    <div class="profile-man profile-man__popup-bg profile-man__popup-avatar">
+      <div class="profile-man__popup profile-man__popup-small popup-message">
+        <a class="profile-man__popup-close" href="#"></a>
+        <div class="profile-man__popup-title">
+          Зритель Дмитрий Переход
+        </div>
+        <div class="profile-man__popup-body">
+          <img src="img/profile/avatar_963.jpg" alt="">
+        </div>
+      </div>
+    </div>
+    <!-- --------------- P O P U P    Л А Й К а Й ----------------------------- -->
+
+    <div class="profile-man profile-man__popup-bg profile-man__popup-settings-fill">
+      <div class="profile-man__popup profile-man__popup-small popup-message">
+        <a class="profile-man__popup-close" href="#"></a>
+        <div class="profile-man__popup-title">
+          Подсказка Miss Future
+        </div>
+        <div class="profile-man__popup-body profile-man__popup-body--settings">
+          <div class="profile-man__popup-intro">
+            <p>Для участия в&nbsp;конкурсе вам необходимо заполнить личный профиль в&nbsp;Настройках.</p>
+          </div>
+          <p class="profile-man__popup-link"><a href="settings.html" title="Заполнить профиль" class="profile-man__btn profile-man__gray-btn profile-man__red-hover">Заполнить
+              профиль</a></p>
+        </div>
+      </div>
+    </div>
+    <!-- --------------- P O P U P    П Р О С М О Т Р   Ф О Т О ----------------------------- -->
+
+    <div class="photo-edit photo-edit__popup photo-edit__gallery-popup photo-edit__popup-flex photo-edit__popup--man-photo">
+      <div class="photo-edit__popup-wrap photo-edit__gallery-wrap custom-scroll-grey">
+        <a class="photo-edit__close" href="#"></a>
+
+        <div class="photo-edit__popup-body">
+          <div class="photo-edit__popup-title">Фото1</div>
+          <div class="photo-edit__row photo-edit__row--gallery">
+            <div class="photo-edit__popup-content">
+              <div class="photo-edit__popup-content-rotation">
+                <div class="photo-edit__popup-content-rotation-buttons">
+                  <a href="#" class="minus"><span class="icon icon-turn-left"> </span>Повернуть
+                    влево</a>
+                </div>
+                <div class="photo-edit__popup-content-rotation-buttons">
+                  <a href="#" class="plus">Повернуть вправо<span class="icon icon-turn-right"> </span></a>
+                </div>
+              </div>
+              <div class="photo-edit__preloader-block photo-edit__preloader-photo">
+                <div class="photo-edit__preloader">
+                  <img src="./img/step2/preloader.svg" alt="Загрузка">
+                </div>
+              </div>
+              <div class="photo-edit__popup-pic">
+                <img src="./img/profile/avatar.jpg" alt="">
+              </div>
+
+            </div>
+            <div class="photo-edit__popup-comments">
+              <div class="photo-edit__popup-comments-title">
+                <div class="photo-edit__popup-like addLike" data-owner="812" data-entity="photos" data-id="1301">
+                  <span class="icon icon-like-popup"></span>Мне нравится
+                </div>
+                <div class="photo-edit__popup-like photo-edit__shareItem" title="Поделиться ссылкой" data-entity="photos">
+                    <svg class="icon icon-share-popup" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2.54mm" height="2.54mm"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 25400 25400" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    enable-background="new 0 0 64 64">
+                    <g id="Слой_x0020_1">
+                      <metadata id="CorelCorpID_0Corel-Layer" />
+                      <g id="share-url.svg">
+                        <path class="fil0"
+                          d="M19777 15911c-1051,0 -1997,442 -2668,1148l-7846 -3841c27,-181 45,-363 45,-551 0,-183 -17,-362 -43,-538l7834 -3799c672,712 1622,1158 2678,1158 2036,0 3686,-1650 3686,-3686 0,-2036 -1650,-3686 -3686,-3686 -2035,0 -3686,1650 -3686,3686 0,183 18,362 43,538l-7834 3799c-672,-712 -1622,-1158 -2678,-1158 -2036,0 -3686,1650 -3686,3686 0,2036 1650,3686 3686,3686 1052,0 1997,-443 2669,-1149l7846 3842c-27,180 -46,363 -46,551 0,2036 1650,3686 3686,3686 2036,0 3686,-1650 3686,-3686 0,-2036 -1650,-3686 -3686,-3686z" />
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+                <div class="photo-edit__popup-like photo-edit__deleteItem" data-entity="photos" data-id="1301">
+                    <svg class="icon icon-delete-popup" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                    width="2.54mm" height="2.54mm" version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 254 254" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="Слой_x0020_1">
+                      <metadata id="CorelCorpID_0Corel-Layer" />
+                      <path class="fil0"
+                        d="M91 31c4,-16 19,-28 36,-28l0 0c17,0 32,12 36,28l53 0c7,0 13,6 13,13l0 0c0,8 -6,14 -13,14l-57 0 -64 0 -57 0c-7,0 -13,-6 -13,-14l0 0c0,-7 6,-13 13,-13l53 0zm-10 64l0 0c4,0 7,3 7,7l0 118c0,4 -3,7 -7,7l0 0c-4,0 -7,-3 -7,-7l0 -118c0,-4 3,-7 7,-7zm92 0l0 0c4,0 7,3 7,7l0 118c0,4 -3,7 -7,7l0 0c-4,0 -7,-3 -7,-7l0 -118c0,-4 3,-7 7,-7zm-45 0l0 0c4,0 7,3 7,7l0 118c0,4 -3,7 -7,7l0 0c-4,0 -7,-3 -7,-7l0 -118c0,-4 3,-7 7,-7zm-68 -27l134 0 12 0 0 156c0,0 -2,27 -28,27l-4 0 0 0 0 0 0 0 -1 0 0 0 0 0 -1 0 0 0 0 0 -1 0 -1 0 0 0 -1 0 0 0 -1 0 -1 0 0 0 -1 0 -1 0 0 0 -1 0 0 0 -2 0 0 0 -1 0 -1 0 0 0 -2 0 0 0 -2 0 0 0 -1 0 -1 0 -1 0 -1 0 -1 0 -1 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -1 0 -1 0 -1 0 -1 0 -1 0 -1 0 0 0 -2 0 0 0 -2 0 0 0 -1 0 -1 0 0 0 -1 0 -1 0 -1 0 0 0 -1 0 -1 0 0 0 -1 0 -1 0 0 0 -1 0 0 0 -1 0 -1 0 0 0 0 0 -1 0 0 0 0 0 -1 0 0 0 0 0 0 0 -4 0c-26,0 -28,-27 -28,-27l0 -156 12 0z" />
+                    </g>
+                  </svg>Удалить
+                </div>
+              </div>
+              <div class="photo-edit__popup-comments-info">
+                <p class="photo-edit__popup-comments-info-tags"><a class="photo-edit__popup-comments-info-tags-link" href="javascript:void(0);">описание</a></p>
+                <div class="photo-edit__popup-comments-info-location">
+                  <span class="photo-edit__popup-comments-info-location-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 4335 4335" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd">
+                      <script id="tinyhippos-injected"></script>
+                      <path d="M2226 98c717 0 1299 582 1299 1300 0 259-75 499-206 702h1L2226 4242V2697c-718 0-1300-581-1300-1299S1508 98 2226 98zm0 839c254 0 461 206 461 461s-207 461-461 461c-255 0-462-206-462-461s207-461 462-461zm0-368c457 0 829 371 829 829s-372 829-829 829c-458 0-829-371-829-829s371-829 829-829z" fill="#999"></path></svg>
+                  </span>
+                  <p class="photo-edit__popup-comments-info-location-text">Набережная реки Фонтанки,
+                    Санкт-Петербург,
+                    Россия</p>
+                </div>
+              </div>
+              <div class="photo-edit__popup-comments-block">
+                <ul class="photo-edit__popup-comments-list">
+                  <li class="photo-edit__popup-comment-item">
+                    <div class="photo-edit__popup-comment-item-name">Анастасия Анастасия: </div>
+                    <div class="photo-edit__popup-comment-item-text">комментарий </div>
+                    <div class="photo-edit__popup-comment-item-date"> Добавлено сейчас </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="photo-edit__popup-comment-form">
+                <div class="photo-edit__popup-comments-public-date">
+                  <p>Опубликовано <span class="date_span">9&nbsp;сентября 2019 14:48</span></p>
+                </div>
+                <form>
+                  <div class="photo-edit__smile">
+                    <div class="photo-edit__open">
+                      <div class="photo-edit__open-box messenger">
+                        <div title="Воу" class="messenger messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-2">
+                        </div>
+                      </div>
+                      <div class="photo-edit__open-box messenger">
+                        <div title="Смешно до слез" class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-3">
+                        </div>
+                      </div>
+                      <div class="photo-edit__open-box messenger">
+                        <div title="Сексуально" class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-4">
+                        </div>
+                      </div>
+                      <div class="photo-edit__open-box messenger">
+                        <div title="Очень смешно" class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-5">
+                        </div>
+                      </div>
+                      <div class="photo-edit__open-box messenger">
+                        <div title="Удивительно" class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-7">
+                        </div>
+                      </div>
+                      <div class="photo-edit__open-box messenger">
+                        <div title="Инопланетянин" class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-23">
+                        </div>
+                      </div>
+                      <div class="photo-edit__open-box messenger">
+                        <div title="Гнев" class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-12">
+                        </div>
+                      </div>
+                      <div class="messenger messenger__form-smile-open popup-comment-smile-open-block">
+                        <img src="img/step2/icons/smiley_button.svg" alt="Открыть коллекцию смайлов" role="img">
+                      </div>
+                    </div>
+
+
+
+                    <!-- --------------- С М А Й Л Ы ----------------------------- -->
+                    <div class="popup-comment-smile-choose messenger messenger__form-smiles">
+    <div class="messenger__form-smiles-label">
+      <div class="messenger__form-smiles-label-item messenger__form-smiles-label-item--active" id="messenger__form-smiles-label-emoji">
+        Эмоджи
+      </div>
+      <div class="messenger__form-smiles-label-item" id="messenger__form-smiles-label-stickers">
+        Стикеры
+      </div>
+    </div>
+    <div class="messenger__form-smiles-items">
+      <div class="messenger__form-smiles-item">
+        <div class="messenger__form-smiles-place">
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-1" title="Смешно" id="haha"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-2" title="Воу" id="tongue"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-3" title="Смешно до слез" id="cry"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-4" title="Ангел" id="angel"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-5" title="Любовь" id="heart-eyes"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-6" title="Оууу" id="happy-sweat"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-7" title="Шок" id="shocked"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-8" title="Лол" id="lol"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-9" title="Троллфейс" id="grinning"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-10" title="Бешенство" id="nervous"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-11" title="Злость" id="grumpy"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-12" title="Гнев" id="devil-horns"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-13" title="Не смешно" id="unamused"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-14" title="Утомление" id="eye-roll"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-15" title="Недовольство" id="dissatisfied"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-16" title="Поражение" id="bawling"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-17" title="Усталость" id="tired"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-18" title="Сон" id="zzz"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-19" title="Крутой" id="sunglasses"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-20" title="Зомби" id="zombie"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-21" title="Напуганный" id="fearful"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-22" title="Тошнит" id="throwing"></div>
+          <div class="messenger__form-smiles-place-block-main messenger__form-smiles-place-block-emoji-23" title="Инопланетянин" id="alien"></div>
+        </div>
+        <div class="messenger__form-smiles-place visually-hidden">
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-1" title="Незнакомка" id="lady"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-2" title="Котик" id="cat"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-3" title="Котенок" id="kitty"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-4" title="Клоун" id="clown"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-5" title="Корона" id="crown"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-6" title="Победа" id="cup"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-7" title="Фрида" id="frida"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-8" title="Зависть" id="envy"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-9" title="ЧМО" id="schmuck"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-10" title="Маньяк" id="maniac"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-11" title="Гик" id="geek"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-12" title="Любовное сообщение" id="lovemsg"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-13" title="Любовная поэма" id="poem"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-14" title="Свидание в кафе" id="cafe"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-15" title="Серьезный человек" id="ironman"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-16" title="Некто" id="mrwho"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-17" title="Гонщик" id="raceman"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-18" title="Вечеринка" id="party"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-19" title="Убийство " id="kill"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-20" title="Диета" id="diet"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-21" title="Усатый мужик" id="mustache"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-22" title="Панк" id="punk"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-23" title="Человек-паук" id="spiderman"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-24" title="Робот" id="robot"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-25" title="Романтика" id="romantic"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-26" title="Идея" id="idea"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-27" title="Шутка" id="joke"></div>
+          <div class="messenger__form-stickers-place-block main messenger__form-stickers-place-block--stickers-28" title="Достижение" id="success"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-1" title="Спокойной ночи" id="good-night"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-2" title="C Днем Рождения!" id="birthday"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-3" title="Цветок" id="flower"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-4" title="Золотая рыбка" id="goldfish"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-5" title="Котик" id="kitty-two"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-6" title="В полете" id="fly"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-7" title="Может кофе?" id="coffee"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-8" title="Отличное фото!" id="like"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-9" title="Девочка" id="female-sign"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-10" title="Огонь!" id="fire"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-11" title="Шокирующая новость" id="bomb-news"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-12" title="Сказочная зима" id="fir-in-round-glass"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-13" title="Кольцо" id="ring"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-14" title="Поцелуй" id="kiss-lips"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-15" title="Страсть" id="love-devil"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-16" title="Романтическая музыка" id="romantic-song"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-17" title="Мальчик" id="male"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-18" title="Любовь" id="love-shield"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-19" title="Miss Future" id="missfuture-shield"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-20" title="Обезьяна" id="monkey-face"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-21" title="Цветок в подарок" id="blue-flower"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-22" title="Свадьба" id="wedding"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-23" title="Резиновая уточка" id="rubber-duck"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-24" title="Место встречи" id="love-place"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-25" title="Динозавр" id="toy-dino"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-26" title="Барби" id="barbi"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-27" title="Весна!" id="spring"></div>
+          <div class="messenger__form-stickers-place-block romantic messenger__form-stickers-place-block--stickers-28" title="Бомба" id="bomb"></div>
+          <div class="messenger__form-stickers-place-block zodiac messenger__form-stickers-place-block--stickers-1" title="Овен" id="zodiac-aries"></div>
+          <div class="messenger__form-stickers-place-block zodiac messenger__form-stickers-place-block--stickers-2" title="Телец" id="zodiac-taurus"></div>
+          <div class="messenger__form-stickers-place-block zodiac messenger__form-stickers-place-block--stickers-3" title="Близнецы" id="zodiac-gemini"></div>
+          <div class="messenger__form-stickers-place-block zodiac messenger__form-stickers-place-block--stickers-4" title="Рак" id="zodiac-cancer"></div>
+          <div class="messenger__form-stickers-place-block zodiac messenger__form-stickers-place-block--stickers-5" title="Лев" id="zodiac-leo"></div>
+          <div class="messenger__form-stickers-place-block zodiac messenger__form-stickers-place-block--stickers-6" title="Дева" id="zodiac-virgo"></div>
+          <div class="messenger__form-stickers-place-block zodiac messenger__form-stickers-place-block--stickers-7" title="Весы" id="zodiac-libra"></div>
+          <div class="messenger__form-stickers-place-block zodiac messenger__form-stickers-place-block--stickers-8" title="Скорпион" id="zodiac-scorpio"></div>
+          <div class="messenger__form-stickers-place-block zodiac messenger__form-stickers-place-block--stickers-9" title="Стрелец" id="zodiac-sagittarius"></div>
+          <div class="messenger__form-stickers-place-block zodiac messenger__form-stickers-place-block--stickers-10" title="Козерог" id="zodiac-capricorn"></div>
+          <div class="messenger__form-stickers-place-block zodiac messenger__form-stickers-place-block--stickers-11" title="Водолей" id="zodiac-aquarius"></div>
+          <div class="messenger__form-stickers-place-block zodiac messenger__form-stickers-place-block--stickers-12" title="Рыбы" id="zodiac-pisces"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+                    <!-- --------------- С М А Й Л Ы    К  О  Н  Е  Ц----------------------------- -->
+
+                  </div>
+                  <div class="photo-profile photo-profile__row">
+                    <div class="photo-profile__comment-textarea">
+                      <div contenteditable="true" class="photo-profile__textarea"></div>
+                    </div>
+                    <div class="photo-profile__comment-submit">
+                      <button type="button" data-entity="photos" class="photo-profile__popup-comment-submit" data-id="1301"><span class="icon icon-enter"></span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- --------------- P O P U P    П Р О С М О Т Р    В И Д Е О ----------------------------- -->
+
+    <div class="photo-edit photo-edit__popup photo-edit__gallery-popup photo-edit__popup-flex photo-edit__popup--man-video">
+      <div class="photo-edit__popup-wrap photo-edit__gallery-wrap photo-edit__gallery-wrap--video custom-scroll-grey">
+        <a class="photo-edit__close" href="#"></a>
+        <div class="photo-edit__popup-body">
+          <div class="photo-edit__popup-title">Фото1</div>
+          <div class="photo-edit__row photo-edit__row--gallery">
+            <div class="photo-edit__popup-content">
+              <div class="photo-edit__popup-pic">
+                <iframe width="500" height="500" src="https://www.youtube.com/embed/aVkPqf659hY">
+                </iframe>
+              </div>
+
+            </div>
+            <div class="photo-edit__popup-comments photo-edit__popup-comments--video">
+              <div class="photo-edit__popup-comments-title">
+                <div class="photo-edit__popup-like addLike" data-owner="812" data-entity="photos" data-id="1301">
+                  <span class="icon icon-like-popup"></span>Мне нравится
+                </div>
+                <div class="photo-edit__popup-like photo-edit__shareItem" title="Поделиться ссылкой" data-entity="photos">
+                    <svg class="icon icon-share-popup" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2.54mm" height="2.54mm"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 25400 25400" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    enable-background="new 0 0 64 64">
+                    <g id="Слой_x0020_1">
+                      <metadata id="CorelCorpID_0Corel-Layer" />
+                      <g id="share-url.svg">
+                        <path class="fil0"
+                          d="M19777 15911c-1051,0 -1997,442 -2668,1148l-7846 -3841c27,-181 45,-363 45,-551 0,-183 -17,-362 -43,-538l7834 -3799c672,712 1622,1158 2678,1158 2036,0 3686,-1650 3686,-3686 0,-2036 -1650,-3686 -3686,-3686 -2035,0 -3686,1650 -3686,3686 0,183 18,362 43,538l-7834 3799c-672,-712 -1622,-1158 -2678,-1158 -2036,0 -3686,1650 -3686,3686 0,2036 1650,3686 3686,3686 1052,0 1997,-443 2669,-1149l7846 3842c-27,180 -46,363 -46,551 0,2036 1650,3686 3686,3686 2036,0 3686,-1650 3686,-3686 0,-2036 -1650,-3686 -3686,-3686z" />
+                      </g>
+                    </g>
+                  </svg>
+                </div>
+                <div class="photo-edit__popup-like photo-edit__deleteItem" data-entity="photos" data-id="1301">
+                    <svg class="icon icon-delete-popup" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                    width="2.54mm" height="2.54mm" version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 254 254" xmlns:xlink="http://www.w3.org/1999/xlink">
+                    <g id="Слой_x0020_1">
+                      <metadata id="CorelCorpID_0Corel-Layer" />
+                      <path class="fil0"
+                        d="M91 31c4,-16 19,-28 36,-28l0 0c17,0 32,12 36,28l53 0c7,0 13,6 13,13l0 0c0,8 -6,14 -13,14l-57 0 -64 0 -57 0c-7,0 -13,-6 -13,-14l0 0c0,-7 6,-13 13,-13l53 0zm-10 64l0 0c4,0 7,3 7,7l0 118c0,4 -3,7 -7,7l0 0c-4,0 -7,-3 -7,-7l0 -118c0,-4 3,-7 7,-7zm92 0l0 0c4,0 7,3 7,7l0 118c0,4 -3,7 -7,7l0 0c-4,0 -7,-3 -7,-7l0 -118c0,-4 3,-7 7,-7zm-45 0l0 0c4,0 7,3 7,7l0 118c0,4 -3,7 -7,7l0 0c-4,0 -7,-3 -7,-7l0 -118c0,-4 3,-7 7,-7zm-68 -27l134 0 12 0 0 156c0,0 -2,27 -28,27l-4 0 0 0 0 0 0 0 -1 0 0 0 0 0 -1 0 0 0 0 0 -1 0 -1 0 0 0 -1 0 0 0 -1 0 -1 0 0 0 -1 0 -1 0 0 0 -1 0 0 0 -2 0 0 0 -1 0 -1 0 0 0 -2 0 0 0 -2 0 0 0 -1 0 -1 0 -1 0 -1 0 -1 0 -1 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -1 0 -1 0 -1 0 -1 0 -1 0 -1 0 0 0 -2 0 0 0 -2 0 0 0 -1 0 -1 0 0 0 -1 0 -1 0 -1 0 0 0 -1 0 -1 0 0 0 -1 0 -1 0 0 0 -1 0 0 0 -1 0 -1 0 0 0 0 0 -1 0 0 0 0 0 -1 0 0 0 0 0 0 0 -4 0c-26,0 -28,-27 -28,-27l0 -156 12 0z" />
+                    </g>
+                  </svg>Удалить
+                </div>
+              </div>
+
+              <div class="photo-edit__popup-comments-block photo-edit__popup-comments-block--video">
+                <ul class="photo-edit__popup-comments-list">
+                  <li class="photo-edit__popup-comment-item">
+                    <div class="photo-edit__popup-comment-item-name">Анастасия Анастасия: </div>
+                    <div class="photo-edit__popup-comment-item-text">комментарий </div>
+                    <div class="photo-edit__popup-comment-item-date"> Добавлено сейчас </div>
+                  </li>
+                </ul>
+              </div>
+
+              <div class="photo-edit__popup-comment-form">
+                <form>
+                  <div class="photo-profile photo-profile__row">
+                    <div class="photo-profile__comment-textarea">
+                      <div contenteditable="true" class="photo-profile__textarea"></div>
+                    </div>
+                    <div class="photo-profile__comment-submit">
+                      <button type="button" data-entity="photos" class="photo-profile__popup-comment-submit" data-id="1301"><span class="icon icon-enter"></span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <footer class="footer">
+  <div class="container footer__wrap">
+    <a href="/" class="footer__copyright">Miss Future</a> © 2019.
+    <a href="#" class="footer__link">О конкурсе</a>
+    <a href="#" class="footer__link">Правила</a>
+    <a href="#" class="footer__link">Поддержка</a>
+  </div>
+</footer>
+
+  <div class="popup popup-purse">
+  <div class="popup__wrap popup-purse__wrap">
+    <div class="popup-purse__header">
+      <ul class="popup-purse__nav">
+        <li class="popup-purse__nav-item popup-purse__nav-item--active popup-purse__hidden-mob">Мой кошелек</li>
+        <li class="popup-purse__nav-item">
+          <span class="popup-purse__hidden-mob">Мои голоса:</span>
+          <span class="popup-purse__nav-item-icon">2320</span>
+        </li>
+        <li class="popup-purse__nav-item popup-purse__nav-item--pay">Способы оплаты</li>
+      </ul>
+      <button><span class="visually-hidden">Закрыть</span></button>
+    </div>
+    <div class="popup-purse__main">
+      <ul class="popup-purse__pay-list">
+        <li class="popup-purse__pay-item">
+          <div>
+            <img src="img/step2/icons/money-coins.svg" width="25" height="25" alt="">
+            <span>10&nbsp;голосов</span>
+          </div>
+          <a href="#">40&nbsp;руб.</a>
+        </li>
+        <li class="popup-purse__pay-item">
+          <div>
+            <img src="img/step2/icons/money-100.svg" width="20" height="25" alt="">
+            <span>100&nbsp;голосов</span>
+          </div>
+          <a href="#">320&nbsp;руб.</a>
+        </li>
+        <li class="popup-purse__pay-item">
+          <div>
+            <img src="img/step2/icons/money-200.svg" width="20" height="25" alt="">
+            <span>200&nbsp;голосов</span>
+          </div>
+          <a href="#">480&nbsp;руб.</a>
+        </li>
+        <li class="popup-purse__pay-item">
+          <div>
+            <img src="img/step2/icons/money-300.svg" width="20" height="25" alt="">
+            <span>300&nbsp;голосов</span>
+          </div>
+          <a href="#">600&nbsp;руб.</a>
+        </li>
+      </ul>
+    </div>
+    <div class="popup-purse__footer">
+      <p>Указанная стоимость голосов является фиксированной на&nbsp;дату платежа 18.09.2019 для города Москва (Россия).</p>
+    </div>
+  </div>
+</div>
+
+<script src="js/plugins.min.js"></script>
+<script src="js/index.min.js"></script>
+
+</body>
+
+</html>

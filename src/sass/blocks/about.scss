@@ -1,0 +1,67 @@
+.about {
+  padding: 0;
+  width: 75%;
+  top: 0;
+  padding: 0 5px;
+  box-sizing: border-box;
+}
+
+.about__help-button {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 50px;
+  height: 50px;
+  cursor: pointer;
+  z-index: 10000;
+}
+
+.about__help-button:hover {
+  transform: scale(1.05);
+}
+
+.about__help-button img {
+  width: 50px;
+  height: 50px;
+}
+
+@media only screen and (max-width: $tablet-width) {
+  .about {
+    margin: 0 auto;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: $mobile-width) {
+  .about {
+    margin: 0 auto;
+    width: 100%;
+    padding: 0;
+  }
+
+  .about__help-button {
+    display: none;
+  }
+}
+
+.about__popup {
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.8);
+  display: none;
+  align-items: center;
+}
+
+.about__popup--show {
+  display: flex;
+}
+
+.about__popup--close {
+  display: none;
+}

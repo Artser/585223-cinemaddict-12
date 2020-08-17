@@ -1,0 +1,209 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <title>ТОП10 в конкурсе по голосованию Miss Future</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!--класс для главной страницы main-page, для зарегистрированного пользователя login-in-->
+<div>
+  <include src="src/header.html"></include>
+</div>
+
+<main>
+  <div class="container page">
+    <div class="page__wrap">
+      <section class="main-sidebar page__main-sidebar">
+        <h2 class="visually-hidden">Навигация по профилю</h2>
+
+        <ul class="main-sidebar__menu">
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--home">Мой профиль</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Настройки</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Приглашения</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои друзья <sup class="main-sidebar__submenu-item-amount">10</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Фотографии <sup class="main-sidebar__submenu-item-amount">45</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Видеозаписи <sup class="main-sidebar__submenu-item-amount">1</sup></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--message">
+              Сообщения
+              <span class="main-sidebar__menu-item-count">+1</span>
+            </a>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--rating">
+              Мой рейтинг
+              <span class="main-sidebar__menu-item-amount">120</span>
+            </a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Цветочек</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--blog">Мой блог</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Добавить запись</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои записи <sup class="main-sidebar__submenu-item-amount">13</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link active">Мои достижения <sup class="main-sidebar__submenu-item-amount">6</sup></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--logout">Выйти</a>
+          </li>
+
+        </ul>
+
+      </section>
+
+      <div class="page__main-wrap">
+
+        <section class="profile">
+          <header>
+
+            <div class="profile__header">
+
+              <div class="profile__info">
+                <div class="profile__img-container">
+                  <a href="#" class="profile__img-wrap">
+                    <img src="http://via.placeholder.com/102x212" class="profile__img" alt="">
+                  </a>
+                  <div class="profile__status profile__status--online"></div>
+                </div>
+                <div class="profile__description">
+
+                  <a href="#" class="profile__name-link">
+                    <h1 class="profile__name">Александра Полякова</h1>
+                  </a>
+
+                  <div class="profile__description-row">
+                    <a href="#" class="profile__location">Санкт-Петербург</a>
+                    <span class="profile__age">35 лет</span>
+                  </div>
+
+                  <div class="profile__description-row">
+                    <a href="#" class="profile__position">3 место</a>
+                    <a href="#" class="profile__rating">120</a>
+                    <a href="#" class="profile__friends">10</a>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="profile__rating-block">
+                <p class="profile__rating-text">Участница</p>
+                <a href="#" class="profile__position">3 место</a>
+              </div>
+
+              <div class="profile__control">
+                <a href="#" class="profile__raise-profile">Поднять анкету</a>
+                <a href="#" class="profile__increase-rating">Повысить рейтинг</a>
+              </div>
+
+            </div>
+
+            <div class="profile-nav">
+              <div class="profile-nav__rating">120</div>
+              <div class="profile-nav__friends">10</div>
+              <div class="profile-nav__status">online</div>
+              <ul class="profile-nav__list">
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">О себе</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Фото</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Видео</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Блог</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Достижения</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Друзья</a>
+                </li>
+              </ul>
+            </div>
+
+          </header>
+          <div class="profile-title">
+            <h3 class="profile-title__heading profile-title__heading--achievement">Достижения <span class="profile-title__amount">0</span></h3>
+            <div class="profile-title__filter profile-title__filter-achievements">
+              <input type="checkbox" class="profile-title__checkbox" id="profile-title-checkbox-popular">
+              <label class="profile-title__checkbox-label" for="profile-title-checkbox-popular">Популярное</label>
+            </div>
+            <div class="profile-title__help">
+              <button type="button" class="profile-title__help-btn">Подсказка</button>
+              <span class="profile-title__triangle"></span>
+            </div>
+            <div class="profile-title__help-wrap">
+              <p>Вы можете выбрать максимум 5&nbsp;личных достижений из&nbsp;числа записей блога для&nbsp;голосования зрителей.</p>
+            </div>
+            <button type="button" class="profile-title__button">Добавить</button>
+          </div>
+
+          <div class="achievements">
+            <p class="achievements__text">В вашем личном блоге пока нет записей.</p>
+            <a href="achievements-add.html" class="achievements__button">Добавьте&nbsp;запись&nbsp;в&nbsp;блог</a>
+          </div>
+
+        </section>
+
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<include src="src/footer.html"></include>
+<include src="src/purse.html"></include>
+
+<div class="popup popup-success">
+  <div class="popup__wrap">
+    <button class="popup__close" href="#"></button>
+    <div class="popup__header">
+      Ваша&nbsp;запись&nbsp;успешно добавлена
+    </div>
+    <div class="popup__main">
+      <p>Ваша запись успешно добавлена в&nbsp;блог. Скоро её&nbsp;оценят участницы и&nbsp;зрители конкурса Miss Future.</p>
+      <a href="/" title="Вернуться в мой профиль" class="button">Вернуться в профиль</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/plugins.min.js"></script>
+<script src="js/index.min.js"></script>
+
+</body>
+</html>

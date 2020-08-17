@@ -1,0 +1,161 @@
+.register-options {
+  padding: 34px 65px 25px;
+}
+
+.register-options--hidden {
+  display: none;
+}
+
+.register-options__description {
+  text-align: center;
+  color: #333333;
+  margin: 0 0 19px 0;
+}
+
+.register-options__list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 21px 0;
+}
+
+.register-options__item {
+  position: relative;
+  border: 1px solid #a1a1a1;
+  border-radius: 3px;
+  margin: 0 0 20px 0;
+}
+
+.register-options__item:last-child {
+  margin-bottom: 0;
+}
+
+.register-options__link {
+  display: block;
+  font-weight: 700;
+  color: #000000;
+  text-decoration: none;
+  padding: 13px 13px 14px 61px;
+  background: linear-gradient(to bottom, #ffffff 0%, #e1e0e0 100%);
+}
+
+.register-options__link::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 48px;
+  height: 48px;
+  background-repeat: no-repeat;
+}
+
+.register-options__link:hover {
+  color: #ffffff;
+  transition: 0.25s ease-out 0.1s;
+}
+
+.register-options__link--missfuture::before {
+  background-image: url("../img/registration/icon-missfuture.svg");
+}
+
+.register-options__link--missfuture:hover {
+  background: #e4204d;
+}
+
+.register-options__link--missfuture:hover::before {
+  background-image: url("../img/registration/icon-missfuture--active.svg");
+}
+
+.register-options__link--vk::before {
+  background-image: url("../img/registration/icon-vk.svg");
+}
+
+.register-options__link--vk:hover {
+  background: #3e6796;
+}
+
+.register-options__link--vk:hover::before {
+  background-image: url("../img/registration/icon-vk--active.svg");
+}
+
+.register-options__link--mailru::before {
+  background-image: url("../img/registration/icon-mailru.svg");
+}
+
+.register-options__link--mailru:hover {
+  background: #3688c8;
+}
+
+.register-options__link--mailru:hover::before {
+  background-image: url("../img/registration/icon-mailru--active.svg");
+}
+
+.register-options__link--fb::before {
+  background-image: url("../img/registration/icon-fb.svg");
+}
+
+.register-options__link--fb:hover {
+  background: #456099;
+}
+
+.register-options__link--fb:hover::before {
+  background-image: url("../img/registration/icon-fb--active.svg");
+}
+
+.register-options__link--gmail::before {
+  background-image: url("../img/registration/icon-gmail.svg");
+}
+
+.register-options__link--gmail:hover {
+  background: #c8c9c9;
+}
+
+.register-options__link--gmail:hover::before {
+  background-image: url("../img/registration/icon-gmail--active.svg");
+}
+
+.register-options__commentary {
+  font-size: 13px;
+  color: #666666;
+  text-align: center;
+  padding: 0 8px 0 5px;
+  margin: 0;
+}
+
+@media only screen and ($tablet-width) {
+  .register-options {
+    padding-top: 46px;
+  }
+}
+
+@media only screen and ($mobile-width) {
+  .register-options__description {
+    display: none;
+  }
+
+  .register-options {
+    padding: 13px 0 0 0;
+  }
+
+  .register-options__list {
+    padding: 0 10px;
+    margin: 0 0 10px 0;
+  }
+
+  .register-options__item {
+    margin-bottom: 10px;
+  }
+
+  .register-options__link {
+    font-size: 13px;
+    font-weight: 400;
+    padding-top: 15px;
+  }
+
+  .register-options__commentary {
+    font-size: 13px;
+    line-height: 16px;
+    text-align: left;
+    padding: 10px 10px 25px;
+    background-color: #e8e8e8;
+  }
+}

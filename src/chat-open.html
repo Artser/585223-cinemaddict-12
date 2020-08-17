@@ -1,0 +1,215 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <title>Диалог</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!--класс для главной страницы main-page, для зарегистрированного пользователя login-in-->
+<div class="login-in">
+  <include src="src/header.html"></include>
+</div>
+
+
+<main>
+  <div class="container page">
+    <div class="page__wrap">
+      <section class="main-sidebar page__main-sidebar">
+        <h2 class="visually-hidden">Навигация по&nbsp;профилю</h2>
+
+        <ul class="main-sidebar__menu">
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--home active">Мой профиль</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Настройки</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Приглашения</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои друзья <sup class="main-sidebar__submenu-item-amount">10</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Фотографии <sup class="main-sidebar__submenu-item-amount">45</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Видеозаписи <sup class="main-sidebar__submenu-item-amount">1</sup></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--message">
+              Сообщения
+              <span class="main-sidebar__menu-item-count">+1</span>
+            </a>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--rating">
+              Мой рейтинг
+              <span class="main-sidebar__menu-item-amount">120</span>
+            </a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Цветочек</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--blog">Мой блог</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Добавить запись</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои записи <sup class="main-sidebar__submenu-item-amount">13</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои достижения <sup class="main-sidebar__submenu-item-amount">6</sup></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--logout">Выйти</a>
+          </li>
+
+        </ul>
+
+      </section>
+
+      <section class="page__main-wrap chat chat--open">
+        <div>
+          <h2 class="chat__title"><a href="chat.html">Администрация Miss&nbsp;Future</a></h2>
+          <div class="chat__settings">
+            <h3>Мои настройки</h3>
+            <ul class="chat__settings-list">
+              <li class="chat__settings-item">
+                <input type="checkbox" id="chat-sound" class="visually-hidden">
+                <label for="chat-sound">Звуковые оповещения</label>
+              </li>
+              <li class="chat__settings-item">
+                <input type="checkbox" id="chat-push" class="visually-hidden">
+                <label for="chat-push">Всплывающие сообщения</label>
+              </li>
+              <li class="chat__settings-item">
+                <input type="checkbox" id="chat-mail" class="visually-hidden">
+                <label for="chat-mail">Уведомления на&nbsp;почту</label>
+              </li>
+              <li class="chat__settings-item chat__settings-item--fav-icon">
+                <a href="chat-favorites.html">Избранные сообщения</a>
+              </li>
+              <li class="chat__settings-item chat__settings-item--block-icon">
+                <a href="chat-black-list.html">Черный список</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <div class="chat__user">
+          <div class="chat__user-img"><img src="img/step2/finalists/photo1.jpg" width="62" height="62" alt="photo1"></div>
+          <a href="friends.html"><span class="visually-hidden">Выбрать друга</span></a>
+        </div>
+        <ul class="chat__list chat__list-message">
+          <li class="chat__item">
+            <div class="chat__item-data-mes chat__item-data-mes--read">
+              <p>Администрация Miss&nbsp;Future: </p>
+              <span class="chat__time">14:55&nbsp;&nbsp;18.09.2019</span>
+            </div>
+            <p class="chat__item-mes">Уважаемая участница! По&nbsp;правилам конкурса вам необходимо указать имя и&nbsp;фамилию на&nbsp;русском языке. Просим вас указать правильно имя и&nbsp;фамилию в&nbsp;Настройках профиля.</p>
+            <div class="chat__item-btns chat__item-btns--hide">
+              <button type="button" class="addToFav">Добавить в&nbsp;избранное</button>
+              <button type="button" class="addToBL">Добавить в&nbsp;черный список</button>
+            </div>
+          </li>
+          <li class="chat__item chat__item--from">
+            <div class="chat__item-data-mes">
+              <p>Александра Полякова: </p>
+              <span class="chat__time">14:55&nbsp;&nbsp;18.09.2019</span>
+            </div>
+            <p class="chat__item-mes">Уважаемая участница!
+              <img src="img/step2/emoji/messenger/smile-laughing-tears.svg" width="20" height="20" alt="smile-laughing-tears">
+              <img src="img/step2/emoji/messenger/smile-lol-face.svg" width="20" height="20" alt="smile-lol-face">
+              По&nbsp;правилам конкурса вам необходимо указать имя и&nbsp;фамилию на&nbsp;русском языке. Просим вас указать правильно имя и&nbsp;фамилию в&nbsp;Настройках профиля.
+              <img src="img/step2/emoji/messenger/smile-man-zombie.svg" width="20" height="20" alt="smile-man-zombie">
+            </p>
+            <img class="chat__item-pic" src="img/step2/winners/winners.jpg" alt="Image">
+            <div class="chat__item-btns chat__item-btns--hide">
+              <button  type="button" class="addToFav">Добавить в&nbsp;избранное</button>
+            </div>
+          </li>
+        </ul>
+        <div class="chat__form">
+          <form action="#">
+            <div class="chat__form-top">
+              <div class="chat__form-textarea" contenteditable="true" data-text="Написать сообщение"></div>
+              <div class="chat__form-smiles">
+                <span title="Добавить смайл"><span class="visually-hidden">Добавить смайл</span></span>
+                <div class="chat__smiles">
+                  <div>
+                    <div class="chat__smiles-title">
+                      <p class="chat__smiles-title-emoji">Эмоджи</p>
+                      <p class="chat__smiles-title-stikers">Стикеры</p>
+                    </div>
+
+                    <include src="src/chat-emoji.html"></include>
+                    <include src="src/chat-stikers.html"></include>
+
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="chat__form-bottom">
+              <div class="chat__form-file">
+                <input type="file" id="chat-file" class="visually-hidden">
+                <label for="chat-file">Приложить файл</label>
+              </div>
+              <ul class="chat__form-last-smiles">
+                <li><img src="img/step2/emoji/messenger/smile-alien.svg" width="32" height="32" alt="smile-alien"></li>
+                <li><img src="img/step2/emoji/messenger/smile-angel-face.svg" width="32" height="32" alt="smile-angel-face"></li>
+                <li><img src="img/step2/emoji/messenger/smile-grinning-face.svg" width="32" height="32" alt="smile-grinning-face"></li>
+                <li><img src="img/step2/emoji/messenger/smile-nervous-face.svg" width="32" height="32" alt="smile-nervous-face"></li>
+                <li><img src="img/step2/emoji/messenger/smile-zzz-face.svg" width="32" height="32" alt="smile-zzz-face"></li>
+                <li><img src="img/step2/emoji/messenger/smile-bawling-face.svg" width="32" height="32" alt="smile-bawling-face"></li>
+                <li><img src="img/step2/emoji/messenger/smile-eye-roll.svg" width="32" height="32" alt="smile-eye-roll"></li>
+                <li><img src="img/step2/emoji/messenger/smile-man-zombie.svg" width="32" height="32" alt="smile-man-zombie"></li>
+              </ul>
+              <button type="submit"><span>Отправить</span></button>
+            </div>
+          </form>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<div class="message-pic-popup">
+  <div class="message-pic-popup__wrap">
+    <button class="message-pic-popup__close"><span class="visually-hidden">Закрыть</span></button>
+    <div class="message-pic-popup__title">
+        Фотография
+    </div>
+    <div class="popup-body popup-body--noPadding">
+        <img src="" class="crop_img" alt="">
+    </div>
+  </div>
+</div>
+
+<div class="chat-footer">
+  <include src="src/footer.html"></include>
+</div>
+<include src="src/purse.html"></include>
+
+<script src="js/plugins.min.js"></script>
+<script src="js/index.min.js"></script>
+
+
+</body>
+</html>

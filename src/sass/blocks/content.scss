@@ -1,0 +1,26 @@
+.content {
+  & > *:first-child {
+    margin-top: 0;
+  }
+
+  a {
+    color: $color-text-pink-dark;
+    text-decoration: none;
+  }
+
+  p {
+    margin: 12px 0;
+  }
+
+  .gray-url {
+    color: #666666;
+  }
+}
+
+@media only screen and (max-width: $mobile-width) {
+  .content {
+    p {
+      margin: 7px 0;
+    }
+  }
+}

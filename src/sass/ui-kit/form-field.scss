@@ -1,0 +1,84 @@
+.form-field {
+  position: relative;
+}
+
+.form-field__input {
+  position: relative;
+  display: block;
+  width: 100%;
+  color: $color-mine-shaft;
+  padding: 5px 20px 5px 10px;
+  height: 37px;
+  letter-spacing: 0.01em;
+  border: 1px solid $gray-silver-dark-more;
+  border-radius: 3px;
+  box-shadow: none;
+  outline: none;
+}
+
+.form-field__input:focus {
+  outline: none;
+}
+
+.form-field__input--error {
+  border-color: $color-maroon-flush-light;
+}
+
+.form-field__input--modal {
+  margin-bottom: 15px;
+}
+
+.form-field__entry {
+  position: relative;
+}
+
+.form-field__entry--small {
+  max-width: 235px;
+}
+
+.form-field__entry--accepted::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: url("../img/accept.svg") no-repeat;
+  z-index: 99;
+}
+
+.form-field__entry--denied::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  transform: translateY(-50%);
+  width: 16px;
+  height: 16px;
+  background: url("../img/deny.svg") no-repeat;
+  z-index: 99;
+}
+
+.form-field__label {
+  display: block;
+  font-size: 13px;
+  line-height: 1.5;
+  font-weight: 700;
+  color: $gray-dove;
+  margin: 0 0 8px 0;
+}
+
+.form-field__label--error {
+  color: $color-maroon-flush-light-more;
+}
+
+@media only screen and ($mobile-width) {
+  .form-field__input {
+    height: 33px;
+  }
+
+  .form-field__entry--small {
+    max-width: 200px;
+  }
+}

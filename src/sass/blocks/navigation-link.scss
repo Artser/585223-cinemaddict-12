@@ -1,0 +1,184 @@
+.navigation__list {
+  display: block;
+  background: $gray-concrete;
+  border-top: 0;
+  list-style: none;
+  height: 0px;
+  transition: height 0.5s;
+  overflow: hidden;
+  padding-left: 1px;
+}
+
+.navigation__list a {
+  display: block;
+  color: $color-mine-shaft;
+  padding: 5px 15px;
+  font-size: 14px;
+  text-shadow: 0 1px 1px $color-white;
+}
+
+.navigation__list a:hover {
+  color: $color-maroon-flush;
+  background: $gray-mercury;
+}
+
+.text-page__wrapper .navigation__list {
+  list-style: none;
+  padding-left: 1px;
+  margin: 0;
+}
+
+.text-page__wrapper .navigation__list--show {
+  list-style: none;
+  padding-left: 0;
+  margin: 0;
+  border: 1px solid $gray-mercury-dark;
+  border-top: none;
+}
+
+div.text-page__wrapper ul.text-page__list li a {
+  color: #CC3366;
+}
+
+div.text-page__wrapper ul.text-page__list li a:hover,
+div.text-page__wrapper ul.text-page__list li a:target {
+  color: #A7183B;
+}
+
+div.text-page__wrapper ol a {
+  color: #CC3366;
+}
+
+div.text-page__wrapper ol a:hover,
+div.text-page__wrapper ol a:target {
+  color: #A7183B;
+}
+
+.navigation__link {
+  position: relative;
+  z-index: 2;
+  margin: 15px 0 10px 0;
+  width: 100%;
+  min-height: 1px;
+  height: 33px;
+}
+
+.navigation__link-fix {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+}
+
+.navigation__link-fix:after {
+  content: "";
+  height: 30px;
+  /* Permalink - use to edit and share this gradient: http://colorzilla.com/gradient-editor/#ffffff+0,ffffff+100&1+0,0+100;White+to+Transparent */
+  /* IE9 SVG, needs conditional override of 'filter' to 'none' */
+  background: url(data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiA/Pgo8c3ZnIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgd2lkdGg9IjEwMCUiIGhlaWdodD0iMTAwJSIgdmlld0JveD0iMCAwIDEgMSIgcHJlc2VydmVBc3BlY3RSYXRpbz0ibm9uZSI+CiAgPGxpbmVhckdyYWRpZW50IGlkPSJncmFkLXVjZ2ctZ2VuZXJhdGVkIiBncmFkaWVudFVuaXRzPSJ1c2VyU3BhY2VPblVzZSIgeDE9IjAlIiB5MT0iMCUiIHgyPSIwJSIgeTI9IjEwMCUiPgogICAgPHN0b3Agb2Zmc2V0PSIwJSIgc3RvcC1jb2xvcj0iI2ZmZmZmZiIgc3RvcC1vcGFjaXR5PSIxIi8+CiAgICA8c3RvcCBvZmZzZXQ9IjEwMCUiIHN0b3AtY29sb3I9IiNmZmZmZmYiIHN0b3Atb3BhY2l0eT0iMCIvPgogIDwvbGluZWFyR3JhZGllbnQ+CiAgPHJlY3QgeD0iMCIgeT0iMCIgd2lkdGg9IjEiIGhlaWdodD0iMSIgZmlsbD0idXJsKCNncmFkLXVjZ2ctZ2VuZXJhdGVkKSIgLz4KPC9zdmc+);
+  background: -moz-linear-gradient(
+    top,
+    $color-white 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    top,
+    $color-white 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  /* Chrome10-25,Safari5.1-6 */
+  background: linear-gradient(
+    to bottom,
+    $color-white 0%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='$color-white', endColorstr='$color-white', GradientType=0);
+  /* IE6-8 */
+  left: 0;
+  right: 0;
+  bottom: -30px;
+  display: block;
+  position: absolute;
+}
+
+.navigation__link-fix:before {
+  content: "";
+  height: 10px;
+  background: $color-white;
+  left: 0;
+  right: 0;
+  top: -10px;
+  display: block;
+  position: absolute;
+}
+
+.navigation__link-fix.fixed {
+  padding: 6px 13px;
+  background-color: $gray-mercury-light-dark;
+  position: fixed;
+  max-width: 768px;
+  right: 0;
+}
+
+.navigation__link-fix.fixed .navigation__section {
+  color: $gray-dove;
+  background: linear-gradient(0deg, $color-white 40%, $color-alto);
+  background: $color-white;
+  border-color: #b9b9b9;
+  border-radius: 3px;
+}
+
+.navigation__section {
+  color: $color-mine-shaft;
+  background: $color-alabaster;
+  padding: 5px 45px 5px 15px;
+  position: relative;
+  border: 1px solid $gray-alto;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  z-index: 5;
+  border-radius: 3px;
+}
+
+.navigation__section:after {
+  content: "";
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 6px 5px 0 5px;
+  border-color: $gray-silver-chalice transparent transparent transparent;
+  position: absolute;
+  top: 50%;
+  margin-top: -3px;
+  right: 15px;
+}
+
+.navigation__section.opened:after {
+  border-width: 0 5px 6px 5px;
+  border-color: transparent transparent $gray-silver-chalice transparent;
+}
+
+.navigation__list--close {
+  display: none;
+}
+
+@media only screen and (max-width: $tablet-width) {
+  .navigation__section {
+    width: 280px;
+    width: 100%;
+    border-radius: 3px;
+  }
+
+  .navigation__link-fix {
+    width: 280px;
+    width: 100%;
+  }
+}
+
+@media only screen and (max-width: $mobile-width) {
+  .navigation__link-fix.fixed {
+    padding: 0;
+  }
+}

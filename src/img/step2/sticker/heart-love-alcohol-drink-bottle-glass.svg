@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<!-- Creator: CorelDRAW X6 -->
+<svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="43.3492mm" height="43.3492mm" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+viewBox="0 0 4335 4335"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <defs>
+  <style type="text/css">
+   <![CDATA[
+    .fil0 {fill:#5CA595}
+    .fil1 {fill:#66C3D0}
+    .fil3 {fill:#8CCFDB}
+    .fil2 {fill:#A2D9F7}
+    .fil4 {fill:#C9E8FB}
+   ]]>
+  </style>
+ </defs>
+ <g id="Layer_x0020_1">
+  <metadata id="CorelCorpID_0Corel-Layer"/>
+  <g id="_665552512">
+   <path class="fil0" d="M2200 869c1,-1 2,-2 2,-4 3,-5 7,-10 10,-15 7,-10 14,-20 21,-29 183,-244 461,-400 771,-400 552,0 999,492 999,1098 0,80 -8,158 -23,233 -48,274 -205,588 -520,936 -464,512 -1114,969 -1313,1103l0 7 -5 -3 -5 3 0 -7c-198,-134 -849,-591 -1313,-1103 -314,-347 -472,-662 -520,-936 -15,-75 -23,-153 -23,-233 0,-607 447,-1098 999,-1098 310,0 588,156 771,400 7,9 14,19 21,29 3,5 7,10 10,15 1,1 2,2 2,4 20,30 39,61 56,94 17,-32 36,-64 56,-94z"/>
+   <g>
+    <path id="cognat.svg" class="fil1" d="M2429 2292c-198,356 -217,860 -25,1221 38,71 148,255 239,287l97 0 90 0 97 0c18,-6 33,-14 44,-23 75,-62 151,-180 195,-263 192,-361 173,-864 -25,-1221 -146,-272 -200,-418 -211,-555l0 -37 0 -349 0 -351c0,-32 -26,-59 -59,-59l-170 0c-32,0 -59,26 -59,59l0 12 0 630 0 59 0 1 0 0c-6,149 -54,295 -213,592l0 -1z"/>
+    <path id="wine-bottle.svg" class="fil2" d="M1431 3799l10 0 10 0 0 0c151,-2 301,-13 335,-24 41,-162 187,-1018 55,-1261 -134,-246 -258,-45 -261,-596l1 -370 -130 0 0 0 -10 0 -10 0 0 0 -130 0 1 370c-3,551 -128,350 -261,596 -132,244 14,1100 55,1261 34,11 184,22 335,24l0 0z"/>
+   </g>
+  </g>
+  <path class="fil3" d="M2650 3700l288 0c0,0 282,-283 280,-762 -1,-479 -306,-940 -306,-940 0,0 289,1141 -262,1702z"/>
+  <path class="fil4" d="M1168 3691l516 0c0,0 152,-483 110,-787 -42,-305 -152,-474 -152,-474 0,0 212,952 -474,1262z"/>
+ </g>
+</svg>

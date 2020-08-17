@@ -1,0 +1,331 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <title>Цветочек</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.min.css" rel="stylesheet">
+
+  <meta name="csrf-token" content="yQFl4VdK65FobfbbAMmvmZ64BRp936xsPIeNI5ZN">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+
+<!--класс для главной страницы main-page, для зарегистрированного пользователя login-in-->
+<div class="login-in">
+  <include src="src/header.html"></include>
+</div>
+
+
+<main>
+  <div class="container page">
+    <div class="page__wrap">
+      <section class="main-sidebar page__main-sidebar">
+        <h2 class="visually-hidden">Навигация по&nbsp;профилю</h2>
+
+        <ul class="main-sidebar__menu">
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--home active">Мой профиль</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Настройки</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Приглашения</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои друзья <sup class="main-sidebar__submenu-item-amount">10</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Фотографии <sup class="main-sidebar__submenu-item-amount">45</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Видеозаписи <sup class="main-sidebar__submenu-item-amount">1</sup></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--message">
+              Сообщения
+              <span class="main-sidebar__menu-item-count">+1</span>
+            </a>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--rating">
+              Мой рейтинг
+              <span class="main-sidebar__menu-item-amount">120</span>
+            </a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Цветочек</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--blog">Мой блог</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Добавить запись</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои записи <sup class="main-sidebar__submenu-item-amount">13</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои достижения <sup class="main-sidebar__submenu-item-amount">6</sup></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--logout">Выйти</a>
+          </li>
+
+        </ul>
+
+      </section>
+
+      <div class="page__main-wrap page__main-wrap--block">
+        <section class="profile">
+          <h2 class="visually-hidden">Данные пользователя</h2>
+          <header>
+            <div class="profile__header">
+              <div class="profile__info">
+                <div class="profile__img-container">
+                  <a href="#" class="profile__img-wrap">
+                    <img src="img/profile/avatar.jpg" class="profile__img" alt="avatar">
+                  </a>
+                  <div class="profile__status profile__status--online"></div>
+                </div>
+                <div class="profile__description">
+                  <a href="#" class="profile__name-link">
+                    <h1 class="profile__name">Александра Полякова</h1>
+                  </a>
+                  <div class="profile__description-row">
+                    <a href="#" class="profile__location">Санкт-Петербург</a>
+                    <span class="profile__age">35&nbsp;лет</span>
+                  </div>
+                  <div class="profile__description-row">
+                    <a href="#" class="profile__position">3 место</a>
+                    <a href="#" class="profile__rating">120</a>
+                    <a href="#" class="profile__friends">10</a>
+                  </div>
+                </div>
+              </div>
+              <div class="profile__rating-block">
+                <p class="profile__rating-text">Участница</p>
+                <a href="#" class="profile__position">3&nbsp;место</a>
+              </div>
+              <div class="profile__control">
+                <a href="#" class="profile__raise-profile">Поднять анкету</a>
+                <a href="#" class="profile__increase-rating">Повысить рейтинг</a>
+              </div>
+            </div>
+            <div class="profile-nav">
+              <div class="profile-nav__rating">120</div>
+              <div class="profile-nav__friends">10</div>
+              <div class="profile-nav__status">online</div>
+              <ul class="profile-nav__list">
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">О&nbsp;себе</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Фото</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Видео</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Блог</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Достижения</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Друзья</a>
+                </li>
+              </ul>
+            </div>
+          </header>
+        </section>
+        <section class="flower">
+          <h2 class="visually-hidden">Цветочек</h2>
+          <div class="flower__main">
+            <div class="flower__understratum"></div>
+            <div class="flower__header">
+              <p class="flower__country"><span class="flower__country-icon"></span><span>Франция</span></p>
+              <p class="flower__title">Мак снотворный</p>
+              <ul class="flower__additions">
+                <li class="flower__help">Подсказка</li>
+                <li class="flower__settings">
+                  <span>Настройки</span>
+                  <ul class="flower__seclist">
+                    <li class="flower__bud-link"><a href="#">Выбрать цветочек</a></li>
+                    <li class="flower__bg-link"><a href="#">Выбрать пейзаж</a></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+            <div class="flower__img">
+              <img src="img/step2/flower/images/flower-four/flower-4-level-1-leaf-0.png" alt="flower">
+            </div>
+            <div class="flower__choose-bud">
+              <ul>
+                <li data-flower="/img/step2/flower/images/flower-one/flower-5-level-1-leaf-0.png">
+                  <img src="img/step2/flower/buds/rose.png" width="68" height="68" alt="Астра многолетняя">
+                  <div class="flower__choose-text">
+                    <p class="flower__choose-title">Астра многолетняя</p>
+                    <p class="flower__choose-desc">Розовые лепестки</p>
+                  </div>
+                </li>
+                <li data-flower="/img/step2/flower/images/flower-two/flower-2-level-1-leaf-0.png">
+                  <img src="img/step2/flower/buds/blue-flower.png" width="68" height="68" alt="Незабудка">
+                  <div class="flower__choose-text">
+                    <p class="flower__choose-title">Незабудка</p>
+                    <p class="flower__choose-desc">Голубые лепестки</p>
+                  </div>
+                </li>
+                <li data-flower="/img/step2/flower/images/flower-three/flower-3-level-1-leaf-0.png">
+                  <img src="img/step2/flower/buds/light-blue-flower.png" width="68" height="68" alt="Сирень">
+                  <div class="flower__choose-text">
+                    <p class="flower__choose-title">Сирень</p>
+                    <p class="flower__choose-desc">Фиолетовые, розовые лепестки </p>
+                  </div>
+                </li>
+                <li data-flower="/img/step2/flower/images/flower-four/flower-4-level-1-leaf-0.png">
+                  <img src="img/step2/flower/buds/violet-flower.png" width="68" height="68" alt="Мак снотворный">
+                  <div class="flower__choose-text">
+                    <p class="flower__choose-title">Мак снотворный</p>
+                    <p class="flower__choose-desc">Фиолетовые лепестки </p>
+                  </div>
+                </li>
+                <li data-flower="/img/step2/flower/images/flower-five/flower-5-level-1-leaf-0.png">
+                  <img src="img/step2/flower/buds/pink-flower.png" width="68" height="68" alt="Хризантема">
+                  <div class="flower__choose-text">
+                    <p class="flower__choose-title">Хризантема</p>
+                    <p class="flower__choose-desc">Розовый цвет </p>
+                  </div>
+                </li>
+                <li data-flower="/img/step2/flower/images/flower-six/flower-6-level-1-leaf-0.png">
+                  <img src="img/step2/flower/buds/chamomile.png" width="68" height="68" alt="Хризантема">
+                  <div class="flower__choose-text">
+                    <p class="flower__choose-title">Ромашка</p>
+                    <p class="flower__choose-desc">Розовый цвет </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="flower__choose-bg">
+              <ul>
+                <li data-background="/img/step2/flower/background/bg-1.jpg">
+                  <img src="img/step2/flower/background/bg-1.jpg" width="68" height="68" alt="Горный пейзаж">
+                  <div class="flower__choose-text">
+                    <p class="flower__choose-title">Горный пейзаж</p>
+                    <p class="flower__choose-desc">Индонезия</p>
+                  </div>
+                </li>
+                <li data-background="/img/step2/flower/background/bg-2.jpg">
+                  <img src="img/step2/flower/background/bg-2.jpg" width="68" height="68" alt="Поля на фоне долины">
+                  <div class="flower__choose-text">
+                    <p class="flower__choose-title">Поля на&nbsp;фоне долины</p>
+                    <p class="flower__choose-desc">Новая Зеландия</p>
+                  </div>
+                </li>
+                <li data-background="/img/step2/flower/background/bg-3.jpg">
+                  <img src="img/step2/flower/background/bg-3.jpg" width="68" height="68" alt="Цветущий луг">
+                  <div class="flower__choose-text">
+                    <p class="flower__choose-title">Цветущий луг</p>
+                    <p class="flower__choose-desc">Россия</p>
+                  </div>
+                </li>
+                <li data-background="/img/step2/flower/background/bg-4.jpg">
+                  <img src="img/step2/flower/background/bg-4.jpg" width="68" height="68" alt="Зеленая поляна">
+                  <div class="flower__choose-text">
+                    <p class="flower__choose-title">Зеленая поляна</p>
+                    <p class="flower__choose-desc">Россия </p>
+                  </div>
+                </li>
+                <li data-background="/img/step2/flower/background/bg-5.jpg">
+                  <img src="img/step2/flower/background/bg-5.jpg" width="68" height="68" alt="Поляна на фоне горизонта">
+                  <div class="flower__choose-text">
+                    <p class="flower__choose-title">Поляна на&nbsp;фоне горизонта</p>
+                    <p class="flower__choose-desc">Франция </p>
+                  </div>
+                </li>
+                <li data-background="/img/step2/flower/background/bg-6.jpg">
+                  <img src="img/step2/flower/background/bg-6.jpg" width="68" height="68" alt="Морская бухта">
+                  <div class="flower__choose-text">
+                    <p class="flower__choose-title">Морская бухта</p>
+                    <p class="flower__choose-desc">Испания </p>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="flower__progress">
+              <div class="flower__level">
+                <p class="flower__level-desc">Начальный уровень</p>
+                <div class="flower__level-line"></div>
+              </div>
+              <div class="flower__counter">
+                <span>0</span>
+              </div>
+            </div>
+          </div>
+          <div class="flower__footer">
+            <div class="flower__footer-header">
+              <p>Подсказки Miss Future</p>
+              <div class="flower__footer-social">
+                <p>Поделиться в&nbsp;соц. сетях:</p>
+                <div>
+                  <script src="//yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+                  <script src="//yastatic.net/share2/share.js"></script>
+                  <div class="ya-share2"
+                    data-description="Конкурс красоты и достижений приглашает вас принять участие в голосование за титул Miss Future. Победительницу конкурса ждет ценный приз и признание зрителей. Регистрируйтесь и примите участие в конкурсе Miss Future: https://missfuture.ru"
+                    data-services="vkontakte,facebook,whatsapp"
+                    data-image="https://missfuture.ru/img/step2/icons/facebook-preview-missfuture.jpg"></div>
+                </div>
+
+              </div>
+            </div>
+            <div class="flower__footer-tips" id="rules">
+              <ul>
+                <li>Больше оценок &laquo;Мне нравится&raquo;&nbsp;&mdash; больше цветочек.</li>
+                <li><a href="/profile/friends">Заводите новых друзей</a> и&nbsp;общайтесь.</li>
+                <li><a href="/rating">Взаимные симпатии</a> дадут рост вашему цветочку.</li>
+              </ul>
+            </div>
+            <div class="flower__footer-prize">
+              <h3 class="flower__footer-prize-title">Приз за&nbsp;Лучший цветок по&nbsp;итогам 2019 года</h3>
+              <p class="flower__footer-prize-desc">Украшение от&nbsp;известного ювелирного дома</p>
+              <img src="img/step2/flower/love-heart.png" width="122" height="121" alt="Украшение">
+            </div>
+          </div>
+        </section>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<include src="src/footer.html"></include>
+<include src="src/purse.html"></include>
+
+<section class="popup-flower">
+  <div class="popup-flower__wrap">
+    <h2>Подсказка Miss Future</h2>
+    <p>Cегодня ваш цветочек немного подрос и&nbsp;показал новый листок.
+      <span>Больше оценок &laquo;Мне нравится&raquo;&nbsp;&mdash; выше цветочек.</span>
+      <span>Заводите новых друзей и&nbsp;общайтесь.</span>
+      <span>Взаимные симпатии дадут рост вашему цветочку.</span>
+    </p>
+    <button><span class="visually-hidden">Закрыть</span></button>
+  </div>
+</section>
+
+<script src="js/plugins.min.js"></script>
+<script src="js/index.min.js"></script>
+</body>
+</html>

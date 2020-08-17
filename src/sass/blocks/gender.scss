@@ -1,0 +1,44 @@
+.gender {
+  display: flex;
+}
+
+.gender__option {
+  font-size: 13px;
+  font-weight: 700;
+  max-width: 115px;
+  width: 100%;
+  margin: 0 4px 0 0;
+}
+
+.gender__option:last-child {
+  margin-right: 0;
+}
+
+.gender__label {
+  display: block;
+  padding: 6px 15px 5px 21px;
+  border: 1px solid #a1a1a1;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, #ffffff 0%, #e1e0e0 100%);
+  cursor: pointer;
+}
+
+.gender__input:checked ~ .gender__label {
+  color: #ffffff;
+  background: #c4254d;
+  border-color: #d1224b;
+}
+
+.gender__input--error ~ .gender__label {
+  border: 1px solid #d1224b;
+}
+
+@media only screen and ($mobile-width) {
+  .gender__option {
+    max-width: 128px;
+  }
+
+  .gender__label {
+    text-align: center;
+  }
+}

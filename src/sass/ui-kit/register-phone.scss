@@ -1,0 +1,30 @@
+.register-phone {
+  position: relative;
+}
+
+.register-phone .register-form__input {
+  padding-left: 50px;
+}
+
+.register-phone__number {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 35px;
+  height: 100%;
+  padding-top: 2px;
+  color: $gray-dusty-light;
+  border-right: 1px solid $silver-light;
+  z-index: 99;
+}
+
+@media only screen and ($mobile-width) {
+  .register-phone .register-form__input {
+    padding-left: 45px;
+    height: 33px;
+    padding-bottom: 6px;
+  }
+}

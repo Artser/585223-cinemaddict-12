@@ -1,4 +1,7 @@
-export const createFilmTemplate = (film) => {
+
+import AbstractClickable from "./abstract-clickable.js";
+
+const createFilmTemplate = (film) => {
   return (
     `<article class="film-card">
           <h3 class="film-card__title">${film.title}</h3>
@@ -19,3 +22,19 @@ export const createFilmTemplate = (film) => {
         </article>`
   );
 };
+
+
+export default class Film extends AbstractClickable {
+  constructor(film) {
+    super();
+    this._film = film;
+    this._clickHandler = this._clickHandler.bind(this);
+
+  }
+
+  getTemplate() {
+    return createFilmTemplate(this._film);
+  }
+
+}
+

@@ -1,0 +1,188 @@
+.profile-man__popup-bg {
+  display: none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 2000;
+  background: rgba(0, 0, 0, 0.8);
+}
+
+.profile-man__popup-body {
+  padding: 0;
+  height: 194px;
+}
+
+.profile-man__popup {
+  background: $color-white;
+  width: 100%;
+  position: relative;
+  border-radius: 3px;
+  margin: 0 auto;
+}
+
+.profile-man__popup-avatar .profile-man__popup {
+  width: auto;
+  margin-top: 343.5px;
+}
+
+.profile-man__popup-settings-fill .profile-man__popup {
+  width: auto;
+  margin-top: 255.5px;
+}
+
+.profile-man__popup-body--settings {
+  height: 133px;
+  padding: 20px 15px;
+}
+
+.profile-man__popup-small {
+  max-width: 523px;
+}
+
+.profile-man__popup-close {
+  display: block;
+  position: absolute;
+  right: 12px;
+  top: 14px;
+  width: 14px;
+  height: 14px;
+  background: url("../img/step2/icons/popup-close.svg") no-repeat 0 0;
+  background-size: cover;
+  z-index: 2;
+}
+
+.profile-man__popup-message .profile-man__popup-close {
+  background: url("../img/step2/icons/popup-close.svg") no-repeat 0 0;
+  background-size: cover;
+  opacity: 0.8;
+}
+
+.profile-man__popup-title {
+  background: $gray-mercury;
+  border-bottom: 1px solid $color-alto;
+  font-size: 15px;
+  color: $gray-god;
+  font-weight: bold;
+  text-rendering: optimizeLegibility;
+  padding: 10px 35px 10px 15px;
+  position: relative;
+  border-radius: 3px 3px 0 0;
+  text-align: left;
+}
+
+.profile-man__popup--show {
+  display: block;
+}
+
+.profile-man__popup--close {
+  display: none;
+}
+
+.profile-man__popup-intro {
+  width: 100%;
+  display: block;
+  font-family: "Arial", sans-serif;
+  font-size: 15px;
+  line-height: 1.65em;
+  color: $color-black;
+  padding-bottom: 10px;
+}
+
+.profile-man__popup-intro p {
+  margin: 0;
+}
+
+.profile-man__popup-link {
+  width: 100%;
+  display: block;
+  padding: 0;
+}
+
+.profile-man__popup-link p {
+  font-size: 14px;
+  color: $color-mine-shaft;
+}
+
+.profile-man__btn {
+  // background: $gray-alto;
+  background: linear-gradient(to bottom, $color-alabaster-light 0%, $silver 100%);
+  border: 1px solid $gray-dusty-light;
+  color: $color-mine-shaft-dark;
+  font-weight: normal;
+  padding: 6px 12px;
+  text-align: center;
+  text-decoration: none;
+  border-radius: 3px;
+  background-clip: padding-box;
+  outline: none;
+  transition: none;
+}
+
+.profile-man__gray-btn {
+  // background: $gray-gallery-light;
+  background: linear-gradient(to bottom, $gray-gallery-light 0%, $gray-alto-light 100%);
+  border-color: $gray-silver;
+  color: $color-mine-shaft-dark;
+  text-shadow: 0 1px 1px $color-white;
+}
+
+.profile-man__gray-btn:hover {
+  background: $color-maroon-flush;
+  border-color: $color-maroon-flush;
+  color: $color-white;
+  text-shadow: none;
+}
+
+.profile-man__interest-count {
+  text-align: right;
+  padding-left: 0;
+  padding-right: 20px;
+  margin-top: 3px;
+  color: $gray-dove;
+  font-size: 13px;
+  padding-top: 2px;
+}
+
+.profile-man__icon-interests {
+  width: 14px;
+  height: 14px;
+  background: url("../img/step2/icons/interests.svg") no-repeat;
+  background-size: cover;
+  margin-right: 5px;
+  margin-top: 0;
+}
+
+.profile-man__icon {
+  vertical-align: top;
+  position: relative;
+  display: none;
+}
+
+.profile-man__icon::after {
+  opacity: 1;
+}
+
+.profile-man__icon::after,
+.profile-man__icon::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  transition: all 0.3s;
+}
+
+@media only screen and (max-width: $mobile-width) {
+  .profile-man__icon {
+    display: inline-block;
+  }
+
+  .profile-man__interest-count {
+    margin-left: 70px;
+  }
+}

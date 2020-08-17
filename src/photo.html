@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <title>Анастасия Анастасия. Фотографии</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="css/style.min.css" rel="stylesheet">
+  <script src="https://api-maps.yandex.ru/2.1/?apikey=8bb461d1-d373-4378-ae8e-85f0dbeb40f2&lang=ru_RU"
+    type="text/javascript"></script>
+</head>
+
+<body>
+  <!--класс для главной страницы main-page, для зарегистрированного пользователя login-in-->
+  <div class="login-in">
+    <include src="src/header.html"></include>
+  </div>
+  <main class="positioner">
+    <section class="main-sidebar">
+      <h2 class="visually-hidden">Навигация по&nbsp;профилю</h2>
+
+      <ul class="main-sidebar__menu">
+
+        <li class="main-sidebar__menu-item">
+          <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--home active">Мой профиль</a>
+          <ul class="main-sidebar__submenu">
+            <li class="main-sidebar__submenu-item">
+              <a href="#" class="main-sidebar__submenu-link">Настройки</a>
+            </li>
+            <li class="main-sidebar__submenu-item">
+              <a href="#" class="main-sidebar__submenu-link">Приглашения</a>
+            </li>
+            <li class="main-sidebar__submenu-item">
+              <a href="#" class="main-sidebar__submenu-link">Мои друзья <sup
+                  class="main-sidebar__submenu-item-amount">10</sup></a>
+            </li>
+            <li class="main-sidebar__submenu-item">
+              <a href="#" class="main-sidebar__submenu-link">Фотографии <sup
+                  class="main-sidebar__submenu-item-amount">45</sup></a>
+            </li>
+            <li class="main-sidebar__submenu-item">
+              <a href="#" class="main-sidebar__submenu-link">Видеозаписи <sup
+                  class="main-sidebar__submenu-item-amount">1</sup></a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="main-sidebar__menu-item">
+          <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--message">
+            Сообщения
+            <span class="main-sidebar__menu-item-count">+1</span>
+          </a>
+        </li>
+
+        <li class="main-sidebar__menu-item">
+          <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--rating">
+            Мой рейтинг
+            <span class="main-sidebar__menu-item-amount">120</span>
+          </a>
+          <ul class="main-sidebar__submenu">
+            <li class="main-sidebar__submenu-item">
+              <a href="#" class="main-sidebar__submenu-link">Цветочек</a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="main-sidebar__menu-item">
+          <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--blog">Мой блог</a>
+          <ul class="main-sidebar__submenu">
+            <li class="main-sidebar__submenu-item">
+              <a href="#" class="main-sidebar__submenu-link">Добавить запись</a>
+            </li>
+            <li class="main-sidebar__submenu-item">
+              <a href="#" class="main-sidebar__submenu-link">Мои записи <sup
+                  class="main-sidebar__submenu-item-amount">13</sup></a>
+            </li>
+            <li class="main-sidebar__submenu-item">
+              <a href="#" class="main-sidebar__submenu-link">Мои достижения <sup
+                  class="main-sidebar__submenu-item-amount">6</sup></a>
+            </li>
+          </ul>
+        </li>
+
+        <li class="main-sidebar__menu-item">
+          <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--logout">Выйти</a>
+        </li>
+
+      </ul>
+
+    </section>
+
+
+    <!-- --------------------------- P O P U P - В А Ш Е   Ф О Т О   Д О Б А В Л Е Н О ----------------------------- -->
+
+    <div class="photo-add photo-add__popup">
+      <div class="photo-add__popup-message">
+        <a class="photo-add__popup-close" href="#"></a>
+        <div class="photo-add__popup-title">
+          Ваше фото добавлено
+        </div>
+        <div class="photo-add__popup-body">
+          <div class="photo-add__popup-intro">
+            <p>Фотография успешно добавлена в&nbsp;альбом. При желании&nbsp;Вы можете добавить
+              еще 39&nbsp;фото в&nbsp;альбом.</p>
+          </div>
+          <div class="photo-add__popup-link">
+            <p><a href="/" title="Вернуться в мой профиль"
+                class="photo-add__popup-button photo-add__popup-button--back">Вернуться в&nbsp;альбом</a></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- --------------- P O P U P   Р Е Д А К Т И Р О В А Н И Е  (+  С М А Й Л Ы) ----------------------------- -->
+
+    <div class="photo-edit photo-edit__popup photo-edit__gallery-popup photo-edit__popup-flex">
+      <div class="photo-edit__popup-wrap photo-edit__gallery-wrap custom-scroll-grey">
+        <a class="photo-edit__close" href="#"></a>
+
+        <div class="photo-edit__popup-body">
+          <div class="photo-edit__popup-title">Фото1</div>
+          <div class="photo-edit__row photo-edit__row--gallery">
+            <div class="photo-edit__popup-content">
+              <div class="photo-edit__popup-content-rotation">
+                <div class="photo-edit__popup-content-rotation-buttons">
+                  <a href="#" class="minus"><span class="icon icon-turn-left"> </span>Повернуть
+                    влево</a>
+                </div>
+                <div class="photo-edit__popup-content-rotation-buttons">
+                  <a href="#" class="plus">Повернуть вправо<span class="icon icon-turn-right"> </span></a>
+                </div>
+              </div>
+              <div class="photo-edit__preloader-block photo-edit__preloader-photo">
+                <div class="photo-edit__preloader">
+                  <img src="./img/step2/preloader.svg" alt="Загрузка">
+                </div>
+              </div>
+              <div class="photo-edit__popup-pic">
+                <img src="./img/profile/avatar.jpg" alt="">
+                <div class="gallery-control gallery-prev"></div>
+                <div class="gallery-control gallery-next"></div>
+              </div>
+
+            </div>
+            <div class="photo-edit__popup-comments">
+              <div class="photo-edit__popup-comments-title">
+                <div class="photo-edit__popup-like addLike" data-owner="812" data-entity="photos" data-id="1301">
+                  <span class="icon icon-like-popup"></span>Мне нравится
+                </div>
+                <div class="photo-edit__popup-like photo-edit__shareItem" title="Поделиться ссылкой"
+                  data-entity="photos">
+                  <svg class="icon icon-share-popup" xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="2.54mm" height="2.54mm"
+                    version="1.1"
+                    style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                    viewBox="0 0 25400 25400" xmlns:xlink="http://www.w3.org/1999/xlink"
+                    enable-background="new 0 0 64 64">
+                    <g id="Слой_x0020_1">
+                      <metadata id="CorelCorpID_0Corel-Layer" />
+                      <g id="share-url.svg">
+                        <path class="fil0"
+                          d="M19777 15911c-1051,0 -1997,442 -2668,1148l-7846 -3841c27,-181 45,-363 45,-551 0,-183 -17,-362 -43,-538l7834 -3799c672,712 1622,1158 2678,1158 2036,0 3686,-1650 3686,-3686 0,-2036 -1650,-3686 -3686,-3686 -2035,0 -3686,1650 -3686,3686 0,183 18,362 43,538l-7834 3799c-672,-712 -1622,-1158 -2678,-1158 -2036,0 -3686,1650 -3686,3686 0,2036 1650,3686 3686,3686 1052,0 1997,-443 2669,-1149l7846 3842c-27,180 -46,363 -46,551 0,2036 1650,3686 3686,3686 2036,0 3686,-1650 3686,-3686 0,-2036 -1650,-3686 -3686,-3686z" />
+                      </g>
+                    </g>
+                  </svg>
+                  <span class="icon icon-ok-popup"></span>
+                </div>
+                <div class="photo-edit__popup-like photo-edit__deleteItem" data-entity="photos" data-id="1301">
+                  <svg class="icon icon-delete-popup" xmlns="http://www.w3.org/2000/svg" xml:space="preserve"
+                  width="2.54mm" height="2.54mm" version="1.1"
+                  style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                  viewBox="0 0 254 254" xmlns:xlink="http://www.w3.org/1999/xlink">
+                  <g id="Слой_x0020_1">
+                    <metadata id="CorelCorpID_0Corel-Layer" />
+                    <path class="fil0"
+                      d="M91 31c4,-16 19,-28 36,-28l0 0c17,0 32,12 36,28l53 0c7,0 13,6 13,13l0 0c0,8 -6,14 -13,14l-57 0 -64 0 -57 0c-7,0 -13,-6 -13,-14l0 0c0,-7 6,-13 13,-13l53 0zm-10 64l0 0c4,0 7,3 7,7l0 118c0,4 -3,7 -7,7l0 0c-4,0 -7,-3 -7,-7l0 -118c0,-4 3,-7 7,-7zm92 0l0 0c4,0 7,3 7,7l0 118c0,4 -3,7 -7,7l0 0c-4,0 -7,-3 -7,-7l0 -118c0,-4 3,-7 7,-7zm-45 0l0 0c4,0 7,3 7,7l0 118c0,4 -3,7 -7,7l0 0c-4,0 -7,-3 -7,-7l0 -118c0,-4 3,-7 7,-7zm-68 -27l134 0 12 0 0 156c0,0 -2,27 -28,27l-4 0 0 0 0 0 0 0 -1 0 0 0 0 0 -1 0 0 0 0 0 -1 0 -1 0 0 0 -1 0 0 0 -1 0 -1 0 0 0 -1 0 -1 0 0 0 -1 0 0 0 -2 0 0 0 -1 0 -1 0 0 0 -2 0 0 0 -2 0 0 0 -1 0 -1 0 -1 0 -1 0 -1 0 -1 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -2 0 0 0 -1 0 -1 0 -1 0 -1 0 -1 0 -1 0 0 0 -2 0 0 0 -2 0 0 0 -1 0 -1 0 0 0 -1 0 -1 0 -1 0 0 0 -1 0 -1 0 0 0 -1 0 -1 0 0 0 -1 0 0 0 -1 0 -1 0 0 0 0 0 -1 0 0 0 0 0 -1 0 0 0 0 0 0 0 -4 0c-26,0 -28,-27 -28,-27l0 -156 12 0z" />
+                  </g>
+                </svg>Удалить
+                </div>
+              </div>
+              <div class="photo-edit__popup-comments-info">
+                <p class="photo-edit__popup-comments-info-tags"><a class="photo-edit__popup-comments-info-tags-link"
+                    href="javascript:void(0);">
+                    <div class="achievements-list__hidden-block achievements-list__hidden-block--tegs">
+                      <ul class="achievements-list__tegs--list">
+                        <li><a>#hashtag</a></li>
+                        <li><a>#hashtag</a></li>
+                        <li><a>#v</a></li>
+                        <li><a>#v</a></li>
+                        <li><a>#hashtag</a></li>
+                        <li><a>#hashtag</a></li>
+                        <li><a>#ksfhgkjfhgjkgh</a></li>
+                        <li><a>#ksfhgkjfhgjkgh
+                      </a></li></ul>
+                  </div>
+                  </a></p>
+                <div class="photo-edit__popup-comments-info-location">
+                  <span class="photo-edit__popup-comments-info-location-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 4335 4335"
+                      shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
+                      image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd">
+                      <script id="tinyhippos-injected"></script>
+                      <path
+                        d="M2226 98c717 0 1299 582 1299 1300 0 259-75 499-206 702h1L2226 4242V2697c-718 0-1300-581-1300-1299S1508 98 2226 98zm0 839c254 0 461 206 461 461s-207 461-461 461c-255 0-462-206-462-461s207-461 462-461zm0-368c457 0 829 371 829 829s-372 829-829 829c-458 0-829-371-829-829s371-829 829-829z"
+                        fill="#999"></path></svg>
+                  </span>
+                  <p class="photo-edit__popup-comments-info-location-text">Набережная реки Фонтанки,
+                    Санкт-Петербург,
+                    Россия</p>
+                </div>
+              </div>
+              <div class="photo-edit__popup-comments-block custom-scroll-grey">
+                <ul class="photo-edit__popup-comments-list">
+                  <li class="photo-edit__popup-comment-item">
+                    <div class="photo-edit__popup-comment-item-name">Анастасия Анастасия: </div>
+                    <div class="photo-edit__popup-comment-item-text">комментарий </div>
+                    <div class="photo-edit__popup-comment-item-date"> Добавлено сейчас </div>
+                  </li>
+                </ul>
+              </div>
+              <div class="photo-edit__popup-wrcontent"></div>
+              <div class="photo-edit__popup-comment-form">
+                <div class="photo-edit__popup-comments-public-date">
+                  <p>Опубликовано <span class="date_span">9&nbsp;сентября 2019 14:48</span></p>
+                </div>
+                <form>
+                  <div class="photo-edit__smile">
+                    <div class="photo-edit__open">
+                        <ul class="chat__form-last-smiles chat__form-last-smiles--photo">
+                          <li><img src="img/step2/emoji/messenger/smile-tongue-face.svg" width="24" height="24" alt="Воу"></li>
+                          <li><img src="img/step2/emoji/messenger/smile-laughing-tears.svg" width="24" height="24" alt="Смешно до слез"></li>
+                          <li><img src="img/step2/emoji/messenger/smile-angel-face.svg" width="24" height="24" alt="Сексуально"></li>
+                          <li><img src="img/step2/emoji/messenger/smile-heart-eyes.svg" width="24" height="24" alt="Очень смешно"></li>
+                          <li><img src="img/step2/emoji/messenger/smile-shocked-face.svg" width="24" height="24" alt="Удивительно"></li>
+                          <li><img src="img/step2/emoji/messenger/smile-alien.svg" width="24" height="24" alt="Инопланетянин"></li>
+                          <li><img src="img/step2/emoji/messenger/smile-devil-horns.svg" width="24" height="24" alt="Гнев"></li>
+                        </ul>
+                      <div class="photo-edit__smiles-container chat__form-smiles chat__form-smiles--photo">
+                        <span title="Добавить смайл"><span class="visually-hidden">Добавить смайл</span></span>
+
+                        <!-- --------------- С М А Й Л Ы ----------------------------- -->
+
+                        <div class="chat__smiles chat__smiles--photo chat__smiles--ph">
+                          <div>
+                            <div class="chat__smiles-title">
+                              <p class="chat__smiles-title-emoji">Эмоджи</p>
+                              <p class="chat__smiles-title-stikers">Стикеры</p>
+                            </div>
+
+                            <include src="src/chat-emoji.html"></include>
+                            <include src="src/chat-stikers.html"></include>
+
+                          </div>
+                        </div>
+
+                         <!-- --------------- С М А Й Л Ы    К  О  Н  Е  Ц----------------------------- -->
+
+                      </div>
+                    </div>
+
+                  </div>
+                  <div class="photo-profile photo-profile__row">
+                    <div class="photo-profile__comment-textarea">
+                      <div contenteditable="true" class="photo-profile__textarea custom-scroll-grey"></div>
+                    </div>
+                    <div class="photo-profile__comment-submit">
+                      <button type="button" data-entity="photos" class="photo-profile__popup-comment-submit"
+                        data-id="1301"><span class="icon icon-enter"></span></button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <section class="photo photo-profile">
+
+
+      <!-- --------------- П К   С Т Р А Н И Ц А   Ф О Т О ----------------------------- -->
+      <div class="photo-profile__intro">
+        <div class="photo-profile__row">
+          <div class="photo-profile__strip">
+            <h1>
+              <a href="/">Анастасия Анастасия</a>
+            </h1>
+          </div>
+          <div class="photo-profile__position">
+            <div class="photo-profile__position-in-rating">
+              <div class="photo-profile__position-in-rating-status">Участница</div>
+              <a href="/top10/?place=16#place_16"><span></span>
+                16
+                место
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="photo-profile__tabs">
+        <div class="profile-nav">
+          <div class="profile-nav__rating">120</div>
+          <div class="profile-nav__friends">10</div>
+          <div class="profile-nav__status">online</div>
+          <ul class="profile-nav__list">
+            <li class="profile-nav__item">
+              <a href="#" class="profile-nav__link">О себе</a>
+            </li>
+            <li class="profile-nav__item">
+              <a href="#" class="profile-nav__link">Фото</a>
+            </li>
+            <li class="profile-nav__item">
+              <a href="#" class="profile-nav__link">Видео</a>
+            </li>
+            <li class="profile-nav__item">
+              <a href="#" class="profile-nav__link">Блог</a>
+            </li>
+            <li class="profile-nav__item">
+              <a href="#" class="profile-nav__link">Достижения</a>
+            </li>
+            <li class="profile-nav__item">
+              <a href="#" class="profile-nav__link">Друзья</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="photo-profile__section">
+        <div class="photo-profile__section-title-block">
+              <div class="photo-profile__section-title photo-profile__section-title--position">
+                <span class="icon icon-photos"></span>Фотографии<div class="photo-profile__section-title-small photo-profile__section-title-count">
+                  <span class="photo-profile__entity_count">1</span>
+                <div class="photo-profile__section-title-count-mobile">0</div>
+
+              </div>
+            </div>
+
+
+              <div class="photo-profile__column-wrapper">
+                <div class="profile-title__filter profile-title__filter-blog photo-profile__section-title-filter">
+                  <input type="checkbox" class="profile-title__checkbox" id="profile-title-checkbox-popular">
+                  <label class="profile-title__checkbox-label" for="profile-title-checkbox-popular">Популярное</label>
+              </div>
+              </div>
+            <div class="profile-title__help profile-title__help--top profile-title__help--left">
+              <button type="button" class="profile-title__help-btn profile-title__help-btn-photo">Подсказка</button>
+              <span class="profile-title__triangle"></span>
+            </div>
+            <div class="profile-title__help-wrap">
+                <p>Вы&nbsp;можете добавить до&nbsp;40&nbsp;фотографий по&nbsp;вашим интересам с&nbsp;хештегами
+                  для&nbsp;голосования зрителей.</p>
+              </div>
+              <div class="photo-profile__section-title-button button">
+
+                <input type="file" id="upload-file" class="visually-hidden" name="filename" multiple required>
+                <label class="photo-profile__button__main-grey-small photo-profile__button__main-grey-small--video photo-profile__button-grey photo-profile__button-grey--photo"
+                  for="upload-file">Добавить</label>
+
+              </div>
+          </div>
+
+        <div class="photo-profile__section-content photo-profile__section-gallery">
+          <ul class="photo-profile__photo-list">
+            <li class="photo-profile__photo-item">
+              <div class="photo-profile__photo-img photo-profile__photo-img--example">
+                <img src="./img/step2/square.gif" alt="">
+              </div>
+              <a href="#" class="photo-profile__photo photo-profile__photo-visited photo-profile__photo-hover"></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="photo-profile__section-content photo-profile__section-no-content">
+          <label class="photo-profile__no-content photo-profile__no-content-ico" for="upload-file">
+            <p>В&nbsp;вашем альбоме пусто.</p>
+            <p>Вы&nbsp;можете добавить до&nbsp;40&nbsp;фотографий.</p>
+          </label>
+        </div>
+      </div>
+
+      <div class="photo-profile__section photo-profile__section--photo-block third_photo_block">
+        <div class="photo-profile__section-title-block">
+          <div class="photo-profile__row">
+            <div class="photo-profile__row-wrap">
+              <div class="photo-profile__section-title">
+                <span class="photo-profile__download-icon">
+                  <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="612px" height="612px"
+                    viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve">
+                    <g>
+                      <g>
+                        <g>
+                          <path d="M190.657,421.936l144.106-72.885c15.281-1.225,30.256-7.401,41.941-19.087l133.971-133.971l-94.669-94.669
+                    L282.036,235.295c-11.724,11.724-17.901,26.756-19.105,42.075L190.657,421.936z M583.791,122.878
+                    c26.144-26.144,26.144-68.524,0-94.668c-26.145-26.144-68.525-26.144-94.669,0l-19.029,19.029l94.669,94.668L583.791,122.878z
+                     M573.75,306c-21.133,0-38.25,17.117-38.25,38.25V535.5h-459v-459h153c21.133,0,38.25-17.117,38.25-38.25S250.633,0,229.5,0
+                    H38.25C17.117,0,0,17.117,0,38.25v535.5C0,594.883,17.117,612,38.25,612h535.5c21.133,0,38.25-17.117,38.25-38.25v-229.5
+                    C612,323.117,594.883,306,573.75,306z"></path>
+                        </g>
+                      </g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                    <g>
+                    </g>
+                  </svg>
+                </span>
+                Укажите названия фотографий
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="photo-profile__section-content add-content add-content--desktop">
+
+        </div>
+
+
+      </div>
+      <div class="photo-profile__button-wrap">
+        <div class="photo-profile__button photo-profile__button--save">
+          <button type="button">
+            <span>
+
+              <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                viewBox="0 0 254 254">
+                <defs>
+                  <style type="text/css">
+
+                  </style>
+                </defs>
+                <g>
+                  <metadata></metadata>
+                  <path class="fil0"
+                    d="M3 187l0 -66 0 -11 0 -54 0 0c0,0 0,-1 0,-2l0 -14c0,-5 4,-10 10,-10l67 0 0 1 12 0c0,0 9,-2 15,3 3,2 18,24 19,26l0 0 24 0 1 0 4 0 4 0 4 0 4 0 4 0 3 0 4 0 3 0 4 0 3 0 4 0 3 0 3 0 3 0 2 0 3 0 3 0 2 0 2 0 2 0 2 0 2 0 1 0 2 0 1 0 1 0 1 0 0 0 1 0 0 0 15 0c6,0 10,5 10,10l0 26c0,1 1,3 0,4l0 87c0,1 0,2 0,3l0 2c0,0 1,3 0,8l0 14c0,5 -4,10 -10,10l-15 0 0 0 -1 0 0 0 -1 0 -1 0 -1 0 -2 0 0 0 -1 0 -2 0 -2 0 -2 0 -2 0 -2 0 -3 0 -3 0 -2 0 -3 0 -3 0 -3 0 -4 0 -3 0 -4 0 -3 0 -4 0 -3 0 -4 0 -4 0 -4 0 -4 0 -4 0 -1 0 -24 0 -22 0 -1 0 -4 0 -4 0 -4 0 -4 0 -4 0 -3 0 -4 0 -3 0 -4 0 -3 0 -4 0 -3 0 -3 0 -3 0 -2 0 -3 0 -3 0 -2 0 -2 0 -2 0 -2 0 -2 0 -1 0 -2 0 -1 0 -1 0 -1 0 0 0 -1 0 0 0 -15 0c-6,0 -10,-5 -10,-10l0 -23c0,-2 -1,-3 0,-4zm124 -90l0 0c4,0 8,4 8,8l0 46 27 0 -35 42 -35 -42 27 0 0 -46c0,-4 4,-8 8,-8z">
+                  </path>
+                </g>
+              </svg>
+
+            </span>
+            Сохранить фото (1)
+          </button>
+        </div>
+
+        <div class="photo-profile__button photo-profile__creationForm">
+
+          <label for="upload-file" class="photo-profile__button-img" aria-label="Добавить фото">
+            <span class="photo-profile__button--img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 333.668 333.668"
+                style="enable-background:new 0 0 333.668 333.668;">
+                <path
+                  d="M295.101,298.649H38.561C17.295,298.649,0,281.354,0,260.088V103.703c0-21.266,17.295-38.561,38.561-38.561h52.347
+                                                                          l4.582-15.457c1.87-8.458,9.602-14.666,18.696-14.666h105.297c8.837,0,16.658,6.176,18.728,14.743l0.122,0.527l4.177,14.852h52.597
+                                                                          c21.266,0,38.561,17.295,38.561,38.561v156.384C333.662,281.354,316.361,298.649,295.101,298.649z M38.561,77.996
+                                                                          c-14.178,0-25.707,11.53-25.707,25.707v156.384c0,14.178,11.53,25.707,25.707,25.707h256.54c14.178,0,25.707-11.53,25.707-25.707
+                                                                          V103.703c0-14.178-11.53-25.707-25.707-25.707h-62.327l-7.037-25.097c-0.649-2.918-3.278-5.032-6.26-5.032H114.179
+                                                                          c-3.027,0-5.598,2.069-6.26,5.039l-7.429,25.09H38.561z M166.841,259.798c-44.981,0-81.576-36.588-81.576-81.563
+                                                                          c0-44.981,36.594-81.569,81.576-81.569c44.969,0,81.557,36.594,81.557,81.569C248.397,223.204,211.809,259.798,166.841,259.798z
+                                                                           M166.841,109.513c-37.893,0-68.722,30.823-68.722,68.716s30.83,68.709,68.722,68.709c37.886,0,68.703-30.823,68.703-68.709
+                                                                          C235.543,140.336,204.72,109.513,166.841,109.513z M286.804,101.852c-6.555,0-11.858,5.315-11.858,11.858
+                                                                          c0,6.549,5.302,11.857,11.858,11.857c6.549,0,11.851-5.309,11.851-11.857C298.649,107.167,293.346,101.852,286.804,101.852z">
+                </path>
+              </svg>
+            </span>
+            Добавить фото
+          </label>
+        </div>
+        <div class="profile-name-help profile-name-help--photo">
+          <div class="tooltip tooltip--photo profile-name-tooltip profile-name-tooltip--photo">
+            <span class="tooltip-triangle-with-shadow"></span>
+            <p>Добавленные фотографии сохранятся в&nbsp;вашем профиле. Вы&nbsp;сможете найти друзей по&nbsp;интересам
+              и&nbsp;начать общение.</p>
+          </div>
+          <button class="profile-name-help-text" type="button">Подсказка Miss Future</button>
+        </div>
+
+
+
+
+      </div>
+
+
+
+    </section>
+
+    <!-- -------------------------- M O B I L E ------------------------------------- -->
+
+
+    <div class="photo-profile-page photo-profile photo-profile-mobile">
+      <div>
+        <div class="photo-profile__row">
+          <div class="photo-profile__col-mobile photo-profile__col-mobile-xs">
+
+            <div class="photo-profile__avatar-mobile  photo-profile__avatar-mobile--online ">
+              <div class="photo-profile__avatar-block">
+                <a href="profile" aria-label="Профиль"><img src="./img/profile/avatar.jpg" alt=""></a>
+                <!-- <div class="photo-profile__avatar-status">
+                </div> -->
+                <div class="profile__status profile__status--photo profile__status--online"></div>
+              </div>
+            </div>
+          </div>
+          <div class="photo-profile__mobile photo-profile__col-mobile-xs col-info-mobile">
+            <div class="photo-profile__info-mobile">
+
+              <h1 class="photo-profile__title-mobile">
+                <a href="profile">
+                  Анастасия Анастасия
+                </a>
+              </h1>
+              <a href="#" class="photo-profile-locations-mobile"><span class="icon icon-placemark"></span>
+                Москва
+              </a>
+              <span class="photo-profile-mobile-age">
+                19
+                лет
+              </span>
+              <div>
+                <ul class="photo-profile__statistic-list">
+                  <li>
+                    <a href="/rating">
+                      16
+                      место
+                    </a>
+                  </li>
+                  <li>
+                    <a href="/rating"><span class="icon icon-rating-profile-mobile"></span>
+                      1
+
+                    </a>
+                  </li>
+
+                </ul>
+
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+      <div class="profile__control">
+        <a href="#" class="profile__raise-profile">Поднять анкету</a>
+        <a href="#" class="profile__increase-rating">Повысить рейтинг</a>
+      </div>
+      <div class="photo-profile__tabs">
+        <div class="profile-nav">
+          <div class="profile-nav__rating">120</div>
+          <div class="profile-nav__friends">10</div>
+          <div class="profile-nav__status">online</div>
+          <ul class="profile-nav__list">
+            <li class="profile-nav__item">
+              <a href="#" class="profile-nav__link">О себе</a>
+            </li>
+            <li class="profile-nav__item">
+              <a href="#" class="profile-nav__link">Фото</a>
+            </li>
+            <li class="profile-nav__item">
+              <a href="#" class="profile-nav__link">Видео</a>
+            </li>
+            <li class="profile-nav__item">
+              <a href="#" class="profile-nav__link">Блог</a>
+            </li>
+            <li class="profile-nav__item">
+              <a href="#" class="profile-nav__link">Достижения</a>
+            </li>
+            <li class="profile-nav__item">
+              <a href="#" class="profile-nav__link">Друзья</a>
+            </li>
+          </ul>
+        </div>
+
+      </div>
+
+
+
+
+
+      <div class="photo-profile__section">
+        <div class="photo-profile__section-title-block">
+          <div class="photo-profile__section-title photo-profile__section-title--position">
+            <span class="icon icon-photos"></span>Фото<div class="photo-profile__section-title-small photo-profile__section-title-count">
+              <span class="photo-profile__entity_count">1</span>
+
+          </div>
+        </div>
+
+
+          <div class="photo-profile__column-wrapper">
+            <div class="profile-title__filter profile-title__filter-blog photo-profile__section-title-filter">
+              <input type="checkbox" class="profile-title__checkbox" id="profile-title-checkbox-popular-mb">
+              <label class="profile-title__checkbox-label" for="profile-title-checkbox-popular-mb">Популярное</label>
+          </div>
+          </div>
+        <div class="profile-title__help profile-title__help--top profile-title__help--left">
+          <button type="button" class="profile-title__help-btn profile-title__help-btn-photo">Подсказка</button>
+          <span class="profile-title__triangle"></span>
+        </div>
+        <div class="profile-title__help-wrap">
+            <p>Вы&nbsp;можете добавить до&nbsp;40&nbsp;фотографий по&nbsp;вашим интересам с&nbsp;хештегами
+              для&nbsp;голосования зрителей.</p>
+          </div>
+          <div class="photo-profile__section-title-button button">
+
+            <input type="file" id="upload-file" class="visually-hidden" name="filename" multiple required>
+            <label class="photo-profile__button__main-grey-small photo-profile__button-grey photo-profile__button-grey--photo"
+              for="upload-file"><span class="photo-profile__button-tablet">Добавить</span></label>
+
+          </div>
+      </div>
+
+        <div class="photo-profile__section-content photo-profile__section-gallery">
+          <ul class="photo-profile__photo-list">
+            <li class="photo-profile__photo-item">
+              <div class="photo-profile__photo-img photo-profile__photo-img--example">
+                <img src="./img/step2/square.gif" alt="">
+              </div>
+              <a href="#" class="photo-profile__photo photo-profile__photo-visited photo-profile__photo-hover"
+                aria-label="Фото"></a>
+            </li>
+          </ul>
+        </div>
+
+        <div class="photo-profile__section-content photo-profile__section-no-content">
+          <label class="photo-profile__no-content photo-profile__no-content-ico" for="upload-file">
+            <p>В&nbsp;вашем альбоме пусто.</p>
+            <p>Вы&nbsp;можете добавить до&nbsp;40&nbsp;фотографий.</p>
+          </label>
+        </div>
+      </div>
+
+      <form action="/photos/approve" method="post" enctype="multipart/form-data" class="finalForm">
+        <input type="hidden" name="_token" value="AHZYt3TaezLf2KWBISJFLPXHilghlblYmmddjsfc">
+        <div class="photo-profile__section photo-profile__section--photo-block third_photo_block">
+          <div class="photo-profile__section-title-block">
+            <div class="photo-profile__row photo-profile__row-photo-name">
+              <div class="photo-profile__row-wrap">
+                <div class="photo-profile__section-title">
+                  <span class="photo-profile__download-icon">
+                    <svg version="1.1" xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="612px" height="612px"
+                      viewBox="0 0 612 612" style="enable-background:new 0 0 612 612;" xml:space="preserve">
+                      <g>
+                        <g>
+                          <g>
+                            <path d="M190.657,421.936l144.106-72.885c15.281-1.225,30.256-7.401,41.941-19.087l133.971-133.971l-94.669-94.669
+                            L282.036,235.295c-11.724,11.724-17.901,26.756-19.105,42.075L190.657,421.936z M583.791,122.878
+                            c26.144-26.144,26.144-68.524,0-94.668c-26.145-26.144-68.525-26.144-94.669,0l-19.029,19.029l94.669,94.668L583.791,122.878z
+                             M573.75,306c-21.133,0-38.25,17.117-38.25,38.25V535.5h-459v-459h153c21.133,0,38.25-17.117,38.25-38.25S250.633,0,229.5,0
+                            H38.25C17.117,0,0,17.117,0,38.25v535.5C0,594.883,17.117,612,38.25,612h535.5c21.133,0,38.25-17.117,38.25-38.25v-229.5
+                            C612,323.117,594.883,306,573.75,306z"></path>
+                          </g>
+                        </g>
+                      </g>
+                      <g>
+                      </g>
+                      <g>
+                      </g>
+                      <g>
+                      </g>
+                      <g>
+                      </g>
+                      <g>
+                      </g>
+                      <g>
+                      </g>
+                      <g>
+                      </g>
+                      <g>
+                      </g>
+                      <g>
+                      </g>
+                      <g>
+                      </g>
+                      <g>
+                      </g>
+                      <g>
+                      </g>
+                      <g>
+                      </g>
+                      <g>
+                      </g>
+                      <g>
+                      </g>
+                    </svg>
+                  </span>
+                  <p class="photo-profile__section-title-name">Укажите названия фотографий</p>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <div class="photo-profile__section-content add-content add-content--mobile">
+
+          </div>
+        </div>
+      </form>
+      <div class="photo-profile__button-wrap">
+        <div class="photo-profile__button photo-profile__button--save">
+          <button type="button">
+            <span>
+
+              <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" version="1.1"
+                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
+                viewBox="0 0 254 254">
+                <defs>
+                  <style type="text/css">
+
+                  </style>
+                </defs>
+                <g>
+                  <metadata></metadata>
+                  <path class="fil0"
+                    d="M3 187l0 -66 0 -11 0 -54 0 0c0,0 0,-1 0,-2l0 -14c0,-5 4,-10 10,-10l67 0 0 1 12 0c0,0 9,-2 15,3 3,2 18,24 19,26l0 0 24 0 1 0 4 0 4 0 4 0 4 0 4 0 3 0 4 0 3 0 4 0 3 0 4 0 3 0 3 0 3 0 2 0 3 0 3 0 2 0 2 0 2 0 2 0 2 0 1 0 2 0 1 0 1 0 1 0 0 0 1 0 0 0 15 0c6,0 10,5 10,10l0 26c0,1 1,3 0,4l0 87c0,1 0,2 0,3l0 2c0,0 1,3 0,8l0 14c0,5 -4,10 -10,10l-15 0 0 0 -1 0 0 0 -1 0 -1 0 -1 0 -2 0 0 0 -1 0 -2 0 -2 0 -2 0 -2 0 -2 0 -3 0 -3 0 -2 0 -3 0 -3 0 -3 0 -4 0 -3 0 -4 0 -3 0 -4 0 -3 0 -4 0 -4 0 -4 0 -4 0 -4 0 -1 0 -24 0 -22 0 -1 0 -4 0 -4 0 -4 0 -4 0 -4 0 -3 0 -4 0 -3 0 -4 0 -3 0 -4 0 -3 0 -3 0 -3 0 -2 0 -3 0 -3 0 -2 0 -2 0 -2 0 -2 0 -2 0 -1 0 -2 0 -1 0 -1 0 -1 0 0 0 -1 0 0 0 -15 0c-6,0 -10,-5 -10,-10l0 -23c0,-2 -1,-3 0,-4zm124 -90l0 0c4,0 8,4 8,8l0 46 27 0 -35 42 -35 -42 27 0 0 -46c0,-4 4,-8 8,-8z">
+                  </path>
+                </g>
+              </svg>
+
+            </span>
+            Сохранить фото (1)
+          </button>
+        </div>
+
+        <div class="photo-profile__button photo-profile__creationForm">
+          <label for="upload-file">
+
+            <span class="photo-profile__button--img">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 333.668 333.668"
+                style="enable-background:new 0 0 333.668 333.668;">
+                <path
+                  d="M295.101,298.649H38.561C17.295,298.649,0,281.354,0,260.088V103.703c0-21.266,17.295-38.561,38.561-38.561h52.347
+                                                              l4.582-15.457c1.87-8.458,9.602-14.666,18.696-14.666h105.297c8.837,0,16.658,6.176,18.728,14.743l0.122,0.527l4.177,14.852h52.597
+                                                              c21.266,0,38.561,17.295,38.561,38.561v156.384C333.662,281.354,316.361,298.649,295.101,298.649z M38.561,77.996
+                                                              c-14.178,0-25.707,11.53-25.707,25.707v156.384c0,14.178,11.53,25.707,25.707,25.707h256.54c14.178,0,25.707-11.53,25.707-25.707
+                                                              V103.703c0-14.178-11.53-25.707-25.707-25.707h-62.327l-7.037-25.097c-0.649-2.918-3.278-5.032-6.26-5.032H114.179
+                                                              c-3.027,0-5.598,2.069-6.26,5.039l-7.429,25.09H38.561z M166.841,259.798c-44.981,0-81.576-36.588-81.576-81.563
+                                                              c0-44.981,36.594-81.569,81.576-81.569c44.969,0,81.557,36.594,81.557,81.569C248.397,223.204,211.809,259.798,166.841,259.798z
+                                                               M166.841,109.513c-37.893,0-68.722,30.823-68.722,68.716s30.83,68.709,68.722,68.709c37.886,0,68.703-30.823,68.703-68.709
+                                                              C235.543,140.336,204.72,109.513,166.841,109.513z M286.804,101.852c-6.555,0-11.858,5.315-11.858,11.858
+                                                              c0,6.549,5.302,11.857,11.858,11.857c6.549,0,11.851-5.309,11.851-11.857C298.649,107.167,293.346,101.852,286.804,101.852z">
+                </path>
+              </svg>
+            </span>
+            Добавить фото
+          </label>
+        </div>
+        <div class="profile-name-help profile-name-help--photo">
+          <div class="tooltip tooltip--photo profile-name-tooltip profile-name-tooltip--photo">
+            <span class="tooltip-triangle-with-shadow"></span>
+            <p>Добавленные фотографии сохранятся в&nbsp;вашем профиле. Вы&nbsp;сможете найти друзей по&nbsp;интересам
+              и&nbsp;начать общение.</p>
+          </div>
+          <button class="profile-name-help-text profile-name-help-text--mobile" type="button">Подсказка Miss
+            Future</button>
+        </div>
+
+
+      </div>
+
+
+    </div>
+    <div class="photo-map photo-map__popup-bg">
+      <div class="photo-map__popup photo-map__location photo-map__popup--position">
+        <a class="photo-map__popup-close" href="#"></a>
+        <div class="photo-map__popup-header">Выбрать местоположение на&nbsp;карте</div>
+        <div class="photo-map__block"></div>
+        <div class="photo-map__footer">
+          <a href="#" class="photo-map__button" onclick="$('.photo-map__popup-close').click()">Сохранить место</a>
+        </div>
+      </div>
+    </div>
+
+  </main>
+
+  <include src="src/footer.html"></include>
+  <include src="src/purse.html"></include>
+
+  <script src="js/plugins.min.js"></script>
+  <script src="js/index.min.js"></script>
+
+</body>
+
+</html>

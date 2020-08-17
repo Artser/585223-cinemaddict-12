@@ -1,0 +1,11 @@
+.tab-content > input:checked + label {
+  background-color: $gray-dusty;
+}
+
+.tab-content > input:checked ~ .finalists__feed {
+  display: flex;
+}
+
+.tab-content > input {
+  display: none;
+}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="30" height="30" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" version="1" viewBox="0 0 30000 30000">
+    <defs>
+        <style>
+            .fil0{fill:#fefefe}
+        </style>
+    </defs>
+    <g id="Layer_x0020_1">
+        <path d="M-2063544 56601h37546v4222h-37546v-4222zm0 16662h20884v4222h-20884v-4222zm0-8331h37546v4222h-37546v-4222z" class="fil0"/>
+        <g id="_479745416">
+            <path fill="#9d9e9e" d="M29614 28594V1406H387v20330h21318z"/>
+            <path d="M4835 5670h20329v2285H4835V5670zm0 9021h11308v2287H4835v-2287zm0-4511h20329v2285H4835v-2285z" class="fil0"/>
+        </g>
+    </g>
+</svg>

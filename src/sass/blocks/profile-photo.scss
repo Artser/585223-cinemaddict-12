@@ -1,0 +1,100 @@
+.profile-photo-list {
+  margin: 0;
+  padding: 0;
+  margin-left: -1px;
+  margin-right: -1px;
+  background: $color-white;
+  list-style: none;
+}
+
+.profile-photo-list::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.profile-photo-item {
+  float: left;
+  border: 1px solid $color-white;
+  position: relative;
+  width: 12.5%;
+  background-color: $color-white;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.profile-photo-item img {
+  height: auto;
+  width: 100%;
+  display: block;
+}
+
+.profile-photo-item:hover::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -16px;
+  margin-top: -16px;
+  width: 32px;
+  height: 32px;
+  background: url("../img/step2/icons/plus.svg") no-repeat;
+  background-size: cover;
+  transition: all 0.3s;
+}
+
+.profile-photo-item::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  transition: opacity 0.35s;
+  opacity:0;
+  background: rgba(48, 48, 48, 0.65);
+}
+
+.profile-photo-item:hover::before {
+  transition: opacity 0.35s;
+  opacity:1;
+}
+
+.profile-photo-item .profile-photo-item-visited {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(48, 48, 48, 0.65);
+  opacity: 1;
+}
+
+.profile-photo-item-visited::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  margin-left: -16px;
+  margin-top: -16px;
+  width: 32px;
+  height: 32px;
+  background: url("../img/step2/icons/eye.svg") no-repeat;
+  background-size: cover;
+}
+
+.profile-photo-item:hover .profile-photo-item-visited::after {
+  content: none;
+}
+
+@media only screen and (max-width: $mobile-width) {
+  .profile-photo-list--full .profile-photo-item {
+    width: 16.666666666666668%;
+  }
+}
+
+@media only screen and (max-width: 500px) {
+  .profile-photo-list--full .profile-photo-item {
+    width: 25%;
+  }
+}

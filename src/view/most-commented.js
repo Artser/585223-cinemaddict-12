@@ -1,4 +1,6 @@
-export const createMostCommentedTemplate = () => {
+import AbstractView from "./abstract.js";
+
+const createMostCommentedTemplate = () => {
   return (
     `<section class="films-list--extra">
       <h2 class="films-list__title">Most commented</h2>
@@ -6,3 +8,9 @@ export const createMostCommentedTemplate = () => {
     </section>`
   );
 };
+
+export default class MostCommented extends AbstractView {
+  getTemplate() {
+    return createMostCommentedTemplate();
+  }
+}

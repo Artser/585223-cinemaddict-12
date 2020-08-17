@@ -1,0 +1,442 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <title>ТОП10 в конкурсе по голосованию Miss Future</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!--класс для главной страницы main-page, для зарегистрированного пользователя login-in-->
+<div class="login-in">
+  <include src="src/header.html"></include>
+</div>
+
+
+<main>
+  <div class="container page">
+    <div class="page__wrap">
+      <section class="main-sidebar page__main-sidebar">
+        <h2 class="visually-hidden">Навигация по профилю</h2>
+
+        <ul class="main-sidebar__menu">
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--home">Мой профиль</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Настройки</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Приглашения</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои друзья <sup class="main-sidebar__submenu-item-amount">10</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Фотографии <sup class="main-sidebar__submenu-item-amount">45</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Видеозаписи <sup class="main-sidebar__submenu-item-amount">1</sup></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--message">
+              Сообщения
+              <span class="main-sidebar__menu-item-count">+1</span>
+            </a>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--rating">
+              Мой рейтинг
+              <span class="main-sidebar__menu-item-amount">120</span>
+            </a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Цветочек</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--blog">Мой блог</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Добавить запись</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои записи <sup class="main-sidebar__submenu-item-amount">13</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои достижения <sup class="main-sidebar__submenu-item-amount">6</sup></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--logout">Выйти</a>
+          </li>
+
+        </ul>
+
+      </section>
+
+
+      <div class="page__main-wrap">
+
+        <section class="page__main">
+          <header class="page__main-header">
+            <h2 class="page__main-heading">ТОП10</h2>
+          </header>
+          <ul class="page__list page__list--top10">
+            <li class="page__item user-card">
+              <div class="user-card__container-img">
+                <a href="#" class="user-card__link user-card__wrap-img">
+                  <img src="img/top10/profile-1.jpeg" class="user-card__img" alt="">
+                </a>
+                <div class="user-card__status"></div>
+              </div>
+              <div class="user-card__description">
+                <div class="user-card__link-wrap">
+                  <a href="#" class="user-card__link-heading"><h3 class="user-card__heading">Марина Новикова</h3></a>
+                </div>
+                <span class="user-card__rating">4444</span>
+                <span class="user-card__position">1 место</span>
+                <a href="#" class="user-card__vote">Голосовать</a>
+              </div>
+            </li>
+            <li class="page__item user-card">
+              <div class="user-card__container-img">
+                <a href="#" class="user-card__link user-card__wrap-img">
+                  <img src="img/top10/profile-2.jpg" class="user-card__img" alt="">
+                </a>
+                <div class="user-card__status"></div>
+              </div>
+              <div class="user-card__description">
+                <div class="user-card__link-wrap">
+                  <a href="#" class="user-card__link-heading"><h3 class="user-card__heading">Марина Новикова</h3></a>
+                </div>
+                <span class="user-card__rating">4444</span>
+                <span class="user-card__position">2 место</span>
+
+                <a href="#" class="user-card__up-rating">Поднять рейтинг</a>
+              </div>
+            </li>
+            <li class="page__item user-card">
+              <div class="user-card__container-img">
+                <a href="#" class="user-card__link user-card__wrap-img">
+                  <img src="img/top10/profile-3.jpg" class="user-card__img" alt="">
+                </a>
+                <div class="user-card__status"></div>
+              </div>
+              <div class="user-card__description">
+                <div class="user-card__link-wrap">
+                  <a href="#" class="user-card__link-heading"><h3 class="user-card__heading">Марина Новикова</h3></a>
+                </div>
+                <span class="user-card__rating">4444</span>
+                <span class="user-card__position">3 место</span>
+                <a href="#" class="user-card__vote">Голосовать</a>
+              </div>
+            </li>
+            <li class="page__item user-card">
+              <div class="user-card__container-img">
+                <a href="#" class="user-card__link user-card__wrap-img">
+                  <img src="img/top10/profile-4.jpeg" class="user-card__img" alt="">
+                </a>
+                <div class="user-card__status"></div>
+              </div>
+              <div class="user-card__description">
+                <div class="user-card__link-wrap">
+                  <a href="#" class="user-card__link-heading"><h3 class="user-card__heading">Марина Новикова</h3></a>
+                </div>
+                <span class="user-card__rating">4444</span>
+                <span class="user-card__position">4 место</span>
+                <a href="#" class="user-card__vote">Голосовать</a>
+              </div>
+            </li>
+            <li class="page__item user-card">
+              <div class="user-card__container-img">
+                <a href="#" class="user-card__link user-card__wrap-img">
+                  <img src="img/top10/profile-5.jpeg" class="user-card__img" alt="">
+                </a>
+                <div class="user-card__status"></div>
+              </div>
+              <div class="user-card__description">
+                <div class="user-card__link-wrap">
+                  <a href="#" class="user-card__link-heading"><h3 class="user-card__heading">Марина Новикова</h3></a>
+                </div>
+                <span class="user-card__rating">4444</span>
+                <span class="user-card__position">5 место</span>
+                <a href="#" class="user-card__vote">Голосовать</a>
+              </div>
+            </li>
+            <li class="page__item user-card">
+              <div class="user-card__container-img">
+                <a href="#" class="user-card__link user-card__wrap-img">
+                  <img src="img/top10/photo.png" class="user-card__img" alt="">
+                </a>
+                <div class="user-card__status"></div>
+              </div>
+              <div class="user-card__description">
+                <div class="user-card__link-wrap">
+                  <a href="#" class="user-card__link-heading"><h3 class="user-card__heading">Марина Новикова</h3></a>
+                </div>
+                <span class="user-card__rating">4444</span>
+                <span class="user-card__position">6 место</span>
+                <a href="#" class="user-card__vote">Голосовать</a>
+              </div>
+            </li>
+            <li class="page__item user-card">
+              <div class="user-card__container-img">
+                <a href="#" class="user-card__link user-card__wrap-img">
+                  <img src="img/top10/profile-6.jpg" class="user-card__img" alt="">
+                </a>
+                <div class="user-card__status"></div>
+              </div>
+              <div class="user-card__description">
+                <div class="user-card__link-wrap">
+                  <a href="#" class="user-card__link-heading"><h3 class="user-card__heading">Марина Новикова</h3></a>
+                </div>
+                <span class="user-card__rating">4444</span>
+                <span class="user-card__position">7 место</span>
+                <a href="#" class="user-card__vote">Голосовать</a>
+              </div>
+            </li>
+            <li class="page__item user-card">
+              <div class="user-card__container-img">
+                <a href="#" class="user-card__link user-card__wrap-img">
+                  <img src="img/top10/profile-7.jpg" class="user-card__img" alt="">
+                </a>
+                <div class="user-card__status"></div>
+              </div>
+              <div class="user-card__description">
+                <div class="user-card__link-wrap">
+                  <a href="#" class="user-card__link-heading"><h3 class="user-card__heading">Марина Новикова</h3></a>
+                </div>
+                <span class="user-card__rating">4444</span>
+                <span class="user-card__position">8 место</span>
+                <a href="#" class="user-card__vote">Голосовать</a>
+              </div>
+            </li>
+            <li class="page__item user-card">
+              <div class="user-card__container-img">
+                <a href="#" class="user-card__link user-card__wrap-img">
+                  <img src="img/top10/profile-8.jpg" class="user-card__img" alt="">
+                </a>
+                <div class="user-card__status"></div>
+              </div>
+              <div class="user-card__description">
+                <div class="user-card__link-wrap">
+                  <a href="#" class="user-card__link-heading"><h3 class="user-card__heading">Марина Новикова</h3></a>
+                </div>
+                <span class="user-card__rating">4444</span>
+                <span class="user-card__position">9 место</span>
+                <a href="#" class="user-card__vote">Голосовать</a>
+              </div>
+            </li>
+            <li class="page__item user-card">
+              <div class="user-card__container-img">
+                <a href="#" class="user-card__link user-card__wrap-img">
+                  <img src="img/top10/photo.png" class="user-card__img" alt="">
+                </a>
+                <div class="user-card__status"></div>
+              </div>
+              <div class="user-card__description">
+                <div class="user-card__link-wrap">
+                  <a href="#" class="user-card__link-heading"><h3 class="user-card__heading">Марина Новикова</h3></a>
+                </div>
+                <span class="user-card__rating">4444</span>
+                <span class="user-card__position">10 место</span>
+                <a href="#" class="user-card__vote">Голосовать</a>
+              </div>
+            </li>
+          </ul>
+        </section>
+
+        <div class="page__col">
+          <section class="page-block">
+            <header class="page-block__header">
+              <a href="#" class="page-block__header-link"><h2 class="page-block__heading">Участницы конкурса</h2></a>
+              <img src="img/rating-gold.png" alt="">
+            </header>
+
+            <div class="page-block__main">
+              <ul class="page-block__list">
+                <li class="page-block__item user-card">
+                  <div class="user-card__container-img">
+                    <a href="#" class="user-card__link user-card__wrap-img">
+                      <img src="img/top10/profile-8.jpg" class="user-card__img" alt="">
+                    </a>
+                    <div class="user-card__status"></div>
+                  </div>
+                </li>
+                <li class="page-block__item user-card user-card--online">
+                  <div class="user-card__container-img">
+                    <a href="#" class="user-card__link user-card__wrap-img">
+                      <img src="img/top10/profile-3.jpg" class="user-card__img" alt="">
+                    </a>
+                    <div class="user-card__status"></div>
+                  </div>
+                </li>
+                <li class="page-block__item user-card">
+                  <div class="user-card__container-img">
+                    <a href="#" class="user-card__link user-card__wrap-img">
+                      <img src="img/top10/profile-2.jpg" class="user-card__img" alt="">
+                    </a>
+                    <div class="user-card__status"></div>
+                  </div>
+                </li>
+              </ul>
+              <p class="page-block__text">
+                Вы&nbsp;можете посмотреть&nbsp;анкеты участниц конкурса Miss&nbsp;Future.
+              </p>
+            </div>
+
+            <a href="#" class="page-block__btn">Открыть голосование</a>
+          </section>
+
+          <section class="page-block">
+            <header class="page-block__header">
+              <a href="#" class="page-block__header-link"><h2 class="page-block__heading">Зрители конкурса</h2></a>
+              <span class="page-block__viewers-amount">43</span>
+            </header>
+
+            <div class="page-block__main">
+              <ul class="page-block__list">
+                <li class="page-block__item user-card">
+                  <div class="user-card__container-img">
+                    <a href="#" class="user-card__link user-card__wrap-img">
+                      <img src="img/top10/profile-2.jpg" class="user-card__img" alt="">
+                    </a>
+                    <div class="user-card__status"></div>
+                  </div>
+                </li>
+                <li class="page-block__item user-card user-card--online">
+                  <div class="user-card__container-img">
+                    <a href="#" class="user-card__link user-card__wrap-img">
+                      <img src="img/top10/profile-5.jpeg" class="user-card__img" alt="">
+                    </a>
+                    <div class="user-card__status"></div>
+                  </div>
+                </li>
+                <li class="page-block__item user-card">
+                  <div class="user-card__container-img">
+                    <a href="#" class="user-card__link user-card__wrap-img">
+                      <img src="img/top10/profile-8.jpg" class="user-card__img" alt="">
+                    </a>
+                    <div class="user-card__status"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <a href="#" class="page-block__btn">Полный список зрителей</a>
+          </section>
+
+          <section class="page-block">
+            <header class="page-block__header">
+              <a href="#" class="page-block__header-link"><h2 class="page-block__heading">Призы победителям</h2></a>
+              <img src="img/crown-top.png" alt="">
+            </header>
+
+            <div class="page-block__main">
+              <a href="#" class="page-block__img">
+                <img src="img/winnerprizes.png" alt="">
+              </a>
+              <p class="page-block__text">
+                Участницы, победившие в&nbsp;конкурсе получают на&nbsp;выбор ценные призы или денежный
+                эквивалент из&nbsp;призового фонда
+                конкурса текущего месяца.
+              </p>
+            </div>
+
+            <a href="#" class="page-block__btn">Узнать подробности</a>
+          </section>
+
+          <section class="page-block__mobile">
+            <header class="page-block__header-mobile">
+              <button type="button" class="page-block__tab-btn active">Участницы конкурса</button>
+              <button type="button" class="page-block__tab-btn">Зрители конкурса <sup>200</sup></button>
+            </header>
+            <div class="page-block__tab active">
+              <ul class="page-block__list">
+                <li class="page-block__item user-card user-card--big">
+                  <div class="user-card__container-img">
+                    <a href="#" class="user-card__link user-card__wrap-img">
+                      <img src="img/top10/profile-2.jpg" class="user-card__img" alt="">
+                    </a>
+                    <div class="user-card__status"></div>
+                  </div>
+                </li>
+                <li class="page-block__item user-card user-card--online user-card--big">
+                  <div class="user-card__container-img">
+                    <a href="#" class="user-card__link user-card__wrap-img">
+                      <img src="img/top10/profile-5.jpeg" class="user-card__img" alt="">
+                    </a>
+                    <div class="user-card__status"></div>
+                  </div>
+                </li>
+                <li class="page-block__item user-card user-card--big">
+                  <div class="user-card__container-img">
+                    <a href="#" class="user-card__link user-card__wrap-img">
+                      <img src="img/top10/profile-6.jpg" class="user-card__img" alt="">
+                    </a>
+                    <div class="user-card__status"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <div class="page-block__tab">
+              <ul class="page-block__list">
+                <li class="page-block__item user-card user-card--big">
+                  <div class="user-card__container-img">
+                    <a href="#" class="user-card__link user-card__wrap-img">
+                      <img src="img/top10/profile-7.jpg" class="user-card__img" alt="">
+                    </a>
+                    <div class="user-card__status"></div>
+                  </div>
+                </li>
+                <li class="page-block__item user-card user-card--online user-card--big">
+                  <div class="user-card__container-img">
+                    <a href="#" class="user-card__link user-card__wrap-img">
+                      <img src="img/top10/profile-3.jpg" class="user-card__img" alt="">
+                    </a>
+                    <div class="user-card__status"></div>
+                  </div>
+                </li>
+                <li class="page-block__item user-card user-card--big">
+                  <div class="user-card__container-img">
+                    <a href="#" class="user-card__link user-card__wrap-img">
+                      <img src="img/top10/profile-8.jpg" class="user-card__img" alt="">
+                    </a>
+                    <div class="user-card__status"></div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+            <footer class="page-block__footer">
+              <a href="#" class="page-block__footer-link">Открыть голосование</a>
+              <img src="img/crown-top.png" class="page-block__crown" alt="">
+              <a href="#" class="page-block__footer-link">Призы победителям</a>
+            </footer>
+          </section>
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<include src="src/footer.html"></include>
+<include src="src/purse.html"></include>
+
+<script src="js/plugins.min.js"></script>
+<script src="js/index.min.js"></script>
+
+</body>
+</html>

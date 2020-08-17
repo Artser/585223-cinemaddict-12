@@ -1,0 +1,529 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <title>ТОП10 в конкурсе по голосованию Miss Future</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!--класс для главной страницы main-page, для зарегистрированного пользователя login-in-->
+<div>
+  <include src="src/header.html"></include>
+</div>
+
+<main>
+  <div class="container page">
+    <div class="page__wrap">
+      <section class="main-sidebar page__main-sidebar">
+        <h2 class="visually-hidden">Навигация по профилю</h2>
+
+        <ul class="main-sidebar__menu">
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--home">Мой профиль</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Настройки</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Приглашения</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои друзья <sup class="main-sidebar__submenu-item-amount">10</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Фотографии <sup class="main-sidebar__submenu-item-amount">45</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Видеозаписи <sup class="main-sidebar__submenu-item-amount">1</sup></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--message">
+              Сообщения
+              <span class="main-sidebar__menu-item-count">+1</span>
+            </a>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--rating">
+              Мой рейтинг
+              <span class="main-sidebar__menu-item-amount">120</span>
+            </a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Цветочек</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--blog active">Мой блог</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Добавить запись</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои записи <sup class="main-sidebar__submenu-item-amount">13</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои достижения <sup class="main-sidebar__submenu-item-amount">6</sup></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--logout">Выйти</a>
+          </li>
+
+        </ul>
+
+      </section>
+
+      <div class="page__main-wrap">
+
+        <section class="profile">
+          <header>
+
+            <div class="profile__header">
+
+              <div class="profile__info">
+                <div class="profile__img-container">
+                  <a href="#" class="profile__img-wrap">
+                    <img src="img/profile/avatar.jpg" class="profile__img" alt="">
+                  </a>
+                  <div class="profile__status profile__status--online"></div>
+                </div>
+                <div class="profile__description">
+
+                  <a href="#" class="profile__name-link">
+                    <h1 class="profile__name">Александра Полякова</h1>
+                  </a>
+
+                  <div class="profile__description-row">
+                    <a href="#" class="profile__location">Санкт-Петербург</a>
+                    <span class="profile__age">35 лет</span>
+                  </div>
+
+                  <div class="profile__description-row">
+                    <a href="#" class="profile__position">3 место</a>
+                    <a href="#" class="profile__rating">120</a>
+                    <a href="#" class="profile__friends">10</a>
+                  </div>
+
+                </div>
+              </div>
+
+              <div class="profile__rating-block">
+                <p class="profile__rating-text">Участница</p>
+                <a href="#" class="profile__position">3 место</a>
+              </div>
+
+              <div class="profile__control">
+                <a href="#" class="profile__raise-profile">Поднять анкету</a>
+                <a href="#" class="profile__increase-rating">Повысить рейтинг</a>
+              </div>
+
+            </div>
+
+            <div class="profile-nav">
+              <div class="profile-nav__rating">120</div>
+              <div class="profile-nav__friends">10</div>
+              <div class="profile-nav__status">online</div>
+              <ul class="profile-nav__list">
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">О себе</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Фото</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Видео</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Блог</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Достижения</a>
+                </li>
+                <li class="profile-nav__item">
+                  <a href="#" class="profile-nav__link">Друзья</a>
+                </li>
+              </ul>
+            </div>
+
+          </header>
+          <div class="profile-title">
+            <h3 class="profile-title__heading">Блог <span class="profile-title__mobile-hidden">участницы</span> <span class="profile-title__amount">999</span></h3>
+            <div class="profile-title__filter profile-title__filter-blog">
+              <input type="checkbox" class="profile-title__checkbox" id="profile-title-checkbox-popular">
+              <label class="profile-title__checkbox-label" for="profile-title-checkbox-popular">Популярное</label>
+            </div>
+            <div class="profile-title__help">
+              <button type="button" class="profile-title__help-btn">Подсказка</button>
+              <span class="profile-title__triangle"></span>
+            </div>
+            <div class="profile-title__help-wrap">
+                <p>Вы можете добавить фотографии, доступные для просмотра участницам и зрителям. Максимум доступно загрузить 40 фото.</p>
+              </div>
+            <button type="button" class="profile-title__button profile-title__button--plus"><span class="profile-title__button-desktop">Добавить</span></button>
+          </div>
+
+          <ul class="blog-list">
+
+            <li class="blog-list__item blog-list__item--visited">
+              <a href="#" class="blog-list__img-wrap">
+                <img src="http://via.placeholder.com/202x100" class="blog-list__img" alt="">
+              </a>
+              <div class="blog-list__item-description">
+                <a href="#" class="blog-list__item-link"><h4 class="blog-list__item-heading">Мое личное достижение на этой неделе</h4></a>
+                <div class="blog-list__item-control">
+                  <time class="blog-list__item-time" datetime='12:55'>12:55</time>
+                  <time class="blog-list__item-data" datetime='2019-02-19'>19.02.2019</time>
+                  <a href="#" class="blog-list__item-like">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M15001 6257a7925 7925 0 0 1 14772 3991c0 5784-10955 13832-14744 17374v54l-28-27-31 27v-54C11182 24080 227 16032 227 10248a7925 7925 0 0 1 14773-3991z"/>
+                    </svg>Мне нравится
+                  </a>
+                  <div class="blog-list__item-checkbox-wrap">
+                    <input id="achievement1" class="blog-list__item-checkbox" type="checkbox" name="achievements" data-id="261">
+                    <label for="achievement1" class="blog-list__item-checkbox-label">Мое достижение</label>
+                  </div>
+                  <a href="#" class="blog-list__item-delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="163.8" height="163.8" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 4334.9 4334.9">
+                      <path d="M744 318h597c14-43 36-94 67-144 88-142 239-117 239-117h1041s151-25 239 117c31 50 53 101 67 144h597a220 220 0 010 439H744c-121 0-219-99-219-219 0-121 98-220 219-220zm290 691h2283s266-40 266 286v2418s55 567-611 567H1379c-666 0-612-567-612-567V1295c0-326 267-286 267-286zm426 685c92 0 168 75 168 168v1564a168 168 0 01-335 0l-1-1564c0-93 76-168 168-168zm1431 0c92 0 168 75 168 168v1564a168 168 0 01-335 0l-1-1564c0-93 76-168 168-168zm-721 0c93 0 168 75 168 168v1564a168 168 0 01-335 0V1862c0-93 75-168 167-168z"/>
+                    </svg>Удалить
+                  </a>
+                  <a href="#" class="blog-list__item-comments">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M29614 28594V1406H387v20330h21318z"/>
+                      <path fill="#fefefe" d="M4835 5670h20329v2285H4835V5670zm0 9021h11308v2287H4835v-2287zm0-4511h20329v2285H4835v-2285z"/>
+                    </svg>Комментарии</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="blog-list__item blog-list__item--visited">
+              <a href="#" class="blog-list__img-wrap">
+                <img src="http://via.placeholder.com/202x100" class="blog-list__img" alt="">
+              </a>
+              <div class="blog-list__item-description">
+                <a href="#" class="blog-list__item-link"><h4 class="blog-list__item-heading">Мое личное достижение на этой неделе</h4></a>
+                <div class="blog-list__item-control">
+                  <time class="blog-list__item-time" datetime='12:55'>12:55</time>
+                  <time class="blog-list__item-data" datetime='2019-02-19'>19.02.2019</time>
+                  <a href="#" class="blog-list__item-like">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M15001 6257a7925 7925 0 0 1 14772 3991c0 5784-10955 13832-14744 17374v54l-28-27-31 27v-54C11182 24080 227 16032 227 10248a7925 7925 0 0 1 14773-3991z"/>
+                    </svg>Мне нравится
+                  </a>
+                  <div class="blog-list__item-checkbox-wrap">
+                    <input id="achievement2" class="blog-list__item-checkbox" type="checkbox" name="achievements" data-id="261">
+                    <label for="achievement2" class="blog-list__item-checkbox-label">Мое достижение</label>
+                  </div>
+                  <a href="#" class="blog-list__item-delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 254 254">
+                      <path d="M91 31c4-16 19-28 36-28s32 12 36 28h53c7 0 13 6 13 13 0 8-6 14-13 14H38c-7 0-13-6-13-14 0-7 6-13 13-13h53zM81 95c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm92 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm-45 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zM60 68h146v156s-2 27-28 27H76c-26 0-28-27-28-27V68h12z"/>
+                    </svg>Удалить
+                  </a>
+                  <a href="#" class="blog-list__item-comments">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M29614 28594V1406H387v20330h21318z"/>
+                      <path fill="#fefefe" d="M4835 5670h20329v2285H4835V5670zm0 9021h11308v2287H4835v-2287zm0-4511h20329v2285H4835v-2285z"/>
+                    </svg>Комментарии</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="blog-list__item">
+              <a href="#" class="blog-list__img-wrap">
+                <img src="http://via.placeholder.com/202x200" class="blog-list__img" alt="">
+              </a>
+              <div class="blog-list__item-description">
+                <a href="#" class="blog-list__item-link"><h4 class="blog-list__item-heading">Мое личное достижение на этой неделе</h4></a>
+                <div class="blog-list__item-control">
+                  <time class="blog-list__item-time" datetime='12:55'>12:55</time>
+                  <time class="blog-list__item-data" datetime='2019-02-19'>19.02.2019</time>
+                  <a href="#" class="blog-list__item-like">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M15001 6257a7925 7925 0 0 1 14772 3991c0 5784-10955 13832-14744 17374v54l-28-27-31 27v-54C11182 24080 227 16032 227 10248a7925 7925 0 0 1 14773-3991z"/>
+                    </svg>Мне нравится
+                  </a>
+                  <div class="blog-list__item-checkbox-wrap">
+                    <input id="achievement3" class="blog-list__item-checkbox" type="checkbox" name="achievements" data-id="261">
+                    <label for="achievement3" class="blog-list__item-checkbox-label">Мое достижение</label>
+                  </div>
+                  <a href="#" class="blog-list__item-delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 254 254">
+                      <path d="M91 31c4-16 19-28 36-28s32 12 36 28h53c7 0 13 6 13 13 0 8-6 14-13 14H38c-7 0-13-6-13-14 0-7 6-13 13-13h53zM81 95c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm92 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm-45 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zM60 68h146v156s-2 27-28 27H76c-26 0-28-27-28-27V68h12z"/>
+                    </svg>Удалить
+                  </a>
+                  <a href="#" class="blog-list__item-comments">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M29614 28594V1406H387v20330h21318z"/>
+                      <path fill="#fefefe" d="M4835 5670h20329v2285H4835V5670zm0 9021h11308v2287H4835v-2287zm0-4511h20329v2285H4835v-2285z"/>
+                    </svg>Комментарии</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="blog-list__item">
+              <a href="#" class="blog-list__img-wrap">
+                <img src="http://via.placeholder.com/202x100" class="blog-list__img" alt="">
+              </a>
+              <div class="blog-list__item-description">
+                <a href="#" class="blog-list__item-link"><h4 class="blog-list__item-heading">Мое личное достижение на этой неделе Мое личное достижение на этой неделе</h4></a>
+                <div class="blog-list__item-control">
+                  <time class="blog-list__item-time" datetime='12:55'>12:55</time>
+                  <time class="blog-list__item-data" datetime='2019-02-19'>19.02.2019</time>
+                  <a href="#" class="blog-list__item-like">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M15001 6257a7925 7925 0 0 1 14772 3991c0 5784-10955 13832-14744 17374v54l-28-27-31 27v-54C11182 24080 227 16032 227 10248a7925 7925 0 0 1 14773-3991z"/>
+                    </svg>Мне нравится
+                  </a>
+                  <div class="blog-list__item-checkbox-wrap">
+                    <input id="achievement4" class="blog-list__item-checkbox" type="checkbox" name="achievements" data-id="261">
+                    <label for="achievement4" class="blog-list__item-checkbox-label">Мое достижение</label>
+                  </div>
+                  <a href="#" class="blog-list__item-delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 254 254">
+                      <path d="M91 31c4-16 19-28 36-28s32 12 36 28h53c7 0 13 6 13 13 0 8-6 14-13 14H38c-7 0-13-6-13-14 0-7 6-13 13-13h53zM81 95c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm92 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm-45 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zM60 68h146v156s-2 27-28 27H76c-26 0-28-27-28-27V68h12z"/>
+                    </svg>Удалить
+                  </a>
+                  <a href="#" class="blog-list__item-comments">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M29614 28594V1406H387v20330h21318z"/>
+                      <path fill="#fefefe" d="M4835 5670h20329v2285H4835V5670zm0 9021h11308v2287H4835v-2287zm0-4511h20329v2285H4835v-2285z"/>
+                    </svg>Комментарии</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="blog-list__item">
+              <a href="#" class="blog-list__img-wrap">
+                <img src="http://via.placeholder.com/202x100" class="blog-list__img" alt="">
+              </a>
+              <div class="blog-list__item-description">
+                <a href="#" class="blog-list__item-link"><h4 class="blog-list__item-heading">Мое личное достижение на этой неделе</h4></a>
+                <div class="blog-list__item-control">
+                  <time class="blog-list__item-time" datetime='12:55'>12:55</time>
+                  <time class="blog-list__item-data" datetime='2019-02-19'>19.02.2019</time>
+                  <a href="#" class="blog-list__item-like">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M15001 6257a7925 7925 0 0 1 14772 3991c0 5784-10955 13832-14744 17374v54l-28-27-31 27v-54C11182 24080 227 16032 227 10248a7925 7925 0 0 1 14773-3991z"/>
+                    </svg>Мне нравится
+                  </a>
+                  <div class="blog-list__item-checkbox-wrap">
+                    <input id="achievement5" class="blog-list__item-checkbox" type="checkbox" name="achievements" data-id="261">
+                    <label for="achievement5" class="blog-list__item-checkbox-label">Мое достижение</label>
+                  </div>
+                  <a href="#" class="blog-list__item-delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 254 254">
+                      <path d="M91 31c4-16 19-28 36-28s32 12 36 28h53c7 0 13 6 13 13 0 8-6 14-13 14H38c-7 0-13-6-13-14 0-7 6-13 13-13h53zM81 95c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm92 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm-45 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zM60 68h146v156s-2 27-28 27H76c-26 0-28-27-28-27V68h12z"/>
+                    </svg>Удалить
+                  </a>
+                  <a href="#" class="blog-list__item-comments">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M29614 28594V1406H387v20330h21318z"/>
+                      <path fill="#fefefe" d="M4835 5670h20329v2285H4835V5670zm0 9021h11308v2287H4835v-2287zm0-4511h20329v2285H4835v-2285z"/>
+                    </svg>Комментарии</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="blog-list__item">
+              <a href="#" class="blog-list__img-wrap">
+                <img src="http://via.placeholder.com/202x100" class="blog-list__img" alt="">
+              </a>
+              <div class="blog-list__item-description">
+                <a href="#" class="blog-list__item-link"><h4 class="blog-list__item-heading">Мое личное достижение на этой неделе</h4></a>
+                <div class="blog-list__item-control">
+                  <time class="blog-list__item-time" datetime='12:55'>12:55</time>
+                  <time class="blog-list__item-data" datetime='2019-02-19'>19.02.2019</time>
+                  <a href="#" class="blog-list__item-like blog-list__item-like--active">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M15001 6257a7925 7925 0 0 1 14772 3991c0 5784-10955 13832-14744 17374v54l-28-27-31 27v-54C11182 24080 227 16032 227 10248a7925 7925 0 0 1 14773-3991z"/>
+                    </svg>Мне нравится
+                  </a>
+                  <div class="blog-list__item-checkbox-wrap">
+                    <input id="achievement6" class="blog-list__item-checkbox" type="checkbox" name="achievements" data-id="261">
+                    <label for="achievement6" class="blog-list__item-checkbox-label">Мое достижение</label>
+                  </div>
+                  <a href="#" class="blog-list__item-delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 254 254">
+                      <path d="M91 31c4-16 19-28 36-28s32 12 36 28h53c7 0 13 6 13 13 0 8-6 14-13 14H38c-7 0-13-6-13-14 0-7 6-13 13-13h53zM81 95c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm92 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm-45 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zM60 68h146v156s-2 27-28 27H76c-26 0-28-27-28-27V68h12z"/>
+                    </svg>Удалить
+                  </a>
+                  <a href="#" class="blog-list__item-comments">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M29614 28594V1406H387v20330h21318z"/>
+                      <path fill="#fefefe" d="M4835 5670h20329v2285H4835V5670zm0 9021h11308v2287H4835v-2287zm0-4511h20329v2285H4835v-2285z"/>
+                    </svg>Комментарии</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="blog-list__item">
+              <a href="#" class="blog-list__img-wrap">
+                <img src="http://via.placeholder.com/202x100" class="blog-list__img" alt="">
+              </a>
+              <div class="blog-list__item-description">
+                <a href="#" class="blog-list__item-link"><h4 class="blog-list__item-heading">Мое личное достижение на этой неделе</h4></a>
+                <div class="blog-list__item-control">
+                  <time class="blog-list__item-time" datetime='12:55'>12:55</time>
+                  <time class="blog-list__item-data" datetime='2019-02-19'>19.02.2019</time>
+                  <a href="#" class="blog-list__item-like">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M15001 6257a7925 7925 0 0 1 14772 3991c0 5784-10955 13832-14744 17374v54l-28-27-31 27v-54C11182 24080 227 16032 227 10248a7925 7925 0 0 1 14773-3991z"/>
+                    </svg>Мне нравится
+                  </a>
+                  <div class="blog-list__item-checkbox-wrap">
+                    <input id="achievement7" class="blog-list__item-checkbox" type="checkbox" name="achievements" data-id="261">
+                    <label for="achievement7" class="blog-list__item-checkbox-label">Мое достижение</label>
+                  </div>
+                  <a href="#" class="blog-list__item-delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 254 254">
+                      <path d="M91 31c4-16 19-28 36-28s32 12 36 28h53c7 0 13 6 13 13 0 8-6 14-13 14H38c-7 0-13-6-13-14 0-7 6-13 13-13h53zM81 95c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm92 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm-45 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zM60 68h146v156s-2 27-28 27H76c-26 0-28-27-28-27V68h12z"/>
+                    </svg>Удалить
+                  </a>
+                  <a href="#" class="blog-list__item-comments">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M29614 28594V1406H387v20330h21318z"/>
+                      <path fill="#fefefe" d="M4835 5670h20329v2285H4835V5670zm0 9021h11308v2287H4835v-2287zm0-4511h20329v2285H4835v-2285z"/>
+                    </svg>Комментарии</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="blog-list__item">
+              <a href="#" class="blog-list__img-wrap">
+                <img src="http://via.placeholder.com/202x100" class="blog-list__img" alt="">
+              </a>
+              <div class="blog-list__item-description">
+                <a href="#" class="blog-list__item-link"><h4 class="blog-list__item-heading">Мое личное достижение на этой неделе</h4></a>
+                <div class="blog-list__item-control">
+                  <time class="blog-list__item-time" datetime='12:55'>12:55</time>
+                  <time class="blog-list__item-data" datetime='2019-02-19'>19.02.2019</time>
+                  <a href="#" class="blog-list__item-like">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M15001 6257a7925 7925 0 0 1 14772 3991c0 5784-10955 13832-14744 17374v54l-28-27-31 27v-54C11182 24080 227 16032 227 10248a7925 7925 0 0 1 14773-3991z"/>
+                    </svg>Мне нравится
+                  </a>
+                  <div class="blog-list__item-checkbox-wrap">
+                    <input id="achievement8" class="blog-list__item-checkbox" type="checkbox" name="achievements" data-id="261">
+                    <label for="achievement8" class="blog-list__item-checkbox-label">Мое достижение</label>
+                  </div>
+                  <a href="#" class="blog-list__item-delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 254 254">
+                      <path d="M91 31c4-16 19-28 36-28s32 12 36 28h53c7 0 13 6 13 13 0 8-6 14-13 14H38c-7 0-13-6-13-14 0-7 6-13 13-13h53zM81 95c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm92 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm-45 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zM60 68h146v156s-2 27-28 27H76c-26 0-28-27-28-27V68h12z"/>
+                    </svg>Удалить
+                  </a>
+                  <a href="#" class="blog-list__item-comments">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M29614 28594V1406H387v20330h21318z"/>
+                      <path fill="#fefefe" d="M4835 5670h20329v2285H4835V5670zm0 9021h11308v2287H4835v-2287zm0-4511h20329v2285H4835v-2285z"/>
+                    </svg>Комментарии</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="blog-list__item">
+              <a href="#" class="blog-list__img-wrap">
+                <img src="http://via.placeholder.com/202x100" class="blog-list__img" alt="">
+              </a>
+              <div class="blog-list__item-description">
+                <a href="#" class="blog-list__item-link"><h4 class="blog-list__item-heading">Мое личное достижение на этой неделе</h4></a>
+                <div class="blog-list__item-control">
+                  <time class="blog-list__item-time" datetime='12:55'>12:55</time>
+                  <time class="blog-list__item-data" datetime='2019-02-19'>19.02.2019</time>
+                  <a href="#" class="blog-list__item-like">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M15001 6257a7925 7925 0 0 1 14772 3991c0 5784-10955 13832-14744 17374v54l-28-27-31 27v-54C11182 24080 227 16032 227 10248a7925 7925 0 0 1 14773-3991z"/>
+                    </svg>Мне нравится
+                  </a>
+                  <div class="blog-list__item-checkbox-wrap">
+                    <input id="achievement9" class="blog-list__item-checkbox" type="checkbox" name="achievements" data-id="261">
+                    <label for="achievement9" class="blog-list__item-checkbox-label">Мое достижение</label>
+                  </div>
+                  <a href="#" class="blog-list__item-delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 254 254">
+                      <path d="M91 31c4-16 19-28 36-28s32 12 36 28h53c7 0 13 6 13 13 0 8-6 14-13 14H38c-7 0-13-6-13-14 0-7 6-13 13-13h53zM81 95c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm92 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm-45 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zM60 68h146v156s-2 27-28 27H76c-26 0-28-27-28-27V68h12z"/>
+                    </svg>Удалить
+                  </a>
+                  <a href="#" class="blog-list__item-comments">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M29614 28594V1406H387v20330h21318z"/>
+                      <path fill="#fefefe" d="M4835 5670h20329v2285H4835V5670zm0 9021h11308v2287H4835v-2287zm0-4511h20329v2285H4835v-2285z"/>
+                    </svg>Комментарии</a>
+                </div>
+              </div>
+            </li>
+
+            <li class="blog-list__item">
+              <a href="#" class="blog-list__img-wrap">
+                <img src="http://via.placeholder.com/202x100" class="blog-list__img" alt="">
+              </a>
+              <div class="blog-list__item-description">
+                <a href="#" class="blog-list__item-link"><h4 class="blog-list__item-heading">Мое личное достижение на этой неделе</h4></a>
+                <div class="blog-list__item-control">
+                  <time class="blog-list__item-time" datetime='12:55'>12:55</time>
+                  <time class="blog-list__item-data" datetime='2019-02-19'>19.02.2019</time>
+                  <a href="#" class="blog-list__item-like">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M15001 6257a7925 7925 0 0 1 14772 3991c0 5784-10955 13832-14744 17374v54l-28-27-31 27v-54C11182 24080 227 16032 227 10248a7925 7925 0 0 1 14773-3991z"/>
+                    </svg>Мне нравится
+                  </a>
+                  <div class="blog-list__item-checkbox-wrap">
+                    <input id="achievement10" class="blog-list__item-checkbox" type="checkbox" name="achievements" data-id="261">
+                    <label for="achievement10" class="blog-list__item-checkbox-label">Мое достижение</label>
+                  </div>
+                  <a href="#" class="blog-list__item-delete">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="10" height="10" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 254 254">
+                      <path d="M91 31c4-16 19-28 36-28s32 12 36 28h53c7 0 13 6 13 13 0 8-6 14-13 14H38c-7 0-13-6-13-14 0-7 6-13 13-13h53zM81 95c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm92 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zm-45 0c4 0 7 3 7 7v118c0 4-3 7-7 7s-7-3-7-7V102c0-4 3-7 7-7zM60 68h146v156s-2 27-28 27H76c-26 0-28-27-28-27V68h12z"/>
+                    </svg>Удалить
+                  </a>
+                  <a href="#" class="blog-list__item-comments">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="12" height="12" fill-rule="evenodd" clip-rule="evenodd" image-rendering="optimizeQuality" shape-rendering="geometricPrecision" text-rendering="geometricPrecision" viewBox="0 0 30000 30000">
+                      <path d="M29614 28594V1406H387v20330h21318z"/>
+                      <path fill="#fefefe" d="M4835 5670h20329v2285H4835V5670zm0 9021h11308v2287H4835v-2287zm0-4511h20329v2285H4835v-2285z"/>
+                    </svg>Комментарии</a>
+                </div>
+              </div>
+            </li>
+          </ul>
+
+        </section>
+
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<include src="src/footer.html"></include>
+<include src="src/purse.html"></include>
+
+
+<div class="popup popup-success">
+  <div class="popup__wrap">
+    <button class="popup__close" href="#"></button>
+    <div class="popup__header">
+      Ваша&nbsp;запись&nbsp;успешно добавлена
+    </div>
+    <div class="popup__main">
+      <p>Ваша запись успешно добавлена в&nbsp;блог. Скоро её&nbsp;оценят участницы и&nbsp;зрители конкурса Miss Future.</p>
+      <a href="/" title="Вернуться в мой профиль" class="button">Вернуться в профиль</a>
+    </div>
+  </div>
+</div>
+
+<script src="js/plugins.min.js"></script>
+<script src="js/index.min.js"></script>
+
+
+</body>
+</html>

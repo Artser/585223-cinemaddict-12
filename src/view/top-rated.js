@@ -1,3 +1,5 @@
+import AbstractView from "./abstract.js";
+
 export const createTopRatedTemplate = () => {
   return (
     `<section class="films-list--extra">
@@ -6,3 +8,10 @@ export const createTopRatedTemplate = () => {
     </section>`
   );
 };
+
+
+export default class TopRated extends AbstractView {
+  getTemplate() {
+    return createTopRatedTemplate();
+  }
+}

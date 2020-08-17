@@ -1,0 +1,26 @@
+.modal-message {
+  max-width: 523px;
+  width: 100%;
+  border-radius: 3px;
+  overflow-x: hidden;
+  background: #ffffff;
+}
+
+.modal-message__content {
+  padding: 20px 15px;
+}
+
+.modal-message__text {
+  margin: 0;
+}
+
+.modal-message__text--margin-bottom {
+  margin-bottom: 10px;
+}
+
+
+@media only screen and ($mobile-width) {
+  .modal-message {
+    max-width: 90%;
+  }
+}

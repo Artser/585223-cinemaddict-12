@@ -1,0 +1,14 @@
+<?xml version="1.0" standalone="no"?><!-- Generator: Gravit.io -->
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" style="isolation:isolate"
+     viewBox="0 0 68.992 34.767" width="68.992" height="34.767">
+    <g id="null">
+        <rect x="8.637" y="9.303" width="6.522" height="27.132"
+              transform="matrix(0.707,-0.707,0.707,0.707,-12.686,15.112)" fill="rgb(94,186,82)"/>
+        <rect x="28.881" y="-4.016" width="6.369" height="42.8"
+              transform="matrix(0.707,0.707,-0.707,0.707,21.684,-17.582)" fill="rgb(94,186,82)"/>
+        <rect x="33.595" y="22.376" width="6.522" height="11.816"
+              transform="matrix(0.707,-0.707,0.707,0.707,-9.205,34.345)" fill="rgb(94,186,82)"/>
+        <rect x="48.424" y="-4.016" width="6.369" height="42.8"
+              transform="matrix(0.707,0.707,-0.707,0.707,27.408,-31.401)" fill="rgb(94,186,82)"/>
+    </g>
+</svg>

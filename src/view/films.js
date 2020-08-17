@@ -1,3 +1,5 @@
+import AbstractView from "./abstract.js";
+
 export const createFilmsTemplate = () => {
   return (
     `<section class="films">
@@ -8,3 +10,15 @@ export const createFilmsTemplate = () => {
     </section>`
   );
 };
+
+export default class Films extends AbstractView {
+  constructor(film) {
+    super();
+    this._film = film;
+  }
+
+  getTemplate() {
+    return createFilmsTemplate(this._film);
+  }
+
+}

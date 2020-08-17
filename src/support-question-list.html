@@ -1,0 +1,163 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <title>ТОП10 в конкурсе по голосованию Miss Future</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!--класс для главной страницы main-page, для зарегистрированного пользователя login-in-->
+<div>
+  <include src="src/header.html"></include>
+</div>
+
+
+<main>
+  <div class="container page">
+    <div class="page__wrap">
+      <section class="main-sidebar page__main-sidebar">
+        <h2 class="visually-hidden">Навигация по профилю</h2>
+
+        <ul class="main-sidebar__menu">
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--home">MissFuture</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Видео-презентация</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Как добиться победы?</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--list">Правила конкурса</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Заявления о призах</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--prize">Призы</a>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--photo">Фотогалерея</a>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--castle">Политика безопасности</a>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--message-write">Поддержка</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Задать вопрос</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--puzzle">Партнеры конкурса</a>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--message">Блог Miss Future</a>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--take-notes">СМИ о нас</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Медиакит</a>
+              </li>
+            </ul>
+          </li>
+
+        </ul>
+
+      </section>
+
+      <div class="page__main-wrap">
+
+        <div class="support">
+
+          <section class="support__search">
+            <h2 class="visually-hidden">Поиск по поддержке</h2>
+            <form class="support__search-form" action="/search">
+              <input type="text" autocomplete="off" class="support__search-input" name="search-value" placeholder="Введите ваш вопрос">
+            </form>
+          </section>
+
+          <div class="support__nav">
+            <span>О конкурсе</span>
+            <a class="support__nav-link" href="/support.html">Выбрать категорию</a>
+          </div>
+
+          <div class="support__wrap">
+
+            <h1 class="support__question-header">О конкурсе Miss Future</h1>
+
+            <ul class="support__question-list">
+              <li class="support__question-item">
+                <a href="#" class="support__question-link">Что такое Miss Future?</a>
+              </li>
+              <li class="support__question-item">
+                <a href="#" class="support__question-link">Как работает конкурс Miss Future?</a>
+              </li>
+              <li class="support__question-item">
+                <a href="#" class="support__question-link">Какие призы ожидают победительниц?</a>
+              </li>
+              <li class="support__question-item">
+                <a href="#" class="support__question-link">Уточните основные правила конкурса?</a>
+              </li>
+              <li class="support__question-item">
+                <a href="#" class="support__question-link">Как распределяется призовой фонд конкурса?</a>
+              </li>
+              <li class="support__question-item">
+                <a href="#" class="support__question-link">Что такое «черный список»?</a>
+              </li>
+              <li class="support__question-item">
+                <a href="#" class="support__question-link">Какие основы конфиденциальности действуют на сайте конкурса?</a>
+              </li>
+            </ul>
+
+
+            <div class="support__help">
+              <div class="support__help-block support__help-block--no-answer">
+                <h3 class="support__help-heading">Не можете найти ответ?</h3>
+                <p class="support__help-text">Мы готовы ответить на Ваш вопрос по мере возможности.</p>
+                <a href="#" class="support__help-link">Свяжитесь с нами</a>
+              </div>
+              <div class="support__help-block support__help-block--telegram">
+                <h3 class="support__help-heading">Канал в Telegram</h3>
+                <p class="support__help-text">Следите за обновлениями сайта конкурса на канале в Telegram.</p>
+                <p class="support__help-text">Канал <a href="https://t.me/missfuture" class="support__help-link" target="_blank">t.me/missfuture</a></p>
+              </div>
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<include src="src/footer.html"></include>
+<include src="src/purse.html"></include>
+
+<script src="js/plugins.min.js"></script>
+<script src="js/index.min.js"></script>
+
+</body>
+</html>

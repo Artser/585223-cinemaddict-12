@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <title>Черный список</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!--класс для главной страницы main-page, для зарегистрированного пользователя login-in-->
+<div class="login-in">
+  <include src="src/header.html"></include>
+</div>
+
+
+<main>
+  <div class="container page">
+    <div class="page__wrap">
+      <section class="main-sidebar page__main-sidebar">
+        <h2 class="visually-hidden">Навигация по&nbsp;профилю</h2>
+
+        <ul class="main-sidebar__menu">
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--home active">Мой профиль</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Настройки</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Приглашения</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои друзья <sup class="main-sidebar__submenu-item-amount">10</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Фотографии <sup class="main-sidebar__submenu-item-amount">45</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Видеозаписи <sup class="main-sidebar__submenu-item-amount">1</sup></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--message">
+              Сообщения
+              <span class="main-sidebar__menu-item-count">+1</span>
+            </a>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--rating">
+              Мой рейтинг
+              <span class="main-sidebar__menu-item-amount">120</span>
+            </a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Цветочек</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--blog">Мой блог</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Добавить запись</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои записи <sup class="main-sidebar__submenu-item-amount">13</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои достижения <sup class="main-sidebar__submenu-item-amount">6</sup></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--logout">Выйти</a>
+          </li>
+
+        </ul>
+
+      </section>
+
+      <section class="page__main-wrap chat">
+        <div>
+          <h2 class="chat__title"><a href="chat.html">Черный список <span>1</span></a></h2>
+          <div class="chat__settings">
+            <h3>Мои настройки</h3>
+            <ul class="chat__settings-list">
+              <li class="chat__settings-item">
+                <input type="checkbox" id="chat-sound" class="visually-hidden">
+                <label for="chat-sound">Звуковые оповещения</label>
+              </li>
+              <li class="chat__settings-item">
+                <input type="checkbox" id="chat-push" class="visually-hidden">
+                <label for="chat-push">Всплывающие сообщения</label>
+              </li>
+              <li class="chat__settings-item">
+                <input type="checkbox" id="chat-mail" class="visually-hidden">
+                <label for="chat-mail">Уведомления на&nbsp;почту</label>
+              </li>
+              <li class="chat__settings-item chat__settings-item--fav-icon">
+                <a href="chat-favorites.html">Избранные сообщения</a>
+              </li>
+              <li class="chat__settings-item chat__settings-item--block-icon">
+                <a href="chat-black-list.html">Черный список</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+        <ul class="chat__list chat__black-list">
+          <li class="chat__item">
+            <div class="chat__item-img"><img src="img/step2/finalists/photo1.jpg" width="62" height="62" alt="photo1"></div>
+            <div class="chat__item-data">
+              <h3>Администрация Miss&nbsp;Future</h3>
+              <a href="#">Санкт-Петербург</a>
+            </div>
+            <button type="button" class="removeFromBL">Удалить</button>
+          </li>
+        </ul>
+        <div class="chat__list-reset">
+          <button type="button">Очистить список</button>
+        </div>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<div class="chat-footer">
+  <include src="src/footer.html"></include>
+</div>
+<include src="src/purse.html"></include>
+
+<script src="js/plugins.min.js"></script>
+<script src="js/index.min.js"></script>
+
+
+</body>
+</html>

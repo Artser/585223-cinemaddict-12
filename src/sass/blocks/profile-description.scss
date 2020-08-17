@@ -1,0 +1,36 @@
+.profile__description-message-btn-mobile {
+  vertical-align: top;
+  font-size: 11px;
+  color: $gray-dove;
+  border: 1px solid $gray-silver-darkest;
+  background: linear-gradient(to bottom, $color-white 0%, $gray-alto-dark-very 100%);
+  border-radius: 3px;
+  background-clip: padding-box;
+  transition: all 0.3s;
+  display: none;
+  line-height: 1em;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  padding-left: 8px;
+  padding-right: 8px;
+}
+
+.profile__description-message-btn-mobile--message {
+  display: none;
+}
+
+.profile__description-message-btn-mobile:hover {
+  cursor: pointer;
+  background: $gray-mercury-light-more;
+  color: $color-mine-shaft-dark;
+}
+
+@media only screen and (max-width: $mobile-width) {
+  .profile__description-message-btn-mobile {
+    display: inline-block;
+  }
+
+  .profile__description-message-btn-mobile--message {
+    display: none;
+  }
+}

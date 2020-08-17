@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="utf-8">
+  <title>Задать вопрос в&nbsp;службу технической поддержки Miss Future</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <link href="css/style.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!--класс для главной страницы main-page, для зарегистрированного пользователя login-in-->
+  <div>
+    <include src="src/header.html"></include>
+  </div>
+  <main class="positioner">
+    <section class="sidebar"></section>
+    <section class="feedback">
+      <div class="feedback__wrapper">
+        <div class="feedback__content">
+          <div class="feedback__text">
+            <h1>
+              Обратная связь
+            </h1>
+            <p>
+              Ответ на&nbsp;ваш запрос будет выполнен по&nbsp;мере возможности специалистом технической поддержки.
+            </p>
+          </div>
+          <form class="feedback-form" method="post">
+
+            <div class="feedback-form__header">
+              Форма обращения
+            </div>
+            <div class="feedback-form__text">
+              <div class="feedback-form__line">
+
+                <div class="feedback-form__select" tabindex="0">
+                  <select name="theme" data-placeholder="Тема обращения" id="theme" tabindex="-1">
+                    <option label="none"></option>
+                    <option value="Общие вопросы">Общие вопросы</option>
+                    <option value="Правила конкурса">Правила конкурса</option>
+                    <option value="Рейтинг и голосование">Рейтинг и&nbsp;голосование</option>
+                    <option value="Платежи и сервисы">Платежи и&nbsp;сервисы</option>
+                    <option value="Ошибки на сайте">Ошибки на&nbsp;сайте</option>
+                  </select>
+                  <label class="visually-hidden" for="theme">Тема обращения</label>
+                  <div class="feedback-form__trigger-arrow"></div>
+                  <div class="feedback-form__choice feedback-form__choice--color">Тема обращения
+                  </div>
+                  <ul class="feedback-form__submenu">
+                    <li class="feedback-form__item" tabindex="0">Общие вопросы</li>
+                    <li class="feedback-form__item" tabindex="0">Правила конкурса</li>
+                    <li class="feedback-form__item" tabindex="0">Рейтинг и&nbsp;голосование</li>
+                    <li class="feedback-form__item" tabindex="0">Платежи и&nbsp;сервисы</li>
+                    <li class="feedback-form__item" tabindex="0">Ошибки на&nbsp;сайте</li>
+                  </ul>
+                </div>
+
+              </div>
+              <div class="feedback-form__line">
+                <input type="email" class="form-control" pattern="/^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$/" id="email"
+                  name="email" placeholder="Ваш Email" required>
+                <label class="visually-hidden" for="email">Email</label>
+              </div>
+              <div class="feedback-form__line">
+                <textarea name="text" class="form-control" placeholder="Опишите подробно ваш вопрос "
+                  id="question"></textarea>
+                <label class="visually-hidden" for="question">Опишите подробно ваш вопрос</label>
+              </div>
+              <div class="feedback-form__line">
+                <div class="g-recaptcha" data-sitekey="6LdKUysUAAAAAI8XoaWwhCC_CXGYMRqPShqNddmU">
+                </div>
+              </div>
+              <div class="feedback-form__line">
+                <button class="feedback-form__line-button" type="submit">Отправить сообщение</button>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="feedback__popup">
+        <div class="feedback__popup-message">
+          <a class="feedback__popup-close" href="#"></a>
+          <div class="feedback__popup-title">
+            Ваше письмо отправлено
+          </div>
+          <div class="feedback__popup-body">
+            <div class="feedback__popup-intro">
+              <p>Уважаемый пользователь, ваше письмо отправлено в&nbsp;службу технической поддержки
+                конкурса Miss Future. Мы&nbsp;ответим
+                на&nbsp;ваш запрос в&nbsp;ближайшее рабочее время.</p>
+            </div>
+            <div class="feedback__popup-link">
+              <p><a href="/" title="Вернуться в мой профиль"
+                  class="feedback__line-button feedback__line-button--back">Вернуться в&nbsp;мой профиль</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </section>
+  </main>
+  <include src="src/footer.html"></include>
+  <include src="src/purse.html"></include>
+
+  <script src="js/plugins.min.js"></script>
+  <script src="js/index.min.js"></script>
+
+  <script src='https://www.google.com/recaptcha/api.js'></script>
+
+</body>
+
+</html>

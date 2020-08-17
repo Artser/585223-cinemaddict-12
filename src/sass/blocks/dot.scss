@@ -1,0 +1,14 @@
+.dot {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin: 5px 6px;
+  background: $color-bon-jour;
+  -webkit-backface-visibility: visible;
+  transition: opacity 0.2s ease;
+  border-radius: 30px;
+}
+
+.dot--active {
+  background: $color-hibiscus;
+}

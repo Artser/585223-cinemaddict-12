@@ -1,0 +1,23 @@
+.message-button {
+  position: fixed;
+  bottom: 50px;
+  right: 50px;
+  width: 56px;
+  height: 56px;
+  cursor: pointer;
+}
+
+.message-button:hover {
+  transform: scale(1.05);
+}
+
+.message-button img {
+  width: 56px;
+  height: 56px;
+}
+
+@media only screen and (max-width: $tablet-width) {
+  .message-button {
+    display: none;
+  }
+}

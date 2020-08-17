@@ -1,0 +1,520 @@
+<!DOCTYPE HTML>
+<html lang="ru">
+<head>
+  <title>Поиск</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="css/style.min.css" rel="stylesheet">
+</head>
+<body>
+
+<!--класс для главной страницы main-page, для зарегистрированного пользователя login-in-->
+<div class="login-in">
+  <include src="src/header.html"></include>
+</div>
+
+
+<main>
+  <div class="container page">
+    <div class="page__wrap">
+      <section class="main-sidebar page__main-sidebar">
+        <h2 class="visually-hidden">Навигация по&nbsp;профилю</h2>
+
+        <ul class="main-sidebar__menu">
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--home active">Мой профиль</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Настройки</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Приглашения</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои друзья <sup class="main-sidebar__submenu-item-amount">10</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Фотографии <sup class="main-sidebar__submenu-item-amount">45</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Видеозаписи <sup class="main-sidebar__submenu-item-amount">1</sup></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--message">
+              Сообщения
+              <span class="main-sidebar__menu-item-count">+1</span>
+            </a>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--rating">
+              Мой рейтинг
+              <span class="main-sidebar__menu-item-amount">120</span>
+            </a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Цветочек</a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--blog">Мой блог</a>
+            <ul class="main-sidebar__submenu">
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Добавить запись</a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои записи <sup class="main-sidebar__submenu-item-amount">13</sup></a>
+              </li>
+              <li class="main-sidebar__submenu-item">
+                <a href="#" class="main-sidebar__submenu-link">Мои достижения <sup class="main-sidebar__submenu-item-amount">6</sup></a>
+              </li>
+            </ul>
+          </li>
+
+          <li class="main-sidebar__menu-item">
+            <a href="#" class="main-sidebar__menu-link main-sidebar__menu-link--logout">Выйти</a>
+          </li>
+
+        </ul>
+
+      </section>
+
+      <section class="page__main-wrap search">
+        <h2 class="visually-hidden">Форма поиска</h2>
+        <form action="#" method="post">
+          <div class="search__input">
+            <label for="search-input" class="visually-hidden">Введите имя для поиска</label>
+            <input type="text" id="search-input" placeholder="Введите имя для поиска">
+          </div>
+          <div class="search__result">
+            <h3>По&nbsp;<span class="search__hidden-mob">вашему&nbsp;</span>запросу найдено 2&nbsp;участницы.</h3>
+            <ul>
+              <li>
+                <div class="search__result-img"><img src="img/step2/user_avatars/avatar__F7uoxWOmaQ.jpg" alt="user1"></div>
+                <div class="search__result-data">
+                  <div class="search__result-name"><a href="#">Татьяна Нам</a></div>
+                  <div class="search__result-rating">
+                    <span>Рейтинг:</span>
+                    <span class="search__result-rating-icon">1</span>
+                  </div>
+                  <div class="search__result-progress">Нет достижений</div>
+                  <div class="search__result-city"><a href="#">Санкт-Петербург</a></div>
+                </div>
+              </li>
+              <li>
+                <div class="search__result-img"><img src="img/step2/user_avatars/avatar_51E60881.jpg" alt="user2"></div>
+                <div class="search__result-data">
+                  <div class="search__result-name"><a href="#">Татьяна Беспалова</a></div>
+                  <div class="search__result-rating">
+                    <span>Рейтинг:</span>
+                    <span class="search__result-rating-icon">18</span>
+                  </div>
+                  <div class="search__result-progress">Нет достижений</div>
+                  <div class="search__result-city"><a href="#">Санкт-Петербург</a></div>
+                </div>
+              </li>
+            </ul>
+          </div>
+
+          <div class="search__filter">
+            <h3>Фильтры поиска</h3>
+            <div class="search__filter-wrap search__filter-wrap-interests">
+              <select class="select-single select-single--participants" name="gender" data-placeholder="Участницы и зрители">
+                  <option value="">Все&nbsp;пользователи</option>
+                  <option value="f">Участницы</option>
+                  <option value="m">Зрители</option>
+              </select>
+              <select class="select-multi select-hashtag-choose" name="interests[]" data-placeholder="Укажите интересы" multiple="">
+                <option value="Авто">Авто</option>
+                <option value="Активный отдых">Активный отдых</option>
+                <option value="Бизнес">Бизнес</option>
+                <option value="Видео">Видео</option>
+                <option value="Вязание">Вязание</option>
+                <option value="Дача">Дача</option>
+                <option value="Диета">Диета</option>
+                <option value="Дом">Дом</option>
+                <option value="Домашние животные">Домашние животные</option>
+                <option value="Друзья">Друзья</option>
+                <option value="Живопись">Живопись</option>
+                <option value="Здоровье">Здоровье</option>
+                <option value="Знакомства">Знакомства</option>
+                <option value="Игры">Игры</option>
+                <option value="Интерьер и дизайн">Интерьер и&nbsp;дизайн</option>
+                <option value="Искусство и творчество">Искусство и&nbsp;творчество</option>
+                <option value="ИТ">ИТ</option>
+                <option value="Йога">Йога</option>
+                <option value="Карьера и развитие">Карьера и&nbsp;развитие</option>
+                <option value="Кино">Кино</option>
+                <option value="Комфорт">Комфорт</option>
+                <option value="Красота">Красота</option>
+                <option value="Кулинария">Кулинария</option>
+                <option value="Культура и традиции">Культура и&nbsp;традиции</option>
+                <option value="Литература">Литература</option>
+                <option value="Макияж">Макияж</option>
+                <option value="Мода и стиль">Мода и&nbsp;стиль</option>
+                <option value="Музеи">Музеи</option>
+                <option value="Музыка">Музыка</option>
+                <option value="Настольные игры">Настольные игры</option>
+                <option value="Наука">Наука</option>
+                <option value="Общение">Общение</option>
+                <option value="Отдых">Отдых</option>
+                <option value="Плавание">Плавание</option>
+                <option value="Покупки">Покупки</option>
+                <option value="Природа">Природа</option>
+                <option value="Психология">Психология</option>
+                <option value="Путешествия">Путешествия</option>
+                <option value="Развлечения">Развлечения</option>
+                <option value="Семья и отношения">Семья и&nbsp;отношения</option>
+                <option value="Спорт">Спорт</option>
+                <option value="Танцы">Танцы</option>
+                <option value="Уход за детьми">Уход за&nbsp;детьми</option>
+                <option value="Философия">Философия</option>
+                <option value="Фитнес">Фитнес</option>
+                <option value="Фотосъёмка">Фотосъёмка</option>
+                <option value="Экстрим">Экстрим</option>
+              </select>
+              <select class="select-single select-single--town" name="city" data-placeholder="Город">
+                <option value="" selected="selected">Выберите город</option>
+                <option value="all">Все города</option>
+                <option value="Абакан">Абакан</option>
+                <option value="Азов">Азов</option>
+                <option value="Альметьевск">Альметьевск</option>
+                <option value="Ангарск">Ангарск</option>
+                <option value="Арзамас">Арзамас</option>
+                <option value="Армавир">Армавир</option>
+                <option value="Архангельск">Архангельск</option>
+                <option value="Астрахань">Астрахань</option>
+                <option value="Ачинск">Ачинск</option>
+                <option value="Барнаул">Барнаул</option>
+                <option value="Белгород">Белгород</option>
+                <option value="Бийск">Бийск</option>
+                <option value="Благовещенск">Благовещенск</option>
+                <option value="Братск">Братск</option>
+                <option value="Брянск">Брянск</option>
+                <option value="Великие Луки">Великие Луки</option>
+                <option value="Великий Новгород">Великий Новгород</option>
+                <option value="Владивосток">Владивосток</option>
+                <option value="Владикавказ">Владикавказ</option>
+                <option value="Владимир">Владимир</option>
+                <option value="Волгоград">Волгоград</option>
+                <option value="Волгодонск">Волгодонск</option>
+                <option value="Волжский">Волжский</option>
+                <option value="Вологда">Вологда</option>
+                <option value="Воркута">Воркута</option>
+                <option value="Воронеж">Воронеж</option>
+                <option value="Грозный">Грозный</option>
+                <option value="Дзержинск">Дзержинск</option>
+                <option value="Екатеринбург">Екатеринбург</option>
+                <option value="Елец">Елец</option>
+                <option value="Ессентуки">Ессентуки</option>
+                <option value="Иваново">Иваново</option>
+                <option value="Ижевск">Ижевск</option>
+                <option value="Иркутск">Иркутск</option>
+                <option value="Йошкар-Ола">Йошкар-Ола</option>
+                <option value="Казань">Казань</option>
+                <option value="Калининград">Калининград</option>
+                <option value="Калуга">Калуга</option>
+                <option value="Камышин">Камышин</option>
+                <option value="Кемерово">Кемерово</option>
+                <option value="Киров">Киров</option>
+                <option value="Кисловодск">Кисловодск</option>
+                <option value="Ковров">Ковров</option>
+                <option value="Коломна">Коломна</option>
+                <option value="Комсомольск-на-Амуре">Комсомольск-на-Амуре</option>
+                <option value="Кострома">Кострома</option>
+                <option value="Красногорск">Красногорск</option>
+                <option value="Краснодар">Краснодар</option>
+                <option value="Красноярск">Красноярск</option>
+                <option value="Курган">Курган</option>
+                <option value="Курск">Курск</option>
+                <option value="Кызыл">Кызыл</option>
+                <option value="Липецк">Липецк</option>
+                <option value="Магадан">Магадан</option>
+                <option value="Магнитогорск">Магнитогорск</option>
+                <option value="Майкоп">Майкоп</option>
+                <option value="Междуреченск">Междуреченск</option>
+                <option value="Миасс">Миасс</option>
+                <option value="Москва">Москва</option>
+                <option value="Мончегорск">Мончегорск</option>
+                <option value="Мурманск">Мурманск</option>
+                <option value="Муром">Муром</option>
+                <option value="Мытищи">Мытищи</option>
+                <option value="Набережные Челны ">Набережные Челны</option>
+                <option value="Назрань">Назрань</option>
+                <option value="Нальчик">Нальчик</option>
+                <option value="Находка">Находка</option>
+                <option value="Нефтекамск">Нефтекамск</option>
+                <option value="Нефтеюганск">Нефтеюганск</option>
+                <option value="Нижневартовск">Нижневартовск</option>
+                <option value="Нижнекамск">Нижнекамск</option>
+                <option value="Нижний Новгород">Нижний Новгород</option>
+                <option value="Нижний Тагил">Нижний Тагил</option>
+                <option value="Новокузнецк">Новокузнецк</option>
+                <option value="Новокуйбышевск">Новокуйбышевск</option>
+                <option value="Новороссийск">Новороссийск</option>
+                <option value="Новосибирск">Новосибирск</option>
+                <option value="Новоуральск">Новоуральск</option>
+                <option value="Новочеркасск">Новочеркасск</option>
+                <option value="Новый Уренгой">Новый Уренгой</option>
+                <option value="Норильск">Норильск</option>
+                <option value="Ноябрьск">Ноябрьск</option>
+                <option value="Обнинск">Обнинск</option>
+                <option value="Одинцово">Одинцово</option>
+                <option value="Омск">Омск</option>
+                <option value="Орел">Орел</option>
+                <option value="Оренбург">Оренбург</option>
+                <option value="Орехово-Зуево">Орехово-Зуево</option>
+                <option value="Пенза">Пенза</option>
+                <option value="Пермь">Пермь</option>
+                <option value="Петрозаводск">Петрозаводск</option>
+                <option value="Петропавловск-Камчатский">Петропавловск-Камчатский</option>
+                <option value="Псков">Псков</option>
+                <option value="Пятигорск">Пятигорск</option>
+                <option value="Ростов-на-Дону">Ростов-на-Дону</option>
+                <option value="Рыбинск">Рыбинск</option>
+                <option value="Рязань">Рязань</option>
+                <option value="Самара">Самара</option>
+                <option value="Санкт-Петербург">Санкт-Петербург</option>
+                <option value="Саранск">Саранск</option>
+                <option value="Саратов">Саратов</option>
+                <option value="Сергиев Посад">Сергиев Посад</option>
+                <option value="Серпухов">Серпухов</option>
+                <option value="Смоленск">Смоленск</option>
+                <option value="Соликамск">Соликамск</option>
+                <option value="Сочи">Сочи</option>
+                <option value="Ставрополь">Ставрополь</option>
+                <option value="Старый Оскол">Старый Оскол</option>
+                <option value="Стерлитамак">Стерлитамак</option>
+                <option value="Сызрань">Сызрань</option>
+                <option value="Сыктывкар">Сыктывкар</option>
+                <option value="Таганрог">Таганрог</option>
+                <option value="Тамбов">Тамбов</option>
+                <option value="Тверь">Тверь</option>
+                <option value="Тобольск">Тобольск</option>
+                <option value="Тольятти">Тольятти</option>
+                <option value="Томск">Томск</option>
+                <option value="Туапсе">Туапсе</option>
+                <option value="Тюмень">Тюмень</option>
+                <option value="Улан-Удэ">Улан-Удэ</option>
+                <option value="Ульяновск">Ульяновск</option>
+                <option value="Уссурийск">Уссурийск</option>
+                <option value="Уфа">Уфа</option>
+                <option value="Ухта">Ухта</option>
+                <option value="Хабаровск">Хабаровск</option>
+                <option value="Химки">Химки</option>
+                <option value="Чебоксары">Чебоксары</option>
+                <option value="Челябинск">Челябинск</option>
+                <option value="Череповец">Череповец</option>
+                <option value="Чита">Чита</option>
+                <option value="Элиста">Элиста</option>
+                <option value="Энгельс">Энгельс</option>
+                <option value="Южно-Сахалинск">Южно-Сахалинск</option>
+                <option value="Якутск">Якутск</option>
+                <option value="Ярославль">Ярославль</option>
+              </select>
+              <div class="search__filter-age">
+                <p>Выберите&nbsp;возраст</p>
+                <select class="select-single select-single--from" name="age1" data-placeholder="Возраст">
+                  <option class="hidden-xs" value="">От</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                  <option value="60">60</option>
+                  <option value="61">61</option>
+                  <option value="62">62</option>
+                  <option value="63">63</option>
+                  <option value="64">64</option>
+                  <option value="65">65</option>
+                  <option value="66">66</option>
+                  <option value="67">67</option>
+                  <option value="68">68</option>
+                  <option value="69">69</option>
+                  <option value="70">70</option>
+                  <option value="71">71</option>
+                  <option value="72">72</option>
+                  <option value="73">73</option>
+                  <option value="74">74</option>
+                  <option value="75">75</option>
+                  <option value="76">76</option>
+                  <option value="77">77</option>
+                  <option value="78">78</option>
+                  <option value="79">79</option>
+                  <option value="80">80</option>
+                  <option value="81">81</option>
+                  <option value="82">82</option>
+                  <option value="83">83</option>
+                  <option value="84">84</option>
+                  <option value="85">85</option>
+                  <option value="86">86</option>
+                  <option value="87">87</option>
+                  <option value="88">88</option>
+                  <option value="89">89</option>
+                  <option value="90">90</option>
+                  <option value="91">91</option>
+                  <option value="92">92</option>
+                  <option value="93">93</option>
+                  <option value="94">94</option>
+                  <option value="95">95</option>
+                  <option value="96">96</option>
+                  <option value="97">97</option>
+                  <option value="98">98</option>
+                  <option value="99">99</option>
+                  <option value="100">100</option>
+                </select>
+                <select class="select-single select-single--to" name="age2" data-placeholder="Возраст">
+                  <option class="hidden-xs" value="">До</option>
+                  <option value="18">18</option>
+                  <option value="19">19</option>
+                  <option value="20">20</option>
+                  <option value="21">21</option>
+                  <option value="22">22</option>
+                  <option value="23">23</option>
+                  <option value="24">24</option>
+                  <option value="25">25</option>
+                  <option value="26">26</option>
+                  <option value="27">27</option>
+                  <option value="28">28</option>
+                  <option value="29">29</option>
+                  <option value="30">30</option>
+                  <option value="31">31</option>
+                  <option value="32">32</option>
+                  <option value="33">33</option>
+                  <option value="34">34</option>
+                  <option value="35">35</option>
+                  <option value="36">36</option>
+                  <option value="37">37</option>
+                  <option value="38">38</option>
+                  <option value="39">39</option>
+                  <option value="40">40</option>
+                  <option value="41">41</option>
+                  <option value="42">42</option>
+                  <option value="43">43</option>
+                  <option value="44">44</option>
+                  <option value="45">45</option>
+                  <option value="46">46</option>
+                  <option value="47">47</option>
+                  <option value="48">48</option>
+                  <option value="49">49</option>
+                  <option value="50">50</option>
+                  <option value="51">51</option>
+                  <option value="52">52</option>
+                  <option value="53">53</option>
+                  <option value="54">54</option>
+                  <option value="55">55</option>
+                  <option value="56">56</option>
+                  <option value="57">57</option>
+                  <option value="58">58</option>
+                  <option value="59">59</option>
+                  <option value="60">60</option>
+                  <option value="61">61</option>
+                  <option value="62">62</option>
+                  <option value="63">63</option>
+                  <option value="64">64</option>
+                  <option value="65">65</option>
+                  <option value="66">66</option>
+                  <option value="67">67</option>
+                  <option value="68">68</option>
+                  <option value="69">69</option>
+                  <option value="70">70</option>
+                  <option value="71">71</option>
+                  <option value="72">72</option>
+                  <option value="73">73</option>
+                  <option value="74">74</option>
+                  <option value="75">75</option>
+                  <option value="76">76</option>
+                  <option value="77">77</option>
+                  <option value="78">78</option>
+                  <option value="79">79</option>
+                  <option value="80">80</option>
+                  <option value="81">81</option>
+                  <option value="82">82</option>
+                  <option value="83">83</option>
+                  <option value="84">84</option>
+                  <option value="85">85</option>
+                  <option value="86">86</option>
+                  <option value="87">87</option>
+                  <option value="88">88</option>
+                  <option value="89">89</option>
+                  <option value="90">90</option>
+                  <option value="91">91</option>
+                  <option value="92">92</option>
+                  <option value="93">93</option>
+                  <option value="94">94</option>
+                  <option value="95">95</option>
+                  <option value="96">96</option>
+                  <option value="97">97</option>
+                  <option value="98">98</option>
+                  <option value="99">99</option>
+                  <option value="100">100</option>
+                </select>
+              </div>
+              <div class="search__filter-status">
+                <label>
+                  <input type="checkbox" name="isOnline">
+                  Сейчас онлайн </label>
+              </div>
+            <div class="search__button-wrap">
+              <button class="search__button-find">Найти</button>
+              <button class="friends__button-reset friends__button-reset--search" type="reset">Сбросить фильтры</button>
+            </div>
+            </div>
+          </div>
+        </form>
+      </section>
+
+    </div>
+  </div>
+</main>
+
+<include src="src/footer.html"></include>
+<include src="src/purse.html"></include>
+
+<script src="js/plugins.min.js"></script>
+<script src="js/index.min.js"></script>
+</body>
+</html>

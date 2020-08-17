@@ -1,0 +1,85 @@
+.profile-name {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 42px;
+  padding: 0 18px;
+  border-bottom: 1px solid $gray-mercury-light-more;
+  margin-bottom: 5px;
+  background: $gray-gallery-clear;
+  letter-spacing: 0.03em;
+}
+
+.profile-name-title {
+  color: $color-mine-shaft-black;
+  font-weight: bold;
+}
+
+.profile-name-title--video {
+  margin-left: 5px;
+}
+
+.profile-name-icon-wrap {
+  display: flex;
+  align-items: baseline;
+}
+
+.profile-name-help--photo {
+  position: relative;
+  margin-left: auto;
+  margin-right: 10px;
+  margin-top: 3px;
+}
+
+.profile-name-help-text {
+  color: $gray-dusty-light;
+  font-size: 13px;
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.profile-name-help-text:hover,
+.profile-name-help-text:focus,
+.profile-name-help-text:active,
+.profile-name-help-text:visited {
+  color: $color-cardinal-light;
+  outline: none;
+}
+
+.profile-name-tooltip {
+  display: none;
+  margin: 0 18px;
+  right: 0;
+}
+
+.profile-name-tooltip--photo {
+  right: 80px;
+  position: relative;
+}
+
+.profile-name-tooltip--show {
+  display: block;
+}
+
+.profile-name-tooltip--close {
+  display: none;
+}
+
+@media only screen and (max-width: $mobile-width) {
+  .profile-name-help-text--mobile {
+    display: none;
+  }
+
+  .profile-name {
+    padding: 0 15px;
+  }
+}
+
+@media only screen and (max-width: 360px) {
+  .profile-name-help-text--mb {
+    display: none;
+  }
+}
+

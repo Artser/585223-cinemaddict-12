@@ -1,0 +1,102 @@
+.presentation {
+  background-color: $color-hibiscus;
+}
+
+.presentation__title {
+  text-align: center;
+  color: $color-white;
+  font-size: 17px;
+  font-weight: normal;
+  padding: 6px 10px 6px 10px;
+  border-bottom: 1px solid $gray-mercury-light;
+  margin: 0;
+}
+
+.presentation-video {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.presentation-video__player {
+  width: 67%;
+  margin: 0;
+  padding: 0;
+  min-height: 279px;
+  background: $gray-presentation;
+  overflow: hidden;
+}
+
+.presentation-videoplayer {
+  width: 100%;
+  height: auto;
+  min-height: 282px;
+  margin: 0;
+  padding: 0;
+}
+
+.presentation-about {
+  width: 33%;
+  min-height: auto;
+  background: $gray-gallery;
+  padding: 0 21px 15px 20px;
+  box-sizing: border-box;
+  padding-right: 17px;
+}
+
+.presentation-about__subtitle {
+  text-transform: uppercase;
+  text-align: center;
+  padding: 15px 10px 0 0;
+  margin-bottom: 5px;
+  font-size: 14px;
+}
+
+.presentation-about__subtitle h3 {
+  margin: 0;
+  text-transform: uppercase;
+  text-align: left;
+  font-weight: bold;
+  font-size: 14px;
+  color: $color-mine-shaft;
+}
+
+.presentation-about p {
+  margin: 0;
+}
+
+.presentation-about__more-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  padding-left: 10px;
+  padding-right: 10px;
+  height: 33px;
+  color: $color-mine-shaft;
+  background: linear-gradient(rgb(255, 255, 255) 0%, rgb(234, 234, 234) 100%);
+  border-radius: 3px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: rgb(181, 181, 181);
+  border-image: initial;
+  font-weight: normal;
+  cursor: pointer;
+  text-decoration: none;
+  margin-top: 10px;
+}
+
+.presentation-about__more-button:hover {
+  background: rgb(234, 234, 234);
+}
+
+@media only screen and (max-width: $mobile-width) {
+  .presentation-video__player {
+    width: 100%;
+  }
+
+  .presentation-about {
+    width: 100%;
+  }
+}
