@@ -34,3 +34,4 @@ export default class Sorting extends AbstractView {
     this.getElement().addEventListener(`click`, this._sortTypeChangeHandler);
   }
 }
+
