@@ -1,5 +1,6 @@
 import {generateFilms} from "./mock/film.js";
-let films = generateFilms(); // отрисовываем карточки
+let films = generateFilms();
+// отрисовываем карточки
 let navigationChecked = {
   watchlist: 0,
   favorites: 0,
