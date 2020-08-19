@@ -1,29 +1,28 @@
-// import SortType from "../const.js";
 import Films from "../view/films.js";
-
+import Sorting from "../view/sort.js";
+import {SortType} from "../const.js";
 import Film from "../view/film.js";
+import {sortFilmDate, sortFilmRating} from "../utils/film.js";
+
 import NoMovies from "../view/nomovies.js";
 import ShowMoreButton from "../view/show-more-button.js";
-// import TopRated from "../view/top-rated.js";
 import FilmPopup from "../view/film-popup.js";
-// import MostCommented from "../view/most-commented.js";
-import {RenderPosition, renderElement, siteMainElement, footerElement} from "../utils/render.js";
+import {RenderPosition, renderElement, footerElement} from "../utils/render.js";
 
 const MOVIE_COUNT_PER_STEP = 5;
 
 export default class MovieList {
-  constructor(films) {
-    this._films = films;
+  constructor(containerFilms) {
     this._renderedMovieCount = MOVIE_COUNT_PER_STEP;
-    // this._currentSortType = SortType.DEFAULT;
     this._filmsComponent = new Films();
-    // this._sortComponent = new SortView();
+    this._sortComponent = new Sorting();
     this._filmComponent = new Film();
     this._noMovies = new NoMovies();
     this._ShowMoreButton = new ShowMoreButton();
+    this._containerFilms = containerFilms;
 
-    /* this._handleLoadMoreButtonClick = this._handleLoadMoreButtonClick.bind(this);
-    this._handleSortTypeChange = this._handleSortTypeChange.bind(this); */
+    this._handleLoadMoreButtonClick = this._handleLoadMoreButtonClick.bind(this);
+    this._handleSortTypeChange = this._handleSortTypeChange.bind(this);
   }
 
   init(films) {
@@ -31,32 +30,27 @@ export default class MovieList {
     // 1. В отличии от сортировки по любому параметру,
     // исходный порядок можно сохранить только одним способом -
     // сохранив исходный массив:
-    this._sourseFilms = films.slice();
-
-    // renderElement(siteMainElement, this._films, RenderPosition.BEFOREEND);
-
-
+    this._sourceFilms = films.slice();
     this._renderFilmsElements();
   }
 
-  _sortTasks(sortType) {
+  _sortFilms(sortType) {
     // 2. Этот исходный массив задач необходим,
     // потому что для сортировки мы будем мутировать
     // массив в свойстве _boardTasks
-    this._films = this._sourcedBoardTasks.slice();
 
-    /* switch (sortType) {
+    switch (sortType) {
       case SortType.DATE_UP:
-        this._films.sort(sortTaskUp);
+        this._films.sort(sortFilmDate);
         break;
-      case SortType.DATE_DOWN:
-        this._films.sort(sortTaskDown);
+      case SortType.RATING:
+        this._films.sort(sortFilmRating);
         break;
       default:
         // 3. А когда пользователь захочет "вернуть всё, как было",
         // мы просто запишем в _boardTasks исходный массив
-        this._films = this._sourcedBoardTasks.slice();
-    } */
+        this._films = this._sourceFilms.slice();
+    }
 
     this._currentSortType = sortType;
   }
@@ -66,19 +60,19 @@ export default class MovieList {
       return;
     }
 
-    this._sortTasks(sortType);
-    this._clearTaskList();
-    this._renderTaskList();
+    this._sortFilms(sortType);
+    this._clearFilmList();
+    this._renderFilmList();
   }
 
   _renderSort() {
-    renderElement(siteMainElement, this._sortComponent, RenderPosition.AFTERBEGIN);
+    renderElement(this._containerFilms, this._sortComponent.getElement(), RenderPosition.BEFOREEND);
     this._sortComponent.setSortTypeChangeHandler(this._handleSortTypeChange);
   }
 
   _renderFilm(film) {
 
-    const FilmListElement = siteMainElement.querySelector(`.films-list .films-list__container`);
+    const FilmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
     const filmComponent = new Film(film);
 
 
@@ -100,34 +94,7 @@ export default class MovieList {
       });
     });
 
-    /*
-    const replaceCardToForm = () => {
-      replace(taskEditComponent, taskComponent);
-    };
 
-    const replaceFormToCard = () => {
-      replace(taskComponent, taskEditComponent);
-    };
-*/
-    /*
-    const onEscKeyDown = (evt) => {
-      if (evt.key === `Escape` || evt.key === `Esc`) {
-        evt.preventDefault();
-        replaceFormToCard();
-        document.removeEventListener(`keydown`, onEscKeyDown);
-      }
-    };
-
-    taskComponent.setEditClickHandler(() => {
-      replaceCardToForm();
-      document.addEventListener(`keydown`, onEscKeyDown);
-    });
-
-    taskEditComponent.setFormSubmitHandler(() => {
-      replaceFormToCard();
-      document.removeEventListener(`keydown`, onEscKeyDown);
-    });
-*/
     renderElement(FilmListElement, filmComponent.getElement(), RenderPosition.BEFOREEND);
   }
 
@@ -139,7 +106,7 @@ export default class MovieList {
   }
 
   _renderNoMovies() {
-    renderElement(siteMainElement, this._noMovies, RenderPosition.AFTERBEGIN);
+    renderElement(this._containerFilms, this._noMovies, RenderPosition.AFTERBEGIN);
   }
 
   _handleLoadMoreButtonClick() {
@@ -147,22 +114,26 @@ export default class MovieList {
     this._renderedMovieCount += MOVIE_COUNT_PER_STEP;
 
     if (this._renderedMovieCount >= this._films.length) {
-      this._loadMoreButtonComponent.getElement().remove();
+      this._ShowMoreButton.getElement().remove();
     }
   }
 
   _renderLoadMoreButton() {
-    renderElement(siteMainElement, this._ShowMoreButton.getElement(), RenderPosition.BEFOREEND);
+    renderElement(this._containerFilms, this._ShowMoreButton.getElement(), RenderPosition.BEFOREEND);
 
     this._ShowMoreButton.setClickHandler(this._handleLoadMoreButtonClick.bind(this));
   }
 
-  _clearTaskList() {
-    this._filmsComponent.getElement().innerHTML = ``;
+  _clearFilmList() {
+    const FilmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
+    FilmListElement.innerHTML = ``;
+
     this._renderedMovieCount = MOVIE_COUNT_PER_STEP;
   }
 
-  _renderTaskList() {
+  _renderFilmList() {
+    renderElement(this._containerFilms, this._filmsComponent.getElement(), RenderPosition.BEFOREEND);
+
     this._renderFilms(0, Math.min(this._films.length, MOVIE_COUNT_PER_STEP));
 
     if (this._films.length > MOVIE_COUNT_PER_STEP) {
@@ -171,12 +142,8 @@ export default class MovieList {
   }
 
   _renderFilmsElements() {
-    /* if (this._films.every((task) => task.isArchive)) {
-      this._renderNoTasks();
-      return;
-    } */
 
-    // this._renderSort();
-    this._renderTaskList();
+    this._renderSort();
+    this._renderFilmList();
   }
 }
