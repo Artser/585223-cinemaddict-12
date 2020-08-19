@@ -33,7 +33,7 @@ export default class MovieList {
     // сохранив исходный массив:
     this._sourseFilms = films.slice();
 
-    renderElement(siteMainElement, this._films, RenderPosition.BEFOREEND);
+    //renderElement(siteMainElement, this._films, RenderPosition.BEFOREEND);
 
 
     this._renderFilmsElements();
