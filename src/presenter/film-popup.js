@@ -27,7 +27,13 @@ export default class PopupShow {
     });
     filmPopupComponent.setwatchlistClickHandler((evt) => {
       console.log(`ok`);
+
     });
+
+    filmPopupComponent.setFavoriteClickHandler((e) => {
+      console.log(`favorit`);
+    });
+
   }
 
 }
