@@ -158,6 +158,8 @@ export default class FilmPopup extends AbstractClickable {
     this._clickHandler = this._clickHandler.bind(this);
     this._escCallback = {};
     this._escKeyDownHandler = this._escKeyDownHandler.bind(this);
+    this._watchlistCallBack = {};
+    this._watchlistClickHandler = this._watchlistClickHandler.bind(this);
 
   }
 
@@ -177,6 +179,17 @@ export default class FilmPopup extends AbstractClickable {
     this._escCallback.keydown = callback;
     // 2. В addEventListener передадим абстрактный обработчик
     document.addEventListener(`keydown`, this._escKeyDownHandler);
+  }
+
+  _watchlistClickHandler(evt) {
+    this._watchlistCallBack.click(evt);
+
+  }
+
+  setwatchlistClickHandler(callback) {
+    this._watchlistCallBack.click = callback;
+    document.addEventListener(`click`, this._watchlistClickHandler);
+
   }
 
   getTemplate() {

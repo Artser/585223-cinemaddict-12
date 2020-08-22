@@ -1,13 +1,14 @@
 import Films from "../view/films.js";
 import Sorting from "../view/sort.js";
-import {SortType} from "../const.js";
+import { SortType } from "../const.js";
 import Film from "../view/film.js";
-import {sortFilmDate, sortFilmRating} from "../utils/film.js";
+import { sortFilmDate, sortFilmRating } from "../utils/film.js";
+import FilmPopup from "./film-popup.js";
 
 import NoMovies from "../view/nomovies.js";
 import ShowMoreButton from "../view/show-more-button.js";
-import FilmPopup from "../view/film-popup.js";
-import {RenderPosition, renderElement, footerElement} from "../utils/render.js";
+//import FilmPopup from "../view/film-popup.js";
+import { RenderPosition, renderElement, footerElement } from "../utils/render.js";
 
 const MOVIE_COUNT_PER_STEP = 5;
 
@@ -77,7 +78,9 @@ export default class MovieList {
 
 
     filmComponent.setClickHandler(() => {
-      const filmPopupComponent = new FilmPopup(film);
+      const filmPopup = new FilmPopup();
+      filmPopup.init(film);
+      /* const filmPopupComponent = new FilmPopup(film);
 
       renderElement(footerElement, filmPopupComponent.getElement(), RenderPosition.BEFOREEND);
       filmPopupComponent.setClickHandler((evt) => {
@@ -91,7 +94,7 @@ export default class MovieList {
           evt.preventDefault();
           filmPopupComponent.getElement().remove();
         }
-      });
+      }); */
     });
 
 
