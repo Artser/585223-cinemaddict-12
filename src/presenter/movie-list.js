@@ -1,14 +1,13 @@
 import Films from "../view/films.js";
 import Sorting from "../view/sort.js";
-import { SortType } from "../const.js";
+import {SortType} from "../const.js";
 import Film from "../view/film.js";
-import { sortFilmDate, sortFilmRating } from "../utils/film.js";
+import {sortFilmDate, sortFilmRating} from "../utils/film.js";
 import FilmPopup from "./film-popup.js";
-
+import {updateItem} from "../utils/common.js";
 import NoMovies from "../view/nomovies.js";
 import ShowMoreButton from "../view/show-more-button.js";
-//import FilmPopup from "../view/film-popup.js";
-import { RenderPosition, renderElement, footerElement } from "../utils/render.js";
+import {RenderPosition, renderElement, remove} from "../utils/render.js";
 
 const MOVIE_COUNT_PER_STEP = 5;
 
@@ -21,7 +20,8 @@ export default class MovieList {
     this._noMovies = new NoMovies();
     this._ShowMoreButton = new ShowMoreButton();
     this._containerFilms = containerFilms;
-
+    this._filmPresenter = {};
+    this._handleFilmChange = this._handleFilmChange.bind(this);
     this._handleLoadMoreButtonClick = this._handleLoadMoreButtonClick.bind(this);
     this._handleSortTypeChange = this._handleSortTypeChange.bind(this);
   }
@@ -33,6 +33,12 @@ export default class MovieList {
     // сохранив исходный массив:
     this._sourceFilms = films.slice();
     this._renderFilmsElements();
+  }
+
+  _handleFilmChange(updatedFilm) {
+    this._films = updateItem(this._films, updatedFilm);
+    this._sourceFilms = updateItem(this._sourceFilms, updatedFilm);
+    this._filmPresenter[updatedFilm.id].init(updatedFilm);
   }
 
   _sortFilms(sortType) {
@@ -74,30 +80,15 @@ export default class MovieList {
   _renderFilm(film) {
 
     const FilmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
-    const filmComponent = new Film(film);
+    const filmComponent = new Film(film, this._handleFilmChange);
 
 
     filmComponent.setClickHandler(() => {
       const filmPopup = new FilmPopup();
       filmPopup.init(film);
-      /* const filmPopupComponent = new FilmPopup(film);
 
-      renderElement(footerElement, filmPopupComponent.getElement(), RenderPosition.BEFOREEND);
-      filmPopupComponent.setClickHandler((evt) => {
-        const target = evt.target;
-        if (target.id === `close-btn`) {
-          filmPopupComponent.getElement().remove();
-        }
-      });
-      filmPopupComponent.setEscKeyDownHandler((evt) => {
-        if (evt.key === `Escape` || evt.key === `Esc`) {
-          evt.preventDefault();
-          filmPopupComponent.getElement().remove();
-        }
-      }); */
     });
-
-
+    this._filmPresenter[film.id] = filmComponent;
     renderElement(FilmListElement, filmComponent.getElement(), RenderPosition.BEFOREEND);
   }
 
@@ -128,8 +119,12 @@ export default class MovieList {
   }
 
   _clearFilmList() {
-    const FilmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
-    FilmListElement.innerHTML = ``;
+    // const FilmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
+    // FilmListElement.innerHTML = ``;
+    Object
+      .values(this._filmPresenter)
+      .forEach((presenter) => presenter.destroy());
+    this._filmPresenter = {};
 
     this._renderedMovieCount = MOVIE_COUNT_PER_STEP;
   }
@@ -145,8 +140,11 @@ export default class MovieList {
   }
 
   _renderFilmsElements() {
-
     this._renderSort();
     this._renderFilmList();
   }
+  destroy() {
+    remove(this._filmComponent);
+  }
+
 }

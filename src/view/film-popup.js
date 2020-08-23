@@ -158,10 +158,10 @@ export default class FilmPopup extends AbstractClickable {
     this._clickHandler = this._clickHandler.bind(this);
     this._escCallback = {};
     this._escKeyDownHandler = this._escKeyDownHandler.bind(this);
-    this._watchlistCallBack = {};
+
     this._watchlistClickHandler = this._watchlistClickHandler.bind(this);
-    this._favoriteCallBack = {};
     this._favoriteClickHandler = this._favoriteClickHandler.bind(this);
+
   }
 
 
@@ -179,35 +179,32 @@ export default class FilmPopup extends AbstractClickable {
     // 1. Поэтому колбэк мы запишем во внутреннее свойство
     this._escCallback.keydown = callback;
     // 2. В addEventListener передадим абстрактный обработчик
-    document.querySelector(`#watchlist`).addEventListener(`keydown`, this._escKeyDownHandler);
+    document.addEventListener(`keydown`, this._escKeyDownHandler);
   }
 
   _watchlistClickHandler(evt) {
-    this._watchlistCallBack.click(evt);
-
+    evt.preventDefault();
+    this._callback.watchlistClick(evt);
   }
 
   setwatchlistClickHandler(callback) {
-    this._watchlistCallBack.click = callback;
-    document.querySelector(`#watchlist`).addEventListener(`click`, this._watchlistClickHandler);
-
+    this._callback.watchlistClick = callback;
+    this.getElement().querySelector(`#watchlist`).addEventListener(`click`, this._watchlistClickHandler);
   }
 
   _favoriteClickHandler(evt) {
-    this._favoriteCallBack.click(evt);
-
+    evt.preventDefault();
+    this._callback.favoriteClick(evt);
   }
 
   setFavoriteClickHandler(callback) {
-    this._favoriteCallBack.click = callback;
-    document.querySelector(`#favorite`).addEventListener(`click`, this._favoriteClickHandler);
-
+    this._callback.favoriteClick = callback;
+    this.getElement().querySelector(`#favorite`).addEventListener(`click`, this._favoriteClickHandler);
   }
 
   getTemplate() {
     return createFilmPopupTemplate(this._film);
   }
-
 
 }
 

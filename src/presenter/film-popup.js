@@ -1,14 +1,9 @@
 import FilmPopup from "../view/film-popup.js";
-import { RenderPosition, renderElement, footerElement } from "../utils/render.js";
-
-
-
+import {RenderPosition, renderElement, footerElement} from "../utils/render.js";
 export default class PopupShow {
   constructor() {
-    //this._popupContainer = popupContainer;
 
   }
-
   init(film) {
     const filmPopupComponent = new FilmPopup(film);
 
@@ -25,13 +20,10 @@ export default class PopupShow {
         filmPopupComponent.getElement().remove();
       }
     });
-    filmPopupComponent.setwatchlistClickHandler((evt) => {
-      console.log(`ok`);
-
+    filmPopupComponent.setwatchlistClickHandler(() => {
     });
 
-    filmPopupComponent.setFavoriteClickHandler((e) => {
-      console.log(`favorit`);
+    filmPopupComponent.setFavoriteClickHandler(() => {
     });
 
   }

@@ -15,6 +15,7 @@ const text = [
 // карточка фильма
 export const generateFilm = () => {
   return {
+    id: generateId(),
     title: generateTitle(),
     poster: generatePoster(),
     description: generateDescription(),
@@ -36,6 +37,8 @@ export const generateFilm = () => {
     date: generateDate(),
   };
 };
+
+const generateId = () => Date.now() + parseInt(Math.random() * 10000, 10);
 
 let trueOrFalse = () => {
   return !!getRandomInteger(0, 1);

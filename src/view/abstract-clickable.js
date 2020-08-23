@@ -13,6 +13,7 @@ export default class AbstractClickable extends AbstractView {
     evt.preventDefault();
     // 3. А внутри абстрактного обработчика вызовем колбэк
     this._callback.click(evt);
+
   }
 
   setClickHandler(callback) {

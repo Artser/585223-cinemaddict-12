@@ -1,3 +1,5 @@
+import Abstract from "../view/abstract.js";
+
 export const siteHeaderElement = document.querySelector(`.header`);
 export const siteMainElement = document.querySelector(`.main`);
 export const footerElement = document.querySelector(`.footer`);
@@ -29,4 +31,13 @@ export const createElement = (template) => {
   const newElement = document.createElement(`div`); // 1
   newElement.innerHTML = template; // 2
   return newElement.firstChild; // 3
+};
+
+export const remove = (component) => {
+  if (!(component instanceof Abstract)) {
+    throw new Error(`Can remove only components`);
+  }
+
+  component.getElement().remove();
+  component.removeElement();
 };
