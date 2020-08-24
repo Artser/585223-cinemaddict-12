@@ -1,18 +1,19 @@
 import Films from "../view/films.js";
+import FilmPresenter from "./film.js";
+
 import Sorting from "../view/sort.js";
-import {SortType} from "../const.js";
+import { SortType } from "../const.js";
 import Film from "../view/film.js";
-import {sortFilmDate, sortFilmRating} from "../utils/film.js";
-import FilmPopup from "./film-popup.js";
-import {updateItem} from "../utils/common.js";
+import { sortFilmDate, sortFilmRating } from "../utils/film.js";
+import { updateItem } from "../utils/common.js";
 import NoMovies from "../view/nomovies.js";
 import ShowMoreButton from "../view/show-more-button.js";
-import {RenderPosition, renderElement, remove} from "../utils/render.js";
+import { RenderPosition, renderElement, remove } from "../utils/render.js";
 
 const MOVIE_COUNT_PER_STEP = 5;
 
 export default class MovieList {
-  constructor(containerFilms) {
+  constructor(containerFilms, changeData) {
     this._renderedMovieCount = MOVIE_COUNT_PER_STEP;
     this._filmsComponent = new Films();
     this._sortComponent = new Sorting();
@@ -21,6 +22,7 @@ export default class MovieList {
     this._ShowMoreButton = new ShowMoreButton();
     this._containerFilms = containerFilms;
     this._filmPresenter = {};
+    this._changeData = changeData;
     this._handleFilmChange = this._handleFilmChange.bind(this);
     this._handleLoadMoreButtonClick = this._handleLoadMoreButtonClick.bind(this);
     this._handleSortTypeChange = this._handleSortTypeChange.bind(this);
@@ -40,6 +42,7 @@ export default class MovieList {
     this._sourceFilms = updateItem(this._sourceFilms, updatedFilm);
     this._filmPresenter[updatedFilm.id].init(updatedFilm);
   }
+
 
   _sortFilms(sortType) {
     // 2. Этот исходный массив задач необходим,
@@ -79,17 +82,10 @@ export default class MovieList {
 
   _renderFilm(film) {
 
-    const FilmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
-    const filmComponent = new Film(film, this._handleFilmChange);
-
-
-    filmComponent.setClickHandler(() => {
-      const filmPopup = new FilmPopup();
-      filmPopup.init(film);
-
-    });
-    this._filmPresenter[film.id] = filmComponent;
-    renderElement(FilmListElement, filmComponent.getElement(), RenderPosition.BEFOREEND);
+    const filmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
+    const filmPresenter = new FilmPresenter(filmListElement, this._handleFilmChange);
+    filmPresenter.init(film);
+    this._filmPresenter[film.id] = filmPresenter;
   }
 
   _renderFilms(from, to) {

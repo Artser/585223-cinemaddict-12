@@ -33,6 +33,25 @@ export const createElement = (template) => {
   return newElement.firstChild; // 3
 };
 
+export const render = (container, child, place) => {
+  if (container instanceof Abstract) {
+    container = container.getElement();
+  }
+
+  if (child instanceof Abstract) {
+    child = child.getElement();
+  }
+
+  switch (place) {
+    case RenderPosition.AFTERBEGIN:
+      container.prepend(child);
+      break;
+    case RenderPosition.BEFOREEND:
+      container.append(child);
+      break;
+  }
+};
+
 export const remove = (component) => {
   if (!(component instanceof Abstract)) {
     throw new Error(`Can remove only components`);
@@ -41,3 +60,5 @@ export const remove = (component) => {
   component.getElement().remove();
   component.removeElement();
 };
+
+

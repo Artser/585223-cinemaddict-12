@@ -1,5 +1,5 @@
 // Попап (расширенная информация о фильме)
-import AbstractClickable from "./abstract-clickable.js";
+import Abstract from "./abstract.js";
 
 
 const createPopupComments = (film) => {
@@ -93,8 +93,8 @@ export const createFilmPopupTemplate = (film) => {
             </div>
 
             <section class="film-details__controls">
-              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watchlist ? `checked` : ``} id="watchlist" name="watchlist">
-              <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
+              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watchlist ? `checked` : ``} id="watchlist2" name="watchlist">
+              <label for="watchlist2" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
 
               <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watched ? `checked` : ``} id="watched" name="watched">
               <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
@@ -151,19 +151,36 @@ export const createFilmPopupTemplate = (film) => {
 };
 
 
-export default class FilmPopup extends AbstractClickable {
+export default class FilmPopup extends Abstract {
   constructor(film) {
     super();
     this._film = film;
     this._clickHandler = this._clickHandler.bind(this);
     this._escCallback = {};
     this._escKeyDownHandler = this._escKeyDownHandler.bind(this);
-
+    this._callback = {};
     this._watchlistClickHandler = this._watchlistClickHandler.bind(this);
     this._favoriteClickHandler = this._favoriteClickHandler.bind(this);
 
   }
 
+  _clickHandler(evt) {
+    // 3. А внутри абстрактного обработчика вызовем колбэк
+    this._callback.click(evt);
+
+  }
+
+  setClickHandler(callback) {
+    // Мы могли бы сразу передать callback в addEventListener,
+    // но тогда бы для удаления обработчика в будущем,
+    // нам нужно было бы производить это снаружи, где-то там,
+    // где мы вызывали setClickHandler, что не всегда удобно
+
+    // 1. Поэтому колбэк мы запишем во внутреннее свойство
+    this._callback.click = callback;
+    // 2. В addEventListener передадим абстрактный обработчик
+    this.getElement().addEventListener(`click`, this._clickHandler);
+  }
 
   _escKeyDownHandler(evt) {
     // 3. А внутри абстрактного обработчика вызовем колбэк
@@ -183,17 +200,17 @@ export default class FilmPopup extends AbstractClickable {
   }
 
   _watchlistClickHandler(evt) {
-    evt.preventDefault();
+    console.log(this._callback);
     this._callback.watchlistClick(evt);
   }
 
-  setwatchlistClickHandler(callback) {
+  setWatchlistClickHandler(callback) {
     this._callback.watchlistClick = callback;
-    this.getElement().querySelector(`#watchlist`).addEventListener(`click`, this._watchlistClickHandler);
+    this.getElement().querySelector(`#watchlist2`).addEventListener(`click`, this._watchlistClickHandler);
+
   }
 
   _favoriteClickHandler(evt) {
-    evt.preventDefault();
     this._callback.favoriteClick(evt);
   }
 
