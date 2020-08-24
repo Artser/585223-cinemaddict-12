@@ -200,7 +200,6 @@ export default class FilmPopup extends Abstract {
   }
 
   _watchlistClickHandler(evt) {
-    console.log(this._callback);
     this._callback.watchlistClick(evt);
   }
 

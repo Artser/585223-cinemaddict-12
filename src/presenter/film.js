@@ -1,4 +1,4 @@
-import { RenderPosition, remove, render, footerElement } from "../utils/render.js";
+import {RenderPosition, remove, render, footerElement} from "../utils/render.js";
 import FilmPopupView from "../view/film-popup.js";
 import FilmView from "../view/film.js";
 

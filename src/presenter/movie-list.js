@@ -2,13 +2,13 @@ import Films from "../view/films.js";
 import FilmPresenter from "./film.js";
 
 import Sorting from "../view/sort.js";
-import { SortType } from "../const.js";
+import {SortType} from "../const.js";
 import Film from "../view/film.js";
-import { sortFilmDate, sortFilmRating } from "../utils/film.js";
-import { updateItem } from "../utils/common.js";
+import {sortFilmDate, sortFilmRating} from "../utils/film.js";
+import {updateItem} from "../utils/common.js";
 import NoMovies from "../view/nomovies.js";
 import ShowMoreButton from "../view/show-more-button.js";
-import { RenderPosition, renderElement, remove } from "../utils/render.js";
+import {RenderPosition, renderElement, remove} from "../utils/render.js";
 
 const MOVIE_COUNT_PER_STEP = 5;
 
