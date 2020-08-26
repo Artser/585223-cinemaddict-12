@@ -1,5 +1,5 @@
 // Попап (расширенная информация о фильме)
-import Abstract from "./abstract.js";
+import Smart from "./smart.js";
 
 
 const createPopupComments = (film) => {
@@ -93,8 +93,8 @@ export const createFilmPopupTemplate = (film) => {
             </div>
 
             <section class="film-details__controls">
-              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watchlist ? `checked` : ``} id="watchlist2" name="watchlist">
-              <label for="watchlist2" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
+              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watchlist ? `checked` : ``} id="watchlist" name="watchlist">
+              <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
 
               <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watched ? `checked` : ``} id="watched" name="watched">
               <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
@@ -115,29 +115,31 @@ export const createFilmPopupTemplate = (film) => {
 
 
               <div class="film-details__new-comment">
-                <div for="add-emoji" class="film-details__add-emoji-label"></div>
+                <div for="add-emoji" class="film-details__add-emoji-label" id="emoji">${film.emotion
+      ? `<img src="images/emoji/${film.emotion}.png" width="55" height="55" alt="emoji-smile">`
+      : ``}</div>
 
                 <label class="film-details__comment-label">
                   <textarea class="film-details__comment-input" placeholder="Select reaction below and write comment here" name="comment"></textarea>
                 </label>
 
                 <div class="film-details__emoji-list">
-                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-smile" value="sleeping">
+                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-smile" value="smile">
                   <label class="film-details__emoji-label" for="emoji-smile">
                     <img src="./images/emoji/smile.png" width="30" height="30" alt="emoji">
                   </label>
 
-                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-sleeping" value="neutral-face">
+                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-sleeping" value="sleeping">
                   <label class="film-details__emoji-label" for="emoji-sleeping">
                     <img src="./images/emoji/sleeping.png" width="30" height="30" alt="emoji">
                   </label>
 
-                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-gpuke" value="grinning">
+                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-gpuke" value="puke">
                   <label class="film-details__emoji-label" for="emoji-gpuke">
                     <img src="./images/emoji/puke.png" width="30" height="30" alt="emoji">
                   </label>
 
-                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-angry" value="grinning">
+                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-angry" value="angry">
                   <label class="film-details__emoji-label" for="emoji-angry">
                     <img src="./images/emoji/angry.png" width="30" height="30" alt="emoji">
                   </label>
@@ -151,17 +153,22 @@ export const createFilmPopupTemplate = (film) => {
 };
 
 
-export default class FilmPopup extends Abstract {
+export default class FilmPopup extends Smart {
   constructor(film) {
     super();
-    this._film = film;
+    this._data = film;
     this._clickHandler = this._clickHandler.bind(this);
     this._escCallback = {};
     this._escKeyDownHandler = this._escKeyDownHandler.bind(this);
     this._callback = {};
     this._watchlistClickHandler = this._watchlistClickHandler.bind(this);
     this._favoriteClickHandler = this._favoriteClickHandler.bind(this);
+    this._emojiChangeHandler = this._emojiChangeHandler.bind(this);
+    this._setInnerHandlers();
+  }
 
+  getTemplate() {
+    return createFilmPopupTemplate(this._data);
   }
 
   _clickHandler(evt) {
@@ -180,6 +187,18 @@ export default class FilmPopup extends Abstract {
     this._callback.click = callback;
     // 2. В addEventListener передадим абстрактный обработчик
     this.getElement().addEventListener(`click`, this._clickHandler);
+  }
+
+  _setInnerHandlers() {
+    this.getElement().querySelector(`.film-details__emoji-list`).addEventListener(`change`, this._emojiChangeHandler);
+
+  }
+
+  _emojiChangeHandler(evt) {
+    evt.preventDefault();
+    this.updateData({
+      emotion: evt.target.value,
+    });
   }
 
   _escKeyDownHandler(evt) {
@@ -205,7 +224,7 @@ export default class FilmPopup extends Abstract {
 
   setWatchlistClickHandler(callback) {
     this._callback.watchlistClick = callback;
-    this.getElement().querySelector(`#watchlist2`).addEventListener(`click`, this._watchlistClickHandler);
+    this.getElement().querySelector(`#watchlist`).addEventListener(`click`, this._watchlistClickHandler);
 
   }
 
@@ -218,8 +237,8 @@ export default class FilmPopup extends Abstract {
     this.getElement().querySelector(`#favorite`).addEventListener(`click`, this._favoriteClickHandler);
   }
 
-  getTemplate() {
-    return createFilmPopupTemplate(this._film);
+  restoreHandlers() {
+    this._setInnerHandlers();
   }
 
 }

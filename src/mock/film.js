@@ -32,7 +32,7 @@ export const generateFilm = () => {
     actors: generateActors(),
     release: generateYear(),
     country: generateCountry(),
-    emotion: generateEmotion(),
+    emotion: null,
     author: generateAuthor(),
     date: generateDate(),
   };
