@@ -171,7 +171,7 @@ export default class FilmPopup extends Smart {
     return createFilmPopupTemplate(this._data);
   }
 
-  _clickHandler(evt) {//close
+  _clickHandler(evt) { // close
     // 3. А внутри абстрактного обработчика вызовем колбэк
     this._callback.click(evt);
 
@@ -186,7 +186,7 @@ export default class FilmPopup extends Smart {
     // 1. Поэтому колбэк мы запишем во внутреннее свойство
     this._callback.click = callback;
     // 2. В addEventListener передадим абстрактный обработчик
-   this.getElement().querySelector(`#close-btn`).addEventListener(`click`, this._clickHandler);
+    this.getElement().querySelector(`#close-btn`).addEventListener(`click`, this._clickHandler);
 
   }
 
@@ -196,7 +196,7 @@ export default class FilmPopup extends Smart {
   }
 
   _emojiChangeHandler(evt) {
-    console.log(evt.target.value);
+    // console.log(evt.target.value);
     evt.preventDefault();
     this.updateData({
       emotion: evt.target.value,
@@ -226,7 +226,7 @@ export default class FilmPopup extends Smart {
   }
 
   setWatchlistClickHandler(callback) {
-    console.log(this.getElement().querySelector(`#watchlist`));
+    // console.log(this.getElement().querySelector(`#watchlist`));
 
     this._callback.watchlistClick = callback;
     this.getElement().querySelector(`#watchlist`).addEventListener(`change`, this._watchlistClickHandler);

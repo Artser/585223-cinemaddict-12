@@ -85,7 +85,7 @@ export default class MovieList {
   }
 
   _handleFilmChange(updatedFilm) {
-    console.log(updatedFilm);
+    // console.log(updatedFilm);
 
     this._films = updateItem(this._films, updatedFilm);
     this._sourceFilms = updateItem(this._sourceFilms, updatedFilm);

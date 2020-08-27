@@ -1,4 +1,4 @@
-import { RenderPosition, remove, render, footerElement, replace } from "../utils/render.js";
+import {RenderPosition, remove, render, footerElement, replace} from "../utils/render.js";
 import FilmPopupView from "../view/film-popup.js";
 import FilmView from "../view/film.js";
 
@@ -58,7 +58,7 @@ export default class Film {
   }
 
   _clickWatchlist() {
-    console.log(this._film);
+    // console.log(this._film);
     this._changeData(
         Object.assign(
             {},
@@ -111,7 +111,7 @@ export default class Film {
   }
 
   _handlerCloseClick() {
-      this._closePopup();
+    this._closePopup();
   }
 
   _handlerCloseKeyDown(evt) {
