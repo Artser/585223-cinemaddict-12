@@ -8,10 +8,10 @@ const Mode = {
 };
 
 export default class Film {
-  constructor(filmListContainer, changeData, handleModeChange) {
+  constructor(filmListContainer, changeData, handlePopupChange) {
     this._filmListContainer = filmListContainer;
     this._changeData = changeData;
-    this._handleModeChange = handleModeChange;
+    this._handlePopupChange = handlePopupChange;
     this._filmComponent = null;
     this._filmEditComponent = null;
     this._mode = Mode.DEFAULT;
@@ -45,17 +45,13 @@ export default class Film {
       render(this._filmListContainer, this._filmComponent, RenderPosition.BEFOREEND);
       return;
     }
-    if (this._mode === Mode.DEFAULT) {
-      replace(this._filmComponent, prevFilmComponent);
-    }
 
-    if (this._mode === Mode.POPUP) {
-      replace(this._filmPopupComponent, prevFilmPopupComponent);
-    }
-
+    replace(this._filmComponent, prevFilmComponent);
+    replace(this._filmPopupComponent, prevFilmPopupComponent);
     remove(prevFilmComponent);
     remove(prevFilmPopupComponent);
   }
+
 
   _clickWatchlist() {
     // console.log(this._film);
@@ -104,7 +100,7 @@ export default class Film {
       return;
     }
     this._mode = Mode.POPUP;
-    this._handleModeChange();
+    this._handlePopupChange();
     this._filmPopupComponent.setClickHandler(this._handlerCloseClick);
     this._filmPopupComponent.restoreHandlers();
     render(footerElement, this._filmPopupComponent, RenderPosition.BEFOREEND);

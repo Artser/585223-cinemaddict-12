@@ -162,6 +162,8 @@ export default class FilmPopup extends Smart {
     this._escKeyDownHandler = this._escKeyDownHandler.bind(this);
     this._callback = {};
     this._watchlistClickHandler = this._watchlistClickHandler.bind(this);
+    this._watchlistClickHandler = this._watchedClickHandler.bind(this);
+
     this._favoriteClickHandler = this._favoriteClickHandler.bind(this);
     this._emojiChangeHandler = this._emojiChangeHandler.bind(this);
     this._setInnerHandlers();
@@ -254,6 +256,9 @@ export default class FilmPopup extends Smart {
   restoreHandlers() {
     this._setInnerHandlers();
     this.setClickHandler(this._callback.click);
+    this.setWatchedClickHandler(this._callback.watchedClick);
+    this.setWatchlistClickHandler(this._callback.watchlistClick);
+    this.setFavoriteClickHandler(this._callback.favoriteClick);
   }
 
 }
