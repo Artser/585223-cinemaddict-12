@@ -1,4 +1,3 @@
-
 import Abstract from "./abstract.js";
 
 const createFilmTemplate = (film) => {
@@ -15,7 +14,7 @@ const createFilmTemplate = (film) => {
           <p class="film-card__description">${film.description}</p>
           <a class="film-card__comments">${film.comments.length} comments</a>
           <form class="film-card__controls">
-            <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist film-card__controls-item--active">Add to watchlist</button>
+            <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist film-card__controls-item--active" id="film-watch">Add to watchlist</button>
             <button class="film-card__controls-item button film-card__controls-item--mark-as-watched">Mark as watched</button>
             <button class="film-card__controls-item button film-card__controls-item--favorite">Mark as favorite</button>
           </form>
@@ -30,7 +29,7 @@ export default class Film extends Abstract {
     this._film = film;
     this._clickHandler = this._clickHandler.bind(this);
     this._callback = {};
-
+    this._clickHandlerWatchlist = this._clickHandlerWatchlist.bind(this);
   }
 
   _clickHandler(evt) {
@@ -48,6 +47,16 @@ export default class Film extends Abstract {
     // 1. Поэтому колбэк мы запишем во внутреннее свойство
     this._callback.click = callback;
     // 2. В addEventListener передадим абстрактный обработчик
+    this.getElement().addEventListener(`click`, this._clickHandler);
+  }
+
+  _clickHandlerWatchlist(evt) {
+    this._callback.clickWatchlist(evt);
+
+  }
+
+  setClickHandlerWatchlist(callback) {
+    this._callback.clickWatchlist = callback;
     this.getElement().addEventListener(`click`, this._clickHandler);
   }
 

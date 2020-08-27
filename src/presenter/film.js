@@ -4,10 +4,10 @@ import FilmView from "../view/film.js";
 
 
 export default class Film {
-  constructor(filmListContainer, changeData) {
+  constructor(filmListContainer, changeData, handleModeChange) {
     this._filmListContainer = filmListContainer;
     this._changeData = changeData;
-
+    this._handleModeChange = handleModeChange;
     this._filmComponent = null;
     this._filmEditComponent = null;
     this._closePopup = this._closePopup.bind(this);
@@ -23,6 +23,9 @@ export default class Film {
     this._filmComponent = new FilmView(film);
     this._filmPopupComponent = new FilmPopupView(film);
     this._filmComponent.setClickHandler(this._openPopup);
+
+    // this._filmComponent.getElement().querySelector(`#film-watch`).setClickHandlerWatchlist(this._clickWatchlist);
+
     this._filmPopupComponent.setClickHandler(this._handlerCloseClick);
     this._filmPopupComponent.setEscKeyDownHandler(this._handlerCloseKeyDown);
     if (prevFilmComponent === null || prevFilmPopupComponent === null) {
@@ -31,7 +34,17 @@ export default class Film {
     }
   }
 
+  _clickWatchlist() {
+  }
+
+  closeItemPopup() {
+    this._closePopup();
+  }
+
   _openPopup() {
+    this._handleModeChange();
+    this._filmPopupComponent.setClickHandler(this._handlerCloseClick);
+    this._filmPopupComponent.restoreHandlers();
     render(footerElement, this._filmPopupComponent, RenderPosition.BEFOREEND);
   }
 

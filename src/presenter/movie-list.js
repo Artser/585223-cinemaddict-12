@@ -23,6 +23,8 @@ export default class MovieList {
     this._containerFilms = containerFilms;
     this._filmPresenter = {};
     this._changeData = changeData;
+    this._handleModeChange = this._handleModeChange.bind(this);// name
+
     this._handleFilmChange = this._handleFilmChange.bind(this);
     this._handleLoadMoreButtonClick = this._handleLoadMoreButtonClick.bind(this);
     this._handleSortTypeChange = this._handleSortTypeChange.bind(this);
@@ -75,6 +77,12 @@ export default class MovieList {
     this._renderFilmList();
   }
 
+  _handleModeChange() {
+    Object
+      .values(this._filmPresenter)
+      .forEach((presenter) => presenter.closeItemPopup());
+  }
+
   _renderSort() {
     renderElement(this._containerFilms, this._sortComponent.getElement(), RenderPosition.BEFOREEND);
     this._sortComponent.setSortTypeChangeHandler(this._handleSortTypeChange);
@@ -83,7 +91,7 @@ export default class MovieList {
   _renderFilm(film) {
 
     const filmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
-    const filmPresenter = new FilmPresenter(filmListElement, this._handleFilmChange);
+    const filmPresenter = new FilmPresenter(filmListElement, this._handleFilmChange, this._handleModeChange);
     filmPresenter.init(film);
     this._filmPresenter[film.id] = filmPresenter;
   }
