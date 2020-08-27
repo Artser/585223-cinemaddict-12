@@ -13,7 +13,7 @@ import {RenderPosition, renderElement, remove} from "../utils/render.js";
 const MOVIE_COUNT_PER_STEP = 5;
 
 export default class MovieList {
-  constructor(containerFilms, changeData) {
+  constructor(containerFilms) {
     this._renderedMovieCount = MOVIE_COUNT_PER_STEP;
     this._filmsComponent = new Films();
     this._sortComponent = new Sorting();
@@ -22,7 +22,8 @@ export default class MovieList {
     this._ShowMoreButton = new ShowMoreButton();
     this._containerFilms = containerFilms;
     this._filmPresenter = {};
-    this._changeData = changeData;
+    this._handleFilmChange = this._handleFilmChange.bind(this);
+
     this._handleModeChange = this._handleModeChange.bind(this);// name
 
     this._handleFilmChange = this._handleFilmChange.bind(this);
@@ -81,6 +82,14 @@ export default class MovieList {
     Object
       .values(this._filmPresenter)
       .forEach((presenter) => presenter.closeItemPopup());
+  }
+
+  _handleFilmChange(updatedFilm) {
+    console.log(updatedFilm);
+
+    this._films = updateItem(this._films, updatedFilm);
+    this._sourceFilms = updateItem(this._sourceFilms, updatedFilm);
+    this._filmPresenter[updatedFilm.id].init(updatedFilm);
   }
 
   _renderSort() {

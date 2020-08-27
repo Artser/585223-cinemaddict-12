@@ -1,7 +1,11 @@
-import {RenderPosition, remove, render, footerElement} from "../utils/render.js";
+import { RenderPosition, remove, render, footerElement, replace } from "../utils/render.js";
 import FilmPopupView from "../view/film-popup.js";
 import FilmView from "../view/film.js";
 
+const Mode = {
+  DEFAULT: `DEFAULT`,
+  POPUP: `POPUP`
+};
 
 export default class Film {
   constructor(filmListContainer, changeData, handleModeChange) {
@@ -10,6 +14,10 @@ export default class Film {
     this._handleModeChange = handleModeChange;
     this._filmComponent = null;
     this._filmEditComponent = null;
+    this._mode = Mode.DEFAULT;
+    this._clickWatchlist = this._clickWatchlist.bind(this);
+    this._clickWatched = this._clickWatched.bind(this);
+    this._clickFavorite = this._clickFavorite.bind(this);
     this._closePopup = this._closePopup.bind(this);
     this._openPopup = this._openPopup.bind(this);
     this._handlerCloseClick = this._handlerCloseClick.bind(this);
@@ -18,40 +26,92 @@ export default class Film {
 
   init(film) {
     this._film = film;
+
     const prevFilmComponent = this._filmComponent;
     const prevFilmPopupComponent = this._filmPopupComponent;
     this._filmComponent = new FilmView(film);
     this._filmPopupComponent = new FilmPopupView(film);
     this._filmComponent.setClickHandler(this._openPopup);
+    this._filmComponent.setClickHandlerWatchlist(this._clickWatchlist);
+    this._filmComponent.setClickHandlerWatched(this._clickWatched);
+    this._filmComponent.setClickHandlerFavorite(this._clickFavorite);
 
-    // this._filmComponent.getElement().querySelector(`#film-watch`).setClickHandlerWatchlist(this._clickWatchlist);
+    this._filmPopupComponent.setWatchlistClickHandler(this._clickWatchlist);
+    this._filmPopupComponent.setWatchedClickHandler(this._clickWatched);
+    this._filmPopupComponent.setFavoriteClickHandler(this._clickFavorite);
 
-    this._filmPopupComponent.setClickHandler(this._handlerCloseClick);
     this._filmPopupComponent.setEscKeyDownHandler(this._handlerCloseKeyDown);
     if (prevFilmComponent === null || prevFilmPopupComponent === null) {
       render(this._filmListContainer, this._filmComponent, RenderPosition.BEFOREEND);
       return;
     }
+    if (this._mode === Mode.DEFAULT) {
+      replace(this._filmComponent, prevFilmComponent);
+    }
+
+    if (this._mode === Mode.POPUP) {
+      replace(this._filmPopupComponent, prevFilmPopupComponent);
+    }
+
+    remove(prevFilmComponent);
+    remove(prevFilmPopupComponent);
   }
 
   _clickWatchlist() {
+    console.log(this._film);
+    this._changeData(
+        Object.assign(
+            {},
+            this._film,
+            {
+              watchlist: !this._film.watchlist
+            }
+        )
+    );
   }
+
+  _clickWatched() {
+    this._changeData(
+        Object.assign(
+            {},
+            this._film,
+            {
+              watched: !this._film.watched
+            }
+        )
+    );
+  }
+
+  _clickFavorite() {
+    this._changeData(
+        Object.assign(
+            {},
+            this._film,
+            {
+              favorites: !this._film.favorites
+            }
+        )
+    );
+  }
+
 
   closeItemPopup() {
     this._closePopup();
   }
 
-  _openPopup() {
+  _openPopup(evt) {
+    if (evt.target.classList.contains(`film-card__controls-item`)) {
+      return;
+    }
+    this._mode = Mode.POPUP;
     this._handleModeChange();
     this._filmPopupComponent.setClickHandler(this._handlerCloseClick);
     this._filmPopupComponent.restoreHandlers();
     render(footerElement, this._filmPopupComponent, RenderPosition.BEFOREEND);
   }
 
-  _handlerCloseClick(evt) {
-    if (evt.target.id === `close-btn`) {
+  _handlerCloseClick() {
       this._closePopup();
-    }
   }
 
   _handlerCloseKeyDown(evt) {
@@ -62,6 +122,8 @@ export default class Film {
   }
   _closePopup() {
     remove(this._filmPopupComponent);
+    this._mode = Mode.DEFAULT;
+
   }
 
   destroy() {
