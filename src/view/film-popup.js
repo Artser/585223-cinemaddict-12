@@ -1,5 +1,5 @@
 // Попап (расширенная информация о фильме)
-import AbstractClickable from "./abstract-clickable.js";
+import Smart from "./smart.js";
 
 
 const createPopupComments = (film) => {
@@ -115,29 +115,31 @@ export const createFilmPopupTemplate = (film) => {
 
 
               <div class="film-details__new-comment">
-                <div for="add-emoji" class="film-details__add-emoji-label"></div>
+                <div for="add-emoji" class="film-details__add-emoji-label" id="emoji">${film.emotion
+      ? `<img src="images/emoji/${film.emotion}.png" width="55" height="55" alt="emoji-smile">`
+      : ``}</div>
 
                 <label class="film-details__comment-label">
                   <textarea class="film-details__comment-input" placeholder="Select reaction below and write comment here" name="comment"></textarea>
                 </label>
 
                 <div class="film-details__emoji-list">
-                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-smile" value="sleeping">
+                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-smile" value="smile">
                   <label class="film-details__emoji-label" for="emoji-smile">
                     <img src="./images/emoji/smile.png" width="30" height="30" alt="emoji">
                   </label>
 
-                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-sleeping" value="neutral-face">
+                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-sleeping" value="sleeping">
                   <label class="film-details__emoji-label" for="emoji-sleeping">
                     <img src="./images/emoji/sleeping.png" width="30" height="30" alt="emoji">
                   </label>
 
-                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-gpuke" value="grinning">
+                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-gpuke" value="puke">
                   <label class="film-details__emoji-label" for="emoji-gpuke">
                     <img src="./images/emoji/puke.png" width="30" height="30" alt="emoji">
                   </label>
 
-                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-angry" value="grinning">
+                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-angry" value="angry">
                   <label class="film-details__emoji-label" for="emoji-angry">
                     <img src="./images/emoji/angry.png" width="30" height="30" alt="emoji">
                   </label>
@@ -151,16 +153,57 @@ export const createFilmPopupTemplate = (film) => {
 };
 
 
-export default class FilmPopup extends AbstractClickable {
+export default class FilmPopup extends Smart {
   constructor(film) {
     super();
-    this._film = film;
+    this._data = film;
     this._clickHandler = this._clickHandler.bind(this);
     this._escCallback = {};
     this._escKeyDownHandler = this._escKeyDownHandler.bind(this);
+    this._callback = {};
+    this._watchlistClickHandler = this._watchlistClickHandler.bind(this);
+    this._watchlistClickHandler = this._watchedClickHandler.bind(this);
+
+    this._favoriteClickHandler = this._favoriteClickHandler.bind(this);
+    this._emojiChangeHandler = this._emojiChangeHandler.bind(this);
+    this._setInnerHandlers();
+  }
+
+  getTemplate() {
+    return createFilmPopupTemplate(this._data);
+  }
+
+  _clickHandler(evt) { // close
+    // 3. А внутри абстрактного обработчика вызовем колбэк
+    this._callback.click(evt);
 
   }
 
+  setClickHandler(callback) {
+    // Мы могли бы сразу передать callback в addEventListener,
+    // но тогда бы для удаления обработчика в будущем,
+    // нам нужно было бы производить это снаружи, где-то там,
+    // где мы вызывали setClickHandler, что не всегда удобно
+
+    // 1. Поэтому колбэк мы запишем во внутреннее свойство
+    this._callback.click = callback;
+    // 2. В addEventListener передадим абстрактный обработчик
+    this.getElement().querySelector(`#close-btn`).addEventListener(`click`, this._clickHandler);
+
+  }
+
+  _setInnerHandlers() {
+    this.getElement().querySelector(`.film-details__emoji-list`).addEventListener(`change`, this._emojiChangeHandler);
+
+  }
+
+  _emojiChangeHandler(evt) {
+    // console.log(evt.target.value);
+    evt.preventDefault();
+    this.updateData({
+      emotion: evt.target.value,
+    });
+  }
 
   _escKeyDownHandler(evt) {
     // 3. А внутри абстрактного обработчика вызовем колбэк
@@ -179,10 +222,44 @@ export default class FilmPopup extends AbstractClickable {
     document.addEventListener(`keydown`, this._escKeyDownHandler);
   }
 
-  getTemplate() {
-    return createFilmPopupTemplate(this._film);
+  _watchlistClickHandler(evt) {
+
+    this._callback.watchlistClick(evt);
   }
 
+  setWatchlistClickHandler(callback) {
+    // console.log(this.getElement().querySelector(`#watchlist`));
+
+    this._callback.watchlistClick = callback;
+    this.getElement().querySelector(`#watchlist`).addEventListener(`change`, this._watchlistClickHandler);
+
+  }
+
+  _watchedClickHandler(evt) {
+    this._callback.watchedClick(evt);
+  }
+
+  setWatchedClickHandler(callback) {
+    this._callback.watchedClick = callback;
+    this.getElement().querySelector(`#watched`).addEventListener(`click`, this._watchedClickHandler);
+
+  }
+  _favoriteClickHandler(evt) {
+    this._callback.favoriteClick(evt);
+  }
+
+  setFavoriteClickHandler(callback) {
+    this._callback.favoriteClick = callback;
+    this.getElement().querySelector(`#favorite`).addEventListener(`click`, this._favoriteClickHandler);
+  }
+
+  restoreHandlers() {
+    this._setInnerHandlers();
+    this.setClickHandler(this._callback.click);
+    this.setWatchedClickHandler(this._callback.watchedClick);
+    this.setWatchlistClickHandler(this._callback.watchlistClick);
+    this.setFavoriteClickHandler(this._callback.favoriteClick);
+  }
 
 }
 

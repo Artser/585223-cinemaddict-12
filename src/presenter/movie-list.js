@@ -1,13 +1,14 @@
 import Films from "../view/films.js";
+import FilmPresenter from "./film.js";
+
 import Sorting from "../view/sort.js";
 import {SortType} from "../const.js";
 import Film from "../view/film.js";
 import {sortFilmDate, sortFilmRating} from "../utils/film.js";
-
+import {updateItem} from "../utils/common.js";
 import NoMovies from "../view/nomovies.js";
 import ShowMoreButton from "../view/show-more-button.js";
-import FilmPopup from "../view/film-popup.js";
-import {RenderPosition, renderElement, footerElement} from "../utils/render.js";
+import {RenderPosition, renderElement, remove} from "../utils/render.js";
 
 const MOVIE_COUNT_PER_STEP = 5;
 
@@ -20,7 +21,10 @@ export default class MovieList {
     this._noMovies = new NoMovies();
     this._ShowMoreButton = new ShowMoreButton();
     this._containerFilms = containerFilms;
-
+    this._filmPresenter = {};
+    this._handleFilmChange = this._handleFilmChange.bind(this);
+    this._handlePopupChange = this._handlePopupChange.bind(this);
+    this._handleFilmChange = this._handleFilmChange.bind(this);
     this._handleLoadMoreButtonClick = this._handleLoadMoreButtonClick.bind(this);
     this._handleSortTypeChange = this._handleSortTypeChange.bind(this);
   }
@@ -33,6 +37,13 @@ export default class MovieList {
     this._sourceFilms = films.slice();
     this._renderFilmsElements();
   }
+
+  _handleFilmChange(updatedFilm) {
+    this._films = updateItem(this._films, updatedFilm);
+    this._sourceFilms = updateItem(this._sourceFilms, updatedFilm);
+    this._filmPresenter[updatedFilm.id].init(updatedFilm);
+  }
+
 
   _sortFilms(sortType) {
     // 2. Этот исходный массив задач необходим,
@@ -65,6 +76,20 @@ export default class MovieList {
     this._renderFilmList();
   }
 
+  _handlePopupChange() {
+    Object
+      .values(this._filmPresenter)
+      .forEach((presenter) => presenter.closeItemPopup());
+  }
+
+  _handleFilmChange(updatedFilm) {
+    // console.log(updatedFilm);
+
+    this._films = updateItem(this._films, updatedFilm);
+    this._sourceFilms = updateItem(this._sourceFilms, updatedFilm);
+    this._filmPresenter[updatedFilm.id].init(updatedFilm);
+  }
+
   _renderSort() {
     renderElement(this._containerFilms, this._sortComponent.getElement(), RenderPosition.BEFOREEND);
     this._sortComponent.setSortTypeChangeHandler(this._handleSortTypeChange);
@@ -72,30 +97,10 @@ export default class MovieList {
 
   _renderFilm(film) {
 
-    const FilmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
-    const filmComponent = new Film(film);
-
-
-    filmComponent.setClickHandler(() => {
-      const filmPopupComponent = new FilmPopup(film);
-
-      renderElement(footerElement, filmPopupComponent.getElement(), RenderPosition.BEFOREEND);
-      filmPopupComponent.setClickHandler((evt) => {
-        const target = evt.target;
-        if (target.id === `close-btn`) {
-          filmPopupComponent.getElement().remove();
-        }
-      });
-      filmPopupComponent.setEscKeyDownHandler((evt) => {
-        if (evt.key === `Escape` || evt.key === `Esc`) {
-          evt.preventDefault();
-          filmPopupComponent.getElement().remove();
-        }
-      });
-    });
-
-
-    renderElement(FilmListElement, filmComponent.getElement(), RenderPosition.BEFOREEND);
+    const filmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
+    const filmPresenter = new FilmPresenter(filmListElement, this._handleFilmChange, this._handlePopupChange);
+    filmPresenter.init(film);
+    this._filmPresenter[film.id] = filmPresenter;
   }
 
   _renderFilms(from, to) {
@@ -125,8 +130,12 @@ export default class MovieList {
   }
 
   _clearFilmList() {
-    const FilmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
-    FilmListElement.innerHTML = ``;
+    // const FilmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
+    // FilmListElement.innerHTML = ``;
+    Object
+      .values(this._filmPresenter)
+      .forEach((presenter) => presenter.destroy());
+    this._filmPresenter = {};
 
     this._renderedMovieCount = MOVIE_COUNT_PER_STEP;
   }
@@ -142,8 +151,11 @@ export default class MovieList {
   }
 
   _renderFilmsElements() {
-
     this._renderSort();
     this._renderFilmList();
   }
+  destroy() {
+    remove(this._filmComponent);
+  }
+
 }

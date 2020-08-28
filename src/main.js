@@ -4,6 +4,7 @@ import MovieListPresenter from "./presenter/movie-list.js";
 import {RenderPosition, renderElement, siteHeaderElement, siteMainElement} from "./utils/render.js";
 import {generateFilms} from "./mock/film.js";
 
+
 let films = generateFilms();
 let navigationChecked = {
   watchlist: 0,
