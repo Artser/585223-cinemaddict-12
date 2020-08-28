@@ -1,7 +1,7 @@
 import {getRandomInteger} from "../utils/common.js";
 
 const text = [
-  `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,
+  `Lorem ipsum dolor sit amet, consectetur adipiscing elittesgit.`,
   `Cras aliquet varius magna, non porta ligula feugiat eget.`,
   `Fusce tristique felis at fermentum pharetra. Aliquam id orci ut lectus varius viverra.`,
   `Nullam nunc ex, convallis sed finibus eget, sollicitudin eget ante.`,
