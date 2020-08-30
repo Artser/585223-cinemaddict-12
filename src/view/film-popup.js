@@ -1,6 +1,6 @@
 // Попап (расширенная информация о фильме)
 import Smart from "./smart.js";
-
+import {timeMinutesToHour, yearFormat, yearFormatComments} from "../utils/common.js";
 
 const createPopupComments = (film) => {
 
@@ -15,7 +15,7 @@ const createPopupComments = (film) => {
                     <p class="film-details__comment-text">${comments.text}</p>
                     <p class="film-details__comment-info">
                       <span class="film-details__comment-author">${comments.author}</span>
-                      <span class="film-details__comment-day">${comments.date}</span>
+                      <span class="film-details__comment-day">${yearFormatComments(comments.date)}</span>
                       <button class="film-details__comment-delete">Delete</button>
                     </p>
                   </div>
@@ -68,80 +68,80 @@ export const createFilmPopupTemplate = (film) => {
                   </tr>
                   <tr class="film-details__row">
                     <td class="film-details__term">Год</td>
-                    <td class="film-details__cell">${film.release}</td>
+                    <td class="film-details__cell">${yearFormat(film.release.day, film.release.month, film.year) }</td>
                   </tr>
                   <tr class="film-details__row">
                     <td class="film-details__term">Продолжительность</td>
-                    <td class="film-details__cell">${film.duration}</td>
-                  </tr>
-                  <tr class="film-details__row">
-                    <td class="film-details__term">Страна</td>
-                    <td class="film-details__cell">${film.country}</td>
-                  </tr>
-                  <tr class="film-details__row">
-                    <td class="film-details__term">Жанр</td>
-                    <td class="film-details__cell">
-                      <span class="film-details__genre">${film.genre}</span>
-                      </td>
-                  </tr>
-                </table>
+                     <td class="film-details__cell">${timeMinutesToHour(film.duration)}</td >
+                  </tr >
+  <tr class="film-details__row">
+    <td class="film-details__term">Страна</td>
+    <td class="film-details__cell">${film.country}</td>
+  </tr>
+  <tr class="film-details__row">
+    <td class="film-details__term">Жанр</td>
+    <td class="film-details__cell">
+      <span class="film-details__genre">${film.genre}</span>
+    </td>
+  </tr>
+                </table >
 
-                <p class="film-details__film-description">
-                ${film.description}
-                </p>
-              </div>
-            </div>
+  <p class="film-details__film-description">
+    ${film.description}
+  </p>
+              </div >
+            </div >
 
-            <section class="film-details__controls">
-              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watchlist ? `checked` : ``} id="watchlist" name="watchlist">
-              <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
+  <section class="film-details__controls">
+    <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watchlist ? `checked` : ``} id="watchlist" name="watchlist">
+      <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
 
-              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watched ? `checked` : ``} id="watched" name="watched">
-              <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
+      <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watched ? `checked` : ``} id="watched" name="watched">
+        <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
 
-              <input type="checkbox" class="film-details__control-input visually-hidden" ${film.favorites ? `checked` : ``} id="favorite" name="favorite">
-              <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add to favorites</label>
+        <input type="checkbox" class="film-details__control-input visually-hidden" ${film.favorites ? `checked` : ``} id="favorite" name="favorite">
+          <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add to favorites</label>
             </section>
           </div>
 
-          <div class="form-details__bottom-container">
-            <section class="film-details__comments-wrap">
-              <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${film.comments.length}</span></h3>
+      <div class="form-details__bottom-container">
+        <section class="film-details__comments-wrap">
+          <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${film.comments.length}</span></h3>
 
-              <ul class="film-details__comments-list">`
+          <ul class="film-details__comments-list">`
     + createPopupComments(film) +
 
     `</ul>
 
 
-              <div class="film-details__new-comment">
-                <div for="add-emoji" class="film-details__add-emoji-label" id="emoji">${film.emotion
+          <div class="film-details__new-comment">
+            <div for="add-emoji" class="film-details__add-emoji-label" id="emoji">${film.emotion
       ? `<img src="images/emoji/${film.emotion}.png" width="55" height="55" alt="emoji-smile">`
       : ``}</div>
 
-                <label class="film-details__comment-label">
-                  <textarea class="film-details__comment-input" placeholder="Select reaction below and write comment here" name="comment"></textarea>
-                </label>
+            <label class="film-details__comment-label">
+              <textarea class="film-details__comment-input" placeholder="Select reaction below and write comment here" name="comment"></textarea>
+            </label>
 
-                <div class="film-details__emoji-list">
-                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-smile" value="smile">
-                  <label class="film-details__emoji-label" for="emoji-smile">
-                    <img src="./images/emoji/smile.png" width="30" height="30" alt="emoji">
+            <div class="film-details__emoji-list">
+              <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-smile" value="smile">
+                <label class="film-details__emoji-label" for="emoji-smile">
+                  <img src="./images/emoji/smile.png" width="30" height="30" alt="emoji">
                   </label>
 
                   <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-sleeping" value="sleeping">
-                  <label class="film-details__emoji-label" for="emoji-sleeping">
-                    <img src="./images/emoji/sleeping.png" width="30" height="30" alt="emoji">
+                    <label class="film-details__emoji-label" for="emoji-sleeping">
+                      <img src="./images/emoji/sleeping.png" width="30" height="30" alt="emoji">
                   </label>
 
-                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-gpuke" value="puke">
-                  <label class="film-details__emoji-label" for="emoji-gpuke">
-                    <img src="./images/emoji/puke.png" width="30" height="30" alt="emoji">
+                      <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-gpuke" value="puke">
+                        <label class="film-details__emoji-label" for="emoji-gpuke">
+                          <img src="./images/emoji/puke.png" width="30" height="30" alt="emoji">
                   </label>
 
-                  <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-angry" value="angry">
-                  <label class="film-details__emoji-label" for="emoji-angry">
-                    <img src="./images/emoji/angry.png" width="30" height="30" alt="emoji">
+                          <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-angry" value="angry">
+                            <label class="film-details__emoji-label" for="emoji-angry">
+                              <img src="./images/emoji/angry.png" width="30" height="30" alt="emoji">
                   </label>
                 </div>
               </div>
@@ -162,7 +162,7 @@ export default class FilmPopup extends Smart {
     this._escKeyDownHandler = this._escKeyDownHandler.bind(this);
     this._callback = {};
     this._watchlistClickHandler = this._watchlistClickHandler.bind(this);
-    this._watchlistClickHandler = this._watchedClickHandler.bind(this);
+    this._watchedClickHandler = this._watchedClickHandler.bind(this);
 
     this._favoriteClickHandler = this._favoriteClickHandler.bind(this);
     this._emojiChangeHandler = this._emojiChangeHandler.bind(this);
@@ -173,7 +173,7 @@ export default class FilmPopup extends Smart {
     return createFilmPopupTemplate(this._data);
   }
 
-  _clickHandler(evt) { // close
+  _clickHandler(evt) {
     // 3. А внутри абстрактного обработчика вызовем колбэк
     this._callback.click(evt);
 

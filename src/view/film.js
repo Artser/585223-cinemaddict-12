@@ -1,4 +1,5 @@
 import Abstract from "./abstract.js";
+import {timeMinutesToHour} from "../utils/common.js"
 
 const createFilmTemplate = (film) => {
   return (
@@ -7,7 +8,7 @@ const createFilmTemplate = (film) => {
           <p class="film-card__rating">${film.rating}</p>
           <p class="film-card__info">
             <span class="film-card__year">${film.year}</span>
-            <span class="film-card__duration">${film.duration}</span>
+            <span class="film-card__duration">${timeMinutesToHour(film.duration)}</span>
             <span class="film-card__genre">${film.genre}</span>
           </p>
           <img src=${film.poster} alt="" class="film-card__poster">
