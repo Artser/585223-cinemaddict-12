@@ -1,4 +1,4 @@
-import { getRandomInteger } from "../utils/common.js";
+import {getRandomInteger} from "../utils/common.js";
 
 const text = [
   `Lorem ipsum dolor sit amet, consectetur adipiscing elit.`,

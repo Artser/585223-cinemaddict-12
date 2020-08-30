@@ -1,5 +1,5 @@
 import Abstract from "./abstract.js";
-import {timeMinutesToHour} from "../utils/common.js"
+import {timeMinutesToHour} from "../utils/common.js";
 
 const createFilmTemplate = (film) => {
   return (

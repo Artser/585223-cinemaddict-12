@@ -101,7 +101,7 @@ export default class Film {
     }
     this._mode = Mode.POPUP;
     this._handlePopupChange();
-    this._filmPopupComponent.setClickHandler(this._handlerCloseClick);
+    this._filmPopupComponent.setCloseHandler(this._handlerCloseClick);
     this._filmPopupComponent.restoreHandlers();
     render(footerElement, this._filmPopupComponent, RenderPosition.BEFOREEND);
   }

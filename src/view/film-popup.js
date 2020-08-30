@@ -179,11 +179,7 @@ export default class FilmPopup extends Smart {
 
   }
 
-  setClickHandler(callback) {
-    // Мы могли бы сразу передать callback в addEventListener,
-    // но тогда бы для удаления обработчика в будущем,
-    // нам нужно было бы производить это снаружи, где-то там,
-    // где мы вызывали setClickHandler, что не всегда удобно
+  setCloseHandler(callback) {
 
     // 1. Поэтому колбэк мы запишем во внутреннее свойство
     this._callback.click = callback;
@@ -255,7 +251,7 @@ export default class FilmPopup extends Smart {
 
   restoreHandlers() {
     this._setInnerHandlers();
-    this.setClickHandler(this._callback.click);
+    this.setCloseHandler(this._callback.click);
     this.setWatchedClickHandler(this._callback.watchedClick);
     this.setWatchlistClickHandler(this._callback.watchlistClick);
     this.setFavoriteClickHandler(this._callback.favoriteClick);
