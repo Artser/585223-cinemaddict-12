@@ -1,6 +1,7 @@
 import {RenderPosition, remove, render, footerElement, replace} from "../utils/render.js";
 import FilmPopupView from "../view/film-popup.js";
 import FilmView from "../view/film.js";
+import {UserAction, UpdateType} from "../const.js";
 
 const Mode = {
   DEFAULT: `DEFAULT`,
@@ -15,6 +16,7 @@ export default class Film {
     this._filmComponent = null;
     this._filmEditComponent = null;
     this._mode = Mode.DEFAULT;
+
     this._clickWatchlist = this._clickWatchlist.bind(this);
     this._clickWatched = this._clickWatched.bind(this);
     this._clickFavorite = this._clickFavorite.bind(this);
@@ -56,6 +58,8 @@ export default class Film {
   _clickWatchlist() {
     // console.log(this._film);
     this._changeData(
+        UserAction.UPDATE_FILM,
+        UpdateType.MINOR,
         Object.assign(
             {},
             this._film,
@@ -68,6 +72,8 @@ export default class Film {
 
   _clickWatched() {
     this._changeData(
+        UserAction.UPDATE_FILM,
+        UpdateType.MINOR,
         Object.assign(
             {},
             this._film,
@@ -80,6 +86,8 @@ export default class Film {
 
   _clickFavorite() {
     this._changeData(
+        UserAction.UPDATE_FILM,
+        UpdateType.MINOR,
         Object.assign(
             {},
             this._film,

@@ -1,16 +1,32 @@
 import Observer from "../utils/observer.js";
 
-export default class Tasks extends Observer {
+export default class Movies extends Observer {
   constructor() {
     super();
-    this._tasks = [];
+    this._films = [];
   }
 
-  setTasks(tasks) {
-    this._tasks = tasks.slice();
+  setFilms(films) {
+    this._films = films.slice();
   }
 
-  getTasks() {
-    return this._tasks;
+  getFilms() {
+    return this._films;
+  }
+
+  updateFilm(updateType, film) {
+    const index = this._films.findIndex((item) => item.id === film.id);
+    if (index === -1) {
+      throw new Error(`Unable to update a nonexistent movie`);
+    }
+
+    this._films = [
+      ...this._films.slice(0, index),
+      film,
+      ...this._films.slice(index + 1)
+    ];
+
+    this._notify(updateType, film);
   }
 }
+

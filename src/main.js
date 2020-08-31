@@ -1,5 +1,6 @@
 import Profile from "./view/profile.js";
 import Navigation from "./view/navigation.js";
+import MoviesModel from "./model/movies.js";
 import MovieListPresenter from "./presenter/movie-list.js";
 import {RenderPosition, renderElement, siteHeaderElement, siteMainElement} from "./utils/render.js";
 import {generateFilms} from "./mock/film.js";
@@ -25,8 +26,11 @@ films.forEach((film) => {
 renderElement(siteHeaderElement, new Profile(films).getElement(), RenderPosition.BEFOREEND);
 renderElement(siteMainElement, new Navigation(navigationChecked).getElement(), RenderPosition.AFTERBEGIN);
 
-const MovieList = new MovieListPresenter(siteMainElement);
+const filmsModel = new MoviesModel();
+filmsModel.setFilms(films);
 
+const movieList = new MovieListPresenter(siteMainElement, filmsModel);
 
-MovieList.init(films);
+movieList.init();
+
 
