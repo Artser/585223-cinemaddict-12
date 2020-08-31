@@ -190,7 +190,11 @@ export default class FilmPopup extends Smart {
 
   _setInnerHandlers() {
     this.getElement().querySelector(`.film-details__emoji-list`).addEventListener(`change`, this._emojiChangeHandler);
+    // this.setCloseHandler(this._callback.click);
 
+  /*   this.setWatchedClickHandler(this._callback.watchedClick);
+    this.setWatchlistClickHandler(this._callback.watchlistClick);
+    this.setFavoriteClickHandler(this._callback.favoriteClick); */
   }
 
   _emojiChangeHandler(evt) {
