@@ -1,6 +1,7 @@
 // Попап (расширенная информация о фильме)
 import Smart from "./smart.js";
 import {timeMinutesToHour, yearFormat, yearFormatComments} from "../utils/common.js";
+// import he from 'he';
 
 const createPopupComments = (film) => {
 

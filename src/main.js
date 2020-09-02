@@ -1,9 +1,11 @@
 import Profile from "./view/profile.js";
-import Navigation from "./view/navigation.js";
+// import Navigation from "./view/navigation.js";
 import MoviesModel from "./model/movies.js";
 import MovieListPresenter from "./presenter/movie-list.js";
 import {RenderPosition, renderElement, siteHeaderElement, siteMainElement} from "./utils/render.js";
 import {generateFilms} from "./mock/film.js";
+import FilterPresenter from "./presenter/filtr.js";
+import FilterModel from "./model/filtr.js";
 
 
 let films = generateFilms();
@@ -24,13 +26,16 @@ films.forEach((film) => {
   }
 });
 renderElement(siteHeaderElement, new Profile(films).getElement(), RenderPosition.BEFOREEND);
-renderElement(siteMainElement, new Navigation(navigationChecked).getElement(), RenderPosition.AFTERBEGIN);
 
 const filmsModel = new MoviesModel();
 filmsModel.setFilms(films);
 
-const movieList = new MovieListPresenter(siteMainElement, filmsModel);
+const filterModel = new FilterModel();
 
+const filterPresenter = new FilterPresenter(siteMainElement, navigationChecked, filterModel);
+filterPresenter.init();
+
+const movieList = new MovieListPresenter(siteMainElement, filmsModel);
 movieList.init();
 
 

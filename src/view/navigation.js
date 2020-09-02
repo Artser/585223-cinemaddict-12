@@ -19,11 +19,24 @@ const createNavigationTemplate = (navigationChecked) => {
 export default class Navigation extends AbstractView {
   constructor(navigationChecked) {
     super();
+    this._callback = {};
     this._navigationChecked = navigationChecked;
+    this._clickFilterHandler = this._clickFilterHandler.bind(this);
   }
 
   getTemplate() {
     return createNavigationTemplate(this._navigationChecked);
+  }
+
+  _clickFilterHandler(evt) {
+    evt.preventDefault();
+    this._callback.clickFilter();
+
+  }
+
+  setClickHandlerFilter(callback) {
+    this._callback.clickFilter = callback;
+    this.getElement().querySelector(`.main-navigation__items`).addEventListener(`click`, this._clickFilterHandler);
   }
 }
 
