@@ -17,7 +17,7 @@ const createPopupComments = (film) => {
                     <p class="film-details__comment-info">
                       <span class="film-details__comment-author">${comments.author}</span>
                       <span class="film-details__comment-day">${yearFormatComments(comments.date)}</span>
-                      <button class="film-details__comment-delete">Delete</button>
+                      <button class="film-details__comment-delete" data-id="${comments.id}">Delete</button>
                     </p>
                   </div>
                 </li>`;
@@ -69,7 +69,7 @@ export const createFilmPopupTemplate = (film) => {
                   </tr>
                   <tr class="film-details__row">
                     <td class="film-details__term">Год</td>
-                    <td class="film-details__cell">${yearFormat(film.release.day, film.release.month, film.year) }</td>
+                    <td class="film-details__cell">${yearFormat(film.release.day, film.release.month, film.year)}</td>
                   </tr>
                   <tr class="film-details__row">
                     <td class="film-details__term">Продолжительность</td>
@@ -158,12 +158,14 @@ export default class FilmPopup extends Smart {
   constructor(film) {
     super();
     this._data = film;
+
+    this._clickHandlerDelete = this._clickHandlerDelete.bind(this);
     this._clickHandler = this._clickHandler.bind(this);
     this._escCallback = {};
     this._escKeyDownHandler = this._escKeyDownHandler.bind(this);
     this._callback = {};
-    this._watchlistClickHandler = this._watchlistClickHandler.bind(this);
     this._watchedClickHandler = this._watchedClickHandler.bind(this);
+    this._watchlistClickHandler = this._watchlistClickHandler.bind(this);
 
     this._favoriteClickHandler = this._favoriteClickHandler.bind(this);
     this._emojiChangeHandler = this._emojiChangeHandler.bind(this);
@@ -180,6 +182,24 @@ export default class FilmPopup extends Smart {
 
   }
 
+  _clickHandlerDelete(evt) {
+    if (!evt.target.classList.contains(`film-details__comment-delete`)) {
+      return;
+    }
+    evt.preventDefault();
+    const commentIndex = this._data.comments.findIndex((item) => item.id === parseInt(evt.target.dataset.id, 10));
+    const comments = [
+      ...this._data.comments.slice(0, commentIndex),
+      ...this._data.comments.slice(commentIndex + 1),
+
+    ];
+    this.updateData({
+      comments
+    });
+
+  }
+
+
   setCloseHandler(callback) {
 
     // 1. Поэтому колбэк мы запишем во внутреннее свойство
@@ -191,11 +211,14 @@ export default class FilmPopup extends Smart {
 
   _setInnerHandlers() {
     this.getElement().querySelector(`.film-details__emoji-list`).addEventListener(`change`, this._emojiChangeHandler);
+    this.getElement().querySelector(`.film-details__comments-list`).addEventListener(`click`, this._clickHandlerDelete);
+    this.getElement().querySelector(`#watchlist`).addEventListener(`change`, this._watchlistClickHandler);
+
     // this.setCloseHandler(this._callback.click);
 
-  /*   this.setWatchedClickHandler(this._callback.watchedClick);
-    this.setWatchlistClickHandler(this._callback.watchlistClick);
-    this.setFavoriteClickHandler(this._callback.favoriteClick); */
+    /*   this.setWatchedClickHandler(this._callback.watchedClick);
+      this.setWatchlistClickHandler(this._callback.watchlistClick);
+      this.setFavoriteClickHandler(this._callback.favoriteClick); */
   }
 
   _emojiChangeHandler(evt) {
@@ -223,17 +246,10 @@ export default class FilmPopup extends Smart {
     document.addEventListener(`keydown`, this._escKeyDownHandler);
   }
 
-  _watchlistClickHandler(evt) {
-
-    this._callback.watchlistClick(evt);
-  }
-
-  setWatchlistClickHandler(callback) {
-    // console.log(this.getElement().querySelector(`#watchlist`));
-
-    this._callback.watchlistClick = callback;
-    this.getElement().querySelector(`#watchlist`).addEventListener(`change`, this._watchlistClickHandler);
-
+  _watchlistClickHandler() {
+    this.updateData({
+      watchlist: !this._data.watchlist
+    });
   }
 
   _watchedClickHandler(evt) {
@@ -258,7 +274,6 @@ export default class FilmPopup extends Smart {
     this._setInnerHandlers();
     this.setCloseHandler(this._callback.click);
     this.setWatchedClickHandler(this._callback.watchedClick);
-    this.setWatchlistClickHandler(this._callback.watchlistClick);
     this.setFavoriteClickHandler(this._callback.favoriteClick);
   }
 

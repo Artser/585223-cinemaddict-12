@@ -32,7 +32,7 @@ filmsModel.setFilms(films);
 
 const filterModel = new FilterModel();
 
-const filterPresenter = new FilterPresenter(siteMainElement, navigationChecked, filterModel);
+const filterPresenter = new FilterPresenter(siteMainElement, filterModel, filmsModel);
 filterPresenter.init();
 
 const movieList = new MovieListPresenter(siteMainElement, filmsModel);

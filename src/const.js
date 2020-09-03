@@ -6,6 +6,7 @@ export const SortType = {
 
 export const UserAction = {
   UPDATE_FILM: `UPDATE_FILM`,
+  DELETE_COMMENT: `DELETE_COMMENT`,
 };
 
 export const UpdateType = {
@@ -20,3 +21,4 @@ export const FilterType = {
   FAVORITES: `Favorites`,
   HISTORY: `History`,
 };
+

@@ -21,6 +21,7 @@ export default class MovieList {
     this._filmComponent = new Film();
     this._noMovies = new NoMovies();
     this._ShowMoreButton = null;
+    this._currentSortType = SortType.DEFAULT;
     this._containerFilms = containerFilms;
     this._filmPresenter = {};
     this._handleModelEvent = this._handleModelEvent.bind(this);
@@ -69,8 +70,7 @@ export default class MovieList {
     if (this._currentSortType === sortType) {
       return;
     }
-
-    this._sortFilms(sortType);
+    this._currentSortType = sortType;
     this._clearFilmList();
     this._renderFilmList();
   }
@@ -82,8 +82,6 @@ export default class MovieList {
   }
 
   _handleFilmChange(updatedFilm) {
-    // console.log(updatedFilm);
-
     this._films = updateItem(this._films, updatedFilm);
     this._sourceFilms = updateItem(this._sourceFilms, updatedFilm);
     this._filmPresenter[updatedFilm.id].init(updatedFilm);
@@ -121,7 +119,7 @@ export default class MovieList {
     if (this._sortComponent !== null) {
       this._sortComponent = null;
     }
-    this._sortComponent = new Sorting();
+    this._sortComponent = new Sorting(this._currentSortType);
     renderElement(this._containerFilms, this._sortComponent.getElement(), RenderPosition.BEFOREEND);
     this._sortComponent.setSortTypeChangeHandler(this._handleSortTypeChange);
   }

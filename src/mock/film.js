@@ -157,8 +157,9 @@ const generateText = () => {
   return text[getRandomInteger(0, text.length - 1)];
 };
 
-const generateComment = () => {
+const generateComment = (id) => {
   return {
+    id: id[id],
     text: generateText(),
     emotion: generateEmotion(),
     author: generateAuthor(),
@@ -196,7 +197,7 @@ const generateComments = () => {
   const result = [];
   const count = getRandomInteger(0, 100);
   for (let i = 0; i < count; ++i) {
-    result.push(generateComment());
+    result.push(generateComment(i + 1));
   }
   return result;
 };
