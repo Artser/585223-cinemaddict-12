@@ -4,8 +4,8 @@ import MoviesModel from "./model/movies.js";
 import MovieListPresenter from "./presenter/movie-list.js";
 import {RenderPosition, renderElement, siteHeaderElement, siteMainElement} from "./utils/render.js";
 import {generateFilms} from "./mock/film.js";
-import FilterPresenter from "./presenter/filtr.js";
-import FilterModel from "./model/filtr.js";
+import FilterPresenter from "./presenter/filter.js";
+import FilterModel from "./model/filter.js";
 
 
 let films = generateFilms();

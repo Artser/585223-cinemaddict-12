@@ -38,9 +38,6 @@ export default class Film {
     this._filmComponent.setClickHandlerWatched(this._clickWatched);
     this._filmComponent.setClickHandlerFavorite(this._clickFavorite);
 
-    this._filmPopupComponent.setWatchedClickHandler(this._clickWatched);
-    this._filmPopupComponent.setFavoriteClickHandler(this._clickFavorite);
-
     this._filmPopupComponent.setEscKeyDownHandler(this._handlerCloseKeyDown);
     if (prevFilmComponent === null || prevFilmPopupComponent === null) {
       render(this._filmListContainer, this._filmComponent, RenderPosition.BEFOREEND);

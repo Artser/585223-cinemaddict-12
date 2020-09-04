@@ -213,12 +213,11 @@ export default class FilmPopup extends Smart {
     this.getElement().querySelector(`.film-details__emoji-list`).addEventListener(`change`, this._emojiChangeHandler);
     this.getElement().querySelector(`.film-details__comments-list`).addEventListener(`click`, this._clickHandlerDelete);
     this.getElement().querySelector(`#watchlist`).addEventListener(`change`, this._watchlistClickHandler);
+    this.getElement().querySelector(`#watched`).addEventListener(`click`, this._watchedClickHandler);
+    this.getElement().querySelector(`#favorite`).addEventListener(`click`, this._favoriteClickHandler);
 
     // this.setCloseHandler(this._callback.click);
 
-    /*   this.setWatchedClickHandler(this._callback.watchedClick);
-      this.setWatchlistClickHandler(this._callback.watchlistClick);
-      this.setFavoriteClickHandler(this._callback.favoriteClick); */
   }
 
   _emojiChangeHandler(evt) {
@@ -252,29 +251,22 @@ export default class FilmPopup extends Smart {
     });
   }
 
-  _watchedClickHandler(evt) {
-    this._callback.watchedClick(evt);
+  _watchedClickHandler() {
+    this.updateData({
+      watched: !this._data.watched
+    });
   }
 
-  setWatchedClickHandler(callback) {
-    this._callback.watchedClick = callback;
-    this.getElement().querySelector(`#watched`).addEventListener(`click`, this._watchedClickHandler);
 
-  }
-  _favoriteClickHandler(evt) {
-    this._callback.favoriteClick(evt);
-  }
-
-  setFavoriteClickHandler(callback) {
-    this._callback.favoriteClick = callback;
-    this.getElement().querySelector(`#favorite`).addEventListener(`click`, this._favoriteClickHandler);
+  _favoriteClickHandler() {
+    this.updateData({
+      favorites: !this._data.favorites
+    });
   }
 
   restoreHandlers() {
     this._setInnerHandlers();
     this.setCloseHandler(this._callback.click);
-    this.setWatchedClickHandler(this._callback.watchedClick);
-    this.setFavoriteClickHandler(this._callback.favoriteClick);
   }
 
 }
