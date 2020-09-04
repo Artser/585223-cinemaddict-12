@@ -159,7 +159,7 @@ const generateText = () => {
 
 const generateComment = (id) => {
   return {
-    id: id[id],
+    id,
     text: generateText(),
     emotion: generateEmotion(),
     author: generateAuthor(),
