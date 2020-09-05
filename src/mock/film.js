@@ -104,7 +104,7 @@ const generateGenre = () => {
   return genre[getRandomInteger(0, genre.length - 1)];
 };
 
-const genre = [`драма`, `комедия`, `боевик`, `мелодрама`, `триллер`];
+const genre = [`Sci-Fi`, `Animation`, `Fantasy`, `Comedy`, `TV Series`];
 const generateDescription = () => {
   const numberSentence = getRandomInteger(1, 5); // получаем количество  предложений
   const result = [];

@@ -1,4 +1,7 @@
 import AbstractView from "./abstract.js";
+import Chart from "chart.js";
+import ChartDataLabels from "chartjs-plugin-datalabels";
+
 
 const createStatisticTemplate = () => {
   return `<section class="statistic">
@@ -50,12 +53,97 @@ const createStatisticTemplate = () => {
 };
 
 export default class Statistic extends AbstractView {
-  constructor() {
+  constructor(films) {
     super();
     this._callback = {};
+    this._films = films;
+    this.renderStatistic();
   }
 
   getTemplate() {
     return createStatisticTemplate();
   }
+
+  renderStatistic() {
+    artStatistic(this._films);
+  }
 }
+const generateStatistic = (stCtx, genres, data) => {
+  const myChart = new Chart(stCtx, {
+    plugins: [ChartDataLabels],
+    type: `horizontalBar`,
+    data: {
+      labels: genres,
+      datasets: [{
+        data,
+        backgroundColor: `#ffe800`,
+        hoverBackgroundColor: `#ffe800`,
+        anchor: `start`
+      }]
+    },
+    options: {
+      plugins: {
+        datalabels: {
+          font: {
+            size: 20
+          },
+          color: `#ffffff`,
+          anchor: `start`,
+          align: `start`,
+          offset: 40,
+        }
+      },
+      scales: {
+        yAxes: [{
+          ticks: {
+            fontColor: `#ffffff`,
+            padding: 100,
+            fontSize: 20
+          },
+          gridLines: {
+            display: false,
+            drawBorder: false
+          },
+          barThickness: 24
+        }],
+        xAxes: [{
+          ticks: {
+            display: false,
+            beginAtZero: true
+          },
+          gridLines: {
+            display: false,
+            drawBorder: false
+          },
+        }],
+      },
+      legend: {
+        display: false
+      },
+      tooltips: {
+        enabled: false
+      }
+    }
+  });
+  return myChart;
+};
+
+const artStatistic = (films) => {
+  const BAR_HEIGHT = 50;
+  const statisticCtx = document.querySelector(`.statistic__chart`);
+  if (statisticCtx === null) {
+    return;
+  }
+  const genres = Array.from(new Set(films.filter((film) => film.watched).map((film) => film.genre)));
+  const data = [];
+  films.filter((film) => film.watched).forEach((film) => {
+    const index = genres.findIndex((item) => item === film.genre);
+    data[index] = (data[index] || 0) + 1;
+
+  });
+
+  // Обязательно рассчитайте высоту canvas, она зависит от количества элементов диаграммы
+  statisticCtx.height = BAR_HEIGHT * genres.length;
+  generateStatistic(statisticCtx, genres, data);
+
+};

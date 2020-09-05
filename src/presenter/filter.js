@@ -20,6 +20,7 @@ export default class Filter {
     this._currentFilter = this._filterModel.getFilter();
     const filters = this._getFilters();
     const prevFilterComponent = this._filterComponent;
+
     this._filterComponent = new Navigation(filters, this._currentFilter);
     this._filterComponent.setFilterTypeChangeHandler(this._handleFilterTypeChange);
     if (prevFilterComponent === null) {
@@ -28,7 +29,6 @@ export default class Filter {
     }
     replace(this._filterComponent, prevFilterComponent);
     remove(prevFilterComponent);
-
 
   }
 

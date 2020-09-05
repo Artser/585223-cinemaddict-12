@@ -1,7 +1,9 @@
 // Попап (расширенная информация о фильме)
 import Smart from "./smart.js";
 import {timeMinutesToHour, yearFormat, yearFormatComments} from "../utils/common.js";
-// import he from 'he';
+import he from 'he';
+import moment from 'moment';
+
 
 const createPopupComments = (film) => {
 
@@ -166,7 +168,7 @@ export default class FilmPopup extends Smart {
     this._callback = {};
     this._watchedClickHandler = this._watchedClickHandler.bind(this);
     this._watchlistClickHandler = this._watchlistClickHandler.bind(this);
-
+    this._pressHandlerAdd = this._pressHandlerAdd.bind(this);
     this._favoriteClickHandler = this._favoriteClickHandler.bind(this);
     this._emojiChangeHandler = this._emojiChangeHandler.bind(this);
     this._setInnerHandlers();
@@ -199,6 +201,29 @@ export default class FilmPopup extends Smart {
 
   }
 
+  _pressHandlerAdd(evt) {
+    if (evt.ctrlKey && parseInt(evt.keyCode, 10) === 13) {
+      evt.preventDefault();
+      const idComment = this._data.comments[this._data.comments.length - 1].id + 1;
+      const newComment = {
+        id: idComment,
+        text: he.encode(evt.target.value),
+        emotion: `/images/emoji/${this._data.emotion}.png`,
+        author: `User`,
+        date: moment().format(`YYYY/MM/DD hh:mm`),
+
+      };
+      const comments = [
+        ...this._data.comments.slice(), newComment,
+
+      ];
+      this.updateData({
+        comments,
+        emotion: null,
+      });
+    }
+
+  }
 
   setCloseHandler(callback) {
 
@@ -215,6 +240,7 @@ export default class FilmPopup extends Smart {
     this.getElement().querySelector(`#watchlist`).addEventListener(`change`, this._watchlistClickHandler);
     this.getElement().querySelector(`#watched`).addEventListener(`click`, this._watchedClickHandler);
     this.getElement().querySelector(`#favorite`).addEventListener(`click`, this._favoriteClickHandler);
+    this.getElement().querySelector(`.film-details__comment-input`).addEventListener(`keydown`, this._pressHandlerAdd);
 
     // this.setCloseHandler(this._callback.click);
 

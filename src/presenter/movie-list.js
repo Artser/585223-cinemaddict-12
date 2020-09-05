@@ -1,9 +1,10 @@
 import Films from "../view/films.js";
 import FilmPresenter from "./film.js";
+import {filter} from "../utils/filter.js";
 
 import Sorting from "../view/sort.js";
 import {SortType, UpdateType, UserAction} from "../const.js";
-import Film from "../view/film.js";
+// import Film from "../view/film.js";
 import {sortFilmDate, sortFilmRating} from "../utils/film.js";
 import {updateItem} from "../utils/common.js";
 import NoMovies from "../view/nomovies.js";
@@ -13,17 +14,18 @@ import {RenderPosition, renderElement, remove} from "../utils/render.js";
 const MOVIE_COUNT_PER_STEP = 5;
 
 export default class MovieList {
-  constructor(containerFilms, filmsModel) {
+  constructor(containerFilms, filmsModel, filterModel) {
+    this._filterModel = filterModel;
     this._filmsModel = filmsModel;
     this._renderedMovieCount = MOVIE_COUNT_PER_STEP;
     this._filmsComponent = new Films();
     this._sortComponent = null;
-    this._filmComponent = new Film();
     this._noMovies = new NoMovies();
     this._ShowMoreButton = null;
     this._currentSortType = SortType.DEFAULT;
     this._containerFilms = containerFilms;
     this._filmPresenter = {};
+
     this._handleModelEvent = this._handleModelEvent.bind(this);
     this._handleViewAction = this._handleViewAction.bind(this);
     this._handleFilmChange = this._handleFilmChange.bind(this);
@@ -36,8 +38,11 @@ export default class MovieList {
   init() {
     this._filmsModel.addObserver(this._handleModelEvent);
     // this._renderFilmsElements();
+    this._filterModel.addObserver(this._handleModelEvent);
     this._renderFilmList();
+
   }
+
 
   _handleFilmChange(updatedFilm) {
     this._films = updateItem(this._films, updatedFilm);
@@ -175,14 +180,18 @@ export default class MovieList {
   }
 
   _getFilms() {
+    const filterType = this._filterModel.getFilter();
+    const films = this._filmsModel.getFilms();
+    const filteredFilms = filter[filterType](films);
+
     switch (this._currentSortType) {
       case SortType.DATE_UP:
-        return this._filmsModel.getFilms().slice().sort(sortFilmDate);
+        return filteredFilms.sort(sortFilmDate);
       case SortType.RATING:
-        return this._filmsModel.getFilms().slice().sort(sortFilmRating);
+        return filteredFilms.sort(sortFilmRating);
     }
 
-    return this._filmsModel.getFilms();
+    return filteredFilms;
   }
 
   _renderFilmList() {
@@ -203,9 +212,11 @@ export default class MovieList {
   }
 
   destroy() {
-    remove(this._filmComponent);
     this._clearFilmList();
     this._filmsModel.removeObserver(this._handleModelEvent);
+    this._filterModel.removeObserver(this._handleModelEvent);
+
+    remove(this._filmsComponent);
   }
 
 }

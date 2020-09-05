@@ -9,7 +9,7 @@ export default class Filter extends Observer {
 
   setFilter(filter, updateType) {
     this._activeFilter = filter;
-    this._notify(filter, updateType);
+    this._notify(updateType, filter);
   }
 
   getFilter() {
