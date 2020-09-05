@@ -30,7 +30,11 @@ export const generateFilm = () => {
     director: generateDirector(),
     writers: generateWriters(),
     actors: generateActors(),
-    release: generateYear(),
+    release: {
+      month: getRandomInteger(1, 12),
+      day: getRandomInteger(1, 30)
+
+    },
     country: generateCountry(),
     emotion: null,
     author: generateAuthor(),
@@ -77,28 +81,30 @@ const year = [
   `2015`,
   `2017`,
 ];
+
+
 const generateDuration = () => {
   return duration[getRandomInteger(0, duration.length - 1)];
 };
 
 const duration = [
-  `60 минут`,
-  `90 минут`,
-  `120 минут`,
-  `75 минут`,
-  `110 минут`,
-  `85 минут`,
-  `65 минут`,
-  `105 минут`,
-  `95 минут`,
-  `70 минут`,
+  60,
+  90,
+  120,
+  75,
+  110,
+  85,
+  65,
+  105,
+  95,
+  70,
 ];
 
 const generateGenre = () => {
   return genre[getRandomInteger(0, genre.length - 1)];
 };
 
-const genre = [`драма`, `комедия`, `боевик`, `мелодрама`, `триллер`];
+const genre = [`Sci-Fi`, `Animation`, `Fantasy`, `Comedy`, `TV Series`];
 const generateDescription = () => {
   const numberSentence = getRandomInteger(1, 5); // получаем количество  предложений
   const result = [];
@@ -151,8 +157,9 @@ const generateText = () => {
   return text[getRandomInteger(0, text.length - 1)];
 };
 
-const generateComment = () => {
+const generateComment = (id) => {
   return {
+    id,
     text: generateText(),
     emotion: generateEmotion(),
     author: generateAuthor(),
@@ -180,14 +187,17 @@ const generateDate = () => {
   const yearComments = getRandomInteger(1960, 2020);
   const month = getRandomInteger(0, 11);
   const day = getRandomInteger(0, 30);
-  return new Date(yearComments, month, day).toString();
+  const min = getRandomInteger(1, 59);
+  const hour = getRandomInteger(1, 23);
+
+  return new Date(yearComments, month, day, hour, min).toString();
 };
 
 const generateComments = () => {
   const result = [];
   const count = getRandomInteger(0, 100);
   for (let i = 0; i < count; ++i) {
-    result.push(generateComment());
+    result.push(generateComment(i + 1));
   }
   return result;
 };

@@ -1,11 +1,22 @@
 import Profile from "./view/profile.js";
-import Navigation from "./view/navigation.js";
+// import Navigation from "./view/navigation.js";
+import MoviesModel from "./model/movies.js";
 import MovieListPresenter from "./presenter/movie-list.js";
-import {RenderPosition, renderElement, siteHeaderElement, siteMainElement} from "./utils/render.js";
-import {generateFilms} from "./mock/film.js";
+import {RenderPosition, renderElement, siteHeaderElement, siteMainElement, render, remove} from "./utils/render.js";
+//import {generateFilms} from "./mock/film.js";
+import FilterPresenter from "./presenter/filter.js";
+import FilterModel from "./model/filter.js";
+import Api from "./api.js";
+import Statistic from "./view/statistic.js";
+import {MenuItem, UpdateType} from "./const.js";
+
+const AUTHORIZATION = `Basic hS2sd3dfSwcl1sf3j`;
+const END_POINT = `https://12.ecmascript.pages.academy/cinemaddict`;
+const api = new Api(END_POINT, AUTHORIZATION);
+console.log(api);
 
 
-let films = generateFilms();
+//let films = generateFilms();
 let navigationChecked = {
   watchlist: 0,
   favorites: 0,
@@ -23,10 +34,55 @@ films.forEach((film) => {
   }
 });
 renderElement(siteHeaderElement, new Profile(films).getElement(), RenderPosition.BEFOREEND);
-renderElement(siteMainElement, new Navigation(navigationChecked).getElement(), RenderPosition.AFTERBEGIN);
 
-const MovieList = new MovieListPresenter(siteMainElement);
+const filmsModel = new MoviesModel();
+filmsModel.setFilms(films);
+
+const filterModel = new FilterModel();
+
+const filterPresenter = new FilterPresenter(siteMainElement, filterModel, filmsModel);
+filterPresenter.init();
+
+const movieList = new MovieListPresenter(siteMainElement, filmsModel, filterModel);
+movieList.init();
 
 
-MovieList.init(films);
+let statistic = null;
 
+const handleSetMenuClick = (evt) => {
+  evt.preventDefault();
+  const menuItem = evt.target.dataset.type;
+  switch (menuItem) {
+    case MenuItem.FILMS:
+      if (statistic !== null) {
+        movieList.init();
+        remove(statistic);
+        statistic = null;
+      }
+      break;
+    case MenuItem.STATISTICS:
+      statistic = new Statistic(filmsModel.getFilms());
+      movieList.destroy();
+
+      render(siteMainElement, statistic, RenderPosition.BEFOREEND);
+      statistic.renderStatistic();
+      break;
+  }
+
+
+};
+
+siteMainElement.addEventListener(`click`, handleSetMenuClick);
+
+api.getFilms().then((fil) => {
+  MoviesModel.setFilms(fil);
+});
+
+api.getFilms()
+  .then((fil) => {
+    MoviesModel.setFilms(UpdateType.INIT, fil);
+  })
+  .catch(() => {
+    MoviesModel.setFilms(UpdateType.INIT, []);
+
+  });
