@@ -1,4 +1,5 @@
 import Movies from "./model/movies.js";
+import {Comment} from "./model/comments.js";
 
 
 const Method = {
@@ -31,6 +32,12 @@ export default class Api {
       headers: new Headers({"Content-Type": `application/json`})
     })
       .then(Api.toJSON);
+  }
+
+  getComments(filmId) {
+    return this._load({url: `comments/${filmId}`})
+      .then((response) => response.json())
+      .then(Comment.parseComments);
   }
 
   _load({

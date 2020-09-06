@@ -12,7 +12,7 @@ const createPopupComments = (film) => {
   film.comments.forEach((comments) => {
     textComments += `<li class="film-details__comment">
                   <span class="film-details__comment-emoji">
-                    <img src=${comments.emotion} width="55" height="55" alt="emoji">
+                    <img src="/images/emoji/${comments.emotion}.png" width="55" height="55" alt="emoji">
                   </span>
                   <div>
                     <p class="film-details__comment-text">${comments.text}</p>
