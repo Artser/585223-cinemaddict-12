@@ -1,6 +1,7 @@
 import Films from "../view/films.js";
 import FilmPresenter from "./film.js";
 import {filter} from "../utils/filter.js";
+import LoadingView from "../view/loading.js";
 
 import Sorting from "../view/sort.js";
 import {SortType, UpdateType, UserAction} from "../const.js";
@@ -9,7 +10,7 @@ import {sortFilmDate, sortFilmRating} from "../utils/film.js";
 import {updateItem} from "../utils/common.js";
 import NoMovies from "../view/nomovies.js";
 import ShowMoreButton from "../view/show-more-button.js";
-import {RenderPosition, renderElement, remove} from "../utils/render.js";
+import {RenderPosition, renderElement, remove, render} from "../utils/render.js";
 
 const MOVIE_COUNT_PER_STEP = 5;
 
@@ -25,7 +26,9 @@ export default class MovieList {
     this._currentSortType = SortType.DEFAULT;
     this._containerFilms = containerFilms;
     this._filmPresenter = {};
+    this._isLoading = true;
 
+    this._loadingComponent = new LoadingView();
     this._handleModelEvent = this._handleModelEvent.bind(this);
     this._handleViewAction = this._handleViewAction.bind(this);
     this._handleFilmChange = this._handleFilmChange.bind(this);
@@ -117,6 +120,11 @@ export default class MovieList {
         this._clearFilmList();
         this._renderFilmList();
         break;
+      case UpdateType.INIT:
+        this._isLoading = false;
+        remove(this._loadingComponent);
+        this._renderFilmList();
+        break;
     }
   }
 
@@ -194,7 +202,16 @@ export default class MovieList {
     return filteredFilms;
   }
 
+  _renderLoading() {
+    render(this._containerFilms, this._loadingComponent, RenderPosition.AFTERBEGIN);
+  }
+
   _renderFilmList() {
+
+    if (this._isLoading) {
+      this._renderLoading();
+      return;
+    }
     this._renderSort();
     renderElement(this._containerFilms, this._filmsComponent.getElement(), RenderPosition.BEFOREEND);
     const films = this._getFilms();

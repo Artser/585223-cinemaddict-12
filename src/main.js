@@ -3,7 +3,6 @@ import Profile from "./view/profile.js";
 import MoviesModel from "./model/movies.js";
 import MovieListPresenter from "./presenter/movie-list.js";
 import {RenderPosition, renderElement, siteHeaderElement, siteMainElement, render, remove} from "./utils/render.js";
-//import {generateFilms} from "./mock/film.js";
 import FilterPresenter from "./presenter/filter.js";
 import FilterModel from "./model/filter.js";
 import Api from "./api.js";
@@ -13,16 +12,14 @@ import {MenuItem, UpdateType} from "./const.js";
 const AUTHORIZATION = `Basic hS2sd3dfSwcl1sf3j`;
 const END_POINT = `https://12.ecmascript.pages.academy/cinemaddict`;
 const api = new Api(END_POINT, AUTHORIZATION);
-console.log(api);
 
 
-//let films = generateFilms();
-let navigationChecked = {
+/* let navigationChecked = {
   watchlist: 0,
   favorites: 0,
   history: 0,
-};
-films.forEach((film) => {
+}; */
+/* films.forEach((film) => {
   if ((film.watchlist === true)) {
     navigationChecked.watchlist++;
   }
@@ -32,11 +29,10 @@ films.forEach((film) => {
   if ((film.watched === true)) {
     navigationChecked.history++;
   }
-});
-renderElement(siteHeaderElement, new Profile(films).getElement(), RenderPosition.BEFOREEND);
+}); */
+renderElement(siteHeaderElement, new Profile().getElement(), RenderPosition.BEFOREEND);
 
 const filmsModel = new MoviesModel();
-filmsModel.setFilms(films);
 
 const filterModel = new FilterModel();
 
@@ -74,15 +70,11 @@ const handleSetMenuClick = (evt) => {
 
 siteMainElement.addEventListener(`click`, handleSetMenuClick);
 
-api.getFilms().then((fil) => {
-  MoviesModel.setFilms(fil);
-});
-
 api.getFilms()
   .then((fil) => {
-    MoviesModel.setFilms(UpdateType.INIT, fil);
+    filmsModel.setFilms(UpdateType.INIT, fil);
   })
   .catch(() => {
-    MoviesModel.setFilms(UpdateType.INIT, []);
+    filmsModel.setFilms(UpdateType.INIT, []);
 
   });
