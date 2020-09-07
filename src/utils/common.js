@@ -1,8 +1,22 @@
-// Единственный нюанс, что HTML в строке должен иметь общую обёртку,
-// то есть быть чем-то вроде <nav><a>Link 1</a><a>Link 2</a></nav>,
-// а не просто <a>Link 1</a><a>Link 2</a>
+import moment from 'moment';
+
+
+export const timeMinutesToHour = (time) => {
+  const duration = moment.duration(time, `minutes`);
+  return moment.utc(duration.asMilliseconds()).format(`h[h] mm[m]`);
+};
+
+export const yearFormat = (day, month, year) => {
+  const dateRelease = moment(year + `-` + month + `-` + day).format(`DD MMMM YYYY`);
+  return dateRelease;
+};
+
+export const yearFormatComments = (day) => {
+  const dateComments = moment(day).format(`YYYY/MM/DD hh:mm`);
+  return dateComments;
+};
+
 // Функция из интернета по генерации случайного числа из диапазона
-// Источник - https://github.com/you-dont-need/You-Dont-Need-Lodash-Underscore#_random
 export const getRandomInteger = (a = 0, b = 1) => {
   const lower = Math.ceil(Math.min(a, b));
   const upper = Math.floor(Math.max(a, b));
