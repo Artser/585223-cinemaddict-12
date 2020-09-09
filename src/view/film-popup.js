@@ -5,29 +5,7 @@ import he from 'he';
 import moment from 'moment';
 
 
-const createPopupComments = (film) => {
 
-  let textComments = ``;
-
-  film.comments.forEach((comments) => {
-    textComments += `<li class="film-details__comment">
-                  <span class="film-details__comment-emoji">
-                    <img src="/images/emoji/${comments.emotion}.png" width="55" height="55" alt="emoji">
-                  </span>
-                  <div>
-                    <p class="film-details__comment-text">${comments.text}</p>
-                    <p class="film-details__comment-info">
-                      <span class="film-details__comment-author">${comments.author}</span>
-                      <span class="film-details__comment-day">${yearFormatComments(comments.date)}</span>
-                      <button class="film-details__comment-delete" data-id="${comments.id}">Delete</button>
-                    </p>
-                  </div>
-                </li>`;
-  });
-  return textComments;
-
-
-};
 
 export const createFilmPopupTemplate = (film) => {
   return (
@@ -111,10 +89,7 @@ export const createFilmPopupTemplate = (film) => {
         <section class="film-details__comments-wrap">
           <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${film.comments.length}</span></h3>
 
-          <ul class="film-details__comments-list">`
-    + createPopupComments(film) +
 
-    `</ul>
 
 
           <div class="film-details__new-comment">

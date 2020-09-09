@@ -1,10 +1,10 @@
 export const sortFilmDate = (filmB, filmA) => {
 
-  return filmA.year - filmB.year;
+  return filmA.release.date - filmB.release.date;
 };
 
-export const sortFilmRating = (taskA, filmB) => {
+export const sortFilmRating = (filmA, filmB) => {
 
 
-  return filmB.rating - taskA.rating;
+  return filmB.rating - filmA.rating;
 };
