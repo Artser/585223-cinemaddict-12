@@ -1,24 +1,24 @@
 import Abstract from "./abstract.js";
-import {timeMinutesToHour} from "../utils/common.js";
+import moment from 'moment';
 
 const createFilmTemplate = (film) => {
   return (
     `<article class="film-card">
-          <h3 class="film-card__title">${film.title}</h3>
-          <p class="film-card__rating">${film.rating}</p>
+          <h3 class="film-card__title">${film.film_info.title}</h3>
+          <p class="film-card__rating">${film.film_info.age_rating}</p>
           <p class="film-card__info">
-            <span class="film-card__year">${film.year}</span>
-            <span class="film-card__duration">${timeMinutesToHour(film.duration)}</span>
-            <span class="film-card__genre">${film.genre}</span>
+            <span class="film-card__year">${moment(film.film_info.release.date).format(`YYYY`)}</span>
+            <span class="film-card__duration">${moment(film.film_info.runtime).format(`h[h] mm[m]`)}</span>
+            <span class="film-card__genre">${film.film_info.genre.join(`, `)}</span>
           </p>
-          <img src=${film.poster} alt="" class="film-card__poster">
-          <p class="film-card__description">${film.description}</p>
+          <img src=${film.film_info.poster} alt="" class="film-card__poster">
+          <p class="film-card__description">${film.film_info.description}</p>
           <a class="film-card__comments">${film.comments.length} comments</a>
           <form class="film-card__controls">
           <form class="film-card__controls">
-            <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist ${film.watchlist ? `film-card__controls-item--active` : ``}"   id="film-watch">Add to watchlist</button>
-            <button class="film-card__controls-item button film-card__controls-item--mark-as-watched ${film.watched ? `film-card__controls-item--active` : ``}">Mark as watched</button>
-            <button class="film-card__controls-item button film-card__controls-item--favorite ${film.favorites ? `film-card__controls-item--active` : ``}">Mark as favorite</button>
+            <button class="film-card__controls-item button film-card__controls-item--add-to-watchlist ${film.userDetails.watchlist ? `film-card__controls-item--active` : ``}"   id="film-watch">Add to watchlist</button>
+            <button class="film-card__controls-item button film-card__controls-item--mark-as-watched ${film.userDetails.alreadyWatched ? `film-card__controls-item--active` : ``}">Mark as watched</button>
+            <button class="film-card__controls-item button film-card__controls-item--favorite ${film.userDetails.favorite ? `film-card__controls-item--active` : ``}">Mark as favorite</button>
           </form>
         </article>`
   );

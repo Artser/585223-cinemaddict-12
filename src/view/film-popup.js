@@ -1,6 +1,6 @@
 // Попап (расширенная информация о фильме)
 import Smart from "./smart.js";
-import {timeMinutesToHour, yearFormat, yearFormatComments} from "../utils/common.js";
+import {yearFormatComments} from "../utils/common.js";
 import he from 'he';
 import moment from 'moment';
 
@@ -39,7 +39,7 @@ export const createFilmPopupTemplate = (film) => {
             </div>
             <div class="film-details__info-wrap">
               <div class="film-details__poster">
-                <img class="film-details__poster-img" src=${film.poster} alt="">
+                <img class="film-details__poster-img" src=${film.film_info.poster} alt="">
 
                 <p class="film-details__age">18+</p>
               </div>
@@ -47,44 +47,44 @@ export const createFilmPopupTemplate = (film) => {
               <div class="film-details__info">
                 <div class="film-details__info-head">
                   <div class="film-details__title-wrap">
-                    <h3 class="film-details__title">${film.title}</h3>
-                    <p class="film-details__title-original">Название: ${film.title}</p>
+                    <h3 class="film-details__title">${film.film_info.title}</h3>
+                    <p class="film-details__title-original">Название: ${film.film_info.alternative_title}</p>
                   </div>
 
                   <div class="film-details__rating">
-                    <p class="film-details__total-rating">${film.rating}</p>
+                    <p class="film-details__total-rating">${film.film_info.age_rating}</p>
                   </div>
                 </div>
 
                 <table class="film-details__table">
                   <tr class="film-details__row">
                     <td class="film-details__term">Режиссер</td>
-                    <td class="film-details__cell">${film.director}</td>
+                    <td class="film-details__cell">${film.film_info.director}</td>
                   </tr>
                   <tr class="film-details__row">
                     <td class="film-details__term">Сценарист</td>
-                    <td class="film-details__cell">${film.writers}</td>
+                    <td class="film-details__cell">${film.film_info.writers.join(`, `)}</td>
                   </tr>
                   <tr class="film-details__row">
                     <td class="film-details__term">Актеры</td>
-                    <td class="film-details__cell">${film.actors}</td>
+                    <td class="film-details__cell">${film.film_info.actors.join(`, `)}</td>
                   </tr>
                   <tr class="film-details__row">
                     <td class="film-details__term">Год</td>
-                    <td class="film-details__cell">${yearFormat(film.release.day, film.release.month, film.year)}</td>
+                    <td class="film-details__cell">${moment(film.film_info.release.date).format(`DD MMMM YYYY`)}</td>
                   </tr>
                   <tr class="film-details__row">
                     <td class="film-details__term">Продолжительность</td>
-                     <td class="film-details__cell">${timeMinutesToHour(film.duration)}</td >
+                     <td class="film-details__cell">${moment(film.film_info.runtime).format(`h[h] mm[m]`)}</td >
                   </tr >
   <tr class="film-details__row">
     <td class="film-details__term">Страна</td>
-    <td class="film-details__cell">${film.country}</td>
+    <td class="film-details__cell">${film.film_info.release.release_country}</td>
   </tr>
   <tr class="film-details__row">
     <td class="film-details__term">Жанр</td>
     <td class="film-details__cell">
-      <span class="film-details__genre">${film.genre}</span>
+      <span class="film-details__genre">${film.film_info.genre.join(`, `)}</span>
     </td>
   </tr>
                 </table >
@@ -96,13 +96,13 @@ export const createFilmPopupTemplate = (film) => {
             </div >
 
   <section class="film-details__controls">
-    <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watchlist ? `checked` : ``} id="watchlist" name="watchlist">
+    <input type="checkbox" class="film-details__control-input visually-hidden" ${film.userDetails.watchlist ? `checked` : ``} id="watchlist" name="watchlist">
       <label for="watchlist" class="film-details__control-label film-details__control-label--watchlist">Add to watchlist</label>
 
-      <input type="checkbox" class="film-details__control-input visually-hidden" ${film.watched ? `checked` : ``} id="watched" name="watched">
+      <input type="checkbox" class="film-details__control-input visually-hidden" ${film.userDetails.alreadyWatched ? `checked` : ``} id="watched" name="watched">
         <label for="watched" class="film-details__control-label film-details__control-label--watched">Already watched</label>
 
-        <input type="checkbox" class="film-details__control-input visually-hidden" ${film.favorites ? `checked` : ``} id="favorite" name="favorite">
+        <input type="checkbox" class="film-details__control-input visually-hidden" ${film.userDetails.favorite ? `checked` : ``} id="favorite" name="favorite">
           <label for="favorite" class="film-details__control-label film-details__control-label--favorite">Add to favorites</label>
             </section>
           </div>
@@ -272,21 +272,46 @@ export default class FilmPopup extends Smart {
   }
 
   _watchlistClickHandler() {
+    const userDetails = Object.assign(
+        {},
+        this._data.userDetails,
+        {
+          watchlist: !this._data.userDetails.watchlist
+        }
+    );
     this.updateData({
-      watchlist: !this._data.watchlist
+      userDetails,
+
     });
+
   }
 
   _watchedClickHandler() {
+    const userDetails = Object.assign(
+        {},
+        this._data.userDetails,
+        {
+          alreadyWatched: !this._data.userDetails.alreadyWatched
+        }
+    );
     this.updateData({
-      watched: !this._data.watched
+      userDetails,
+
     });
   }
 
 
   _favoriteClickHandler() {
+    const userDetails = Object.assign(
+        {},
+        this._data.userDetails,
+        {
+          favorite: !this._data.userDetails.favorite
+        }
+    );
     this.updateData({
-      favorites: !this._data.favorites
+      userDetails,
+
     });
   }
 

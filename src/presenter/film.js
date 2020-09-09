@@ -60,7 +60,14 @@ export default class Film {
             {},
             this._film,
             {
-              watchlist: !this._film.watchlist
+              userDetails: Object.assign(
+                  {},
+                  this._film.userDetails,
+                  {
+                    watchlist: !this._film.userDetails.watchlist
+                  }
+
+              )
             }
         )
     );
@@ -74,7 +81,14 @@ export default class Film {
             {},
             this._film,
             {
-              watched: !this._film.watched
+              userDetails: Object.assign(
+                  {},
+                  this._film.userDetails,
+                  {
+                    alreadyWatched: !this._film.userDetails.alreadyWatched
+                  }
+
+              )
             }
         )
     );

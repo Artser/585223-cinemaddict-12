@@ -15,7 +15,7 @@ import {RenderPosition, renderElement, remove, render} from "../utils/render.js"
 const MOVIE_COUNT_PER_STEP = 5;
 
 export default class MovieList {
-  constructor(containerFilms, filmsModel, filterModel) {
+  constructor(containerFilms, filmsModel, filterModel, api) {
     this._filterModel = filterModel;
     this._filmsModel = filmsModel;
     this._renderedMovieCount = MOVIE_COUNT_PER_STEP;
@@ -27,7 +27,7 @@ export default class MovieList {
     this._containerFilms = containerFilms;
     this._filmPresenter = {};
     this._isLoading = true;
-
+    this._api = api;
     this._loadingComponent = new LoadingView();
     this._handleModelEvent = this._handleModelEvent.bind(this);
     this._handleViewAction = this._handleViewAction.bind(this);
@@ -98,7 +98,10 @@ export default class MovieList {
   _handleViewAction(actionType, updateType, update) {
     switch (actionType) {
       case UserAction.UPDATE_FILM:
-        this._filmsModel.updateFilm(updateType, update);
+        this._api.updateFilm(update).then((response) => {
+          this._filmsModel.updateFilm(updateType, response);
+
+        });
         break;
     }
     // Здесь будем вызывать обновление модели.
@@ -176,8 +179,6 @@ export default class MovieList {
   }
 
   _clearFilmList() {
-    // const FilmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
-    // FilmListElement.innerHTML = ``;
     Object
       .values(this._filmPresenter)
       .forEach((presenter) => presenter.destroy());

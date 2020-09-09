@@ -23,8 +23,8 @@ const filterModel = new FilterModel();
 let statistic = null;
 
 api.getFilms()
-  .then((fil) => {
-    fil.forEach((film) => {
+  .then((films) => {
+    films.forEach((film) => {
       api.getComments(film.id).then((comments) => {
         film.comments = comments;
       })
@@ -36,7 +36,7 @@ api.getFilms()
     const filterPresenter = new FilterPresenter(siteMainElement, filterModel, filmsModel);
     filterPresenter.init();
 
-    const movieList = new MovieListPresenter(siteMainElement, filmsModel, filterModel);
+    const movieList = new MovieListPresenter(siteMainElement, filmsModel, filterModel, api);
     movieList.init();
     const handleSetMenuClick = (evt) => {
       evt.preventDefault();
@@ -62,7 +62,7 @@ api.getFilms()
     };
     siteMainElement.addEventListener(`click`, handleSetMenuClick);
 
-    filmsModel.setFilms(UpdateType.INIT, fil);
+    filmsModel.setFilms(UpdateType.INIT, films);
   })
 
 
