@@ -54,17 +54,17 @@ export default class Movies extends Observer {
     return adaptedFilm;
   }
 
-  /* static adaptToServer(film) {
+  static adaptToServer(film) {
     const adaptedFilm = Object.assign(
         {},
         film,
         {
-          comments: film.comments.map((item)=>item.id),
-          user_details: Object.assign(
+          "comments": film.comments.map((item)=>item.id),
+          "user_details": Object.assign(
               {},
               film.userDetails,
               {
-                already_watched: film.userDetails.alreadyWatched
+                "already_watched": film.userDetails.alreadyWatched
               }
           )
         }
@@ -74,6 +74,6 @@ export default class Movies extends Observer {
 
 
     return adaptedFilm;
-  } */
+  }
 }
 

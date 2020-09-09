@@ -102,8 +102,16 @@ export default class Film {
             {},
             this._film,
             {
-              favorites: !this._film.favorites
+              userDetails: Object.assign(
+                  {},
+                  this._film.userDetails,
+                  {
+                    favorite: !this._film.userDetails.favorite
+                  }
+
+              )
             }
+
         )
     );
   }
