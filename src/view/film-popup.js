@@ -299,7 +299,7 @@ export default class FilmPopup extends Smart {
 
     });
   }
-
+  //
 
   _favoriteClickHandler() {
     const userDetails = Object.assign(
