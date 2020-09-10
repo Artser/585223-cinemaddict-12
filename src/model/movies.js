@@ -35,6 +35,14 @@ export default class Movies extends Observer {
         {},
         film,
         {
+          filmInfo: film.film_info,
+          description: film.film_info.description,
+          alternativeTitle: film.film_info.alternative_title,
+          totalRating: film.film_info.total_rating,
+          ageRating: film.age_rating,
+          releaseCountry: film.release_country,
+          alreadyWatched: film.already_watched,
+          watchingDate: film.watching_date,
           userDetails: Object.assign(
               {},
               film.user_details,
@@ -59,7 +67,15 @@ export default class Movies extends Observer {
         {},
         film,
         {
-          "comments": film.comments.map((item)=>item.id),
+        /* film_info: film.filmInfo,
+        alternative_title: film.alternativeTitle,
+        total_rating: film.totalRating,
+        age_rating: film.ageRating,
+        release_country: film.releaseCountry,
+        user_details: film.userDetails,
+        already_watched: film.alreadyWatched,
+        watching_date: film.watchingDate, */
+          "comments": film.comments.map((item) => item.id),
           "user_details": Object.assign(
               {},
               film.userDetails,

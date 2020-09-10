@@ -1,11 +1,7 @@
 // Попап (расширенная информация о фильме)
 import Smart from "./smart.js";
-import {yearFormatComments} from "../utils/common.js";
 import he from 'he';
 import moment from 'moment';
-
-
-
 
 export const createFilmPopupTemplate = (film) => {
   return (
@@ -25,44 +21,44 @@ export const createFilmPopupTemplate = (film) => {
               <div class="film-details__info">
                 <div class="film-details__info-head">
                   <div class="film-details__title-wrap">
-                    <h3 class="film-details__title">${film.film_info.title}</h3>
-                    <p class="film-details__title-original">Название: ${film.film_info.alternative_title}</p>
+                    <h3 class="film-details__title">${film.filmInfo.title}</h3>
+                    <p class="film-details__title-original">Название: ${film.alternativeTitle}</p>
                   </div>
 
                   <div class="film-details__rating">
-                    <p class="film-details__total-rating">${film.film_info.age_rating}</p>
+                    <p class="film-details__total-rating">${film.totalRating}</p>
                   </div>
                 </div>
 
                 <table class="film-details__table">
                   <tr class="film-details__row">
                     <td class="film-details__term">Режиссер</td>
-                    <td class="film-details__cell">${film.film_info.director}</td>
+                    <td class="film-details__cell">${film.filmInfo.director}</td>
                   </tr>
                   <tr class="film-details__row">
                     <td class="film-details__term">Сценарист</td>
-                    <td class="film-details__cell">${film.film_info.writers.join(`, `)}</td>
+                    <td class="film-details__cell">${film.filmInfo.writers.join(`, `)}</td>
                   </tr>
                   <tr class="film-details__row">
                     <td class="film-details__term">Актеры</td>
-                    <td class="film-details__cell">${film.film_info.actors.join(`, `)}</td>
+                    <td class="film-details__cell">${film.filmInfo.actors.join(`, `)}</td>
                   </tr>
                   <tr class="film-details__row">
                     <td class="film-details__term">Год</td>
-                    <td class="film-details__cell">${moment(film.film_info.release.date).format(`DD MMMM YYYY`)}</td>
+                    <td class="film-details__cell">${moment(film.filmInfo.release.date).format(`DD MMMM YYYY`)}</td>
                   </tr>
                   <tr class="film-details__row">
                     <td class="film-details__term">Продолжительность</td>
-                     <td class="film-details__cell">${moment(film.film_info.runtime).format(`h[h] mm[m]`)}</td >
+                     <td class="film-details__cell">${moment(film.filmInfo.runtime).format(`h[h] mm[m]`)}</td >
                   </tr >
   <tr class="film-details__row">
     <td class="film-details__term">Страна</td>
-    <td class="film-details__cell">${film.film_info.release.release_country}</td>
+    <td class="film-details__cell">${film.filmInfo.release.release_country}</td>
   </tr>
   <tr class="film-details__row">
     <td class="film-details__term">Жанр</td>
     <td class="film-details__cell">
-      <span class="film-details__genre">${film.film_info.genre.join(`, `)}</span>
+      <span class="film-details__genre">${film.filmInfo.genre.join(`, `)}</span>
     </td>
   </tr>
                 </table >
@@ -211,7 +207,7 @@ export default class FilmPopup extends Smart {
 
   _setInnerHandlers() {
     this.getElement().querySelector(`.film-details__emoji-list`).addEventListener(`change`, this._emojiChangeHandler);
-    this.getElement().querySelector(`.film-details__comments-list`).addEventListener(`click`, this._clickHandlerDelete);
+    // this.getElement().querySelector(`.film-details__comments-list`).addEventListener(`click`, this._clickHandlerDelete);
     this.getElement().querySelector(`#watchlist`).addEventListener(`change`, this._watchlistClickHandler);
     this.getElement().querySelector(`#watched`).addEventListener(`click`, this._watchedClickHandler);
     this.getElement().querySelector(`#favorite`).addEventListener(`click`, this._favoriteClickHandler);

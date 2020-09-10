@@ -1,4 +1,4 @@
-const { yearFormatComments } = require("../utils/common");
+const {yearFormatComments} = require(`../utils/common.js`);
 import AbstractView from "./abstract.js";
 
 

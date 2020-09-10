@@ -2,6 +2,7 @@ import {RenderPosition, remove, render, footerElement, replace} from "../utils/r
 import FilmPopupView from "../view/film-popup.js";
 import FilmView from "../view/film.js";
 import {UserAction, UpdateType} from "../const.js";
+import Comments from "../view/comments.js";
 
 const Mode = {
   DEFAULT: `DEFAULT`,
@@ -9,14 +10,14 @@ const Mode = {
 };
 
 export default class Film {
-  constructor(filmListContainer, changeData, handlePopupChange) {
+  constructor(filmListContainer, changeData, handlePopupChange, api) {
     this._filmListContainer = filmListContainer;
     this._changeData = changeData;
     this._handlePopupChange = handlePopupChange;
     this._filmComponent = null;
     this._filmEditComponent = null;
     this._mode = Mode.DEFAULT;
-
+    this._api = api;
     this._clickWatchlist = this._clickWatchlist.bind(this);
     this._clickWatched = this._clickWatched.bind(this);
     this._clickFavorite = this._clickFavorite.bind(this);
@@ -131,6 +132,18 @@ export default class Film {
     this._filmPopupComponent.restoreHandlers();
 
     render(footerElement, this._filmPopupComponent, RenderPosition.BEFOREEND);
+
+
+    this._api.getComments(this._film.id).then((comments) => {
+      this._film.comments = comments;
+      this._commentsComponent = new Comments(this._film.comments);
+      const newCommentElement = this._filmPopupComponent.getElement().querySelector(`.film-details__new-comment`);
+      render(newCommentElement, this._commentsComponent, RenderPosition.BEFOREBEGIN);
+    })
+      .catch(() => {
+        document.querySelector(`.films`).innerHTML(`couldn't upload comments`);
+      });
+
   }
 
   _handlerCloseClick() {

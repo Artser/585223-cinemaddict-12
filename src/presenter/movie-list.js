@@ -143,7 +143,7 @@ export default class MovieList {
   _renderFilm(film) {
 
     const filmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
-    const filmPresenter = new FilmPresenter(filmListElement, this._handleViewAction, this._handlePopupChange);
+    const filmPresenter = new FilmPresenter(filmListElement, this._handleViewAction, this._handlePopupChange, this._api);
     filmPresenter.init(film);
     this._filmPresenter[film.id] = filmPresenter;
   }

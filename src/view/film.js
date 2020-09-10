@@ -4,15 +4,15 @@ import moment from 'moment';
 const createFilmTemplate = (film) => {
   return (
     `<article class="film-card">
-          <h3 class="film-card__title">${film.film_info.title}</h3>
-          <p class="film-card__rating">${film.film_info.age_rating}</p>
+          <h3 class="film-card__title">${film.filmInfo.title}</h3>
+          <p class="film-card__rating">${film.totalRating}</p>
           <p class="film-card__info">
-            <span class="film-card__year">${moment(film.film_info.release.date).format(`YYYY`)}</span>
-            <span class="film-card__duration">${moment(film.film_info.runtime).format(`h[h] mm[m]`)}</span>
-            <span class="film-card__genre">${film.film_info.genre.join(`, `)}</span>
+            <span class="film-card__year">${moment(film.filmInfo.release.date).format(`YYYY`)}</span>
+            <span class="film-card__duration">${moment(film.filmInfo.runtime).format(`h[h] mm[m]`)}</span>
+            <span class="film-card__genre">${film.filmInfo.genre.join(`, `)}</span>
           </p>
-          <img src=${film.film_info.poster} alt="" class="film-card__poster">
-          <p class="film-card__description">${film.film_info.description}</p>
+          <img src=${film.filmInfo.poster} alt="" class="film-card__poster">
+          <p class="film-card__description">${film.description}</p>
           <a class="film-card__comments">${film.comments.length} comments</a>
           <form class="film-card__controls">
           <form class="film-card__controls">
