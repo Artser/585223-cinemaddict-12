@@ -15,7 +15,7 @@ export default class Film {
     this._changeData = changeData;
     this._handlePopupChange = handlePopupChange;
     this._filmComponent = null;
-    this._filmEditComponent = null;
+    this._filmPopupComponent = null;
     this._mode = Mode.DEFAULT;
     this._api = api;
     this._commentModel = new CommentsModel();
@@ -137,21 +137,22 @@ export default class Film {
       this._api.getComments(this._film.id).then((items) => {
         this._commentModel.setComments(items);
         this._renderComments();
+        this._filmPopupComponent.getElement().querySelector(`.film-details__comments-count`).textContent = items.length;
       });
     } else {
       this._renderComments();
-
     }
     this._renderPopup();
-
-
 
   }
 
   _renderPopup() {
     this._commentModel.addObserver(this._handleModelEvent);
     this._mode = Mode.POPUP;
-    this._handlePopupChange();
+
+    //TODO обнуляет комментарии.Зачем он здесь?
+    //this._handlePopupChange();
+
     this._filmPopupComponent.setCloseHandler(this._handlerCloseClick);
     this._filmPopupComponent.restoreHandlers();
 
