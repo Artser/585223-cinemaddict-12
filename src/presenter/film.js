@@ -36,7 +36,6 @@ export default class Film {
   init(film) {
 
     this._film = film;
-    console.log(this._film);
     const prevFilmComponent = this._filmComponent;
     const prevFilmPopupComponent = this._filmPopupComponent;
     this._filmComponent = new FilmView(film);
@@ -184,7 +183,10 @@ export default class Film {
   _handleModelEvent(updateType, data) {
     switch (updateType) {
       case UpdateType.MINOR:
-        this._commentModel.deleteComment(updateType, data);
+        this.destroy();
+        this.init(data);
+        this._openPopup();
+        //this._commentModel.deleteComment(updateType, data);
         /*  this._api.updateFilm(update).then((response) => {
           this._filmsModel.updateFilm(updateType, response);
 
@@ -192,6 +194,7 @@ export default class Film {
         break;
 
       case UpdateType.MAJOR:
+
         remove(this._filmPopupComponent);
         this._renderPopup();
         break;
