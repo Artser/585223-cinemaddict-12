@@ -1,5 +1,5 @@
 import Movies from "./model/movies.js";
-import {Comment} from "./model/comments.js";
+// import CommentsModel from "./model/comments.js";
 
 
 const Method = {
@@ -47,8 +47,7 @@ export default class Api {
 
   getComments(filmId) {
     return this._load({url: `comments/${filmId}`})
-      .then((response) => response.json())
-      .then(Comment.parseComments);
+      .then((response) => response.json());
   }
 
   _load({

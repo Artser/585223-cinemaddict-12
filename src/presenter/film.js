@@ -3,7 +3,7 @@ import FilmPopupView from "../view/film-popup.js";
 import FilmView from "../view/film.js";
 import {UserAction, UpdateType} from "../const.js";
 import Comments from "../view/comments.js";
-
+import CommentsModel from "../model/comments.js";
 const Mode = {
   DEFAULT: `DEFAULT`,
   POPUP: `POPUP`
@@ -18,13 +18,17 @@ export default class Film {
     this._filmEditComponent = null;
     this._mode = Mode.DEFAULT;
     this._api = api;
+    this._commentModel = new CommentsModel();
     this._clickWatchlist = this._clickWatchlist.bind(this);
+    this._handleModelEvent = this._handleModelEvent.bind(this);
     this._clickWatched = this._clickWatched.bind(this);
     this._clickFavorite = this._clickFavorite.bind(this);
+    this._handleViewAction = this._handleViewAction.bind(this);
     this._closePopup = this._closePopup.bind(this);
     this._openPopup = this._openPopup.bind(this);
     this._handlerCloseClick = this._handlerCloseClick.bind(this);
     this._handlerCloseKeyDown = this._handlerCloseKeyDown.bind(this);
+
   }
 
   init(film) {
@@ -33,12 +37,12 @@ export default class Film {
     const prevFilmComponent = this._filmComponent;
     const prevFilmPopupComponent = this._filmPopupComponent;
     this._filmComponent = new FilmView(film);
-    this._filmPopupComponent = new FilmPopupView(film);
+    this._filmPopupComponent = new FilmPopupView(film, this._commentModel);
     this._filmComponent.setClickHandler(this._openPopup);
     this._filmComponent.setClickHandlerWatchlist(this._clickWatchlist);
     this._filmComponent.setClickHandlerWatched(this._clickWatched);
     this._filmComponent.setClickHandlerFavorite(this._clickFavorite);
-
+    this._api.getComments(this._film.id).then((items) => this._commentModel.setComments(items));
     this._filmPopupComponent.setEscKeyDownHandler(this._handlerCloseKeyDown);
     if (prevFilmComponent === null || prevFilmPopupComponent === null) {
       render(this._filmListContainer, this._filmComponent, RenderPosition.BEFOREEND);
@@ -126,28 +130,60 @@ export default class Film {
     if (evt.target.classList.contains(`film-card__controls-item`)) {
       return;
     }
+    this._renderPopup();
+
+
+  }
+
+  _renderPopup() {
+    this._commentModel.addObserver(this._handleModelEvent);
     this._mode = Mode.POPUP;
     this._handlePopupChange();
     this._filmPopupComponent.setCloseHandler(this._handlerCloseClick);
     this._filmPopupComponent.restoreHandlers();
 
     render(footerElement, this._filmPopupComponent, RenderPosition.BEFOREEND);
+    this._renderComments();
+  }
 
+  _renderComments() {
+    this._commentModel.getComments().map((item) => {
 
-    this._api.getComments(this._film.id).then((comments) => {
-      this._film.comments = comments;
-      this._commentsComponent = new Comments(this._film.comments);
-      const newCommentElement = this._filmPopupComponent.getElement().querySelector(`.film-details__new-comment`);
-      render(newCommentElement, this._commentsComponent, RenderPosition.BEFOREBEGIN);
-    })
-      .catch(() => {
-        document.querySelector(`.films`).innerHTML(`couldn't upload comments`);
-      });
-
+      const comment = new Comments(item);
+      comment.setHandleClickDelete(this._handleViewAction);
+      const newCommentElement = this._filmPopupComponent.getElement().querySelector(`.film-details__comments-list`);
+      render(newCommentElement, comment, RenderPosition.BEFOREEND);
+    });
   }
 
   _handlerCloseClick() {
     this._closePopup();
+  }
+
+  _handleViewAction(actionType, updateType, update) {
+    switch (actionType) {
+      case UserAction.DELETE_COMMENT:
+        this._commentModel.deleteComment(updateType, update);
+        break;
+    }
+  }
+
+  _handleModelEvent(updateType, data) {
+    switch (updateType) {
+      case UpdateType.MINOR:
+        this._commentModel.deleteComment(updateType, data);
+        /*  this._api.updateFilm(update).then((response) => {
+          this._filmsModel.updateFilm(updateType, response);
+
+        }); */
+        break;
+    }
+    switch (updateType) {
+      case UpdateType.MAJOR:
+        remove(this._filmPopupComponent);
+        this._renderPopup();
+        break;
+    }
   }
 
   _handlerCloseKeyDown(evt) {

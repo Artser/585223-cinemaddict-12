@@ -1,25 +1,31 @@
-export class Comment {
-  constructor(data) {
-    this.id = data[`id`];
-    this.author = data[`author`];
-    this.text = data[`comment`];
-    this.date = new Date(data[`date`]);
-    this.emotion = data[`emotion`];
+import Observer from "../utils/observer";
+
+export default class Comment extends Observer {
+  constructor() {
+    super();
+    this._comments = [];
   }
 
-  static toLocalComment(comment) {
-    return {
-      'comment': comment.text,
-      'date': comment.date.toISOString(),
-      'emotion': comment.emotion,
-    };
+  setComments(data) {
+    this._comments = data;
   }
 
-  static parseComment(data) {
-    return new Comment(data);
+  getComments() {
+    return this._comments;
   }
 
-  static parseComments(data) {
-    return data.map(Comment.parseComment);
+  deleteComment(updateType, comment) {
+    // console.log(comment);
+    const index = this._comments.findIndex((item) => item.id === comment.id);
+    if (index === -1) {
+      throw new Error(`Unable to delete a nonexistent comment`);
+    }
+
+    this._comments = [
+      ...this._comments.slice(0, index),
+      ...this._comments.slice(index + 1)
+    ];
+
+    this._notify(updateType, comment);
   }
 }

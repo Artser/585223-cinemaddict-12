@@ -31,22 +31,32 @@ export default class Movies extends Observer {
   }
 
   static adaptToClient(film) {
+    // console.log(film);
     const adaptedFilm = Object.assign(
         {},
         film,
         {
-          filmInfo: film.film_info,
-          description: film.film_info.description,
-          alternativeTitle: film.film_info.alternative_title,
-          totalRating: film.film_info.total_rating,
-          ageRating: film.age_rating,
-          releaseCountry: film.release_country,
-          alreadyWatched: film.already_watched,
-          watchingDate: film.watching_date,
+          filmInfo: Object.assign(
+              {},
+              film.film_info,
+              {
+                alternativeTitle: film.film_info.alternative_title,
+                totalRating: film.film_info.total_rating,
+                ageRating: film.film_info.age_rating,
+                release: Object.assign(
+                    {},
+                    film.film_info.release,
+                    {
+                      releaseCountry: film.film_info.release.release_country,
+                    })
+              }
+          ),
+
           userDetails: Object.assign(
               {},
               film.user_details,
               {
+                watchingDate: film.user_details.watching_date,
                 alreadyWatched: film.user_details.already_watched
               }
           )
@@ -55,11 +65,19 @@ export default class Movies extends Observer {
 
     // Ненужные ключи мы удаляем
     delete adaptedFilm.user_details;
+    delete adaptedFilm.film_info;
+    delete adaptedFilm.filmInfo.alternative_title;
+    delete adaptedFilm.filmInfo.age_rating;
+    delete adaptedFilm.filmInfo.release.release_country;
+    delete adaptedFilm.filmInfo.total_rating;
+    delete adaptedFilm.userDetails.watching_date;
+
     delete adaptedFilm.userDetails.already_watched;
 
 
     // console.log(adaptedFilm);
     return adaptedFilm;
+
   }
 
   static adaptToServer(film) {
@@ -67,27 +85,43 @@ export default class Movies extends Observer {
         {},
         film,
         {
-        /* film_info: film.filmInfo,
-        alternative_title: film.alternativeTitle,
-        total_rating: film.totalRating,
-        age_rating: film.ageRating,
-        release_country: film.releaseCountry,
-        user_details: film.userDetails,
-        already_watched: film.alreadyWatched,
-        watching_date: film.watchingDate, */
+          "film_info": Object.assign(
+              {},
+              film.filmInfo,
+              {
+                "alternative_title": film.filmInfo.alternativeTitle,
+                "total_rating": film.filmInfo.totalRating,
+                "age_rating": film.filmInfo.ageRating,
+                "release": Object.assign(
+                    {},
+                    film.filmInfo.release,
+                    {
+                      "release_country": film.filmInfo.release.releaseCountry,
+                    })
+              }
+          ),
+
           "comments": film.comments.map((item) => item.id),
           "user_details": Object.assign(
               {},
               film.userDetails,
               {
-                "already_watched": film.userDetails.alreadyWatched
+                "already_watched": film.userDetails.alreadyWatched,
+                "watching_date": film.userDetails.watchingDate,
+
               }
           )
         }
     );
     // Ненужные ключи мы удаляем
     delete adaptedFilm.userDetails;
+    delete adaptedFilm.filmInfo;
+    delete adaptedFilm.film_info.alternativeTitle;
+    delete adaptedFilm.film_info.totalRating;
+    delete adaptedFilm.film_info.ageRating;
+    delete adaptedFilm.film_info.release.releaseCountry;
 
+    // console.log(adaptedFilm);
 
     return adaptedFilm;
   }

@@ -3,7 +3,7 @@ import Smart from "./smart.js";
 import he from 'he';
 import moment from 'moment';
 
-export const createFilmPopupTemplate = (film) => {
+export const createFilmPopupTemplate = (film, count) => {
   return (
     `<section class="film-details">
         <form class="film-details__inner" action="" method="get">
@@ -13,7 +13,7 @@ export const createFilmPopupTemplate = (film) => {
             </div>
             <div class="film-details__info-wrap">
               <div class="film-details__poster">
-                <img class="film-details__poster-img" src=${film.film_info.poster} alt="">
+                <img class="film-details__poster-img" src=${film.filmInfo.poster} alt="">
 
                 <p class="film-details__age">18+</p>
               </div>
@@ -22,11 +22,11 @@ export const createFilmPopupTemplate = (film) => {
                 <div class="film-details__info-head">
                   <div class="film-details__title-wrap">
                     <h3 class="film-details__title">${film.filmInfo.title}</h3>
-                    <p class="film-details__title-original">Название: ${film.alternativeTitle}</p>
+                    <p class="film-details__title-original">Название: ${film.filmInfo.alternativeTitle}</p>
                   </div>
 
                   <div class="film-details__rating">
-                    <p class="film-details__total-rating">${film.totalRating}</p>
+                    <p class="film-details__total-rating">${film.filmInfo.totalRating}</p>
                   </div>
                 </div>
 
@@ -53,7 +53,7 @@ export const createFilmPopupTemplate = (film) => {
                   </tr >
   <tr class="film-details__row">
     <td class="film-details__term">Страна</td>
-    <td class="film-details__cell">${film.filmInfo.release.release_country}</td>
+    <td class="film-details__cell">${film.filmInfo.release.releaseCountry}</td>
   </tr>
   <tr class="film-details__row">
     <td class="film-details__term">Жанр</td>
@@ -64,7 +64,7 @@ export const createFilmPopupTemplate = (film) => {
                 </table >
 
   <p class="film-details__film-description">
-    ${film.description}
+    ${film.filmInfo.description}
   </p>
               </div >
             </div >
@@ -83,8 +83,9 @@ export const createFilmPopupTemplate = (film) => {
 
       <div class="form-details__bottom-container">
         <section class="film-details__comments-wrap">
-          <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${film.comments.length}</span></h3>
+          <h3 class="film-details__comments-title">Comments <span class="film-details__comments-count">${count}</span></h3>
 
+          <ul class="film-details__comments-list"></ul>
 
 
 
@@ -128,10 +129,10 @@ export const createFilmPopupTemplate = (film) => {
 
 
 export default class FilmPopup extends Smart {
-  constructor(film) {
+  constructor(film, commentsModel) {
     super();
     this._data = film;
-
+    this._commentsModel = commentsModel;
     this._clickHandlerDelete = this._clickHandlerDelete.bind(this);
     this._clickHandler = this._clickHandler.bind(this);
     this._escCallback = {};
@@ -146,7 +147,7 @@ export default class FilmPopup extends Smart {
   }
 
   getTemplate() {
-    return createFilmPopupTemplate(this._data);
+    return createFilmPopupTemplate(this._data, this._commentsModel.getComments().length);
   }
 
   _clickHandler(evt) {

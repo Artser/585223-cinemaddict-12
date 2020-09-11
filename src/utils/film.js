@@ -1,10 +1,12 @@
+import moment from 'moment';
+
 export const sortFilmDate = (filmB, filmA) => {
 
-  return filmA.release.date - filmB.release.date;
+  return moment(filmA.filmInfo.release.date) - moment(filmB.filmInfo.release.date);
 };
 
 export const sortFilmRating = (filmA, filmB) => {
 
 
-  return filmB.totalRating - filmA.totalRating;
+  return filmB.filmInfo.totalRating - filmA.filmInfo.totalRating;
 };

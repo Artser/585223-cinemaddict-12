@@ -190,7 +190,7 @@ export default class MovieList {
 
   _getFilms() {
     const filterType = this._filterModel.getFilter();
-    const films = this._filmsModel.getFilms();
+    const films = this._filmsModel.getFilms().slice();
     const filteredFilms = filter[filterType](films);
 
     switch (this._currentSortType) {
