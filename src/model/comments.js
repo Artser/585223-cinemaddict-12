@@ -8,6 +8,7 @@ export default class Comment extends Observer {
 
   setComments(data) {
     this._comments = data;
+    
   }
 
   getComments() {

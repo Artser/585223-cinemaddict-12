@@ -1,7 +1,7 @@
-import {RenderPosition, remove, render, footerElement, replace} from "../utils/render.js";
+import { RenderPosition, remove, render, footerElement, replace } from "../utils/render.js";
 import FilmPopupView from "../view/film-popup.js";
 import FilmView from "../view/film.js";
-import {UserAction, UpdateType} from "../const.js";
+import { UserAction, UpdateType } from "../const.js";
 import Comments from "../view/comments.js";
 import CommentsModel from "../model/comments.js";
 const Mode = {
@@ -19,6 +19,8 @@ export default class Film {
     this._mode = Mode.DEFAULT;
     this._api = api;
     this._commentModel = new CommentsModel();
+    this._comments = null;
+
     this._clickWatchlist = this._clickWatchlist.bind(this);
     this._handleModelEvent = this._handleModelEvent.bind(this);
     this._clickWatched = this._clickWatched.bind(this);
@@ -32,8 +34,9 @@ export default class Film {
   }
 
   init(film) {
-    this._film = film;
 
+    this._film = film;
+    console.log(this._film);
     const prevFilmComponent = this._filmComponent;
     const prevFilmPopupComponent = this._filmPopupComponent;
     this._filmComponent = new FilmView(film);
@@ -42,7 +45,6 @@ export default class Film {
     this._filmComponent.setClickHandlerWatchlist(this._clickWatchlist);
     this._filmComponent.setClickHandlerWatched(this._clickWatched);
     this._filmComponent.setClickHandlerFavorite(this._clickFavorite);
-    this._api.getComments(this._film.id).then((items) => this._commentModel.setComments(items));
     this._filmPopupComponent.setEscKeyDownHandler(this._handlerCloseKeyDown);
     if (prevFilmComponent === null || prevFilmPopupComponent === null) {
       render(this._filmListContainer, this._filmComponent, RenderPosition.BEFOREEND);
@@ -59,65 +61,65 @@ export default class Film {
   _clickWatchlist() {
     // console.log(this._film);
     this._changeData(
-        UserAction.UPDATE_FILM,
-        UpdateType.MINOR,
-        Object.assign(
+      UserAction.UPDATE_FILM,
+      UpdateType.MINOR,
+      Object.assign(
+        {},
+        this._film,
+        {
+          userDetails: Object.assign(
             {},
-            this._film,
+            this._film.userDetails,
             {
-              userDetails: Object.assign(
-                  {},
-                  this._film.userDetails,
-                  {
-                    watchlist: !this._film.userDetails.watchlist
-                  }
-
-              )
+              watchlist: !this._film.userDetails.watchlist
             }
-        )
+
+          )
+        }
+      )
     );
   }
 
   _clickWatched() {
     this._changeData(
-        UserAction.UPDATE_FILM,
-        UpdateType.MINOR,
-        Object.assign(
+      UserAction.UPDATE_FILM,
+      UpdateType.MINOR,
+      Object.assign(
+        {},
+        this._film,
+        {
+          userDetails: Object.assign(
             {},
-            this._film,
+            this._film.userDetails,
             {
-              userDetails: Object.assign(
-                  {},
-                  this._film.userDetails,
-                  {
-                    alreadyWatched: !this._film.userDetails.alreadyWatched
-                  }
-
-              )
+              alreadyWatched: !this._film.userDetails.alreadyWatched
             }
-        )
+
+          )
+        }
+      )
     );
   }
 
   _clickFavorite() {
     this._changeData(
-        UserAction.UPDATE_FILM,
-        UpdateType.MINOR,
-        Object.assign(
+      UserAction.UPDATE_FILM,
+      UpdateType.MINOR,
+      Object.assign(
+        {},
+        this._film,
+        {
+          userDetails: Object.assign(
             {},
-            this._film,
+            this._film.userDetails,
             {
-              userDetails: Object.assign(
-                  {},
-                  this._film.userDetails,
-                  {
-                    favorite: !this._film.userDetails.favorite
-                  }
-
-              )
+              favorite: !this._film.userDetails.favorite
             }
 
-        )
+          )
+        }
+
+      )
     );
   }
 
@@ -130,7 +132,18 @@ export default class Film {
     if (evt.target.classList.contains(`film-card__controls-item`)) {
       return;
     }
+
+    if (this._commentModel.getComments().length === 0) {
+      this._api.getComments(this._film.id).then((items) => {
+        this._commentModel.setComments(items);
+        this._renderComments();
+      });
+    } else {
+      this._renderComments();
+
+    }
     this._renderPopup();
+
 
 
   }
@@ -143,7 +156,6 @@ export default class Film {
     this._filmPopupComponent.restoreHandlers();
 
     render(footerElement, this._filmPopupComponent, RenderPosition.BEFOREEND);
-    this._renderComments();
   }
 
   _renderComments() {
@@ -177,8 +189,7 @@ export default class Film {
 
         }); */
         break;
-    }
-    switch (updateType) {
+
       case UpdateType.MAJOR:
         remove(this._filmPopupComponent);
         this._renderPopup();
@@ -195,7 +206,7 @@ export default class Film {
   _closePopup() {
     remove(this._filmPopupComponent);
     this._mode = Mode.DEFAULT;
-
+    this._commentModel.removeObserver(this._handleModelEvent);
   }
 
   destroy() {
