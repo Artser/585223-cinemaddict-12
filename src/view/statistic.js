@@ -134,11 +134,17 @@ const artStatistic = (films) => {
   if (statisticCtx === null) {
     return;
   }
-  const genres = Array.from(new Set(films.filter((film) => film.watched).map((film) => film.genre)));
+  const genres = Array.from(new Set(films
+    .filter((film) => film.userDetails.alreadyWatched)
+    .map((film) => film.filmInfo.genre)
+    .flat()));
   const data = [];
-  films.filter((film) => film.watched).forEach((film) => {
-    const index = genres.findIndex((item) => item === film.genre);
-    data[index] = (data[index] || 0) + 1;
+  films.filter((film) => film.userDetails.alreadyWatched).forEach((film) => {
+    film.filmInfo.genre.forEach((genre) => {
+      const index = genres.findIndex((item) => item === genre);
+      data[index] = (data[index] || 0) + 1;
+    });
+
 
   });
 

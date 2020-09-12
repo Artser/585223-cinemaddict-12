@@ -13,7 +13,8 @@ export const UserAction = {
 export const UpdateType = {
   PATCH: `PATCH`,
   MINOR: `MINOR`,
-  MAJOR: `MAJOR`
+  MAJOR: `MAJOR`,
+  INIT: `INIT`,
 };
 
 export const FilterType = {
@@ -26,4 +27,11 @@ export const FilterType = {
 export const MenuItem = {
   FILMS: `FILMS`,
   STATISTICS: `STATISTICS`,
+};
+
+export const EmotionType = {
+  SMILE: `smile`,
+  SlEEPING: `sleeping`,
+  PUKE: `puke`,
+  ANGRY: `angry`,
 };
