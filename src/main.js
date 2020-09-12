@@ -24,11 +24,10 @@ let statistic = null;
 
 api.getFilms()
   .then((films) => {
-/*     films.forEach((film) => {
- */     /*  api.getComments(film.id).then((comments) => {
+  /*     films.forEach((film) => {
+        api.getComments(film.id).then((comments) => {
         film.comments = comments;
-      }) */
-      /*   .catch(() => {
+      })     .catch(() => {
           document.querySelector(`.films`).innerHTML(`couldn't upload comments`);
         }); */
     /* }); */
