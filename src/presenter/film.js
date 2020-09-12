@@ -1,7 +1,7 @@
-import {RenderPosition, remove, render, footerElement, replace} from "../utils/render.js";
+import { RenderPosition, remove, render, footerElement, replace } from "../utils/render.js";
 import FilmPopupView from "../view/film-popup.js";
 import FilmView from "../view/film.js";
-import {UserAction, UpdateType} from "../const.js";
+import { UserAction, UpdateType } from "../const.js";
 import Comments from "../view/comments.js";
 import CommentsModel from "../model/comments.js";
 const Mode = {
@@ -63,65 +63,65 @@ export default class Film {
   _clickWatchlist() {
     // console.log(this._film);
     this._changeData(
-        UserAction.UPDATE_FILM,
-        UpdateType.MINOR,
-        Object.assign(
+      UserAction.UPDATE_FILM,
+      UpdateType.MINOR,
+      Object.assign(
+        {},
+        this._film,
+        {
+          userDetails: Object.assign(
             {},
-            this._film,
+            this._film.userDetails,
             {
-              userDetails: Object.assign(
-                  {},
-                  this._film.userDetails,
-                  {
-                    watchlist: !this._film.userDetails.watchlist
-                  }
-
-              )
+              watchlist: !this._film.userDetails.watchlist
             }
-        )
+
+          )
+        }
+      )
     );
   }
 
   _clickWatched() {
     this._changeData(
-        UserAction.UPDATE_FILM,
-        UpdateType.MINOR,
-        Object.assign(
+      UserAction.UPDATE_FILM,
+      UpdateType.MINOR,
+      Object.assign(
+        {},
+        this._film,
+        {
+          userDetails: Object.assign(
             {},
-            this._film,
+            this._film.userDetails,
             {
-              userDetails: Object.assign(
-                  {},
-                  this._film.userDetails,
-                  {
-                    alreadyWatched: !this._film.userDetails.alreadyWatched
-                  }
-
-              )
+              alreadyWatched: !this._film.userDetails.alreadyWatched
             }
-        )
+
+          )
+        }
+      )
     );
   }
 
   _clickFavorite() {
     this._changeData(
-        UserAction.UPDATE_FILM,
-        UpdateType.MINOR,
-        Object.assign(
+      UserAction.UPDATE_FILM,
+      UpdateType.MINOR,
+      Object.assign(
+        {},
+        this._film,
+        {
+          userDetails: Object.assign(
             {},
-            this._film,
+            this._film.userDetails,
             {
-              userDetails: Object.assign(
-                  {},
-                  this._film.userDetails,
-                  {
-                    favorite: !this._film.userDetails.favorite
-                  }
-
-              )
+              favorite: !this._film.userDetails.favorite
             }
 
-        )
+          )
+        }
+
+      )
     );
   }
 
@@ -216,13 +216,15 @@ export default class Film {
     this._commentModel.removeObserver(this._handleModelEvent);
   }
 
-    destroy() {
+  destroy() {
     remove(this._filmComponent);
     remove(this._filmPopupComponent);
   }
 
-  _handleAddComment(newComment){
-this._api.addComment(newComment, this._film.id);
+  _handleAddComment(newComment) {
+    this._api.addComment(newComment, this._film.id).then((result) => {
+      console.log(result);
+    })
 
   }
 

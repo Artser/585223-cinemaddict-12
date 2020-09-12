@@ -92,7 +92,7 @@ export const createFilmPopupTemplate = (film, count) => {
       : ``}</div>
 
             <label class="film-details__comment-label">
-              <textarea class="film-details__comment-input" placeholder="Select reaction below and write comment here" name="comment"></textarea>
+              <textarea class="film-details__comment-input" placeholder="Select reaction below and write comment here" name="comment">${film.localComment.comment}</textarea>
             </label>
 
             <div class="film-details__emoji-list">
@@ -137,7 +137,9 @@ export default class FilmPopup extends Smart {
   constructor(film, commentsModel) {
     super();
     this._data = film;
-    this._data.localComment = {};
+    this._data.localComment = {
+      comment: ``,
+    };
     this._commentsModel = commentsModel;
     this._clickHandlerDelete = this._clickHandlerDelete.bind(this);
     this._clickHandler = this._clickHandler.bind(this);
@@ -180,7 +182,8 @@ export default class FilmPopup extends Smart {
   }
 
   _onAddCommentKeydown(evt) {
-//debugger;
+    this._data.localComment.comment = evt.target.value;
+
     if (evt.key === `Enter` && (evt.ctrlKey || evt.metaKey)) {
       if (!this._data.localComment.emotion || !evt.target.value) {
         return;
@@ -188,8 +191,8 @@ export default class FilmPopup extends Smart {
 
       evt.preventDefault();
       const newComment = {
-        comment: evt.target.value,
-        date: new Date(),
+        comment: this._data.localComment.comment,
+        date: new Date().toISOString(),
         emotion: this._data.localComment.emotion,
       };
 
