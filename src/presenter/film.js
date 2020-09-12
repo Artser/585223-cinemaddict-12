@@ -1,7 +1,7 @@
-import { RenderPosition, remove, render, footerElement, replace } from "../utils/render.js";
+import {RenderPosition, remove, render, footerElement, replace} from "../utils/render.js";
 import FilmPopupView from "../view/film-popup.js";
 import FilmView from "../view/film.js";
-import { UserAction, UpdateType } from "../const.js";
+import {UserAction, UpdateType} from "../const.js";
 import Comments from "../view/comments.js";
 import CommentsModel from "../model/comments.js";
 const Mode = {
@@ -53,75 +53,82 @@ export default class Film {
     }
 
     replace(this._filmComponent, prevFilmComponent);
-    replace(this._filmPopupComponent, prevFilmPopupComponent);
+
+    if (this._mode === Mode.POPUP) {
+      prevFilmPopupComponent.updateData(this._film);
+      this._filmPopupComponent = prevFilmPopupComponent;
+      this._renderComments();
+    } else {
+      replace(this._filmPopupComponent, prevFilmPopupComponent);
+      remove(prevFilmPopupComponent);
+
+    }
+
     remove(prevFilmComponent);
-    remove(prevFilmPopupComponent);
   }
-
-
 
   _clickWatchlist() {
     // console.log(this._film);
     this._changeData(
-      UserAction.UPDATE_FILM,
-      UpdateType.MINOR,
-      Object.assign(
-        {},
-        this._film,
-        {
-          userDetails: Object.assign(
+        UserAction.UPDATE_FILM,
+        UpdateType.MINOR,
+        Object.assign(
             {},
-            this._film.userDetails,
+            this._film,
             {
-              watchlist: !this._film.userDetails.watchlist
-            }
+              userDetails: Object.assign(
+                  {},
+                  this._film.userDetails,
+                  {
+                    watchlist: !this._film.userDetails.watchlist
+                  }
 
-          )
-        }
-      )
+              )
+            }
+        )
     );
   }
 
   _clickWatched() {
     this._changeData(
-      UserAction.UPDATE_FILM,
-      UpdateType.MINOR,
-      Object.assign(
-        {},
-        this._film,
-        {
-          userDetails: Object.assign(
+        UserAction.UPDATE_FILM,
+        UpdateType.MINOR,
+        Object.assign(
             {},
-            this._film.userDetails,
+            this._film,
             {
-              alreadyWatched: !this._film.userDetails.alreadyWatched
-            }
+              userDetails: Object.assign(
+                  {},
+                  this._film.userDetails,
+                  {
+                    alreadyWatched: !this._film.userDetails.alreadyWatched
+                  }
 
-          )
-        }
-      )
+              )
+            }
+        )
     );
   }
 
   _clickFavorite() {
     this._changeData(
-      UserAction.UPDATE_FILM,
-      UpdateType.MINOR,
-      Object.assign(
-        {},
-        this._film,
-        {
-          userDetails: Object.assign(
+        UserAction.UPDATE_FILM,
+        UpdateType.MINOR,
+        Object.assign(
             {},
-            this._film.userDetails,
+            this._film,
             {
-              favorite: !this._film.userDetails.favorite
+              userDetails: Object.assign(
+                  {},
+                  this._film.userDetails,
+                  {
+                    favorite: !this._film.userDetails.favorite
+                  }
+
+              )
             }
 
-          )
-        }
-
-      )
+        )
     );
   }
 
@@ -189,11 +196,6 @@ export default class Film {
         this.destroy();
         this.init(data);
         this._openPopup();
-        // this._commentModel.deleteComment(updateType, data);
-        /*  this._api.updateFilm(update).then((response) => {
-          this._filmsModel.updateFilm(updateType, response);
-
-        }); */
         break;
 
       case UpdateType.MAJOR:
@@ -210,6 +212,7 @@ export default class Film {
       this._closePopup();
     }
   }
+
   _closePopup() {
     remove(this._filmPopupComponent);
     this._mode = Mode.DEFAULT;
@@ -223,8 +226,10 @@ export default class Film {
 
   _handleAddComment(newComment) {
     this._api.addComment(newComment, this._film.id).then((result) => {
-      console.log(result);
-    })
+
+      this._commentModel.setComments(result.comments);
+      this._changeData(UserAction.ADD_COMMENT, UpdateType.PATCH, Object.assign({}, this._film, result.film));
+    });
 
   }
 
