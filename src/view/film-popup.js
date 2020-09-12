@@ -189,7 +189,7 @@ export default class FilmPopup extends Smart {
       evt.preventDefault();
       const newComment = {
         comment: evt.target.value,
-        date: moment().format(`YYYY/MM/DD hh:mm`),
+        date: new Date(),
         emotion: this._data.localComment.emotion,
       };
 
@@ -306,6 +306,8 @@ export default class FilmPopup extends Smart {
   restoreHandlers() {
     this._setInnerHandlers();
     this.setCloseHandler(this._callback.click);
+    this.setAddCommentHandler(this._callback.addComment);
+
   }
 
 }

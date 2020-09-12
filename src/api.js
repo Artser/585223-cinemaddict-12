@@ -4,7 +4,8 @@ import Movies from "./model/movies.js";
 
 const Method = {
   GET: `GET`,
-  PUT: `PUT`
+  PUT: `PUT`,
+  POST: `POST`,
 };
 
 const SuccessHTTPStatusRange = {
@@ -19,7 +20,7 @@ export default class Api {
   }
 
   getFilms() {
-    return this._load({url: `movies`})
+    return this._load({ url: `movies` })
       .then(Api.toJSON)
       .then((films) => films.map(Movies.adaptToClient));
   }
@@ -29,7 +30,7 @@ export default class Api {
       url: `movies/${film.id}`,
       method: Method.PUT,
       body: JSON.stringify(Movies.adaptToServer(film)),
-      headers: new Headers({"Content-Type": `application/json`})
+      headers: new Headers({ "Content-Type": `application/json` })
     })
       .then(Api.toJSON)
       .then(Movies.adaptToClient)
@@ -37,17 +38,28 @@ export default class Api {
         this.getComments(response.id).then((comments) => {
           response.comments = comments;
         })
-            .catch(() => {
-              document.querySelector(`.films`).innerHTML(`couldn't upload comments`);
-            });
+          .catch(() => {
+            document.querySelector(`.films`).innerHTML(`couldn't upload comments`);
+          });
         return response;
       });
   }
 
 
   getComments(filmId) {
-    return this._load({url: `comments/${filmId}`})
+    return this._load({ url: `comments/${filmId}` })
       .then((response) => response.json());
+  }
+
+
+  addComment(newComment, filmId) {
+    return this._load({
+      url: `comments/${filmId}`,
+      method: Method.POST,
+      body: JSON.stringify(newComment)
+    })
+      .then((response)=> console.log(response));
+
   }
 
   _load({
@@ -59,8 +71,8 @@ export default class Api {
     headers.append(`Authorization`, this._authorization);
 
     return fetch(
-        `${this._endPoint}/${url}`,
-        {method, body, headers}
+      `${this._endPoint}/${url}`,
+      { method, body, headers }
     )
       .then(Api.checkStatus)
       .catch(Api.catchError);

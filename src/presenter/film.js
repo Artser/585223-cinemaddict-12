@@ -221,8 +221,9 @@ export default class Film {
     remove(this._filmPopupComponent);
   }
 
-  _handleAddComment(){
-    console.log(`комментарий`);
+  _handleAddComment(newComment){
+this._api.addComment(newComment, this._film.id);
+
   }
 
 }
