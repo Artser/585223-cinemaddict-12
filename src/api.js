@@ -1,4 +1,5 @@
 import Movies from "./model/movies.js";
+// import CommentsModel from "./model/comments.js";
 
 
 const Method = {
@@ -25,12 +26,28 @@ export default class Api {
 
   updateFilm(film) {
     return this._load({
-      url: `films/${film.id}`,
+      url: `movies/${film.id}`,
       method: Method.PUT,
-      body: JSON.stringify(film),
+      body: JSON.stringify(Movies.adaptToServer(film)),
       headers: new Headers({"Content-Type": `application/json`})
     })
-      .then(Api.toJSON);
+      .then(Api.toJSON)
+      .then(Movies.adaptToClient)
+      .then((response) => {
+        this.getComments(response.id).then((comments) => {
+          response.comments = comments;
+        })
+            .catch(() => {
+              document.querySelector(`.films`).innerHTML(`couldn't upload comments`);
+            });
+        return response;
+      });
+  }
+
+
+  getComments(filmId) {
+    return this._load({url: `comments/${filmId}`})
+      .then((response) => response.json());
   }
 
   _load({

@@ -1,6 +1,7 @@
 import Films from "../view/films.js";
 import FilmPresenter from "./film.js";
 import {filter} from "../utils/filter.js";
+import LoadingView from "../view/loading.js";
 
 import Sorting from "../view/sort.js";
 import {SortType, UpdateType, UserAction} from "../const.js";
@@ -9,12 +10,12 @@ import {sortFilmDate, sortFilmRating} from "../utils/film.js";
 import {updateItem} from "../utils/common.js";
 import NoMovies from "../view/nomovies.js";
 import ShowMoreButton from "../view/show-more-button.js";
-import {RenderPosition, renderElement, remove} from "../utils/render.js";
+import {RenderPosition, renderElement, remove, render} from "../utils/render.js";
 
 const MOVIE_COUNT_PER_STEP = 5;
 
 export default class MovieList {
-  constructor(containerFilms, filmsModel, filterModel) {
+  constructor(containerFilms, filmsModel, filterModel, api) {
     this._filterModel = filterModel;
     this._filmsModel = filmsModel;
     this._renderedMovieCount = MOVIE_COUNT_PER_STEP;
@@ -25,7 +26,9 @@ export default class MovieList {
     this._currentSortType = SortType.DEFAULT;
     this._containerFilms = containerFilms;
     this._filmPresenter = {};
-
+    this._isLoading = true;
+    this._api = api;
+    this._loadingComponent = new LoadingView();
     this._handleModelEvent = this._handleModelEvent.bind(this);
     this._handleViewAction = this._handleViewAction.bind(this);
     this._handleFilmChange = this._handleFilmChange.bind(this);
@@ -95,7 +98,10 @@ export default class MovieList {
   _handleViewAction(actionType, updateType, update) {
     switch (actionType) {
       case UserAction.UPDATE_FILM:
-        this._filmsModel.updateFilm(updateType, update);
+        this._api.updateFilm(update).then((response) => {
+          this._filmsModel.updateFilm(updateType, response);
+
+        });
         break;
     }
     // Здесь будем вызывать обновление модели.
@@ -117,6 +123,11 @@ export default class MovieList {
         this._clearFilmList();
         this._renderFilmList();
         break;
+      case UpdateType.INIT:
+        this._isLoading = false;
+        remove(this._loadingComponent);
+        this._renderFilmList();
+        break;
     }
   }
 
@@ -132,7 +143,7 @@ export default class MovieList {
   _renderFilm(film) {
 
     const filmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
-    const filmPresenter = new FilmPresenter(filmListElement, this._handleViewAction, this._handlePopupChange);
+    const filmPresenter = new FilmPresenter(filmListElement, this._handleViewAction, this._handlePopupChange, this._api);
     filmPresenter.init(film);
     this._filmPresenter[film.id] = filmPresenter;
   }
@@ -168,8 +179,6 @@ export default class MovieList {
   }
 
   _clearFilmList() {
-    // const FilmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
-    // FilmListElement.innerHTML = ``;
     Object
       .values(this._filmPresenter)
       .forEach((presenter) => presenter.destroy());
@@ -181,7 +190,7 @@ export default class MovieList {
 
   _getFilms() {
     const filterType = this._filterModel.getFilter();
-    const films = this._filmsModel.getFilms();
+    const films = this._filmsModel.getFilms().slice();
     const filteredFilms = filter[filterType](films);
 
     switch (this._currentSortType) {
@@ -194,7 +203,16 @@ export default class MovieList {
     return filteredFilms;
   }
 
+  _renderLoading() {
+    render(this._containerFilms, this._loadingComponent, RenderPosition.AFTERBEGIN);
+  }
+
   _renderFilmList() {
+
+    if (this._isLoading) {
+      this._renderLoading();
+      return;
+    }
     this._renderSort();
     renderElement(this._containerFilms, this._filmsComponent.getElement(), RenderPosition.BEFOREEND);
     const films = this._getFilms();
