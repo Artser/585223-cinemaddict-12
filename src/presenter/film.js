@@ -30,7 +30,7 @@ export default class Film {
     this._openPopup = this._openPopup.bind(this);
     this._handlerCloseClick = this._handlerCloseClick.bind(this);
     this._handlerCloseKeyDown = this._handlerCloseKeyDown.bind(this);
-
+    this._handleAddComment = this._handleAddComment.bind(this);
   }
 
   init(film) {
@@ -45,6 +45,8 @@ export default class Film {
     this._filmComponent.setClickHandlerWatched(this._clickWatched);
     this._filmComponent.setClickHandlerFavorite(this._clickFavorite);
     this._filmPopupComponent.setEscKeyDownHandler(this._handlerCloseKeyDown);
+    this._filmPopupComponent.setAddCommentHandler(this._handleAddComment);
+
     if (prevFilmComponent === null || prevFilmPopupComponent === null) {
       render(this._filmListContainer, this._filmComponent, RenderPosition.BEFOREEND);
       return;
@@ -55,6 +57,7 @@ export default class Film {
     remove(prevFilmComponent);
     remove(prevFilmPopupComponent);
   }
+
 
 
   _clickWatchlist() {
@@ -213,9 +216,13 @@ export default class Film {
     this._commentModel.removeObserver(this._handleModelEvent);
   }
 
-  destroy() {
+    destroy() {
     remove(this._filmComponent);
     remove(this._filmPopupComponent);
+  }
+
+  _handleAddComment(){
+    console.log(`комментарий`);
   }
 
 }

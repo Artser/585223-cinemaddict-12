@@ -28,3 +28,10 @@ export const MenuItem = {
   FILMS: `FILMS`,
   STATISTICS: `STATISTICS`,
 };
+
+export const EmotionType = {
+  SMILE: `smile`,
+  SlEEPING: `sleeping`,
+  PUKE: `puke`,
+  ANGRY: `angry`,
+};
