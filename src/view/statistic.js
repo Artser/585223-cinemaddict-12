@@ -153,4 +153,3 @@ const artStatistic = (films) => {
   generateStatistic(statisticCtx, genres, data);
 
 };
-

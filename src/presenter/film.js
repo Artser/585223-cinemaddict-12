@@ -221,6 +221,3 @@ export default class Film {
 }
 
 
-
-
-
