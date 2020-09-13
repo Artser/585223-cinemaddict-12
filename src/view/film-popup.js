@@ -1,8 +1,8 @@
 // Попап (расширенная информация о фильме)
 import Smart from './smart.js';
-import he from 'he';
+// import he from 'he';
 import moment from 'moment';
-import { EmotionType } from '../const.js';
+import {EmotionType} from '../const.js';
 
 export const createFilmPopupTemplate = (film, count) => {
   return (
@@ -92,7 +92,7 @@ export const createFilmPopupTemplate = (film, count) => {
       : ``}</div>
 
             <label class="film-details__comment-label">
-              <textarea class="film-details__comment-input" placeholder="Select reaction below and write comment here" name="comment"></textarea>
+              <textarea class="film-details__comment-input" placeholder="Select reaction below and write comment here" name="comment">${film.localComment.comment}</textarea>
             </label>
 
             <div class="film-details__emoji-list">
@@ -137,7 +137,9 @@ export default class FilmPopup extends Smart {
   constructor(film, commentsModel) {
     super();
     this._data = film;
-    this._data.localComment = {};
+    this._data.localComment = {
+      comment: ``,
+    };
     this._commentsModel = commentsModel;
     this._clickHandlerDelete = this._clickHandlerDelete.bind(this);
     this._clickHandler = this._clickHandler.bind(this);
@@ -149,6 +151,7 @@ export default class FilmPopup extends Smart {
     this._onAddCommentKeydown = this._onAddCommentKeydown.bind(this);
     this._favoriteClickHandler = this._favoriteClickHandler.bind(this);
     this._emojiChangeHandler = this._emojiChangeHandler.bind(this);
+    this._onCommentInput = this._onCommentInput.bind(this);
     this._setInnerHandlers();
   }
 
@@ -180,7 +183,6 @@ export default class FilmPopup extends Smart {
   }
 
   _onAddCommentKeydown(evt) {
-//debugger;
     if (evt.key === `Enter` && (evt.ctrlKey || evt.metaKey)) {
       if (!this._data.localComment.emotion || !evt.target.value) {
         return;
@@ -188,8 +190,9 @@ export default class FilmPopup extends Smart {
 
       evt.preventDefault();
       const newComment = {
-        comment: evt.target.value,
-        date: new Date(),
+        // comment:he.encode(this._data.localComment.comment),
+        comment: this._data.localComment.comment,
+        date: new Date().toISOString(),
         emotion: this._data.localComment.emotion,
       };
 
@@ -227,6 +230,7 @@ export default class FilmPopup extends Smart {
     this.getElement().querySelector(`#watchlist`).addEventListener(`change`, this._watchlistClickHandler);
     this.getElement().querySelector(`#watched`).addEventListener(`click`, this._watchedClickHandler);
     this.getElement().querySelector(`#favorite`).addEventListener(`click`, this._favoriteClickHandler);
+    this.getElement().querySelector(`.film-details__comment-input`).addEventListener(`input`, this._onCommentInput);
 
     // this.setCloseHandler(this._callback.click);
 
@@ -235,9 +239,11 @@ export default class FilmPopup extends Smart {
   _emojiChangeHandler(evt) {
     // console.log(evt.target.value);
     evt.preventDefault();
+
     this.updateData({
       localComment: {
         emotion: evt.target.value,
+        comment: this._data.localComment.comment,
       }
     });
   }
@@ -261,11 +267,11 @@ export default class FilmPopup extends Smart {
 
   _watchlistClickHandler() {
     const userDetails = Object.assign(
-      {},
-      this._data.userDetails,
-      {
-        watchlist: !this._data.userDetails.watchlist
-      }
+        {},
+        this._data.userDetails,
+        {
+          watchlist: !this._data.userDetails.watchlist
+        }
     );
     this.updateData({
       userDetails,
@@ -276,11 +282,11 @@ export default class FilmPopup extends Smart {
 
   _watchedClickHandler() {
     const userDetails = Object.assign(
-      {},
-      this._data.userDetails,
-      {
-        alreadyWatched: !this._data.userDetails.alreadyWatched
-      }
+        {},
+        this._data.userDetails,
+        {
+          alreadyWatched: !this._data.userDetails.alreadyWatched
+        }
     );
     this.updateData({
       userDetails,
@@ -291,11 +297,11 @@ export default class FilmPopup extends Smart {
 
   _favoriteClickHandler() {
     const userDetails = Object.assign(
-      {},
-      this._data.userDetails,
-      {
-        favorite: !this._data.userDetails.favorite
-      }
+        {},
+        this._data.userDetails,
+        {
+          favorite: !this._data.userDetails.favorite
+        }
     );
     this.updateData({
       userDetails,
@@ -310,6 +316,9 @@ export default class FilmPopup extends Smart {
 
   }
 
+  _onCommentInput(evt) {
+    this._data.localComment.comment = evt.target.value;
+  }
 }
 
 

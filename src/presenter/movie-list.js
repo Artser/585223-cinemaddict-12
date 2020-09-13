@@ -103,6 +103,10 @@ export default class MovieList {
 
         });
         break;
+
+      case UserAction.ADD_COMMENT:
+        this._filmsModel.updateFilm(updateType, update);
+        break;
     }
     // Здесь будем вызывать обновление модели.
     // actionType - действие пользователя, нужно чтобы понять, какой метод модели вызвать
