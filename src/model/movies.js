@@ -101,7 +101,7 @@ export default class Movies extends Observer {
               }
           ),
 
-          "comments": film.comments.map((item) => item.id),
+          "comments": film.comments.map((item) => item.id || item),
           "user_details": Object.assign(
               {},
               film.userDetails,

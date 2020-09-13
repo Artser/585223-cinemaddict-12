@@ -1,8 +1,6 @@
 // Попап (расширенная информация о фильме)
 import Smart from './smart.js';
-// import he from 'he';
 import moment from 'moment';
-import {EmotionType} from '../const.js';
 
 export const createFilmPopupTemplate = (film, count) => {
   return (
@@ -86,45 +84,7 @@ export const createFilmPopupTemplate = (film, count) => {
 
           <ul class="film-details__comments-list"></ul>
 
-          <div class="film-details__new-comment">
-            <div for="add-emoji" class="film-details__add-emoji-label" id="emoji">${film.localComment.emotion
-      ? `<img src="images/emoji/${film.localComment.emotion}.png" width="55" height="55" alt="emoji-smile">`
-      : ``}</div>
 
-            <label class="film-details__comment-label">
-              <textarea class="film-details__comment-input" placeholder="Select reaction below and write comment here" name="comment">${film.localComment.comment}</textarea>
-            </label>
-
-            <div class="film-details__emoji-list">
-              <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-smile" value="smile"
-                ${film.localComment.emotion === EmotionType.SMILE ? `checked` : ``}
-              >
-              <label class="film-details__emoji-label" for="emoji-smile">
-                <img src="./images/emoji/smile.png" width="30" height="30" alt="emoji">
-              </label>
-
-              <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-sleeping" value="sleeping"
-                ${film.localComment.emotion === EmotionType.SlEEPING ? `checked` : ``}
-              >
-              <label class="film-details__emoji-label" for="emoji-sleeping">
-                <img src="./images/emoji/sleeping.png" width="30" height="30" alt="emoji">
-              </label>
-
-              <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-gpuke" value="puke"
-                ${film.localComment.emotion === EmotionType.PUKE ? `checked` : ``}
-              >
-              <label class="film-details__emoji-label" for="emoji-gpuke">
-                <img src="./images/emoji/puke.png" width="30" height="30" alt="emoji">
-              </label>
-
-              <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-angry" value="angry"
-                ${film.localComment.emotion === EmotionType.ANGRY ? `checked` : ``}
-              >
-              <label class="film-details__emoji-label" for="emoji-angry">
-                <img src="./images/emoji/angry.png" width="30" height="30" alt="emoji">
-              </label>
-            </div>
-          </div>
         </section>
       </div>
     </form>
@@ -137,9 +97,7 @@ export default class FilmPopup extends Smart {
   constructor(film, commentsModel) {
     super();
     this._data = film;
-    this._data.localComment = {
-      comment: ``,
-    };
+
     this._commentsModel = commentsModel;
     this._clickHandlerDelete = this._clickHandlerDelete.bind(this);
     this._clickHandler = this._clickHandler.bind(this);
@@ -148,10 +106,7 @@ export default class FilmPopup extends Smart {
     this._callback = {};
     this._watchedClickHandler = this._watchedClickHandler.bind(this);
     this._watchlistClickHandler = this._watchlistClickHandler.bind(this);
-    this._onAddCommentKeydown = this._onAddCommentKeydown.bind(this);
     this._favoriteClickHandler = this._favoriteClickHandler.bind(this);
-    this._emojiChangeHandler = this._emojiChangeHandler.bind(this);
-    this._onCommentInput = this._onCommentInput.bind(this);
     this._setInnerHandlers();
   }
 
@@ -182,39 +137,6 @@ export default class FilmPopup extends Smart {
 
   }
 
-  _onAddCommentKeydown(evt) {
-    if (evt.key === `Enter` && (evt.ctrlKey || evt.metaKey)) {
-      if (!this._data.localComment.emotion || !evt.target.value) {
-        return;
-      }
-
-      evt.preventDefault();
-      const newComment = {
-        // comment:he.encode(this._data.localComment.comment),
-        comment: this._data.localComment.comment,
-        date: new Date().toISOString(),
-        emotion: this._data.localComment.emotion,
-      };
-
-      this._callback.addComment(newComment);
-      /*  const comments = [
-         ...this._data.comments.slice(), newComment,
-
-       ];
-       this.updateData({
-         comments,
-         emotion: null,
-       }); */
-    }
-
-  }
-
-  setAddCommentHandler(callback) {
-
-    this._callback.addComment = callback;
-    this.getElement().querySelector(`.film-details__comment-input`).addEventListener(`keydown`, this._onAddCommentKeydown);
-  }
-
   setCloseHandler(callback) {
 
     // 1. Поэтому колбэк мы запишем во внутреннее свойство
@@ -225,18 +147,15 @@ export default class FilmPopup extends Smart {
   }
 
   _setInnerHandlers() {
-    this.getElement().querySelector(`.film-details__emoji-list`).addEventListener(`change`, this._emojiChangeHandler);
-    // this.getElement().querySelector(`.film-details__comments-list`).addEventListener(`click`, this._clickHandlerDelete);
     this.getElement().querySelector(`#watchlist`).addEventListener(`change`, this._watchlistClickHandler);
     this.getElement().querySelector(`#watched`).addEventListener(`click`, this._watchedClickHandler);
     this.getElement().querySelector(`#favorite`).addEventListener(`click`, this._favoriteClickHandler);
-    this.getElement().querySelector(`.film-details__comment-input`).addEventListener(`input`, this._onCommentInput);
 
     // this.setCloseHandler(this._callback.click);
 
   }
 
-  _emojiChangeHandler(evt) {
+  /*  _emojiChangeHandler(evt) {
     // console.log(evt.target.value);
     evt.preventDefault();
 
@@ -246,7 +165,7 @@ export default class FilmPopup extends Smart {
         comment: this._data.localComment.comment,
       }
     });
-  }
+  } */
 
   _escKeyDownHandler(evt) {
     // 3. А внутри абстрактного обработчика вызовем колбэк
@@ -312,7 +231,6 @@ export default class FilmPopup extends Smart {
   restoreHandlers() {
     this._setInnerHandlers();
     this.setCloseHandler(this._callback.click);
-    this.setAddCommentHandler(this._callback.addComment);
 
   }
 
