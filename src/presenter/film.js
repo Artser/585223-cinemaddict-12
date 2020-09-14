@@ -1,7 +1,7 @@
-import {RenderPosition, remove, render, footerElement, replace} from "../utils/render.js";
+import { RenderPosition, remove, render, footerElement, replace } from "../utils/render.js";
 import FilmPopupView from "../view/film-popup.js";
 import FilmView from "../view/film.js";
-import {UserAction, UpdateType} from "../const.js";
+import { UserAction, UpdateType } from "../const.js";
 import Comments from "../view/comments.js";
 import CommentsModel from "../model/comments.js";
 import AddComment from "../view/add-comment.js";
@@ -21,7 +21,7 @@ export default class Film {
     this._api = api;
     this._commentModel = new CommentsModel();
     this._comments = null;
-
+    this._addCommentComponent = null;
     this._clickWatchlist = this._clickWatchlist.bind(this);
     this._handleModelEvent = this._handleModelEvent.bind(this);
     this._clickWatched = this._clickWatched.bind(this);
@@ -79,65 +79,65 @@ export default class Film {
   _clickWatchlist() {
     // console.log(this._film);
     this._changeData(
-        UserAction.UPDATE_FILM,
-        UpdateType.MINOR,
-        Object.assign(
+      UserAction.UPDATE_FILM,
+      UpdateType.MINOR,
+      Object.assign(
+        {},
+        this._film,
+        {
+          userDetails: Object.assign(
             {},
-            this._film,
+            this._film.userDetails,
             {
-              userDetails: Object.assign(
-                  {},
-                  this._film.userDetails,
-                  {
-                    watchlist: !this._film.userDetails.watchlist
-                  }
-
-              )
+              watchlist: !this._film.userDetails.watchlist
             }
-        )
+
+          )
+        }
+      )
     );
   }
 
   _clickWatched() {
     this._changeData(
-        UserAction.UPDATE_FILM,
-        UpdateType.MINOR,
-        Object.assign(
+      UserAction.UPDATE_FILM,
+      UpdateType.MINOR,
+      Object.assign(
+        {},
+        this._film,
+        {
+          userDetails: Object.assign(
             {},
-            this._film,
+            this._film.userDetails,
             {
-              userDetails: Object.assign(
-                  {},
-                  this._film.userDetails,
-                  {
-                    alreadyWatched: !this._film.userDetails.alreadyWatched
-                  }
-
-              )
+              alreadyWatched: !this._film.userDetails.alreadyWatched
             }
-        )
+
+          )
+        }
+      )
     );
   }
 
   _clickFavorite() {
     this._changeData(
-        UserAction.UPDATE_FILM,
-        UpdateType.MINOR,
-        Object.assign(
+      UserAction.UPDATE_FILM,
+      UpdateType.MINOR,
+      Object.assign(
+        {},
+        this._film,
+        {
+          userDetails: Object.assign(
             {},
-            this._film,
+            this._film.userDetails,
             {
-              userDetails: Object.assign(
-                  {},
-                  this._film.userDetails,
-                  {
-                    favorite: !this._film.userDetails.favorite
-                  }
-
-              )
+              favorite: !this._film.userDetails.favorite
             }
 
-        )
+          )
+        }
+
+      )
     );
   }
 
@@ -184,9 +184,9 @@ export default class Film {
       const newCommentElement = this._filmPopupComponent.getElement().querySelector(`.film-details__comments-list`);
       render(newCommentElement, comment, RenderPosition.BEFOREEND);
     });
-    const addCommentView = new AddComment();
-    render(this._filmPopupComponent.getElement().querySelector(`.film-details__comments-wrap`), addCommentView, RenderPosition.BEFOREEND);
-    addCommentView.setAddCommentHandler(this._handleViewAction);
+    this._addCommentComponent = new AddComment();
+    render(this._filmPopupComponent.getElement().querySelector(`.film-details__comments-wrap`), this._addCommentComponent, RenderPosition.BEFOREEND);
+    this._addCommentComponent.setAddCommentHandler(this._handleViewAction);
 
   }
 
@@ -197,7 +197,7 @@ export default class Film {
   _handleViewAction(actionType, updateType, update) {
     switch (actionType) {
       case UserAction.DELETE_COMMENT:
-        this._api.deleteComment(update.id).then(()=>{
+        this._api.deleteComment(update.id).then(() => {
           this._commentModel.deleteComment(updateType, {
             comment:
               update,
@@ -207,10 +207,16 @@ export default class Film {
 
         break;
       case UserAction.ADD_COMMENT:
+        this._addCommentComponent.disableComment();
         this._api.addComment(update, this._film.id).then((result) => {
           /*  this._film = result.movie;
            this._commentModel.setComments(result.comments); */
           this._commentModel.addComment(updateType, result);
+          this._addCommentComponent.enableComment();
+
+        }).catch(()=>{
+          this._addCommentComponent.startErrorAnimation();
+          this._addCommentComponent.enableComment();
 
         });
 

@@ -1,5 +1,7 @@
-import {EmotionType, UpdateType, UserAction} from '../const.js';
+import { EmotionType, UpdateType, UserAction } from '../const.js';
 import Smart from './smart.js';
+
+const SHAKE_CSS_ANIMATION = `shake`;
 
 const creatAddComment = (comment) => {
 
@@ -60,6 +62,14 @@ export default class AddComment extends Smart {
     return creatAddComment(this._data);
   }
 
+  startErrorAnimation() {
+    this.getElement().classList.remove(SHAKE_CSS_ANIMATION);
+    setTimeout(() => {
+      this.getElement().classList.add(SHAKE_CSS_ANIMATION);
+    }, 0);
+  }
+
+
   _clickSmileHandler(evt) {
     evt.preventDefault();
 
@@ -102,6 +112,8 @@ export default class AddComment extends Smart {
         emotion: this._data.emotion,
       };
 
+
+
       this._callback.addComment(UserAction.ADD_COMMENT, UpdateType.MINOR, newComment);
       /*  const comments = [
          ...this._data.comments.slice(), newComment,
@@ -114,5 +126,23 @@ export default class AddComment extends Smart {
     }
 
   }
+
+
+  disableComment() {
+    this.getElement().querySelector(`.film-details__comment-input`).disabled = true;
+    this.getElement().querySelectorAll(`.film-details__emoji-item`).forEach((element) => {
+      element.disabled = true;
+    });
+
+  }
+
+  enableComment() {
+    this.getElement().querySelector(`.film-details__comment-input`).disabled = false;
+    this.getElement().querySelectorAll(`.film-details__emoji-item`).forEach((element) => {
+      element.disabled = false;
+    });
+  }
+
+
 }
 
