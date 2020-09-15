@@ -4,6 +4,7 @@ import FilmView from "../view/film.js";
 import {UserAction, UpdateType} from "../const.js";
 import Comments from "../view/comments.js";
 import CommentsModel from "../model/comments.js";
+import AddComment from "../view/add-comment.js";
 const Mode = {
   DEFAULT: `DEFAULT`,
   POPUP: `POPUP`
@@ -20,7 +21,7 @@ export default class Film {
     this._api = api;
     this._commentModel = new CommentsModel();
     this._comments = null;
-
+    this._addCommentComponent = null;
     this._clickWatchlist = this._clickWatchlist.bind(this);
     this._handleModelEvent = this._handleModelEvent.bind(this);
     this._clickWatched = this._clickWatched.bind(this);
@@ -30,7 +31,8 @@ export default class Film {
     this._openPopup = this._openPopup.bind(this);
     this._handlerCloseClick = this._handlerCloseClick.bind(this);
     this._handlerCloseKeyDown = this._handlerCloseKeyDown.bind(this);
-
+    this._openPopup = this._openPopup.bind(this);
+    this._renderPopup = this._renderPopup.bind(this);
   }
 
   init(film) {
@@ -45,17 +47,34 @@ export default class Film {
     this._filmComponent.setClickHandlerWatched(this._clickWatched);
     this._filmComponent.setClickHandlerFavorite(this._clickFavorite);
     this._filmPopupComponent.setEscKeyDownHandler(this._handlerCloseKeyDown);
+
     if (prevFilmComponent === null || prevFilmPopupComponent === null) {
       render(this._filmListContainer, this._filmComponent, RenderPosition.BEFOREEND);
       return;
     }
+    replace(this._filmPopupComponent, prevFilmPopupComponent);
 
     replace(this._filmComponent, prevFilmComponent);
-    replace(this._filmPopupComponent, prevFilmPopupComponent);
-    remove(prevFilmComponent);
-    remove(prevFilmPopupComponent);
-  }
+    if (this._mode === Mode.POPUP) {
 
+      this._renderPopup();
+
+    }
+
+    remove(prevFilmPopupComponent);
+
+    /*    if (this._mode === Mode.POPUP) {
+         prevFilmPopupComponent.updateData(this._film);
+         this._filmPopupComponent = prevFilmPopupComponent;
+         this._renderComments();
+       } else {
+         replace(this._filmPopupComponent, prevFilmPopupComponent);
+         remove(prevFilmPopupComponent);
+
+       } */
+
+    remove(prevFilmComponent);
+  }
 
   _clickWatchlist() {
     // console.log(this._film);
@@ -135,14 +154,12 @@ export default class Film {
     if (this._commentModel.getComments().length === 0) {
       this._api.getComments(this._film.id).then((items) => {
         this._commentModel.setComments(items);
-        this._renderComments();
+        // this._renderComments();
         this._filmPopupComponent.getElement().querySelector(`.film-details__comments-count`).textContent = items.length;
-      });
+      }).then(this._renderPopup);
     } else {
-      this._renderComments();
+      this._renderPopup();
     }
-    this._renderPopup();
-
   }
 
   _renderPopup() {
@@ -154,6 +171,7 @@ export default class Film {
 
     this._filmPopupComponent.setCloseHandler(this._handlerCloseClick);
     this._filmPopupComponent.restoreHandlers();
+    this._renderComments();
 
     render(footerElement, this._filmPopupComponent, RenderPosition.BEFOREEND);
   }
@@ -166,6 +184,10 @@ export default class Film {
       const newCommentElement = this._filmPopupComponent.getElement().querySelector(`.film-details__comments-list`);
       render(newCommentElement, comment, RenderPosition.BEFOREEND);
     });
+    this._addCommentComponent = new AddComment();
+    render(this._filmPopupComponent.getElement().querySelector(`.film-details__comments-wrap`), this._addCommentComponent, RenderPosition.BEFOREEND);
+    this._addCommentComponent.setAddCommentHandler(this._handleViewAction);
+
   }
 
   _handlerCloseClick() {
@@ -175,7 +197,29 @@ export default class Film {
   _handleViewAction(actionType, updateType, update) {
     switch (actionType) {
       case UserAction.DELETE_COMMENT:
-        this._commentModel.deleteComment(updateType, update);
+        this._api.deleteComment(update.id).then(() => {
+          this._commentModel.deleteComment(updateType, {
+            comment:
+              update,
+            film: this._film
+          });
+        });
+
+        break;
+      case UserAction.ADD_COMMENT:
+        this._addCommentComponent.disableComment();
+        this._api.addComment(update, this._film.id).then((result) => {
+          /*  this._film = result.movie;
+           this._commentModel.setComments(result.comments); */
+          this._commentModel.addComment(updateType, result);
+          this._addCommentComponent.enableComment();
+
+        }).catch(()=>{
+          this._addCommentComponent.startErrorAnimation();
+          this._addCommentComponent.enableComment();
+
+        });
+
         break;
     }
   }
@@ -183,14 +227,7 @@ export default class Film {
   _handleModelEvent(updateType, data) {
     switch (updateType) {
       case UpdateType.MINOR:
-        this.destroy();
         this.init(data);
-        this._openPopup();
-        // this._commentModel.deleteComment(updateType, data);
-        /*  this._api.updateFilm(update).then((response) => {
-          this._filmsModel.updateFilm(updateType, response);
-
-        }); */
         break;
 
       case UpdateType.MAJOR:
@@ -207,6 +244,7 @@ export default class Film {
       this._closePopup();
     }
   }
+
   _closePopup() {
     remove(this._filmPopupComponent);
     this._mode = Mode.DEFAULT;
@@ -217,6 +255,7 @@ export default class Film {
     remove(this._filmComponent);
     remove(this._filmPopupComponent);
   }
+
 
 }
 

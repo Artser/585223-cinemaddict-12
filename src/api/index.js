@@ -1,10 +1,12 @@
-import Movies from "./model/movies.js";
+import Movies from "../model/movies.js";
 // import CommentsModel from "./model/comments.js";
 
 
 const Method = {
   GET: `GET`,
-  PUT: `PUT`
+  PUT: `PUT`,
+  POST: `POST`,
+  DELETE: `DELETE`,
 };
 
 const SuccessHTTPStatusRange = {
@@ -24,6 +26,14 @@ export default class Api {
       .then((films) => films.map(Movies.adaptToClient));
   }
 
+  deleteComment(id) {
+    return this._load({
+      url: `comments/${id}`,
+      method: Method.DELETE,
+      headers: new Headers({"Content-Type": `application/json`})
+    });
+  }
+
   updateFilm(film) {
     return this._load({
       url: `movies/${film.id}`,
@@ -37,9 +47,9 @@ export default class Api {
         this.getComments(response.id).then((comments) => {
           response.comments = comments;
         })
-            .catch(() => {
-              document.querySelector(`.films`).innerHTML(`couldn't upload comments`);
-            });
+          .catch(() => {
+            document.querySelector(`.films`).innerHTML(`couldn't upload comments`);
+          });
         return response;
       });
   }
@@ -49,6 +59,35 @@ export default class Api {
     return this._load({url: `comments/${filmId}`})
       .then((response) => response.json());
   }
+
+
+  addComment(newComment, filmId) {
+    return this._load({
+      url: `comments/${filmId}`,
+      method: Method.POST,
+      body: JSON.stringify(newComment),
+      headers: new Headers({
+        'Content-Type': `application/json`,
+      }),
+    })
+      .then(Api.toJSON)
+      .then((result) => ({
+        movie: Movies.adaptToClient(result.movie),
+        comments: result.comments,
+      }));
+
+  }
+
+  sync(data) {
+    return this._load({
+      url: `movies/sync`,
+      method: Method.POST,
+      body: JSON.stringify(data),
+      headers: new Headers({"Content-Type": `application/json`})
+    })
+      .then(Api.toJSON);
+  }
+
 
   _load({
     url,
@@ -85,4 +124,3 @@ export default class Api {
     throw err;
   }
 }
-

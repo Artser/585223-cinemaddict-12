@@ -58,11 +58,22 @@ export default class Statistic extends AbstractView {
     this._callback = {};
     this._films = films;
     this.renderStatistic();
+    this._changeStatisticHandler = this._changeStatisticHandler.bind(this);
+    this.enableChangeStatistic();
   }
 
   getTemplate() {
     return createStatisticTemplate();
   }
+
+  enableChangeStatistic() {
+    this.getElement().querySelector(`.statistic__filters`).addEventListener(`change`, this._changeStatisticHandler);
+  }
+
+  /*   _changeStatisticHandler(evt) {
+    console.log(evt);
+  } */
+
 
   renderStatistic() {
     artStatistic(this._films);

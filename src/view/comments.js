@@ -1,6 +1,7 @@
 const {yearFormatComments} = require(`../utils/common.js`);
 import AbstractView from "./abstract.js";
 import {UpdateType, UserAction} from "../const.js";
+import he from 'he';
 
 const createPopupComments = (comment) => {
 
@@ -10,7 +11,7 @@ const createPopupComments = (comment) => {
           <img src="/images/emoji/${comment.emotion}.png" width="55" height="55" alt="emoji">
         </span>
         <div>
-          <p class="film-details__comment-text">${comment.comment}</p>
+          <p class="film-details__comment-text">${he.encode(comment.comment)}</p>
           <p class="film-details__comment-info">
             <span class="film-details__comment-author">${comment.author}</span>
             <span class="film-details__comment-day">${yearFormatComments(comment.date)}</span>
@@ -35,7 +36,7 @@ export default class Comments extends AbstractView {
   _handleClickDelete(evt) {
     evt.preventDefault();
     this.removeElement();
-    this._callback.click(UserAction.DELETE_COMMENT, UpdateType.MAJOR, this._data);
+    this._callback.click(UserAction.DELETE_COMMENT, UpdateType.MINOR, this._data);
 
   }
 
