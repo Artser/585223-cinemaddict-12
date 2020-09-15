@@ -1,4 +1,4 @@
-import Movies from "./model/movies.js";
+import Movies from "../model/movies.js";
 // import CommentsModel from "./model/comments.js";
 
 
@@ -21,7 +21,7 @@ export default class Api {
   }
 
   getFilms() {
-    return this._load({ url: `movies` })
+    return this._load({url: `movies`})
       .then(Api.toJSON)
       .then((films) => films.map(Movies.adaptToClient));
   }
@@ -30,7 +30,7 @@ export default class Api {
     return this._load({
       url: `comments/${id}`,
       method: Method.DELETE,
-      headers: new Headers({ "Content-Type": `application/json` })
+      headers: new Headers({"Content-Type": `application/json`})
     });
   }
 
@@ -39,7 +39,7 @@ export default class Api {
       url: `movies/${film.id}`,
       method: Method.PUT,
       body: JSON.stringify(Movies.adaptToServer(film)),
-      headers: new Headers({ "Content-Type": `application/json` })
+      headers: new Headers({"Content-Type": `application/json`})
     })
       .then(Api.toJSON)
       .then(Movies.adaptToClient)
@@ -56,7 +56,7 @@ export default class Api {
 
 
   getComments(filmId) {
-    return this._load({ url: `comments/${filmId}` })
+    return this._load({url: `comments/${filmId}`})
       .then((response) => response.json());
   }
 
@@ -78,6 +78,17 @@ export default class Api {
 
   }
 
+  sync(data) {
+    return this._load({
+      url: `movies/sync`,
+      method: Method.POST,
+      body: JSON.stringify(data),
+      headers: new Headers({"Content-Type": `application/json`})
+    })
+      .then(Api.toJSON);
+  }
+
+
   _load({
     url,
     method = Method.GET,
@@ -87,8 +98,8 @@ export default class Api {
     headers.append(`Authorization`, this._authorization);
 
     return fetch(
-      `${this._endPoint}/${url}`,
-      { method, body, headers }
+        `${this._endPoint}/${url}`,
+        {method, body, headers}
     )
       .then(Api.checkStatus)
       .catch(Api.catchError);
@@ -113,4 +124,3 @@ export default class Api {
     throw err;
   }
 }
-

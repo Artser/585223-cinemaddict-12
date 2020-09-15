@@ -1,4 +1,4 @@
-import { EmotionType, UpdateType, UserAction } from '../const.js';
+import {EmotionType, UpdateType, UserAction} from '../const.js';
 import Smart from './smart.js';
 
 const SHAKE_CSS_ANIMATION = `shake`;
@@ -111,8 +111,6 @@ export default class AddComment extends Smart {
         date: new Date().toISOString(),
         emotion: this._data.emotion,
       };
-
-
 
       this._callback.addComment(UserAction.ADD_COMMENT, UpdateType.MINOR, newComment);
       /*  const comments = [

@@ -48,7 +48,7 @@ export const createFilmPopupTemplate = (film, count) => {
                 </tr>
                 <tr class="film-details__row">
                   <td class="film-details__term">Продолжительность</td>
-                    <td class="film-details__cell">${moment(film.filmInfo.runtime).format(`h[h] mm[m]`)}</td >
+                    <td class="film-details__cell">${moment.utc(film.filmInfo.runtime * 60000).format(`h[h] mm[m]`)}</td >
                 </tr >
                 <tr class="film-details__row">
                   <td class="film-details__term">Страна</td>

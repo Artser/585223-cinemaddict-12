@@ -5,14 +5,22 @@ import MovieListPresenter from "./presenter/movie-list.js";
 import {RenderPosition, renderElement, siteHeaderElement, siteMainElement, render, remove} from "./utils/render.js";
 import FilterPresenter from "./presenter/filter.js";
 import FilterModel from "./model/filter.js";
-import Api from "./api.js";
+import Api from "./api/index.js";
+import Store from "./api/store.js";
+import Provider from "./api/provider.js";
 import Statistic from "./view/statistic.js";
 import {MenuItem, UpdateType} from "./const.js";
+
+const STORE_PREFIX = `cinemaddist-localstorage`;
+const STORE_VER = `v12`;
+const STORE_NAME = `${STORE_PREFIX}-${STORE_VER}`;
+const store = new Store(STORE_NAME, window.localStorage);
+
 
 const AUTHORIZATION = `Basic hS2sd3dfSwcl1sf3j`;
 const END_POINT = `https://12.ecmascript.pages.academy/cinemaddict`;
 const api = new Api(END_POINT, AUTHORIZATION);
-
+const apiWithProvider = new Provider(api, store);
 renderElement(siteHeaderElement, new Profile().getElement(), RenderPosition.BEFOREEND);
 
 const filmsModel = new MoviesModel();
@@ -22,13 +30,13 @@ const filterModel = new FilterModel();
 
 let statistic = null;
 
-api.getFilms()
+apiWithProvider.getFilms()
   .then((films) => {
 
     const filterPresenter = new FilterPresenter(siteMainElement, filterModel, filmsModel);
     filterPresenter.init();
 
-    const movieList = new MovieListPresenter(siteMainElement, filmsModel, filterModel, api);
+    const movieList = new MovieListPresenter(siteMainElement, filmsModel, filterModel, apiWithProvider);
     movieList.init();
     const handleSetMenuClick = (evt) => {
       evt.preventDefault();
@@ -62,3 +70,25 @@ api.getFilms()
     filmsModel.setFilms(UpdateType.INIT, []);
 
   });
+
+window.addEventListener(`load`, () => {
+  navigator.serviceWorker.register(`/sw.js`)
+    .then(() => {
+      // Действие, в случае успешной регистрации ServiceWorker
+      console.log(`ServiceWorker available`); // eslint-disable-line
+    }).catch(() => {
+      // Действие, в случае ошибки при регистрации ServiceWorker
+      console.error(`ServiceWorker isn't available`); // eslint-disable-line
+    });
+});
+
+
+window.addEventListener(`online`, () => {
+  document.title = document.title.replace(` [offline]`, ``);
+  apiWithProvider.sync();
+});
+
+window.addEventListener(`offline`, () => {
+  document.title += ` [offline]`;
+});
+

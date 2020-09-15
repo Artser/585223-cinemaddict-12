@@ -1,7 +1,7 @@
-import { RenderPosition, remove, render, footerElement, replace } from "../utils/render.js";
+import {RenderPosition, remove, render, footerElement, replace} from "../utils/render.js";
 import FilmPopupView from "../view/film-popup.js";
 import FilmView from "../view/film.js";
-import { UserAction, UpdateType } from "../const.js";
+import {UserAction, UpdateType} from "../const.js";
 import Comments from "../view/comments.js";
 import CommentsModel from "../model/comments.js";
 import AddComment from "../view/add-comment.js";
@@ -79,65 +79,65 @@ export default class Film {
   _clickWatchlist() {
     // console.log(this._film);
     this._changeData(
-      UserAction.UPDATE_FILM,
-      UpdateType.MINOR,
-      Object.assign(
-        {},
-        this._film,
-        {
-          userDetails: Object.assign(
+        UserAction.UPDATE_FILM,
+        UpdateType.MINOR,
+        Object.assign(
             {},
-            this._film.userDetails,
+            this._film,
             {
-              watchlist: !this._film.userDetails.watchlist
-            }
+              userDetails: Object.assign(
+                  {},
+                  this._film.userDetails,
+                  {
+                    watchlist: !this._film.userDetails.watchlist
+                  }
 
-          )
-        }
-      )
+              )
+            }
+        )
     );
   }
 
   _clickWatched() {
     this._changeData(
-      UserAction.UPDATE_FILM,
-      UpdateType.MINOR,
-      Object.assign(
-        {},
-        this._film,
-        {
-          userDetails: Object.assign(
+        UserAction.UPDATE_FILM,
+        UpdateType.MINOR,
+        Object.assign(
             {},
-            this._film.userDetails,
+            this._film,
             {
-              alreadyWatched: !this._film.userDetails.alreadyWatched
-            }
+              userDetails: Object.assign(
+                  {},
+                  this._film.userDetails,
+                  {
+                    alreadyWatched: !this._film.userDetails.alreadyWatched
+                  }
 
-          )
-        }
-      )
+              )
+            }
+        )
     );
   }
 
   _clickFavorite() {
     this._changeData(
-      UserAction.UPDATE_FILM,
-      UpdateType.MINOR,
-      Object.assign(
-        {},
-        this._film,
-        {
-          userDetails: Object.assign(
+        UserAction.UPDATE_FILM,
+        UpdateType.MINOR,
+        Object.assign(
             {},
-            this._film.userDetails,
+            this._film,
             {
-              favorite: !this._film.userDetails.favorite
+              userDetails: Object.assign(
+                  {},
+                  this._film.userDetails,
+                  {
+                    favorite: !this._film.userDetails.favorite
+                  }
+
+              )
             }
 
-          )
-        }
-
-      )
+        )
     );
   }
 
