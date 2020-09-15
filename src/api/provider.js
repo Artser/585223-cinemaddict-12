@@ -1,7 +1,6 @@
 import {nanoid} from "nanoid";
 import MoviesModel from "../model/movies.js";
 
-
 const getSyncedMovies = (items) => {
   return items.filter(({success}) => success)
     .map(({payload}) => payload.film);
@@ -55,8 +54,10 @@ export default class Provider {
   }
 
   addComment(comment) {
+    const localNewCommentId = nanoid();
+
     if (Provider.isOnline()) {
-      return this._api.addComment(comment)
+      return this._api.addComment(comment, localNewCommentId)
         .then((newComment) => {
           this._store.setItem(newComment.id, MoviesModel.adaptToServer(newComment));
           return newComment;
@@ -65,7 +66,6 @@ export default class Provider {
 
     // На случай локального создания данных мы должны сами создать `id`.
     // Иначе наша модель будет не полной, и это может привнести баги
-    const localNewCommentId = nanoid();
     const localNewComment = Object.assign({}, comment, {id: localNewCommentId});
 
     this._store.setItem(localNewComment.id, MoviesModel.adaptToServer(localNewComment));
