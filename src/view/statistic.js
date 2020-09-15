@@ -70,10 +70,10 @@ export default class Statistic extends AbstractView {
     this.getElement().querySelector(`.statistic__filters`).addEventListener(`change`, this._changeStatisticHandler);
   }
 
-  /*   _changeStatisticHandler(evt) {
+  /*  _changeStatisticHandler(evt) {
     console.log(evt);
-  } */
-
+  }
+ */
 
   renderStatistic() {
     artStatistic(this._films);

@@ -1,7 +1,6 @@
 import {nanoid} from "nanoid";
 import MoviesModel from "../model/movies.js";
 
-
 const getSyncedMovies = (items) => {
   return items.filter(({success}) => success)
     .map(({payload}) => payload.film);
