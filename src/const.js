@@ -35,3 +35,11 @@ export const EmotionType = {
   PUKE: `puke`,
   ANGRY: `angry`,
 };
+
+export const StatisticType = {
+  ALL_TIME: `All time`,
+  TODAY: `Today`,
+  WEEK: `Week`,
+  MONTH: `Month`,
+  YEAR: `Year`,
+};

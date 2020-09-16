@@ -38,7 +38,6 @@ apiWithProvider.getFilms()
     const movieList = new MovieListPresenter(siteMainElement, filmsModel, filterModel, apiWithProvider);
     movieList.init();
     const handleSetMenuClick = (evt) => {
-      evt.preventDefault();
       const menuItem = evt.target.dataset.type;
       switch (menuItem) {
         case MenuItem.FILMS:
@@ -72,7 +71,11 @@ apiWithProvider.getFilms()
 
 window.addEventListener(`load`, () => {
   navigator.serviceWorker.register(`/sw.js`)
-    .then(() => {
+    .then((registration) => {
+      registration.unregister().then((success) => {
+        console.log(success);
+        // if boolean = true, unregister is successful
+      });
       // Действие, в случае успешной регистрации ServiceWorker
       console.log(`ServiceWorker available`); // eslint-disable-line
     }).catch(() => {

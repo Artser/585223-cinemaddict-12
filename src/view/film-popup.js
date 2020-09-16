@@ -1,6 +1,7 @@
 // Попап (расширенная информация о фильме)
 import Smart from './smart.js';
 import moment from 'moment';
+import { UpdateType, UserAction } from '../const.js';
 
 export const createFilmPopupTemplate = (film, count) => {
   return (
@@ -107,7 +108,6 @@ export default class FilmPopup extends Smart {
     this._watchedClickHandler = this._watchedClickHandler.bind(this);
     this._watchlistClickHandler = this._watchlistClickHandler.bind(this);
     this._favoriteClickHandler = this._favoriteClickHandler.bind(this);
-    this._setInnerHandlers();
   }
 
   getTemplate() {
@@ -146,26 +146,6 @@ export default class FilmPopup extends Smart {
 
   }
 
-  _setInnerHandlers() {
-    this.getElement().querySelector(`#watchlist`).addEventListener(`change`, this._watchlistClickHandler);
-    this.getElement().querySelector(`#watched`).addEventListener(`click`, this._watchedClickHandler);
-    this.getElement().querySelector(`#favorite`).addEventListener(`click`, this._favoriteClickHandler);
-
-    // this.setCloseHandler(this._callback.click);
-
-  }
-
-  /*  _emojiChangeHandler(evt) {
-    // console.log(evt.target.value);
-    evt.preventDefault();
-
-    this.updateData({
-      localComment: {
-        emotion: evt.target.value,
-        comment: this._data.localComment.comment,
-      }
-    });
-  } */
 
   _escKeyDownHandler(evt) {
     // 3. А внутри абстрактного обработчика вызовем колбэк
@@ -184,52 +164,64 @@ export default class FilmPopup extends Smart {
     document.addEventListener(`keydown`, this._escKeyDownHandler);
   }
 
+  setWatchlistClickHandler(callback) {
+    this._callback.watchlistClickHandler = callback;
+    this.getElement().querySelector(`#watchlist`).addEventListener(`change`, this._watchlistClickHandler);
+
+  }
+
+
   _watchlistClickHandler() {
     const userDetails = Object.assign(
-        {},
-        this._data.userDetails,
-        {
-          watchlist: !this._data.userDetails.watchlist
-        }
+      {},
+      this._data.userDetails,
+      {
+        watchlist: !this._data.userDetails.watchlist
+      }
     );
-    this.updateData({
-      userDetails,
 
-    });
+    this._callback.watchlistClickHandler(UserAction.ADD_COMMENT, UpdateType.MINOR, userDetails);
+
+  }
+
+  setWatchedClickHandler(callback) {
+    this._callback.watchedClickHandler = callback;
+    this.getElement().querySelector(`#watched`).addEventListener(`change`, this._watchedClickHandler);
 
   }
 
   _watchedClickHandler() {
     const userDetails = Object.assign(
-        {},
-        this._data.userDetails,
-        {
-          alreadyWatched: !this._data.userDetails.alreadyWatched
-        }
+      {},
+      this._data.userDetails,
+      {
+        alreadyWatched: !this._data.userDetails.alreadyWatched
+      }
     );
-    this.updateData({
-      userDetails,
+    this._callback.watchedClickHandler(UserAction.ADD_COMMENT, UpdateType.MINOR, userDetails);
 
-    });
+  }
+
+  setFavoriteClickHandler(callback) {
+    this._callback.favoriteClickHandler = callback;
+    this.getElement().querySelector(`#favorite`).addEventListener(`click`, this._favoriteClickHandler);
+
   }
 
 
   _favoriteClickHandler() {
     const userDetails = Object.assign(
-        {},
-        this._data.userDetails,
-        {
-          favorite: !this._data.userDetails.favorite
-        }
+      {},
+      this._data.userDetails,
+      {
+        favorite: !this._data.userDetails.favorite
+      }
     );
-    this.updateData({
-      userDetails,
+    this._callback.favoriteClickHandler(UserAction.ADD_COMMENT, UpdateType.MINOR, userDetails);
 
-    });
   }
 
   restoreHandlers() {
-    this._setInnerHandlers();
     this.setCloseHandler(this._callback.click);
 
   }

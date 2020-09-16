@@ -110,6 +110,7 @@ export default class AddComment extends Smart {
         comment: this.getElement().querySelector(`.film-details__comment-input`).value,
         date: new Date().toISOString(),
         emotion: this._data.emotion,
+        
       };
 
       this._callback.addComment(UserAction.ADD_COMMENT, UpdateType.MINOR, newComment);

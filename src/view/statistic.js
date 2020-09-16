@@ -1,9 +1,19 @@
-import AbstractView from "./abstract.js";
 import Chart from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
+import { StatisticType } from "../const.js";
+import SmartView from "./smart.js";
+import moment from "moment";
 
+const filterItemStatistic = (filter, currentStatType) => {
+  return `<input type="radio" class="statistic__filters-input visually-hidden" name="statistic-filter" id="${filter.id}" value="${filter.type}" ${filter.type === currentStatType ? `checked` : ``}>
+  <label for="${filter.id}" class="statistic__filters-label">${filter.name}</label>`;
+};
 
-const createStatisticTemplate = () => {
+const createStatisticTemplate = (filters, currentStatType) => {
+  const filterItemsTemplate = filters
+    .map((filter) => filterItemStatistic(filter, currentStatType))
+    .join(``);
+
   return `<section class="statistic">
     <p class="statistic__rank">
       Your rank
@@ -13,21 +23,7 @@ const createStatisticTemplate = () => {
 
     <form action="https://echo.htmlacademy.ru/" method="get" class="statistic__filters">
       <p class="statistic__filters-description">Show stats:</p>
-
-      <input type="radio" class="statistic__filters-input visually-hidden" name="statistic-filter" id="statistic-all-time" value="all-time" checked>
-      <label for="statistic-all-time" class="statistic__filters-label">All time</label>
-
-      <input type="radio" class="statistic__filters-input visually-hidden" name="statistic-filter" id="statistic-today" value="today">
-      <label for="statistic-today" class="statistic__filters-label">Today</label>
-
-      <input type="radio" class="statistic__filters-input visually-hidden" name="statistic-filter" id="statistic-week" value="week">
-      <label for="statistic-week" class="statistic__filters-label">Week</label>
-
-      <input type="radio" class="statistic__filters-input visually-hidden" name="statistic-filter" id="statistic-month" value="month">
-      <label for="statistic-month" class="statistic__filters-label">Month</label>
-
-      <input type="radio" class="statistic__filters-input visually-hidden" name="statistic-filter" id="statistic-year" value="year">
-      <label for="statistic-year" class="statistic__filters-label">Year</label>
+${filterItemsTemplate}
     </form>
 
     <ul class="statistic__text-list">
@@ -52,34 +48,73 @@ const createStatisticTemplate = () => {
   </section>`;
 };
 
-export default class Statistic extends AbstractView {
+export default class Statistic extends SmartView {
   constructor(films) {
     super();
     this._callback = {};
     this._films = films;
     this.renderStatistic();
     this._changeStatisticHandler = this._changeStatisticHandler.bind(this);
-    this.enableChangeStatistic();
+    this._currentStatType = StatisticType.ALL_TIME;
+    this.setEnableChangeStatistic();
+
   }
 
   getTemplate() {
-    return createStatisticTemplate();
+    return createStatisticTemplate(this._getFilters(), this._currentStatType);
   }
 
-  enableChangeStatistic() {
+  restoreHandlers() { }
+
+  setEnableChangeStatistic() {
     this.getElement().querySelector(`.statistic__filters`).addEventListener(`change`, this._changeStatisticHandler);
   }
 
-  /*  _changeStatisticHandler(evt) {
-    console.log(evt);
+  _changeStatisticHandler(evt) {
+    this._currentStatType = evt.target.value;
+    this.renderStatistic();
+
+    //this.updateData({});
+
   }
- */
+
+
+  _getFilters() {
+    return [
+      {
+        type: StatisticType.ALL_TIME,
+        name: `All time`,
+        id: `statistic-all-time`
+      },
+      {
+        type: StatisticType.TODAY,
+        name: `Today`,
+        id: `statistic-today`
+      },
+      {
+        type: StatisticType.WEEK,
+        name: `Week`,
+        id: `statistic-week`
+      },
+      {
+        type: StatisticType.MONTH,
+        name: `Month`,
+        id: `statistic-month`
+      },
+      {
+        type: StatisticType.YEAR,
+        name: `Year`,
+        id: `statistic-year`
+      },
+    ];
+  }
 
   renderStatistic() {
-    artStatistic(this._films);
+    artStatistic(this._films, this._currentStatType);
   }
 }
 const generateStatistic = (stCtx, genres, data) => {
+
   const myChart = new Chart(stCtx, {
     plugins: [ChartDataLabels],
     type: `horizontalBar`,
@@ -139,25 +174,52 @@ const generateStatistic = (stCtx, genres, data) => {
   return myChart;
 };
 
-const artStatistic = (films) => {
+const artStatistic = (films, currentStatType) => {
+  console.log(currentStatType);
+
   const BAR_HEIGHT = 50;
   const statisticCtx = document.querySelector(`.statistic__chart`);
   if (statisticCtx === null) {
     return;
   }
+
+/*   switch (menuItem) {
+    case MenuItem.FILMS:
+      if (statistic !== null) {
+        movieList.init();
+        remove(statistic);
+        statistic = null;
+      }
+      break; */
+
   const genres = Array.from(new Set(films
     .filter((film) => film.userDetails.alreadyWatched)
+    .filter((film) => {
+      if (currentStatType === StatisticType.YEAR) {
+        return moment(film.userDetails.watchingDate).format(`YYYY`) === moment().format(`YYYY`);
+      }
+      return true;
+    })
     .map((film) => film.filmInfo.genre)
     .flat()));
-  const data = [];
-  films.filter((film) => film.userDetails.alreadyWatched).forEach((film) => {
-    film.filmInfo.genre.forEach((genre) => {
-      const index = genres.findIndex((item) => item === genre);
-      data[index] = (data[index] || 0) + 1;
+
+    const data = [];
+  films.filter((film) => film.userDetails.alreadyWatched)
+  .filter((film) => {
+    if (currentStatType === StatisticType.YEAR) {
+      return moment(film.userDetails.watchingDate).format(`YYYY`) === moment().format(`YYYY`);
+    }
+    return true;
+  })
+    .forEach((film) => {
+      film.filmInfo.genre
+        .forEach((genre) => {
+          const index = genres.findIndex((item) => item === genre);
+          data[index] = (data[index] || 0) + 1;
+        });
+
+
     });
-
-
-  });
 
   // Обязательно рассчитайте высоту canvas, она зависит от количества элементов диаграммы
   statisticCtx.height = BAR_HEIGHT * genres.length;

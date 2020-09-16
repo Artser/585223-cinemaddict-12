@@ -47,6 +47,9 @@ export default class Film {
     this._filmComponent.setClickHandlerWatched(this._clickWatched);
     this._filmComponent.setClickHandlerFavorite(this._clickFavorite);
     this._filmPopupComponent.setEscKeyDownHandler(this._handlerCloseKeyDown);
+    this._filmPopupComponent.setWatchlistClickHandler(this._clickWatchlist);
+    this._filmPopupComponent.setWatchedClickHandler(this._clickWatched);
+    this._filmPopupComponent.setFavoriteClickHandler(this._clickFavorite);
 
     if (prevFilmComponent === null || prevFilmPopupComponent === null) {
       render(this._filmListContainer, this._filmComponent, RenderPosition.BEFOREEND);
@@ -80,7 +83,7 @@ export default class Film {
     // console.log(this._film);
     this._changeData(
         UserAction.UPDATE_FILM,
-        UpdateType.MINOR,
+        UpdateType.PATCH,
         Object.assign(
             {},
             this._film,
@@ -101,7 +104,7 @@ export default class Film {
   _clickWatched() {
     this._changeData(
         UserAction.UPDATE_FILM,
-        UpdateType.MINOR,
+        UpdateType.PATCH,
         Object.assign(
             {},
             this._film,
@@ -111,6 +114,7 @@ export default class Film {
                   this._film.userDetails,
                   {
                     alreadyWatched: !this._film.userDetails.alreadyWatched
+                    
                   }
 
               )
@@ -122,7 +126,7 @@ export default class Film {
   _clickFavorite() {
     this._changeData(
         UserAction.UPDATE_FILM,
-        UpdateType.MINOR,
+        UpdateType.PATCH,
         Object.assign(
             {},
             this._film,
@@ -209,8 +213,6 @@ export default class Film {
       case UserAction.ADD_COMMENT:
         this._addCommentComponent.disableComment();
         this._api.addComment(update, this._film.id).then((result) => {
-          /*  this._film = result.movie;
-           this._commentModel.setComments(result.comments); */
           this._commentModel.addComment(updateType, result);
           this._addCommentComponent.enableComment();
 
