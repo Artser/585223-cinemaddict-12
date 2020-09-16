@@ -217,20 +217,13 @@ const generateStatistic = (stCtx, genres, data) => {
   return myChart;
 };
 
-const artStatistic = (films, currentStatType) => {
+const artStatistic = (films) => {
 
   const BAR_HEIGHT = 50;
   const statisticCtx = document.querySelector(`.statistic__chart`);
   if (statisticCtx === null) {
     return;
   }
-
-  /*   switch (film) {
-      case StatisticType.YEAR:
-        if (currentStatType === StatisticType.YEAR) {
-          return moment(film.userDetails.watchingDate).format(`YYYY`) === moment().format(`YYYY`);
-        }
-        break; */
 
   const genres = Array.from(new Set(films
     .filter((film) => film.userDetails.alreadyWatched)

@@ -114,7 +114,7 @@ export default class Film {
                   this._film.userDetails,
                   {
                     alreadyWatched: !this._film.userDetails.alreadyWatched
-                    
+
                   }
 
               )

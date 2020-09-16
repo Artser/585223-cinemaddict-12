@@ -54,19 +54,20 @@ export default class Provider {
     return this._api.getComments(filmId);
   }
 
-  addComment(comment) {
-    const localNewCommentId = nanoid();
+  addComment(comment, filmId) {
+
 
     if (Provider.isOnline()) {
-      return this._api.addComment(comment, localNewCommentId)
+      return this._api.addComment(comment, filmId)
         .then((newComment) => {
-          this._store.setItem(newComment.id, MoviesModel.adaptToServer(newComment));
+          this._store.setItem(newComment.id, newComment);
           return newComment;
         });
     }
 
     // На случай локального создания данных мы должны сами создать `id`.
     // Иначе наша модель будет не полной, и это может привнести баги
+    const localNewCommentId = nanoid();
     const localNewComment = Object.assign({}, comment, {id: localNewCommentId});
 
     this._store.setItem(localNewComment.id, MoviesModel.adaptToServer(localNewComment));
