@@ -52,8 +52,10 @@ export default class Statistic extends SmartView {
   constructor(films) {
     super();
     this._callback = {};
-    this._films = films;
-    this.renderStatistic();
+    this._data = {
+      films,
+    };
+    this._sourcedFilms = films;
     this._changeStatisticHandler = this._changeStatisticHandler.bind(this);
     this._currentStatType = StatisticType.ALL_TIME;
     this.setEnableChangeStatistic();
@@ -64,7 +66,9 @@ export default class Statistic extends SmartView {
     return createStatisticTemplate(this._getFilters(), this._currentStatType);
   }
 
-  restoreHandlers() { }
+  restoreHandlers() {
+    this.setEnableChangeStatistic();
+  }
 
   setEnableChangeStatistic() {
     this.getElement().querySelector(`.statistic__filters`).addEventListener(`change`, this._changeStatisticHandler);
@@ -72,9 +76,47 @@ export default class Statistic extends SmartView {
 
   _changeStatisticHandler(evt) {
     this._currentStatType = evt.target.value;
+
+    let filteredFilms;
+    switch (this._currentStatType) {
+      case StatisticType.ALL_TIME:
+        filteredFilms = this._sourcedFilms;
+        break;
+
+      case StatisticType.TODAY:
+        filteredFilms = this._sourcedFilms.filter((film) => {
+          const startDate = moment().startOf(`day`);
+          return moment(film.userDetails.watchingDate).isBetween(startDate, moment());
+        });
+        break;
+
+      case StatisticType.WEEK:
+        filteredFilms = this._sourcedFilms.filter((film) => {
+          const startDate = moment().startOf(`day`).subtract(1, `week`);
+          return moment(film.userDetails.watchingDate).isBetween(startDate, moment());
+        });
+        break;
+
+      case StatisticType.MONTH:
+        filteredFilms = this._sourcedFilms.filter((film) => {
+          const startDate = moment().startOf(`day`).subtract(1, `month`);
+          return moment(film.userDetails.watchingDate).isBetween(startDate, moment());
+        });
+        break;
+
+      case StatisticType.YEAR:
+        filteredFilms = this._sourcedFilms.filter((film) => {
+          const startDate = moment().startOf(`day`).subtract(1, `year`);
+          return moment(film.userDetails.watchingDate).isBetween(startDate, moment());
+        });
+        break;
+    }
+
+    this.updateData({
+      films: filteredFilms,
+    });
     this.renderStatistic();
 
-    //this.updateData({});
 
   }
 
@@ -110,9 +152,10 @@ export default class Statistic extends SmartView {
   }
 
   renderStatistic() {
-    artStatistic(this._films, this._currentStatType);
+    artStatistic(this._data.films, this._currentStatType);
   }
 }
+
 const generateStatistic = (stCtx, genres, data) => {
 
   const myChart = new Chart(stCtx, {
@@ -175,7 +218,6 @@ const generateStatistic = (stCtx, genres, data) => {
 };
 
 const artStatistic = (films, currentStatType) => {
-  console.log(currentStatType);
 
   const BAR_HEIGHT = 50;
   const statisticCtx = document.querySelector(`.statistic__chart`);
@@ -183,34 +225,32 @@ const artStatistic = (films, currentStatType) => {
     return;
   }
 
-/*   switch (menuItem) {
-    case MenuItem.FILMS:
-      if (statistic !== null) {
-        movieList.init();
-        remove(statistic);
-        statistic = null;
-      }
-      break; */
+  /*   switch (film) {
+      case StatisticType.YEAR:
+        if (currentStatType === StatisticType.YEAR) {
+          return moment(film.userDetails.watchingDate).format(`YYYY`) === moment().format(`YYYY`);
+        }
+        break; */
 
   const genres = Array.from(new Set(films
     .filter((film) => film.userDetails.alreadyWatched)
-    .filter((film) => {
+    /* .filter((film) => {
       if (currentStatType === StatisticType.YEAR) {
         return moment(film.userDetails.watchingDate).format(`YYYY`) === moment().format(`YYYY`);
       }
       return true;
-    })
+    })*/
     .map((film) => film.filmInfo.genre)
     .flat()));
 
-    const data = [];
+  const data = [];
   films.filter((film) => film.userDetails.alreadyWatched)
-  .filter((film) => {
-    if (currentStatType === StatisticType.YEAR) {
-      return moment(film.userDetails.watchingDate).format(`YYYY`) === moment().format(`YYYY`);
-    }
-    return true;
-  })
+    /*  .filter((film) => {
+       if (currentStatType === StatisticType.YEAR) {
+         return moment(film.userDetails.watchingDate).format(`YYYY`) === moment().format(`YYYY`);
+       }
+       return true;
+     }) */
     .forEach((film) => {
       film.filmInfo.genre
         .forEach((genre) => {

@@ -15,6 +15,10 @@ export default class Movies extends Observer {
     return this._films;
   }
 
+  getWatchedFilms() {
+    return this._films.filter((film)=>film.userDetails.alreadyWatched);
+  }
+
   updateFilm(updateType, film) {
     const index = this._films.findIndex((item) => item.id === film.id);
     if (index === -1) {
@@ -33,34 +37,34 @@ export default class Movies extends Observer {
   static adaptToClient(film) {
     // console.log(film);
     const adaptedFilm = Object.assign(
-        {},
-        film,
-        {
-          filmInfo: Object.assign(
+      {},
+      film,
+      {
+        filmInfo: Object.assign(
+          {},
+          film.film_info,
+          {
+            alternativeTitle: film.film_info.alternative_title,
+            totalRating: film.film_info.total_rating,
+            ageRating: film.film_info.age_rating,
+            release: Object.assign(
               {},
-              film.film_info,
+              film.film_info.release,
               {
-                alternativeTitle: film.film_info.alternative_title,
-                totalRating: film.film_info.total_rating,
-                ageRating: film.film_info.age_rating,
-                release: Object.assign(
-                    {},
-                    film.film_info.release,
-                    {
-                      releaseCountry: film.film_info.release.release_country,
-                    })
-              }
-          ),
+                releaseCountry: film.film_info.release.release_country,
+              })
+          }
+        ),
 
-          userDetails: Object.assign(
-              {},
-              film.user_details,
-              {
-                watchingDate: film.user_details.watching_date,
-                alreadyWatched: film.user_details.already_watched
-              }
-          )
-        }
+        userDetails: Object.assign(
+          {},
+          film.user_details,
+          {
+            watchingDate: film.user_details.watching_date,
+            alreadyWatched: film.user_details.already_watched
+          }
+        )
+      }
     );
 
     // Ненужные ключи мы удаляем
@@ -82,36 +86,36 @@ export default class Movies extends Observer {
 
   static adaptToServer(film) {
     const adaptedFilm = Object.assign(
-        {},
-        film,
-        {
-          "film_info": Object.assign(
+      {},
+      film,
+      {
+        "film_info": Object.assign(
+          {},
+          film.filmInfo,
+          {
+            "alternative_title": film.filmInfo.alternativeTitle,
+            "total_rating": film.filmInfo.totalRating,
+            "age_rating": film.filmInfo.ageRating,
+            "release": Object.assign(
               {},
-              film.filmInfo,
+              film.filmInfo.release,
               {
-                "alternative_title": film.filmInfo.alternativeTitle,
-                "total_rating": film.filmInfo.totalRating,
-                "age_rating": film.filmInfo.ageRating,
-                "release": Object.assign(
-                    {},
-                    film.filmInfo.release,
-                    {
-                      "release_country": film.filmInfo.release.releaseCountry,
-                    })
-              }
-          ),
+                "release_country": film.filmInfo.release.releaseCountry,
+              })
+          }
+        ),
 
-          "comments": film.comments.map((item) => item.id || item),
-          "user_details": Object.assign(
-              {},
-              film.userDetails,
-              {
-                "already_watched": film.userDetails.alreadyWatched,
-                "watching_date": film.userDetails.watchingDate,
+        "comments": film.comments.map((item) => item.id || item),
+        "user_details": Object.assign(
+          {},
+          film.userDetails,
+          {
+            "already_watched": film.userDetails.alreadyWatched,
+            "watching_date": film.userDetails.watchingDate,
 
-              }
-          )
-        }
+          }
+        )
+      }
     );
     // Ненужные ключи мы удаляем
     delete adaptedFilm.userDetails;

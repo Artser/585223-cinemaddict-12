@@ -48,7 +48,7 @@ apiWithProvider.getFilms()
           }
           break;
         case MenuItem.STATISTICS:
-          statistic = new Statistic(filmsModel.getFilms());
+          statistic = new Statistic(filmsModel.getWatchedFilms());
           movieList.destroy();
 
           render(siteMainElement, statistic, RenderPosition.BEFOREEND);
