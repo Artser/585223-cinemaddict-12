@@ -5,6 +5,8 @@ import {UserAction, UpdateType} from "../const.js";
 import Comments from "../view/comments.js";
 import CommentsModel from "../model/comments.js";
 import AddComment from "../view/add-comment.js";
+import moment from "moment"
+
 const Mode = {
   DEFAULT: `DEFAULT`,
   POPUP: `POPUP`
@@ -113,8 +115,8 @@ export default class Film {
                   {},
                   this._film.userDetails,
                   {
-                    alreadyWatched: !this._film.userDetails.alreadyWatched
-
+                    alreadyWatched: !this._film.userDetails.alreadyWatched,
+                  watchingDate: moment().toISOString()
                   }
 
               )

@@ -49,7 +49,7 @@ export const createFilmPopupTemplate = (film, count) => {
                 </tr>
                 <tr class="film-details__row">
                   <td class="film-details__term">Продолжительность</td>
-                    <td class="film-details__cell">${moment.utc(film.filmInfo.runtime * 60000).format(`h[h] mm[m]`)}</td >
+                    <td class="film-details__cell">${moment.utc().startOf(`day`).add({minutes: film.filmInfo.runtime}).format(`h[h] mm[m]`)}</td >
                 </tr >
                 <tr class="film-details__row">
                   <td class="film-details__term">Страна</td>
@@ -172,15 +172,8 @@ export default class FilmPopup extends Smart {
 
 
   _watchlistClickHandler() {
-    const userDetails = Object.assign(
-      {},
-      this._data.userDetails,
-      {
-        watchlist: !this._data.userDetails.watchlist
-      }
-    );
 
-    this._callback.watchlistClickHandler(UserAction.ADD_COMMENT, UpdateType.MINOR, userDetails);
+    this._callback.watchlistClickHandler();
 
   }
 
@@ -191,14 +184,8 @@ export default class FilmPopup extends Smart {
   }
 
   _watchedClickHandler() {
-    const userDetails = Object.assign(
-      {},
-      this._data.userDetails,
-      {
-        alreadyWatched: !this._data.userDetails.alreadyWatched
-      }
-    );
-    this._callback.watchedClickHandler(UserAction.ADD_COMMENT, UpdateType.MINOR, userDetails);
+
+    this._callback.watchedClickHandler();
 
   }
 
@@ -210,14 +197,8 @@ export default class FilmPopup extends Smart {
 
 
   _favoriteClickHandler() {
-    const userDetails = Object.assign(
-      {},
-      this._data.userDetails,
-      {
-        favorite: !this._data.userDetails.favorite
-      }
-    );
-    this._callback.favoriteClickHandler(UserAction.ADD_COMMENT, UpdateType.MINOR, userDetails);
+
+    this._callback.favoriteClickHandler();
 
   }
 

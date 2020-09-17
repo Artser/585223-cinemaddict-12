@@ -9,10 +9,30 @@ const filterItemStatistic = (filter, currentStatType) => {
   <label for="${filter.id}" class="statistic__filters-label">${filter.name}</label>`;
 };
 
-const createStatisticTemplate = (filters, currentStatType) => {
+const createStatisticTemplate = (filters, currentStatType, films) => {
   const filterItemsTemplate = filters
     .map((filter) => filterItemStatistic(filter, currentStatType))
     .join(``);
+  const runtime = films.reduce((previousValue, currentItem) => previousValue + currentItem.filmInfo.runtime, 0);
+  const hours = parseInt(runtime / 60, 10);
+  const minutes = runtime % 60;
+  const data = [];
+
+  films.forEach((film) => film.filmInfo.genre.forEach((value) => {
+      data[value] = (data[value] || 0) + 1;
+    }));
+
+    const keys = Object.keys(data);
+  let index = keys[0];
+  let max = data[index];
+
+
+  for (let i = 1; i < keys.length; ++i) {
+    if (data[keys[i]] > max) {
+      max = data[keys[i]];
+      index = keys[i];
+    }
+  }
 
   return `<section class="statistic">
     <p class="statistic__rank">
@@ -29,15 +49,15 @@ ${filterItemsTemplate}
     <ul class="statistic__text-list">
       <li class="statistic__text-item">
         <h4 class="statistic__item-title">You watched</h4>
-        <p class="statistic__item-text">22 <span class="statistic__item-description">movies</span></p>
+        <p class="statistic__item-text">${films.length} <span class="statistic__item-description">movies</span></p>
       </li>
       <li class="statistic__text-item">
         <h4 class="statistic__item-title">Total duration</h4>
-        <p class="statistic__item-text">130 <span class="statistic__item-description">h</span> 22 <span class="statistic__item-description">m</span></p>
+        <p class="statistic__item-text">${hours} <span class="statistic__item-description">h</span> ${minutes} <span class="statistic__item-description">m</span></p>
       </li>
       <li class="statistic__text-item">
         <h4 class="statistic__item-title">Top genre</h4>
-        <p class="statistic__item-text">Sci-Fi</p>
+        <p class="statistic__item-text">${index}</p>
       </li>
     </ul>
 
@@ -63,7 +83,7 @@ export default class Statistic extends SmartView {
   }
 
   getTemplate() {
-    return createStatisticTemplate(this._getFilters(), this._currentStatType);
+    return createStatisticTemplate(this._getFilters(), this._currentStatType, this._data.films);
   }
 
   restoreHandlers() {
@@ -227,23 +247,12 @@ const artStatistic = (films) => {
 
   const genres = Array.from(new Set(films
     .filter((film) => film.userDetails.alreadyWatched)
-    /* .filter((film) => {
-      if (currentStatType === StatisticType.YEAR) {
-        return moment(film.userDetails.watchingDate).format(`YYYY`) === moment().format(`YYYY`);
-      }
-      return true;
-    })*/
     .map((film) => film.filmInfo.genre)
     .flat()));
 
+
   const data = [];
   films.filter((film) => film.userDetails.alreadyWatched)
-    /*  .filter((film) => {
-       if (currentStatType === StatisticType.YEAR) {
-         return moment(film.userDetails.watchingDate).format(`YYYY`) === moment().format(`YYYY`);
-       }
-       return true;
-     }) */
     .forEach((film) => {
       film.filmInfo.genre
         .forEach((genre) => {
