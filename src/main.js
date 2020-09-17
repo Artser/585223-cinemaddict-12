@@ -68,7 +68,7 @@ apiWithProvider.getFilms()
     filmsModel.setFilms(UpdateType.INIT, []);
 
   });
-
+// 75 и 76 строку убрать для 9 задания и аргумент в 74 строке
 window.addEventListener(`load`, () => {
   navigator.serviceWorker.register(`/sw.js`)
     .then((registration) => {
