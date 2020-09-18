@@ -1,6 +1,6 @@
 import Chart from "chart.js";
 import ChartDataLabels from "chartjs-plugin-datalabels";
-import { StatisticType } from "../const.js";
+import {StatisticType} from "../const.js";
 import SmartView from "./smart.js";
 import moment from "moment";
 
@@ -19,10 +19,10 @@ const createStatisticTemplate = (filters, currentStatType, films) => {
   const data = [];
 
   films.forEach((film) => film.filmInfo.genre.forEach((value) => {
-      data[value] = (data[value] || 0) + 1;
-    }));
+    data[value] = (data[value] || 0) + 1;
+  }));
 
-    const keys = Object.keys(data);
+  const keys = Object.keys(data);
   let index = keys[0];
   let max = data[index];
 

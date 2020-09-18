@@ -1,7 +1,7 @@
 // Попап (расширенная информация о фильме)
 import Smart from './smart.js';
 import moment from 'moment';
-import { UpdateType, UserAction } from '../const.js';
+// import { UpdateType, UserAction } from '../const.js';
 
 export const createFilmPopupTemplate = (film, count) => {
   return (

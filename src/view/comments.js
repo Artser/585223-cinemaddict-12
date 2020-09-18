@@ -1,6 +1,6 @@
-const { yearFormatComments } = require(`../utils/common.js`);
+const {yearFormatComments} = require(`../utils/common.js`);
 import AbstractView from "./abstract.js";
-import { UpdateType, UserAction } from "../const.js";
+import {UpdateType, UserAction} from "../const.js";
 import he from 'he';
 
 const createPopupComments = (comment) => {
@@ -37,7 +37,7 @@ export default class Comments extends AbstractView {
   _handleClickDelete(evt) {
     evt.preventDefault();
     evt.target.setAttribute(`disabled`, `disabled`);
-        this._callback.click(UserAction.DELETE_COMMENT, UpdateType.MINOR, this._data);
+    this._callback.click(UserAction.DELETE_COMMENT, UpdateType.MINOR, this._data);
     this.getElement().querySelector(`.film-details__comment-delete`).textContent = `Deleting...`;
 
   }

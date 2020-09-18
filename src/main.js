@@ -69,13 +69,18 @@ apiWithProvider.getFilms()
 
   });
 // 75 и 76 строку убрать для 9 задания и аргумент в 74 строке
-window.addEventListener(`load`, () => {
-  navigator.serviceWorker.register(`/sw.js`)
-    .then((registration) => {
-      registration.unregister().then((success) => {
-        console.log(success);
+// ниже для отключения
+/* .then((registration) => {
+  registration.unregister().then((success) => {
+    console.log(success);
+
         // if boolean = true, unregister is successful
       });
+    */
+
+window.addEventListener(`load`, () => {
+  navigator.serviceWorker.register(`/sw.js`)
+    .then(() => {
       // Действие, в случае успешной регистрации ServiceWorker
       console.log(`ServiceWorker available`); // eslint-disable-line
     }).catch(() => {
