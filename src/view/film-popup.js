@@ -172,7 +172,6 @@ export default class FilmPopup extends Smart {
 
 
   _watchlistClickHandler() {
-
     this._callback.watchlistClickHandler();
 
   }

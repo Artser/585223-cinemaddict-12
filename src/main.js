@@ -80,7 +80,11 @@ apiWithProvider.getFilms()
 
 window.addEventListener(`load`, () => {
   navigator.serviceWorker.register(`/sw.js`)
-    .then(() => {
+    .then((registration) => {
+      registration.unregister().then(() => {
+
+        // if boolean = true, unregister is successful
+      });
       // Действие, в случае успешной регистрации ServiceWorker
       console.log(`ServiceWorker available`); // eslint-disable-line
     }).catch(() => {

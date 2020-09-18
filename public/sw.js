@@ -16,7 +16,6 @@ self.addEventListener(`install`, (evt) => {
             `/css/normalize.css`,
             `/css/main.css`,
             `/images/icons/icon-favorite-active.svg`,
-            `/images/posters/made-for-each-other.png`,
 
           ]);
         })
