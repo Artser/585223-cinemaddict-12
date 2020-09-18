@@ -43,3 +43,10 @@ export const StatisticType = {
   MONTH: `Month`,
   YEAR: `Year`,
 };
+
+export const UserRank = {
+  NOVICE: `novice`,
+  FAN: `fan`,
+  MOVIE_BUFF: `movie buff`,
+  NONE: ``,
+};

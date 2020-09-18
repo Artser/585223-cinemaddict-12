@@ -1,15 +1,15 @@
-import Profile from "./view/profile.js";
+import ProfilePresenter from "./presenter/profile.js";
 // import Navigation from "./view/navigation.js";
 import MoviesModel from "./model/movies.js";
 import MovieListPresenter from "./presenter/movie-list.js";
-import {RenderPosition, renderElement, siteHeaderElement, siteMainElement, render, remove} from "./utils/render.js";
+import { RenderPosition, renderElement, siteHeaderElement, siteMainElement, render, remove } from "./utils/render.js";
 import FilterPresenter from "./presenter/filter.js";
 import FilterModel from "./model/filter.js";
 import Api from "./api/index.js";
 import Store from "./api/store.js";
 import Provider from "./api/provider.js";
 import Statistic from "./view/statistic.js";
-import {MenuItem, UpdateType} from "./const.js";
+import { MenuItem, UpdateType } from "./const.js";
 
 const STORE_PREFIX = `cinemaddist-localstorage`;
 const STORE_VER = `v12`;
@@ -20,7 +20,7 @@ const AUTHORIZATION = `Basic hS2sd3dfSwcl1sf3j`;
 const END_POINT = `https://12.ecmascript.pages.academy/cinemaddict`;
 const api = new Api(END_POINT, AUTHORIZATION);
 const apiWithProvider = new Provider(api, store);
-renderElement(siteHeaderElement, new Profile().getElement(), RenderPosition.BEFOREEND);
+//renderElement(siteHeaderElement, new Profile().getElement(), RenderPosition.BEFOREEND);
 
 const filmsModel = new MoviesModel();
 
@@ -31,6 +31,8 @@ let statistic = null;
 
 apiWithProvider.getFilms()
   .then((films) => {
+    const profilePresenter = new ProfilePresenter(siteHeaderElement, filmsModel);
+    profilePresenter.init();
 
     const filterPresenter = new FilterPresenter(siteMainElement, filterModel, filmsModel);
     filterPresenter.init();

@@ -23,7 +23,7 @@ const createStatisticTemplate = (filters, currentStatType, films) => {
   }));
 
   const keys = Object.keys(data);
-  let index = keys[0];
+  let index = keys.length === 0 ? `` : keys[0];
   let max = data[index];
 
 
