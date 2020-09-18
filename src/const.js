@@ -35,3 +35,18 @@ export const EmotionType = {
   PUKE: `puke`,
   ANGRY: `angry`,
 };
+
+export const StatisticType = {
+  ALL_TIME: `All time`,
+  TODAY: `Today`,
+  WEEK: `Week`,
+  MONTH: `Month`,
+  YEAR: `Year`,
+};
+
+export const UserRank = {
+  NOVICE: `Novice`,
+  FAN: `Fan`,
+  MOVIE_BUFF: `Movie Buff`,
+  NONE: ``,
+};

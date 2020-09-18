@@ -15,6 +15,10 @@ export default class Movies extends Observer {
     return this._films;
   }
 
+  getWatchedFilms() {
+    return this._films.filter((film)=>film.userDetails.alreadyWatched);
+  }
+
   updateFilm(updateType, film) {
     const index = this._films.findIndex((item) => item.id === film.id);
     if (index === -1) {
@@ -31,7 +35,6 @@ export default class Movies extends Observer {
   }
 
   static adaptToClient(film) {
-    // console.log(film);
     const adaptedFilm = Object.assign(
         {},
         film,
@@ -75,7 +78,6 @@ export default class Movies extends Observer {
     delete adaptedFilm.userDetails.already_watched;
 
 
-    // console.log(adaptedFilm);
     return adaptedFilm;
 
   }
@@ -101,7 +103,7 @@ export default class Movies extends Observer {
               }
           ),
 
-          "comments": film.comments.map((item) => item.id),
+          "comments": film.comments.map((item) => item.id || item),
           "user_details": Object.assign(
               {},
               film.userDetails,

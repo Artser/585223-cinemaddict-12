@@ -8,7 +8,7 @@ const createFilmTemplate = (film) => {
           <p class="film-card__rating">${film.filmInfo.totalRating}</p>
           <p class="film-card__info">
             <span class="film-card__year">${moment(film.filmInfo.release.date).format(`YYYY`)}</span>
-            <span class="film-card__duration">${moment(film.filmInfo.runtime).format(`h[h] mm[m]`)}</span>
+            <span class="film-card__duration">${moment.utc(film.filmInfo.runtime * 60000).format(`h[h] mm[m]`)}</span>
             <span class="film-card__genre">${film.filmInfo.genre.join(`, `)}</span>
           </p>
           <img src=${film.filmInfo.poster} alt="" class="film-card__poster">
