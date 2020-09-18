@@ -1,4 +1,4 @@
-import { getUserRank } from "../utils/statistic.js";
+import {getUserRank} from "../utils/statistic.js";
 import SmartView from "./smart.js";
 
 
@@ -22,7 +22,7 @@ export default class Profile extends SmartView {
   }
 
   getTemplate() {
-    return createProfileTemplate();
+    return createProfileTemplate(this._data.watchedFilmsCount);
   }
 
   restoreHandlers() {

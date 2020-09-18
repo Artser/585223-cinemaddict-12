@@ -45,8 +45,8 @@ export const StatisticType = {
 };
 
 export const UserRank = {
-  NOVICE: `novice`,
-  FAN: `fan`,
-  MOVIE_BUFF: `movie buff`,
+  NOVICE: `Novice`,
+  FAN: `Fan`,
+  MOVIE_BUFF: `Movie Buff`,
   NONE: ``,
 };

@@ -1,4 +1,4 @@
-import { render, RenderPosition } from "../utils/render.js";
+import {render, RenderPosition} from "../utils/render.js";
 import ProfileView from "../view/profile.js";
 
 export default class Profile {
@@ -20,7 +20,7 @@ export default class Profile {
 
 
   _handleModelEvent() {
-    debugger;
+
     this._profileComponent.updateData({
       watchedFilmsCount: this._filmsModel.getWatchedFilms().length,
     });

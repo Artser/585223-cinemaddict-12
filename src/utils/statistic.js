@@ -8,11 +8,11 @@ export const getUserRank = (watchedFilmsCount) => {
       rank = UserRank.NOVICE;
       break;
 
-    case watchedFilmsCount > 11 && watchedFilmsCount <= 20:
+    case watchedFilmsCount > 10 && watchedFilmsCount <= 20:
       rank = UserRank.FAN;
       break;
 
-    case watchedFilmsCount > 21:
+    case watchedFilmsCount > 20:
       rank = UserRank.MOVIE_BUFF;
       break;
   }
