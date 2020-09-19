@@ -12,7 +12,7 @@ const createFilmTemplate = (film) => {
             <span class="film-card__genre">${film.filmInfo.genre.join(`, `)}</span>
           </p>
           <img src=${film.filmInfo.poster} alt="" class="film-card__poster">
-          <p class="film-card__description">${film.filmInfo.description}</p>
+          <p class="film-card__description">${film.filmInfo.description.length > 139 ? film.filmInfo.description.substring(0, 139) + `...` : film.filmInfo.description}</p>
           <a class="film-card__comments">${film.comments.length} comments</a>
           <form class="film-card__controls">
           <form class="film-card__controls">

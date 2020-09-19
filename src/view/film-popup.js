@@ -56,7 +56,7 @@ export const createFilmPopupTemplate = (film, count) => {
                   <td class="film-details__cell">${film.filmInfo.release.releaseCountry}</td>
                 </tr>
                 <tr class="film-details__row">
-                  <td class="film-details__term">Жанр</td>
+                  <td class="film-details__term">${film.filmInfo.genre.length > 1 ? `Жанры` : `Жанр`}</td>
                   <td class="film-details__cell">
                     <span class="film-details__genre">${film.filmInfo.genre.join(`, `)}</span>
                   </td>
