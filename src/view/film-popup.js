@@ -1,7 +1,6 @@
 // Попап (расширенная информация о фильме)
 import Smart from './smart.js';
 import moment from 'moment';
-// import { UpdateType, UserAction } from '../const.js';
 
 export const createFilmPopupTemplate = (film, count) => {
   return (
@@ -102,8 +101,6 @@ export default class FilmPopup extends Smart {
     this._commentsModel = commentsModel;
     this._clickHandlerDelete = this._clickHandlerDelete.bind(this);
     this._clickHandler = this._clickHandler.bind(this);
-    this._escCallback = {};
-    this._escKeyDownHandler = this._escKeyDownHandler.bind(this);
     this._callback = {};
     this._watchedClickHandler = this._watchedClickHandler.bind(this);
     this._watchlistClickHandler = this._watchlistClickHandler.bind(this);
@@ -144,24 +141,6 @@ export default class FilmPopup extends Smart {
     // 2. В addEventListener передадим абстрактный обработчик
     this.getElement().querySelector(`#close-btn`).addEventListener(`click`, this._clickHandler);
 
-  }
-
-
-  _escKeyDownHandler(evt) {
-    // 3. А внутри абстрактного обработчика вызовем колбэк
-    this._escCallback.keydown(evt);
-  }
-
-  setEscKeyDownHandler(callback) {
-    // Мы могли бы сразу передать callback в addEventListener,
-    // но тогда бы для удаления обработчика в будущем,
-    // нам нужно было бы производить это снаружи, где-то там,
-    // где мы вызывали setClickHandler, что не всегда удобно
-
-    // 1. Поэтому колбэк мы запишем во внутреннее свойство
-    this._escCallback.keydown = callback;
-    // 2. В addEventListener передадим абстрактный обработчик
-    document.addEventListener(`keydown`, this._escKeyDownHandler);
   }
 
   setWatchlistClickHandler(callback) {

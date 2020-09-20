@@ -1,5 +1,5 @@
 import ProfilePresenter from "./presenter/profile.js";
-// import Navigation from "./view/navigation.js";
+
 import MoviesModel from "./model/movies.js";
 import MovieListPresenter from "./presenter/movie-list.js";
 import {RenderPosition, siteHeaderElement, siteMainElement, render, remove} from "./utils/render.js";
@@ -20,7 +20,7 @@ const AUTHORIZATION = `Basic hS2sd3dfSwcl1sf3j`;
 const END_POINT = `https://12.ecmascript.pages.academy/cinemaddict`;
 const api = new Api(END_POINT, AUTHORIZATION);
 const apiWithProvider = new Provider(api, store);
-// renderElement(siteHeaderElement, new Profile().getElement(), RenderPosition.BEFOREEND);
+
 
 const filmsModel = new MoviesModel();
 

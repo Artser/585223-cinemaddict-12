@@ -32,7 +32,7 @@ export default class Film {
     this._closePopup = this._closePopup.bind(this);
     this._openPopup = this._openPopup.bind(this);
     this._handlerCloseClick = this._handlerCloseClick.bind(this);
-    this._handlerCloseKeyDown = this._handlerCloseKeyDown.bind(this);
+    this._escKeyDownHandler = this._escKeyDownHandler.bind(this);
     this._openPopup = this._openPopup.bind(this);
     this._renderPopup = this._renderPopup.bind(this);
   }
@@ -48,10 +48,8 @@ export default class Film {
     this._filmComponent.setClickHandlerWatchlist(this._clickWatchlist);
     this._filmComponent.setClickHandlerWatched(this._clickWatched);
     this._filmComponent.setClickHandlerFavorite(this._clickFavorite);
-    this._filmPopupComponent.setEscKeyDownHandler(this._handlerCloseKeyDown);
-    this._filmPopupComponent.setWatchlistClickHandler(this._clickWatchlist);
-    this._filmPopupComponent.setWatchedClickHandler(this._clickWatched);
-    this._filmPopupComponent.setFavoriteClickHandler(this._clickFavorite);
+    // this._filmPopupComponent.setEscKeyDownHandler(this._handlerCloseKeyDown);
+
 
     if (prevFilmComponent === null || prevFilmPopupComponent === null) {
       render(this._filmListContainer, this._filmComponent, RenderPosition.BEFOREEND);
@@ -176,7 +174,11 @@ export default class Film {
     // this._handlePopupChange();
 
     this._filmPopupComponent.setCloseHandler(this._handlerCloseClick);
-    this._filmPopupComponent.restoreHandlers();
+    // this._filmPopupComponent.restoreHandlers();
+    document.addEventListener(`keydown`, this._escKeyDownHandler);
+    this._filmPopupComponent.setWatchlistClickHandler(this._clickWatchlist);
+    this._filmPopupComponent.setWatchedClickHandler(this._clickWatched);
+    this._filmPopupComponent.setFavoriteClickHandler(this._clickFavorite);
     this._renderComments();
 
     render(footerElement, this._filmPopupComponent, RenderPosition.BEFOREEND);
@@ -242,7 +244,7 @@ export default class Film {
     }
   }
 
-  _handlerCloseKeyDown(evt) {
+  _escKeyDownHandler(evt) {
     if (evt.key === `Escape` || evt.key === `Esc`) {
       evt.preventDefault();
       this._closePopup();
@@ -250,6 +252,7 @@ export default class Film {
   }
 
   _closePopup() {
+    document.removeEventListener(`keydown`, this._escKeyDownHandler);
     remove(this._filmPopupComponent);
     this._mode = Mode.DEFAULT;
     this._commentModel.removeObserver(this._handleModelEvent);

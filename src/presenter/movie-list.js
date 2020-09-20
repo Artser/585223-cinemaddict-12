@@ -5,7 +5,7 @@ import LoadingView from "../view/loading.js";
 
 import Sorting from "../view/sort.js";
 import {SortType, UpdateType, UserAction} from "../const.js";
-// import Film from "../view/film.js";
+
 import {sortFilmDate, sortFilmRating} from "../utils/film.js";
 import {updateItem} from "../utils/common.js";
 import NoMovies from "../view/nomovies.js";
@@ -16,6 +16,7 @@ const MOVIE_COUNT_PER_STEP = 5;
 
 export default class MovieList {
   constructor(containerFilms, filmsModel, filterModel, api) {
+    this._films = null;
     this._filterModel = filterModel;
     this._filmsModel = filmsModel;
     this._renderedMovieCount = MOVIE_COUNT_PER_STEP;
@@ -39,6 +40,7 @@ export default class MovieList {
   }
 
   init() {
+    this._films = this._getFilms();
     this._filmsModel.addObserver(this._handleModelEvent);
     // this._renderFilmsElements();
     this._filterModel.addObserver(this._handleModelEvent);
@@ -162,7 +164,7 @@ export default class MovieList {
   }
 
   _handleLoadMoreButtonClick() {
-    const films = this._getFilms();
+    const films = this._films;
     const filmCount = films.length;
     const newRenderedFilmCount = Math.min(filmCount, this._renderedMovieCount + MOVIE_COUNT_PER_STEP);
     this._renderFilms(films.slice(this._renderedMovieCount, newRenderedFilmCount));
@@ -219,10 +221,10 @@ export default class MovieList {
     }
     this._renderSort();
     renderElement(this._containerFilms, this._filmsComponent.getElement(), RenderPosition.BEFOREEND);
-    const films = this._getFilms();
-    const filmCount = films.length;
+    this._films = this._getFilms();
+    const filmCount = this._films.length;
 
-    this._renderFilms(films.slice(0, Math.min(filmCount, MOVIE_COUNT_PER_STEP)));
+    this._renderFilms(this._films.slice(0, Math.min(filmCount, MOVIE_COUNT_PER_STEP)));
     if (filmCount > MOVIE_COUNT_PER_STEP) {
       this._renderLoadMoreButton();
     }
