@@ -35,4 +35,3 @@ export default class ShowMoreButton extends Abstract {
   }
 }
 
-// this._clickHandler = this._clickHandler.bind(this);

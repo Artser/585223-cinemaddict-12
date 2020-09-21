@@ -112,14 +112,6 @@ export default class AddComment extends Smart {
       };
 
       this._callback.addComment(UserAction.ADD_COMMENT, UpdateType.MINOR, newComment);
-      /*  const comments = [
-         ...this._data.comments.slice(), newComment,
-
-       ];
-       this.updateData({
-         comments,
-         emotion: null,
-       }); */
     }
 
   }

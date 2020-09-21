@@ -42,7 +42,6 @@ export default class MovieList {
   init() {
     this._films = this._getFilms();
     this._filmsModel.addObserver(this._handleModelEvent);
-    // this._renderFilmsElements();
     this._filterModel.addObserver(this._handleModelEvent);
     this._renderFilmList();
 

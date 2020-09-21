@@ -1,5 +1,4 @@
 import Movies from "../model/movies.js";
-// import CommentsModel from "./model/comments.js";
 
 
 const Method = {

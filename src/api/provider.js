@@ -1,6 +1,5 @@
 import {nanoid} from "nanoid";
 import MoviesModel from "../model/movies.js";
-// import CommentModel from "../model/comments.js";
 
 const getSyncedMovies = (items) => {
   return items.filter(({success}) => success)

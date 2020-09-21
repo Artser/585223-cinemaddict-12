@@ -123,7 +123,6 @@ export default class Movies extends Observer {
     delete adaptedFilm.film_info.ageRating;
     delete adaptedFilm.film_info.release.releaseCountry;
 
-    // console.log(adaptedFilm);
 
     return adaptedFilm;
   }

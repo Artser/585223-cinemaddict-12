@@ -6,8 +6,7 @@ export const footerElement = document.querySelector(`.footer`);
 export const RenderPosition = {
   AFTERBEGIN: `afterbegin`,
   BEFOREEND: `beforeend`,
-/*   BEFOREBEGIN: `beforebegin`,
-  AFTEREND: `afterend` */
+
 };
 
 export const renderElement = (container, element, place) => {
@@ -20,10 +19,6 @@ export const renderElement = (container, element, place) => {
       break;
   }
 };
-
-/* export const renderTemplate = (container, template, place) => {
-  container.insertAdjacentHTML(place, template);
-}; */
 
 // Принцип работы прост:
 // 1. создаём пустой div-блок
@@ -51,12 +46,7 @@ export const render = (container, child, place) => {
     case RenderPosition.BEFOREEND:
       container.append(child);
       break;
-/*     case RenderPosition.BEFOREBEGIN:
-      container.before(child);
-      break;
-    case RenderPosition.AFTEREND:
-      container.after(child);
-      break; */
+
   }
 };
 

@@ -48,7 +48,6 @@ export default class Film {
     this._filmComponent.setClickHandlerWatchlist(this._clickWatchlist);
     this._filmComponent.setClickHandlerWatched(this._clickWatched);
     this._filmComponent.setClickHandlerFavorite(this._clickFavorite);
-    // this._filmPopupComponent.setEscKeyDownHandler(this._handlerCloseKeyDown);
 
 
     if (prevFilmComponent === null || prevFilmPopupComponent === null) {
@@ -66,21 +65,11 @@ export default class Film {
 
     remove(prevFilmPopupComponent);
 
-    /*    if (this._mode === Mode.POPUP) {
-         prevFilmPopupComponent.updateData(this._film);
-         this._filmPopupComponent = prevFilmPopupComponent;
-         this._renderComments();
-       } else {
-         replace(this._filmPopupComponent, prevFilmPopupComponent);
-         remove(prevFilmPopupComponent);
-
-       } */
 
     remove(prevFilmComponent);
   }
 
   _clickWatchlist() {
-    // console.log(this._film);
     this._changeData(
         UserAction.UPDATE_FILM,
         UpdateType.PATCH,
@@ -158,7 +147,6 @@ export default class Film {
     if (this._commentModel.getComments().length === 0) {
       this._api.getComments(this._film.id).then((items) => {
         this._commentModel.setComments(items);
-        // this._renderComments();
         this._filmPopupComponent.getElement().querySelector(`.film-details__comments-count`).textContent = items.length;
       }).then(this._renderPopup);
     } else {
@@ -169,12 +157,7 @@ export default class Film {
   _renderPopup() {
     this._commentModel.addObserver(this._handleModelEvent);
     this._mode = Mode.POPUP;
-
-    // TODO обнуляет комментарии.Зачем он здесь?
-    // this._handlePopupChange();
-
     this._filmPopupComponent.setCloseHandler(this._handlerCloseClick);
-    // this._filmPopupComponent.restoreHandlers();
     document.addEventListener(`keydown`, this._escKeyDownHandler);
     this._filmPopupComponent.setWatchlistClickHandler(this._clickWatchlist);
     this._filmPopupComponent.setWatchedClickHandler(this._clickWatched);
