@@ -189,3 +189,5 @@ export default class FilmPopup extends Smart {
     this._data.localComment.comment = evt.target.value;
   }
 }
+
+
