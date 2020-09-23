@@ -2,7 +2,7 @@ import {RenderPosition, remove, render, footerElement, replace} from "../utils/r
 import FilmPopupView from "../view/film-popup.js";
 import FilmView from "../view/film.js";
 import {UserAction, UpdateType} from "../const.js";
-import Comments from "../view/comments.js";
+import CommentView from "../view/comment.js";
 import CommentsModel from "../model/comments.js";
 import AddComment from "../view/add-comment.js";
 import moment from "moment";
@@ -31,7 +31,7 @@ export default class Film {
     this._handleViewAction = this._handleViewAction.bind(this);
     this._closePopup = this._closePopup.bind(this);
     this._openPopup = this._openPopup.bind(this);
-    this._handlerCloseClick = this._handlerCloseClick.bind(this);
+    this._clickCloseHandler = this._clickCloseHandler.bind(this);
     this._escKeyDownHandler = this._escKeyDownHandler.bind(this);
     this._openPopup = this._openPopup.bind(this);
     this._renderPopup = this._renderPopup.bind(this);
@@ -156,7 +156,7 @@ export default class Film {
   _renderPopup() {
     this._commentModel.addObserver(this._handleModelEvent);
     this._mode = Mode.POPUP;
-    this._filmPopupComponent.setCloseHandler(this._handlerCloseClick);
+    this._filmPopupComponent.setCloseHandler(this._clickCloseHandler);
     document.addEventListener(`keydown`, this._escKeyDownHandler);
     this._filmPopupComponent.setWatchlistClickHandler(this._clickWatchlist);
     this._filmPopupComponent.setWatchedClickHandler(this._clickWatched);
@@ -169,7 +169,7 @@ export default class Film {
   _renderComments() {
     this._commentModel.getComments().map((item) => {
 
-      const comment = new Comments(item);
+      const comment = new CommentView(item);
       comment.setHandleClickDelete(this._handleViewAction);
       const newCommentElement = this._filmPopupComponent.getElement().querySelector(`.film-details__comments-list`);
       render(newCommentElement, comment, RenderPosition.BEFOREEND);
@@ -180,7 +180,7 @@ export default class Film {
 
   }
 
-  _handlerCloseClick() {
+  _clickCloseHandler() {
     this._closePopup();
   }
 

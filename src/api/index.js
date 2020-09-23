@@ -1,4 +1,4 @@
-import MoviesModel from "../model/movies.js";
+import FilmsModel from "../model/films.js";
 
 
 const Method = {
@@ -22,7 +22,7 @@ export default class Api {
   getFilms() {
     return this._load({url: `movies`})
       .then(Api.toJSON)
-      .then((films) => films.map(MoviesModel.adaptToClient));
+      .then((films) => films.map(FilmsModel.adaptToClient));
   }
 
   deleteComment(id) {
@@ -37,11 +37,11 @@ export default class Api {
     return this._load({
       url: `movies/${film.id}`,
       method: Method.PUT,
-      body: JSON.stringify(MoviesModel.adaptToServer(film)),
+      body: JSON.stringify(FilmsModel.adaptToServer(film)),
       headers: new Headers({"Content-Type": `application/json`})
     })
       .then(Api.toJSON)
-      .then(MoviesModel.adaptToClient)
+      .then(FilmsModel.adaptToClient)
       .then((response) => {
         this.getComments(response.id).then((comments) => {
           response.comments = comments;
@@ -71,7 +71,7 @@ export default class Api {
     })
       .then(Api.toJSON)
       .then((result) => ({
-        movie: MoviesModel.adaptToClient(result.movie),
+        movie: FilmsModel.adaptToClient(result.movie),
         comments: result.comments,
       }));
 

@@ -1,7 +1,7 @@
 import {nanoid} from "nanoid";
-import MoviesModel from "../model/movies.js";
+import FilmsModel from "../model/films.js";
 
-const getSyncedMovies = (items) => {
+const getSyncedFilms = (items) => {
   return items.filter(({success}) => success)
     .map(({payload}) => payload.film);
 };
@@ -24,7 +24,7 @@ export default class Provider {
     if (Provider.isOnline()) {
       return this._api.getFilms()
         .then((films) => {
-          const items = createStoreStructure(films.map(MoviesModel.adaptToServer));
+          const items = createStoreStructure(films.map(FilmsModel.adaptToServer));
           this._store.setItems(items);
           return films;
         });
@@ -32,19 +32,19 @@ export default class Provider {
 
     const storeFilms = Object.values(this._store.getItems());
 
-    return Promise.resolve(storeFilms.map(MoviesModel.adaptToClient));
+    return Promise.resolve(storeFilms.map(FilmsModel.adaptToClient));
   }
 
   updateFilm(film) {
     if (Provider.isOnline()) {
       return this._api.updateFilm(film)
         .then((updateFilm) => {
-          this._store.setItem(updateFilm.id, MoviesModel.adaptToServer(updateFilm));
+          this._store.setItem(updateFilm.id, FilmsModel.adaptToServer(updateFilm));
           return updateFilm;
         });
     }
 
-    this._store.setItem(film.id, MoviesModel.adaptToServer(Object.assign({}, film)));
+    this._store.setItem(film.id, FilmsModel.adaptToServer(Object.assign({}, film)));
 
     return Promise.resolve(film);
   }
@@ -69,7 +69,7 @@ export default class Provider {
     const localNewCommentId = nanoid();
     const localNewComment = Object.assign({}, comment, {id: localNewCommentId});
 
-    this._store.setItem(localNewComment.id, MoviesModel.adaptToServer(localNewComment));
+    this._store.setItem(localNewComment.id, FilmsModel.adaptToServer(localNewComment));
 
     return Promise.resolve(localNewComment);
   }
@@ -87,17 +87,17 @@ export default class Provider {
 
   sync() {
     if (Provider.isOnline()) {
-      const storeMovies = Object.values(this._store.getItems());
+      const storeFilms = Object.values(this._store.getItems());
 
-      return this._api.sync(storeMovies)
+      return this._api.sync(storeFilms)
         .then((response) => {
           // Забираем из ответа синхронизированные задачи
-          const createdMovies = getSyncedMovies(response.created);
-          const updatedMovies = getSyncedMovies(response.updated);
+          const createdFilms = getSyncedFilms(response.created);
+          const updatedFilms = getSyncedFilms(response.updated);
 
           // Добавляем синхронизированные задачи в хранилище.
           // Хранилище должно быть актуальным в любой момент.
-          const items = createStoreStructure([...createdMovies, ...updatedMovies]);
+          const items = createStoreStructure([...createdFilms, ...updatedFilms]);
 
           this._store.setItems(items);
         });

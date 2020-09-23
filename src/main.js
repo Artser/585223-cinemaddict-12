@@ -1,7 +1,7 @@
 import ProfilePresenter from "./presenter/profile.js";
 
-import MoviesModel from "./model/movies.js";
-import MovieListPresenter from "./presenter/movie-list.js";
+import FilmsModel from "./model/films.js";
+import FilmListPresenter from "./presenter/film-list.js";
 import {RenderPosition, siteHeaderElement, siteMainElement, render, remove} from "./utils/render.js";
 import FilterPresenter from "./presenter/filter.js";
 import FilterModel from "./model/filter.js";
@@ -22,7 +22,7 @@ const api = new Api(END_POINT, AUTHORIZATION);
 const apiWithProvider = new Provider(api, store);
 
 
-const filmsModel = new MoviesModel();
+const filmsModel = new FilmsModel();
 
 const filterModel = new FilterModel();
 
@@ -38,21 +38,21 @@ apiWithProvider.getFilms()
     const filterPresenter = new FilterPresenter(siteMainElement, filterModel, filmsModel);
     filterPresenter.init();
 
-    const movieList = new MovieListPresenter(siteMainElement, filmsModel, filterModel, apiWithProvider);
-    movieList.init();
+    const filmList = new FilmListPresenter(siteMainElement, filmsModel, filterModel, apiWithProvider);
+    filmList.init();
     const handleSetMenuClick = (evt) => {
       const menuItem = evt.target.dataset.type;
       switch (menuItem) {
         case MenuItem.FILMS:
           if (statistic !== null) {
-            movieList.init();
+            filmList.init();
             remove(statistic);
             statistic = null;
           }
           break;
         case MenuItem.STATISTICS:
           statistic = new StatisticView(filmsModel.getWatchedFilms());
-          movieList.destroy();
+          filmList.destroy();
 
           render(siteMainElement, statistic, RenderPosition.BEFOREEND);
           statistic.renderStatistic();
