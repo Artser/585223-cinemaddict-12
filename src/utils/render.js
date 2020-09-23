@@ -9,17 +9,6 @@ export const RenderPosition = {
 
 };
 
-export const renderElement = (container, element, place) => {
-  switch (place) {
-    case RenderPosition.AFTERBEGIN:
-      container.prepend(element);
-      break;
-    case RenderPosition.BEFOREEND:
-      container.append(element);
-      break;
-  }
-};
-
 // Принцип работы прост:
 // 1. создаём пустой div-блок
 // 2. берём HTML в виде строки и вкладываем в этот div-блок, превращая в DOM-элемент

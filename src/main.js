@@ -8,7 +8,7 @@ import FilterModel from "./model/filter.js";
 import Api from "./api/index.js";
 import Store from "./api/store.js";
 import Provider from "./api/provider.js";
-import Statistic from "./view/statistic.js";
+import StatisticView from "./view/statistic.js";
 import {MenuItem, UpdateType} from "./const.js";
 
 const STORE_PREFIX = `cinemaddist-localstorage`;
@@ -28,6 +28,7 @@ const filterModel = new FilterModel();
 
 
 let statistic = null;
+
 
 apiWithProvider.getFilms()
   .then((films) => {
@@ -50,7 +51,7 @@ apiWithProvider.getFilms()
           }
           break;
         case MenuItem.STATISTICS:
-          statistic = new Statistic(filmsModel.getWatchedFilms());
+          statistic = new StatisticView(filmsModel.getWatchedFilms());
           movieList.destroy();
 
           render(siteMainElement, statistic, RenderPosition.BEFOREEND);

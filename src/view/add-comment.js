@@ -1,5 +1,6 @@
 import {EmotionType, UpdateType, UserAction} from '../const.js';
-import Smart from './smart.js';
+import SmartView from './smart.js';
+import moment from "moment";
 
 const SHAKE_CSS_ANIMATION = `shake`;
 
@@ -48,7 +49,7 @@ const creatAddComment = (comment) => {
 };
 
 
-export default class AddComment extends Smart {
+export default class AddComment extends SmartView {
   constructor() {
     super();
     this._callback = {};
@@ -107,7 +108,7 @@ export default class AddComment extends Smart {
       evt.preventDefault();
       const newComment = {
         comment: this.getElement().querySelector(`.film-details__comment-input`).value,
-        date: new Date().toISOString(),
+        date: moment().toISOString(),
         emotion: this._data.emotion,
       };
 

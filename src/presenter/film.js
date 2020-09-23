@@ -147,7 +147,6 @@ export default class Film {
     if (this._commentModel.getComments().length === 0) {
       this._api.getComments(this._film.id).then((items) => {
         this._commentModel.setComments(items);
-        this._filmPopupComponent.getElement().querySelector(`.film-details__comments-count`).textContent = items.length;
       }).then(this._renderPopup);
     } else {
       this._renderPopup();

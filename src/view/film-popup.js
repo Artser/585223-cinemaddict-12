@@ -1,5 +1,5 @@
 // Попап (расширенная информация о фильме)
-import Smart from './smart.js';
+import SmartView from './smart.js';
 import moment from 'moment';
 
 export const createFilmPopupTemplate = (film, count) => {
@@ -93,7 +93,7 @@ export const createFilmPopupTemplate = (film, count) => {
 };
 
 
-export default class FilmPopup extends Smart {
+export default class FilmPopup extends SmartView {
   constructor(film, commentsModel) {
     super();
     this._data = film;
