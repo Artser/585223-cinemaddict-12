@@ -30,7 +30,7 @@ export const createFilterTemplate = (filterItems, currentFilterType) => {
 };
 
 
-export default class Navigation extends AbstractView {
+export default class Filter extends AbstractView {
   constructor(filters, currentFilterType) {
     super();
     this._callback = {};
