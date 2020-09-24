@@ -34,7 +34,6 @@ export default class FilmList {
     this._handleViewAction = this._handleViewAction.bind(this);
     this._handleFilmChange = this._handleFilmChange.bind(this);
     this._handlePopupChange = this._handlePopupChange.bind(this);
-    this._handleFilmChange = this._handleFilmChange.bind(this);
     this._handleLoadMoreButtonClick = this._handleLoadMoreButtonClick.bind(this);
     this._handleSortTypeChange = this._handleSortTypeChange.bind(this);
   }

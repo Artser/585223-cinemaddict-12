@@ -10,6 +10,7 @@ const filterItemStatistic = (filter, currentStatType) => {
   <label for="${filter.id}" class="statistic__filters-label">${filter.name}</label>`;
 };
 
+
 const createStatisticTemplate = (filters, currentStatType, films) => {
   const filterItemsTemplate = filters
     .map((filter) => filterItemStatistic(filter, currentStatType))
@@ -248,23 +249,22 @@ const artStatistic = (films) => {
     return;
   }
 
+  // находим список уникальных жанров.
   const genres = Array.from(new Set(films
-    .filter((film) => film.userDetails.alreadyWatched)
     .map((film) => film.filmInfo.genre)
     .flat()));
 
-
+  // находим количество вхождений фильмов в каждый из уникальных жанров
   const data = [];
-  films.filter((film) => film.userDetails.alreadyWatched)
-    .forEach((film) => {
-      film.filmInfo.genre
+  films.forEach((film) => {
+    film.filmInfo.genre
         .forEach((genre) => {
           const index = genres.findIndex((item) => item === genre);
           data[index] = (data[index] || 0) + 1;
         });
 
 
-    });
+  });
 
   // Обязательно рассчитайте высоту canvas, она зависит от количества элементов диаграммы
   statisticCtx.height = BAR_HEIGHT * genres.length;

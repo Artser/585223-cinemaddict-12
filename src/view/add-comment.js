@@ -25,7 +25,7 @@ const creatAddComment = (comment) => {
       </label>
 
       <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-sleeping" value="sleeping"
-        ${comment.emotion === EmotionType.SlEEPING ? `checked` : ``}
+        ${comment.emotion === EmotionType.SLEEPING ? `checked` : ``}
       >
       <label class="film-details__emoji-label" for="emoji-sleeping">
         <img src="./images/emoji/sleeping.png" width="30" height="30" alt="emoji">
