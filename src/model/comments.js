@@ -34,6 +34,7 @@ export default class Comment extends Observer {
       ...data.film.comments.slice(0, index),
       ...data.film.comments.slice(index + 1)
     ];
+
     this._notify(updateType, data.film);
   }
 }

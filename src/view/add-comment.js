@@ -4,7 +4,7 @@ import moment from "moment";
 
 const SHAKE_CSS_ANIMATION = `shake`;
 
-const creatAddComment = (comment) => {
+const creatAddComment = (comment, emotions) => {
 
   return (
     `<div class="film-details__new-comment">
@@ -16,34 +16,14 @@ const creatAddComment = (comment) => {
       <textarea class="film-details__comment-input" placeholder="Select reaction below and write comment here" name="comment">${comment.comment || ``}</textarea>
     </label>
 
-    <div class="film-details__emoji-list">
-      <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-smile" value="smile"
-        ${comment.emotion === EmotionType.SMILE ? `checked` : ``}
+    <div class="film-details__emoji-list">${emotions.map((emotion) => (
+      `<input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-${emotion.type}" value="${emotion.type}"
+        ${comment.emotion === emotion.type ? `checked` : ``}
       >
-      <label class="film-details__emoji-label" for="emoji-smile">
-        <img src="./images/emoji/smile.png" width="30" height="30" alt="emoji">
-      </label>
-
-      <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-sleeping" value="sleeping"
-        ${comment.emotion === EmotionType.SLEEPING ? `checked` : ``}
-      >
-      <label class="film-details__emoji-label" for="emoji-sleeping">
-        <img src="./images/emoji/sleeping.png" width="30" height="30" alt="emoji">
-      </label>
-
-      <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-gpuke" value="puke"
-        ${comment.emotion === EmotionType.PUKE ? `checked` : ``}
-      >
-      <label class="film-details__emoji-label" for="emoji-gpuke">
-        <img src="./images/emoji/puke.png" width="30" height="30" alt="emoji">
-      </label>
-
-      <input class="film-details__emoji-item visually-hidden" name="comment-emoji" type="radio" id="emoji-angry" value="angry"
-        ${comment.emotion === EmotionType.ANGRY ? `checked` : ``}
-      >
-      <label class="film-details__emoji-label" for="emoji-angry">
-        <img src="./images/emoji/angry.png" width="30" height="30" alt="emoji">
-      </label>
+      <label class="film-details__emoji-label" for="emoji-${emotion.type}">
+        <img src="./images/emoji/${emotion.type}.png" width="30" height="30" alt="emoji">
+      </label>`
+    )).join(``)}
     </div>
   </div>`);
 };
@@ -60,7 +40,7 @@ export default class AddComment extends SmartView {
   }
 
   getTemplate() {
-    return creatAddComment(this._data);
+    return creatAddComment(this._data, this._getEmotions());
   }
 
   startErrorAnimation() {
@@ -70,6 +50,20 @@ export default class AddComment extends SmartView {
     }, 0);
   }
 
+  _getEmotions() {
+    return [{
+      type: EmotionType.SMILE,
+    },
+    {
+      type: EmotionType.SLEEPING,
+    },
+    {
+      type: EmotionType.PUKE,
+    },
+    {
+      type: EmotionType.ANGRY,
+    }];
+  }
 
   _clickSmileHandler(evt) {
     evt.preventDefault();

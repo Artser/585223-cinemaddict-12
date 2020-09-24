@@ -22,7 +22,6 @@ export default class Film {
     this._mode = Mode.DEFAULT;
     this._api = api;
     this._commentModel = new CommentsModel();
-    // this._comments = null;
     this._addCommentComponent = null;
     this._clickWatchlist = this._clickWatchlist.bind(this);
     this._handleModelEvent = this._handleModelEvent.bind(this);

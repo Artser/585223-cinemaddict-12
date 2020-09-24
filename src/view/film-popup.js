@@ -1,5 +1,4 @@
 // Попап (расширенная информация о фильме)
-// import SmartView from './smart.js';
 import moment from 'moment';
 import AbstractView from "./abstract.js";
 
@@ -185,10 +184,6 @@ export default class FilmPopup extends AbstractView {
     this.setCloseHandler(this._callback.click);
 
   }
-
-/*   _onCommentInput(evt) {
-    this._data.localComment.comment = evt.target.value;
-  } */
 }
 
 
