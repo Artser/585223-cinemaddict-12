@@ -186,9 +186,6 @@ export default class Film {
     switch (actionType) {
       case UserAction.DELETE_COMMENT:
         this._api.deleteComment(update.id).then(() => {
-          /*  if (evt === undefined) {
-            return;
-          } */
           this._commentModel.deleteComment(updateType, {
             comment:
               update,

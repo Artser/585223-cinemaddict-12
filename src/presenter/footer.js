@@ -15,11 +15,4 @@ export default class Footer {
   }
 
 
-  _handleModelEvent() {
-
-    this._profileComponent.updateData({
-      watchedFilmsCount: this._filmsModel.getWatchedFilms().length,
-    });
-  }
-
 }

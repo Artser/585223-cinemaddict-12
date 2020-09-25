@@ -1,20 +1,22 @@
 import SmartView from "./smart.js";
 
 
-export const createFooterTemplate = (filmsCount) => {
+export const createFooterTemplate = (films) => {
 
   return (
-    `<p class="profile__rating">${filmsCount}  movies inside</p>`
+    `<p >${films}  movies inside</p>`
   );
 };
 
 export default class Footer extends SmartView {
-  constructor() {
+  constructor(films) {
     super();
+    this._films = films;
+
   }
 
   getTemplate() {
-    return createFooterTemplate(this._data.filmsCount);
+    return createFooterTemplate(this._films);
   }
 
   restoreHandlers() {
