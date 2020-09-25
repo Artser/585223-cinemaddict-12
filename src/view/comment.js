@@ -29,7 +29,6 @@ export default class Comments extends AbstractView {
   constructor(comment) {
     super();
     this._data = comment;
-    this._callback = {};
     this._handleClickDelete = this._handleClickDelete.bind(this);
   }
 

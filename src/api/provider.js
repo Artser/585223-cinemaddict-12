@@ -1,4 +1,3 @@
-import {nanoid} from "nanoid";
 import FilmsModel from "../model/films.js";
 
 const getSyncedFilms = (items) => {
@@ -64,25 +63,24 @@ export default class Provider {
         });
     }
 
-    // На случай локального создания данных мы должны сами создать `id`.
+    /*  // На случай локального создания данных мы должны сами создать `id`.
     // Иначе наша модель будет не полной, и это может привнести баги
     const localNewCommentId = nanoid();
     const localNewComment = Object.assign({}, comment, {id: localNewCommentId});
 
-    this._store.setItem(localNewComment.id, FilmsModel.adaptToServer(localNewComment));
+    this._store.setItem(localNewComment.id, localNewComment); */
 
-    return Promise.resolve(localNewComment);
+    return Promise.reject(new Error(`data update error`));
   }
 
   deleteComment(comment) {
     if (Provider.isOnline()) {
-      return this._api.deleteComment(comment)
-        .then(() => this._store.removeItem(comment.id));
+      return this._api.deleteComment(comment);
     }
 
-    this._store.removeItem(comment.id);
+    // this._store.removeItem(comment.id);
 
-    return Promise.resolve();
+    return Promise.reject(new Error(`data update error`));
   }
 
   sync() {

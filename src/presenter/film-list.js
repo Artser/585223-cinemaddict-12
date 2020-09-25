@@ -2,10 +2,8 @@ import FilmsView from "../view/films.js";
 import FilmPresenter from "./film.js";
 import {filter} from "../utils/filter.js";
 import LoadingView from "../view/loading.js";
-
 import SortingView from "../view/sort.js";
 import {SortType, UpdateType, UserAction} from "../const.js";
-
 import {sortFilmDate, sortFilmRating} from "../utils/film.js";
 import {updateItem} from "../utils/common.js";
 import NoFilmsView from "../view/nofilms.js";
@@ -89,11 +87,6 @@ export default class FilmList {
       .forEach((presenter) => presenter.closeItemPopup());
   }
 
-  _handleFilmChange(updatedFilm) {
-    this._films = updateItem(this._films, updatedFilm);
-    this._sourceFilms = updateItem(this._sourceFilms, updatedFilm);
-    this._filmPresenter[updatedFilm.id].init(updatedFilm);
-  }
 
   _handleViewAction(actionType, updateType, update) {
     switch (actionType) {
@@ -101,7 +94,9 @@ export default class FilmList {
         this._api.updateFilm(update).then((response) => {
           this._filmsModel.updateFilm(updateType, response);
 
-        });
+        })
+        .catch(new Error(`Data update error`));
+
         break;
 
       case UserAction.ADD_COMMENT:
@@ -147,7 +142,7 @@ export default class FilmList {
   _renderFilm(film) {
 
     const filmListElement = this._filmsComponent.getElement().querySelector(`.films-list__container`);
-    const filmPresenter = new FilmPresenter(filmListElement, this._handleViewAction, this._handlePopupChange, this._api);
+    const filmPresenter = new FilmPresenter(filmListElement, this._handleViewAction, this._api);
     filmPresenter.init(film);
     this._filmPresenter[film.id] = filmPresenter;
   }

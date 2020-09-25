@@ -1,8 +1,8 @@
 import ProfilePresenter from "./presenter/profile.js";
-
+import FooterPresenter from "./presenter/footer.js";
 import FilmsModel from "./model/films.js";
 import FilmListPresenter from "./presenter/film-list.js";
-import {RenderPosition, siteHeaderElement, siteMainElement, render, remove} from "./utils/render.js";
+import {RenderPosition, siteHeaderElement, siteMainElement, render, remove, footerElement} from "./utils/render.js";
 import FilterPresenter from "./presenter/filter.js";
 import FilterModel from "./model/filter.js";
 import Api from "./api/index.js";
@@ -40,6 +40,9 @@ apiWithProvider.getFilms()
 
     const filmList = new FilmListPresenter(siteMainElement, filmsModel, filterModel, apiWithProvider);
     filmList.init();
+
+    const footerPresenter = new FooterPresenter(footerElement, filmsModel);
+    footerPresenter.init();
     const handleSetMenuClick = (evt) => {
       const menuItem = evt.target.dataset.type;
       switch (menuItem) {

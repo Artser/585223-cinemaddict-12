@@ -32,7 +32,6 @@ const creatAddComment = (comment, emotions) => {
 export default class AddComment extends SmartView {
   constructor() {
     super();
-    this._callback = {};
     this._data = {};
     this._clickSmileHandler = this._clickSmileHandler.bind(this);
     this._onAddCommentKeydown = this._onAddCommentKeydown.bind(this);

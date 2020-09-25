@@ -13,10 +13,9 @@ const Mode = {
 };
 
 export default class Film {
-  constructor(filmListContainer, changeData, handlePopupChange, api) {
+  constructor(filmListContainer, changeData, api) {
     this._filmListContainer = filmListContainer;
     this._changeData = changeData;
-    this._handlePopupChange = handlePopupChange;
     this._filmComponent = null;
     this._filmPopupComponent = null;
     this._mode = Mode.DEFAULT;
@@ -187,6 +186,9 @@ export default class Film {
     switch (actionType) {
       case UserAction.DELETE_COMMENT:
         this._api.deleteComment(update.id).then(() => {
+          /*  if (evt === undefined) {
+            return;
+          } */
           this._commentModel.deleteComment(updateType, {
             comment:
               update,
@@ -201,7 +203,7 @@ export default class Film {
           this._commentModel.addComment(updateType, result);
           this._addCommentComponent.enableComment();
 
-        }).catch(()=>{
+        }).catch(() => {
           this._addCommentComponent.startErrorAnimation();
           this._addCommentComponent.enableComment();
 

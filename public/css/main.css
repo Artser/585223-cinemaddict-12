@@ -245,7 +245,8 @@ button {
 }
 
 .main-navigation__item--active,
-.main-navigation__additional--active {
+.main-navigation__additional--active,
+.main-navigation__additional:checked {
   color: var(--text-color-active);
 }
 

@@ -33,7 +33,6 @@ export const createFilterTemplate = (filterItems, currentFilterType) => {
 export default class Filter extends AbstractView {
   constructor(filters, currentFilterType) {
     super();
-    this._callback = {};
     this._filters = filters;
     this._currentFilterType = currentFilterType;
     this._filterTypeChangeHandler = this._filterTypeChangeHandler.bind(this);
@@ -47,7 +46,7 @@ export default class Filter extends AbstractView {
 
   _filterTypeChangeHandler(evt) {
     evt.preventDefault();
-    this._callback.filterTypeChange(evt.target.id);
+    this._callback.filterTypeChange(evt.target.closest(`.main-navigation__item`).id);
 
   }
 

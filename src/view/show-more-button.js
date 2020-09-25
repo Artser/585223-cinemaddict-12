@@ -7,7 +7,6 @@ export default class ShowMoreButton extends AbstractView {
   constructor() {
     super();
     this._clickHandler = this._clickHandler.bind(this);
-    this._callback = {};
 
   }
 
