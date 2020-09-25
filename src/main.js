@@ -41,12 +41,15 @@ apiWithProvider.getFilms()
     const filmList = new FilmListPresenter(siteMainElement, filmsModel, filterModel, apiWithProvider);
     filmList.init();
 
-    const footerPresenter = new FooterPresenter(footerElement, filmsModel);
+    const footerPresenter = new FooterPresenter(footerElement, films.length);
     footerPresenter.init();
+
     const handleSetMenuClick = (evt) => {
       const menuItem = evt.target.dataset.type;
       switch (menuItem) {
         case MenuItem.FILMS:
+          document.querySelector(`#stats`).classList.remove(`main-navigation__item--active`);
+
           if (statistic !== null) {
             filmList.init();
             remove(statistic);
@@ -55,6 +58,7 @@ apiWithProvider.getFilms()
           break;
         case MenuItem.STATISTICS:
           statistic = new StatisticView(filmsModel.getWatchedFilms());
+          document.querySelector(`#stats`).classList.add(`main-navigation__item--active`);
           filmList.destroy();
 
           render(siteMainElement, statistic, RenderPosition.BEFOREEND);
@@ -74,15 +78,6 @@ apiWithProvider.getFilms()
     filmsModel.setFilms(UpdateType.INIT, []);
 
   });
-// 75 и 76 строку убрать для 9 задания и аргумент в 74 строке
-// ниже для отключения
-/* .then((registration) => {
-  registration.unregister().then((success) => {
-    console.log(success);
-
-        // if boolean = true, unregister is successful
-      });
-    */
 
 window.addEventListener(`load`, () => {
   navigator.serviceWorker.register(`/sw.js`)
