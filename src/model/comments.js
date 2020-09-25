@@ -21,7 +21,6 @@ export default class Comment extends Observer {
   }
 
   deleteComment(updateType, data) {
-    // console.log(comment);
     const index = this._comments.findIndex((item) => item.id === data.comment.id);
     if (index === -1) {
       throw new Error(`Unable to delete a nonexistent comment`);
@@ -35,6 +34,7 @@ export default class Comment extends Observer {
       ...data.film.comments.slice(0, index),
       ...data.film.comments.slice(index + 1)
     ];
+
     this._notify(updateType, data.film);
   }
 }

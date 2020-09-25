@@ -30,10 +30,9 @@ export const createFilterTemplate = (filterItems, currentFilterType) => {
 };
 
 
-export default class Navigation extends AbstractView {
+export default class Filter extends AbstractView {
   constructor(filters, currentFilterType) {
     super();
-    this._callback = {};
     this._filters = filters;
     this._currentFilterType = currentFilterType;
     this._filterTypeChangeHandler = this._filterTypeChangeHandler.bind(this);
@@ -47,7 +46,7 @@ export default class Navigation extends AbstractView {
 
   _filterTypeChangeHandler(evt) {
     evt.preventDefault();
-    this._callback.filterTypeChange(evt.target.id);
+    this._callback.filterTypeChange(evt.target.closest(`.main-navigation__item`).id);
 
   }
 
@@ -60,11 +59,6 @@ export default class Navigation extends AbstractView {
     evt.preventDefault();
     this._callback.menuClickHandler();
 
-  }
-
-  setMenuClickHandler(callback) {
-    this._callback.menuClickHandler = callback;
-    this.getElement().querySelector(`.main-navigation`).addEventListener(`click`, this._menuClickHandler);
   }
 
 }

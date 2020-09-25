@@ -1,16 +1,5 @@
 import moment from 'moment';
 
-
-export const timeMinutesToHour = (time) => {
-  const duration = moment.duration(time, `minutes`);
-  return moment.utc(duration.asMilliseconds()).format(`h[h] mm[m]`);
-};
-
-export const yearFormat = (day, month, year) => {
-  const dateRelease = moment(year + `-` + month + `-` + day).format(`DD MMMM YYYY`);
-  return dateRelease;
-};
-
 export const yearFormatComments = (day) => {
   const dateComments = moment(day).format(`YYYY/MM/DD hh:mm`);
   return dateComments;

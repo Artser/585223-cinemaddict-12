@@ -1,14 +1,14 @@
 import ProfilePresenter from "./presenter/profile.js";
-// import Navigation from "./view/navigation.js";
-import MoviesModel from "./model/movies.js";
-import MovieListPresenter from "./presenter/movie-list.js";
-import {RenderPosition, siteHeaderElement, siteMainElement, render, remove} from "./utils/render.js";
+import FooterPresenter from "./presenter/footer.js";
+import FilmsModel from "./model/films.js";
+import FilmListPresenter from "./presenter/film-list.js";
+import {RenderPosition, siteHeaderElement, siteMainElement, render, remove, footerElement} from "./utils/render.js";
 import FilterPresenter from "./presenter/filter.js";
 import FilterModel from "./model/filter.js";
 import Api from "./api/index.js";
 import Store from "./api/store.js";
 import Provider from "./api/provider.js";
-import Statistic from "./view/statistic.js";
+import StatisticView from "./view/statistic.js";
 import {MenuItem, UpdateType} from "./const.js";
 
 const STORE_PREFIX = `cinemaddist-localstorage`;
@@ -20,14 +20,15 @@ const AUTHORIZATION = `Basic hS2sd3dfSwcl1sf3j`;
 const END_POINT = `https://12.ecmascript.pages.academy/cinemaddict`;
 const api = new Api(END_POINT, AUTHORIZATION);
 const apiWithProvider = new Provider(api, store);
-// renderElement(siteHeaderElement, new Profile().getElement(), RenderPosition.BEFOREEND);
 
-const filmsModel = new MoviesModel();
+
+const filmsModel = new FilmsModel();
 
 const filterModel = new FilterModel();
 
 
 let statistic = null;
+
 
 apiWithProvider.getFilms()
   .then((films) => {
@@ -37,21 +38,24 @@ apiWithProvider.getFilms()
     const filterPresenter = new FilterPresenter(siteMainElement, filterModel, filmsModel);
     filterPresenter.init();
 
-    const movieList = new MovieListPresenter(siteMainElement, filmsModel, filterModel, apiWithProvider);
-    movieList.init();
+    const filmList = new FilmListPresenter(siteMainElement, filmsModel, filterModel, apiWithProvider);
+    filmList.init();
+
+    const footerPresenter = new FooterPresenter(footerElement, filmsModel);
+    footerPresenter.init();
     const handleSetMenuClick = (evt) => {
       const menuItem = evt.target.dataset.type;
       switch (menuItem) {
         case MenuItem.FILMS:
           if (statistic !== null) {
-            movieList.init();
+            filmList.init();
             remove(statistic);
             statistic = null;
           }
           break;
         case MenuItem.STATISTICS:
-          statistic = new Statistic(filmsModel.getWatchedFilms());
-          movieList.destroy();
+          statistic = new StatisticView(filmsModel.getWatchedFilms());
+          filmList.destroy();
 
           render(siteMainElement, statistic, RenderPosition.BEFOREEND);
           statistic.renderStatistic();

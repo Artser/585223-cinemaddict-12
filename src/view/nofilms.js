@@ -1,7 +1,7 @@
 import AbstractView from "./abstract.js";
 
 
-export const createNoMoviesTemplate = () => {
+export const createNoFilmsTemplate = () => {
   return (
     `<section class="films">
     <section class="films-list">
@@ -11,8 +11,8 @@ export const createNoMoviesTemplate = () => {
   );
 };
 
-export default class NoMovies extends AbstractView {
+export default class NoFilms extends AbstractView {
   getTemplate() {
-    return createNoMoviesTemplate();
+    return createNoFilmsTemplate();
   }
 }

@@ -1,4 +1,4 @@
-import Navigation from "../view/navigation";
+import FilterView from "../view/filter";
 import {render, RenderPosition, replace, remove} from "../utils/render";
 import {UpdateType, FilterType} from "../const";
 import {filter} from "../utils/filter.js";
@@ -21,7 +21,7 @@ export default class Filter {
     const filters = this._getFilters();
     const prevFilterComponent = this._filterComponent;
 
-    this._filterComponent = new Navigation(filters, this._currentFilter);
+    this._filterComponent = new FilterView(filters, this._currentFilter);
     this._filterComponent.setFilterTypeChangeHandler(this._handleFilterTypeChange);
     if (prevFilterComponent === null) {
       render(this._filterContainer, this._filterComponent, RenderPosition.BEFOREEND);
@@ -51,7 +51,7 @@ export default class Filter {
     return [
       {
         type: FilterType.ALL,
-        name: `All`,
+        name: `All movies`,
         count: filter[FilterType.ALL](films).length
       },
       {

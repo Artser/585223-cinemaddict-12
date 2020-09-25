@@ -10,18 +10,14 @@ const filterItemStatistic = (filter, currentStatType) => {
   <label for="${filter.id}" class="statistic__filters-label">${filter.name}</label>`;
 };
 
-const createStatisticTemplate = (filters, currentStatType, films) => {
+
+const createStatisticTemplate = (filters, currentStatType, films, data) => {
   const filterItemsTemplate = filters
     .map((filter) => filterItemStatistic(filter, currentStatType))
     .join(``);
   const runtime = films.reduce((previousValue, currentItem) => previousValue + currentItem.filmInfo.runtime, 0);
   const hours = parseInt(runtime / 60, 10);
   const minutes = runtime % 60;
-  const data = [];
-
-  films.forEach((film) => film.filmInfo.genre.forEach((value) => {
-    data[value] = (data[value] || 0) + 1;
-  }));
 
   const keys = Object.keys(data);
   let index = keys.length === 0 ? `` : keys[0];
@@ -74,9 +70,9 @@ ${filterItemsTemplate}
 export default class Statistic extends SmartView {
   constructor(films) {
     super();
-    this._callback = {};
     this._data = {
       films,
+      genres: this._countingFilmGenre(films),
     };
     this._sourcedFilms = films;
     this._changeStatisticHandler = this._changeStatisticHandler.bind(this);
@@ -86,7 +82,16 @@ export default class Statistic extends SmartView {
   }
 
   getTemplate() {
-    return createStatisticTemplate(this._getFilters(), this._currentStatType, this._data.films);
+    return createStatisticTemplate(this._getFilters(), this._currentStatType, this._data.films, this._data.genres);
+  }
+
+  _countingFilmGenre(films) {
+    const data = [];
+
+    films.forEach((film) => film.filmInfo.genre.forEach((value) => {
+      data[value] = (data[value] || 0) + 1;
+    }));
+    return data;
   }
 
   restoreHandlers() {
@@ -137,6 +142,7 @@ export default class Statistic extends SmartView {
 
     this.updateData({
       films: filteredFilms,
+      genres: this._countingFilmGenre(filteredFilms),
     });
     this.renderStatistic();
 
@@ -175,12 +181,11 @@ export default class Statistic extends SmartView {
   }
 
   renderStatistic() {
-    artStatistic(this._data.films, this._currentStatType);
+    artStatistic(this._data.genres);
   }
 }
 
 const generateStatistic = (stCtx, genres, data) => {
-
   const myChart = new Chart(stCtx, {
     plugins: [ChartDataLabels],
     type: `horizontalBar`,
@@ -240,34 +245,15 @@ const generateStatistic = (stCtx, genres, data) => {
   return myChart;
 };
 
-const artStatistic = (films) => {
-
+const artStatistic = (genres) => {
   const BAR_HEIGHT = 50;
   const statisticCtx = document.querySelector(`.statistic__chart`);
   if (statisticCtx === null) {
     return;
   }
 
-  const genres = Array.from(new Set(films
-    .filter((film) => film.userDetails.alreadyWatched)
-    .map((film) => film.filmInfo.genre)
-    .flat()));
-
-
-  const data = [];
-  films.filter((film) => film.userDetails.alreadyWatched)
-    .forEach((film) => {
-      film.filmInfo.genre
-        .forEach((genre) => {
-          const index = genres.findIndex((item) => item === genre);
-          data[index] = (data[index] || 0) + 1;
-        });
-
-
-    });
-
   // Обязательно рассчитайте высоту canvas, она зависит от количества элементов диаграммы
-  statisticCtx.height = BAR_HEIGHT * genres.length;
-  generateStatistic(statisticCtx, genres, data);
+  statisticCtx.height = BAR_HEIGHT * Object.values(genres).length;
+  generateStatistic(statisticCtx, Object.keys(genres), Object.values(genres));
 
 };

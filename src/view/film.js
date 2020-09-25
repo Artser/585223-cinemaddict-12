@@ -1,4 +1,4 @@
-import Abstract from "./abstract.js";
+import AbstractView from "./abstract.js";
 import moment from 'moment';
 
 const createFilmTemplate = (film) => {
@@ -8,11 +8,11 @@ const createFilmTemplate = (film) => {
           <p class="film-card__rating">${film.filmInfo.totalRating}</p>
           <p class="film-card__info">
             <span class="film-card__year">${moment(film.filmInfo.release.date).format(`YYYY`)}</span>
-            <span class="film-card__duration">${moment.utc(film.filmInfo.runtime * 60000).format(`h[h] mm[m]`)}</span>
+            <span class="film-card__duration">${moment.utc().startOf(`day`).add({minutes: film.filmInfo.runtime}).format(`h[h] mm[m]`)}</span>
             <span class="film-card__genre">${film.filmInfo.genre.join(`, `)}</span>
           </p>
           <img src=${film.filmInfo.poster} alt="" class="film-card__poster">
-          <p class="film-card__description">${film.filmInfo.description}</p>
+          <p class="film-card__description">${film.filmInfo.description.length > 139 ? film.filmInfo.description.substring(0, 139) + `...` : film.filmInfo.description}</p>
           <a class="film-card__comments">${film.comments.length} comments</a>
           <form class="film-card__controls">
           <form class="film-card__controls">
@@ -25,12 +25,11 @@ const createFilmTemplate = (film) => {
 };
 
 
-export default class Film extends Abstract {
+export default class Film extends AbstractView {
   constructor(film) {
     super();
     this._film = film;
     this._clickHandler = this._clickHandler.bind(this);
-    this._callback = {};
     this._clickHandlerWatchlist = this._clickHandlerWatchlist.bind(this);
     this._clickHandlerWatched = this._clickHandlerWatched.bind(this);
     this._clickHandlerFavorite = this._clickHandlerFavorite.bind(this);

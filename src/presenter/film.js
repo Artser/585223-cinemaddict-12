@@ -2,7 +2,7 @@ import {RenderPosition, remove, render, footerElement, replace} from "../utils/r
 import FilmPopupView from "../view/film-popup.js";
 import FilmView from "../view/film.js";
 import {UserAction, UpdateType} from "../const.js";
-import Comments from "../view/comments.js";
+import CommentView from "../view/comment.js";
 import CommentsModel from "../model/comments.js";
 import AddComment from "../view/add-comment.js";
 import moment from "moment";
@@ -13,16 +13,14 @@ const Mode = {
 };
 
 export default class Film {
-  constructor(filmListContainer, changeData, handlePopupChange, api) {
+  constructor(filmListContainer, changeData, api) {
     this._filmListContainer = filmListContainer;
     this._changeData = changeData;
-    this._handlePopupChange = handlePopupChange;
     this._filmComponent = null;
     this._filmPopupComponent = null;
     this._mode = Mode.DEFAULT;
     this._api = api;
     this._commentModel = new CommentsModel();
-    this._comments = null;
     this._addCommentComponent = null;
     this._clickWatchlist = this._clickWatchlist.bind(this);
     this._handleModelEvent = this._handleModelEvent.bind(this);
@@ -31,8 +29,8 @@ export default class Film {
     this._handleViewAction = this._handleViewAction.bind(this);
     this._closePopup = this._closePopup.bind(this);
     this._openPopup = this._openPopup.bind(this);
-    this._handlerCloseClick = this._handlerCloseClick.bind(this);
-    this._handlerCloseKeyDown = this._handlerCloseKeyDown.bind(this);
+    this._clickCloseHandler = this._clickCloseHandler.bind(this);
+    this._escKeyDownHandler = this._escKeyDownHandler.bind(this);
     this._openPopup = this._openPopup.bind(this);
     this._renderPopup = this._renderPopup.bind(this);
   }
@@ -48,10 +46,7 @@ export default class Film {
     this._filmComponent.setClickHandlerWatchlist(this._clickWatchlist);
     this._filmComponent.setClickHandlerWatched(this._clickWatched);
     this._filmComponent.setClickHandlerFavorite(this._clickFavorite);
-    this._filmPopupComponent.setEscKeyDownHandler(this._handlerCloseKeyDown);
-    this._filmPopupComponent.setWatchlistClickHandler(this._clickWatchlist);
-    this._filmPopupComponent.setWatchedClickHandler(this._clickWatched);
-    this._filmPopupComponent.setFavoriteClickHandler(this._clickFavorite);
+
 
     if (prevFilmComponent === null || prevFilmPopupComponent === null) {
       render(this._filmListContainer, this._filmComponent, RenderPosition.BEFOREEND);
@@ -68,21 +63,11 @@ export default class Film {
 
     remove(prevFilmPopupComponent);
 
-    /*    if (this._mode === Mode.POPUP) {
-         prevFilmPopupComponent.updateData(this._film);
-         this._filmPopupComponent = prevFilmPopupComponent;
-         this._renderComments();
-       } else {
-         replace(this._filmPopupComponent, prevFilmPopupComponent);
-         remove(prevFilmPopupComponent);
-
-       } */
 
     remove(prevFilmComponent);
   }
 
   _clickWatchlist() {
-    // console.log(this._film);
     this._changeData(
         UserAction.UPDATE_FILM,
         UpdateType.PATCH,
@@ -160,8 +145,6 @@ export default class Film {
     if (this._commentModel.getComments().length === 0) {
       this._api.getComments(this._film.id).then((items) => {
         this._commentModel.setComments(items);
-        // this._renderComments();
-        this._filmPopupComponent.getElement().querySelector(`.film-details__comments-count`).textContent = items.length;
       }).then(this._renderPopup);
     } else {
       this._renderPopup();
@@ -171,12 +154,11 @@ export default class Film {
   _renderPopup() {
     this._commentModel.addObserver(this._handleModelEvent);
     this._mode = Mode.POPUP;
-
-    // TODO обнуляет комментарии.Зачем он здесь?
-    // this._handlePopupChange();
-
-    this._filmPopupComponent.setCloseHandler(this._handlerCloseClick);
-    this._filmPopupComponent.restoreHandlers();
+    this._filmPopupComponent.setCloseHandler(this._clickCloseHandler);
+    document.addEventListener(`keydown`, this._escKeyDownHandler);
+    this._filmPopupComponent.setWatchlistClickHandler(this._clickWatchlist);
+    this._filmPopupComponent.setWatchedClickHandler(this._clickWatched);
+    this._filmPopupComponent.setFavoriteClickHandler(this._clickFavorite);
     this._renderComments();
 
     render(footerElement, this._filmPopupComponent, RenderPosition.BEFOREEND);
@@ -185,7 +167,7 @@ export default class Film {
   _renderComments() {
     this._commentModel.getComments().map((item) => {
 
-      const comment = new Comments(item);
+      const comment = new CommentView(item);
       comment.setHandleClickDelete(this._handleViewAction);
       const newCommentElement = this._filmPopupComponent.getElement().querySelector(`.film-details__comments-list`);
       render(newCommentElement, comment, RenderPosition.BEFOREEND);
@@ -196,7 +178,7 @@ export default class Film {
 
   }
 
-  _handlerCloseClick() {
+  _clickCloseHandler() {
     this._closePopup();
   }
 
@@ -204,6 +186,9 @@ export default class Film {
     switch (actionType) {
       case UserAction.DELETE_COMMENT:
         this._api.deleteComment(update.id).then(() => {
+          /*  if (evt === undefined) {
+            return;
+          } */
           this._commentModel.deleteComment(updateType, {
             comment:
               update,
@@ -218,7 +203,7 @@ export default class Film {
           this._commentModel.addComment(updateType, result);
           this._addCommentComponent.enableComment();
 
-        }).catch(()=>{
+        }).catch(() => {
           this._addCommentComponent.startErrorAnimation();
           this._addCommentComponent.enableComment();
 
@@ -242,7 +227,7 @@ export default class Film {
     }
   }
 
-  _handlerCloseKeyDown(evt) {
+  _escKeyDownHandler(evt) {
     if (evt.key === `Escape` || evt.key === `Esc`) {
       evt.preventDefault();
       this._closePopup();
@@ -250,6 +235,7 @@ export default class Film {
   }
 
   _closePopup() {
+    document.removeEventListener(`keydown`, this._escKeyDownHandler);
     remove(this._filmPopupComponent);
     this._mode = Mode.DEFAULT;
     this._commentModel.removeObserver(this._handleModelEvent);

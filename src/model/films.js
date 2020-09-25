@@ -1,6 +1,6 @@
 import Observer from "../utils/observer.js";
 
-export default class Movies extends Observer {
+export default class Films extends Observer {
   constructor() {
     super();
     this._films = [];
@@ -123,7 +123,6 @@ export default class Movies extends Observer {
     delete adaptedFilm.film_info.ageRating;
     delete adaptedFilm.film_info.release.releaseCountry;
 
-    // console.log(adaptedFilm);
 
     return adaptedFilm;
   }

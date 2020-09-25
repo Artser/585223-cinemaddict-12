@@ -31,7 +31,7 @@ export const MenuItem = {
 
 export const EmotionType = {
   SMILE: `smile`,
-  SlEEPING: `sleeping`,
+  SLEEPING: `sleeping`,
   PUKE: `puke`,
   ANGRY: `angry`,
 };

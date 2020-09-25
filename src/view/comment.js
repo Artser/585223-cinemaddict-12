@@ -3,7 +3,7 @@ import AbstractView from "./abstract.js";
 import {UpdateType, UserAction} from "../const.js";
 import he from 'he';
 
-const createPopupComments = (comment) => {
+const createPopupComment = (comment) => {
 
   return (
     `<li class="film-details__comment">
@@ -29,7 +29,6 @@ export default class Comments extends AbstractView {
   constructor(comment) {
     super();
     this._data = comment;
-    this._callback = {};
     this._handleClickDelete = this._handleClickDelete.bind(this);
   }
 
@@ -48,6 +47,6 @@ export default class Comments extends AbstractView {
   }
 
   getTemplate() {
-    return createPopupComments(this._data);
+    return createPopupComment(this._data);
   }
 }
