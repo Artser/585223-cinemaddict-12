@@ -10,7 +10,7 @@ const createFilterItemTemplate = (filter, currentFilterType, currentScreenType) 
     <span class="main-navigation__item-count">
       ${count}
     </span>`
-  }
+    }
   </a>`
   );
 };

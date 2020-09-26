@@ -1,4 +1,4 @@
-import {RenderPosition, remove, render, footerElement, replace} from "../utils/render.js";
+import {RenderPosition, remove, render, replace} from "../utils/render.js";
 import FilmPopupView from "../view/film-popup.js";
 import FilmView from "../view/film.js";
 import {UserAction, UpdateType} from "../const.js";
@@ -13,13 +13,14 @@ const Mode = {
 };
 
 export default class Film {
-  constructor(filmListContainer, changeData, api) {
+  constructor(filmListContainer, changeData, api, closeAllPopup) {
     this._filmListContainer = filmListContainer;
     this._changeData = changeData;
     this._filmComponent = null;
     this._filmPopupComponent = null;
     this._mode = Mode.DEFAULT;
     this._api = api;
+    this._closeAllPopup = closeAllPopup;
     this._commentModel = new CommentsModel();
     this._addCommentComponent = null;
     this._clickWatchlist = this._clickWatchlist.bind(this);
@@ -145,8 +146,11 @@ export default class Film {
     if (this._commentModel.getComments().length === 0) {
       this._api.getComments(this._film.id).then((items) => {
         this._commentModel.setComments(items);
-      }).then(this._renderPopup);
+        this._closeAllPopup();
+        this._renderPopup();
+      });
     } else {
+      this._closeAllPopup();
       this._renderPopup();
     }
   }
@@ -161,7 +165,7 @@ export default class Film {
     this._filmPopupComponent.setFavoriteClickHandler(this._clickFavorite);
     this._renderComments();
 
-    render(footerElement, this._filmPopupComponent, RenderPosition.BEFOREEND);
+    render(document.body, this._filmPopupComponent, RenderPosition.BEFOREEND);
   }
 
   _renderComments() {

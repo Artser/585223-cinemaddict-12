@@ -21,7 +21,7 @@ export const createFilmPopupTemplate = (film, count) => {
               <div class="film-details__info-head">
                 <div class="film-details__title-wrap">
                   <h3 class="film-details__title">${film.filmInfo.title}</h3>
-                  <p class="film-details__title-original">Название: ${film.filmInfo.alternativeTitle}</p>
+                  <p class="film-details__title-original">Original: ${film.filmInfo.alternativeTitle}</p>
                 </div>
 
                 <div class="film-details__rating">
@@ -31,31 +31,31 @@ export const createFilmPopupTemplate = (film, count) => {
 
               <table class="film-details__table">
                 <tr class="film-details__row">
-                  <td class="film-details__term">Режиссер</td>
+                  <td class="film-details__term">Director</td>
                   <td class="film-details__cell">${film.filmInfo.director}</td>
                 </tr>
                 <tr class="film-details__row">
-                  <td class="film-details__term">Сценарист</td>
+                  <td class="film-details__term">Writers</td>
                   <td class="film-details__cell">${film.filmInfo.writers.join(`, `)}</td>
                 </tr>
                 <tr class="film-details__row">
-                  <td class="film-details__term">Актеры</td>
+                  <td class="film-details__term">Actors</td>
                   <td class="film-details__cell">${film.filmInfo.actors.join(`, `)}</td>
                 </tr>
                 <tr class="film-details__row">
-                  <td class="film-details__term">Год</td>
+                  <td class="film-details__term">Release Date</td>
                   <td class="film-details__cell">${moment(film.filmInfo.release.date).format(`DD MMMM YYYY`)}</td>
                 </tr>
                 <tr class="film-details__row">
-                  <td class="film-details__term">Продолжительность</td>
+                  <td class="film-details__term">Runtime</td>
                     <td class="film-details__cell">${moment.utc().startOf(`day`).add({minutes: film.filmInfo.runtime}).format(`h[h] mm[m]`)}</td >
                 </tr >
                 <tr class="film-details__row">
-                  <td class="film-details__term">Страна</td>
+                  <td class="film-details__term">Country</td>
                   <td class="film-details__cell">${film.filmInfo.release.releaseCountry}</td>
                 </tr>
                 <tr class="film-details__row">
-                  <td class="film-details__term">${film.filmInfo.genre.length > 1 ? `Жанры` : `Жанр`}</td>
+                  <td class="film-details__term">${film.filmInfo.genre.length > 1 ? `Genres` : `Genre`}</td>
                   <td class="film-details__cell">
                     <span class="film-details__genre">${film.filmInfo.genre.join(`, `)}</span>
                   </td>
