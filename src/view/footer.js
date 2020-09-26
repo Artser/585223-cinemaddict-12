@@ -1,4 +1,4 @@
-import SmartView from "./smart.js";
+import AbstractView from "./abstract.js";
 
 
 export const createFooterTemplate = (count) => {
@@ -7,7 +7,7 @@ export const createFooterTemplate = (count) => {
   );
 };
 
-export default class Footer extends SmartView {
+export default class Footer extends AbstractView {
   constructor(count) {
     super();
     this._count = count;

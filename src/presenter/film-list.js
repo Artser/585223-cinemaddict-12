@@ -91,7 +91,7 @@ export default class FilmList {
           this._filmsModel.updateFilm(updateType, response);
 
         })
-        .catch(new Error(`Data update error`));
+          .catch(new Error(`Data update error`));
 
         break;
 
@@ -116,7 +116,7 @@ export default class FilmList {
         break;
       case UpdateType.MAJOR:
         this._clearFilmList();
-        this._renderFilmList();
+        this._renderFilmList({resetSortType: true});
         break;
       case UpdateType.INIT:
         this._isLoading = false;
@@ -186,7 +186,7 @@ export default class FilmList {
   _getFilms() {
     const filterType = this._filterModel.getFilter();
     const films = this._filmsModel.getFilms().slice();
-    const filteredFilms = filter[filterType](films);
+    const filteredFilms = filterType ? filter[filterType](films) : [];
 
     switch (this._currentSortType) {
       case SortType.DATE_UP:
@@ -202,11 +202,13 @@ export default class FilmList {
     render(this._containerFilms, this._loadingComponent, RenderPosition.AFTERBEGIN);
   }
 
-  _renderFilmList() {
-
+  _renderFilmList({resetSortType = false} = {}) {
     if (this._isLoading) {
       this._renderLoading();
       return;
+    }
+    if (resetSortType) {
+      this._currentSortType = SortType.DEFAULT;
     }
     this._renderSort();
     render(this._containerFilms, this._filmsComponent.getElement(), RenderPosition.BEFOREEND);

@@ -2,14 +2,14 @@ import ProfilePresenter from "./presenter/profile.js";
 import FooterPresenter from "./presenter/footer.js";
 import FilmsModel from "./model/films.js";
 import FilmListPresenter from "./presenter/film-list.js";
-import {RenderPosition, siteHeaderElement, siteMainElement, render, remove, footerElement} from "./utils/render.js";
+import { RenderPosition, siteHeaderElement, siteMainElement, render, remove, footerElement } from "./utils/render.js";
 import FilterPresenter from "./presenter/filter.js";
 import FilterModel from "./model/filter.js";
 import Api from "./api/index.js";
 import Store from "./api/store.js";
 import Provider from "./api/provider.js";
 import StatisticView from "./view/statistic.js";
-import {MenuItem, UpdateType} from "./const.js";
+import { MenuItem, UpdateType } from "./const.js";
 
 const STORE_PREFIX = `cinemaddist-localstorage`;
 const STORE_VER = `v12`;
@@ -48,21 +48,26 @@ apiWithProvider.getFilms()
       const menuItem = evt.target.dataset.type;
       switch (menuItem) {
         case MenuItem.FILMS:
-          document.querySelector(`#stats`).classList.remove(`main-navigation__item--active`);
+          //document.querySelector(`#stats`).classList.remove(`main-navigation__item--active`);
 
           if (statistic !== null) {
+            //document.querySelector(`.main-navigation__item`).classList.add(`main-navigation__item--active`);
+
             filmList.init();
             remove(statistic);
             statistic = null;
           }
           break;
         case MenuItem.STATISTICS:
-          statistic = new StatisticView(filmsModel.getWatchedFilms());
-          document.querySelector(`#stats`).classList.add(`main-navigation__item--active`);
-          filmList.destroy();
+          if (statistic === null) {
+            statistic = new StatisticView(filmsModel.getWatchedFilms());
+            //document.querySelector(`#stats`).classList.add(`main-navigation__item--active`);
+            //document.querySelector(`.main-navigation__item--active`).classList.remove(`main-navigation__item--active`);
+            filmList.destroy();
 
-          render(siteMainElement, statistic, RenderPosition.BEFOREEND);
-          statistic.renderStatistic();
+            render(siteMainElement, statistic, RenderPosition.BEFOREEND);
+            statistic.renderStatistic();
+          }
           break;
       }
 

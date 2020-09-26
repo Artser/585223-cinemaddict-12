@@ -1,6 +1,6 @@
 import FilterView from "../view/filter";
 import {render, RenderPosition, replace, remove} from "../utils/render";
-import {UpdateType, FilterType} from "../const";
+import {UpdateType, FilterType, MenuItem} from "../const";
 import {filter} from "../utils/filter.js";
 
 export default class Filter {
@@ -13,7 +13,7 @@ export default class Filter {
     this._handleFilterTypeChange = this._handleFilterTypeChange.bind(this);
     this._filmsModel.addObserver(this._handleModelEvent);
     this._filterModel.addObserver(this._handleModelEvent);
-
+    this._currentScreenType = MenuItem.FILMS;
   }
 
   init() {
@@ -21,7 +21,7 @@ export default class Filter {
     const filters = this._getFilters();
     const prevFilterComponent = this._filterComponent;
 
-    this._filterComponent = new FilterView(filters, this._currentFilter);
+    this._filterComponent = new FilterView(filters, this._currentFilter, this._currentScreenType);
     this._filterComponent.setFilterTypeChangeHandler(this._handleFilterTypeChange);
     if (prevFilterComponent === null) {
       render(this._filterContainer, this._filterComponent, RenderPosition.BEFOREEND);
@@ -37,11 +37,11 @@ export default class Filter {
   }
 
 
-  _handleFilterTypeChange(filterType) {
+  _handleFilterTypeChange(filterType, screenType) {
     if (filterType === this._currentFilter) {
       return;
     }
-
+    this._currentScreenType = screenType;
     this._filterModel.setFilter(filterType, UpdateType.MAJOR);
   }
 
