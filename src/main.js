@@ -85,11 +85,6 @@ window.addEventListener(`load`, () => {
       registration.unregister().then(() => {
 
       });
-      // Действие, в случае успешной регистрации ServiceWorker
-      console.log(`ServiceWorker available`); // eslint-disable-line
-    }).catch(() => {
-      // Действие, в случае ошибки при регистрации ServiceWorker
-      console.error(`ServiceWorker isn't available`); // eslint-disable-line
     });
 });
 

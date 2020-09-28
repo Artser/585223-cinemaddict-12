@@ -1,4 +1,4 @@
-const {yearFormatComments} = require(`../utils/common.js`);
+import {yearFormatComments} from "../utils/common.js";
 import AbstractView from "./abstract.js";
 import {UpdateType, UserAction} from "../const.js";
 import he from 'he';
