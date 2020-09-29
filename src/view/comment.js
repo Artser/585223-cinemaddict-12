@@ -24,7 +24,7 @@ const createPopupComment = (comment) => {
 
 };
 
-export default class Comments extends AbstractView {
+export default class Comment extends AbstractView {
 
   constructor(comment) {
     super();

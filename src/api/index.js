@@ -47,7 +47,7 @@ export default class Api {
           response.comments = comments;
         })
           .catch(() => {
-            document.querySelector(`.films`).innerHTML(`couldn't upload comments`);
+            document.querySelector(`.films`).innerHTML = `couldn't upload comments`;
           });
         return response;
       });

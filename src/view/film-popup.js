@@ -1,5 +1,6 @@
 // Попап (расширенная информация о фильме)
 import moment from 'moment';
+import {UpdateType} from '../const.js';
 import AbstractView from "./abstract.js";
 
 export const createFilmPopupTemplate = (film, count) => {
@@ -150,7 +151,7 @@ export default class FilmPopup extends AbstractView {
 
 
   _watchlistClickHandler() {
-    this._callback.watchlistClickHandler();
+    this._callback.watchlistClickHandler(UpdateType.PATCH);
 
   }
 
@@ -162,7 +163,7 @@ export default class FilmPopup extends AbstractView {
 
   _watchedClickHandler() {
 
-    this._callback.watchedClickHandler();
+    this._callback.watchedClickHandler(UpdateType.PATCH);
 
   }
 
@@ -175,7 +176,7 @@ export default class FilmPopup extends AbstractView {
 
   _favoriteClickHandler() {
 
-    this._callback.favoriteClickHandler();
+    this._callback.favoriteClickHandler(UpdateType.PATCH);
 
   }
 

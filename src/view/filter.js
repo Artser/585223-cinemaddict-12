@@ -68,11 +68,5 @@ export default class Filter extends AbstractView {
     this.getElement().addEventListener(`click`, this._filterTypeChangeHandler);
   }
 
-  _menuClickHandler(evt) {
-    evt.preventDefault();
-    this._callback.menuClickHandler();
-
-  }
-
 }
 

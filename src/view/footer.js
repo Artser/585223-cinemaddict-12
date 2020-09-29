@@ -1,6 +1,5 @@
 import AbstractView from "./abstract.js";
 
-
 export const createFooterTemplate = (count) => {
   return (
     `<p >${count}  movies inside</p>`
@@ -18,6 +17,4 @@ export default class Footer extends AbstractView {
     return createFooterTemplate(this._count);
   }
 
-  restoreHandlers() {
-  }
 }

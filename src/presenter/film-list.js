@@ -2,7 +2,7 @@ import FilmsView from "../view/films.js";
 import FilmPresenter from "./film.js";
 import {filter} from "../utils/filter.js";
 import LoadingView from "../view/loading.js";
-import SortingView from "../view/sort.js";
+import SortView from "../view/sort.js";
 import {SortType, UpdateType, UserAction} from "../const.js";
 import {sortFilmDate, sortFilmRating} from "../utils/film.js";
 import {updateItem} from "../utils/common.js";
@@ -51,23 +51,6 @@ export default class FilmList {
     this._filmPresenter[updatedFilm.id].init(updatedFilm);
   }
 
-  _sortFilms(sortType) {
-    switch (sortType) {
-      case SortType.DATE_UP:
-        this._films.sort(sortFilmDate);
-        break;
-      case SortType.RATING:
-        this._films.sort(sortFilmRating);
-        break;
-      default:
-        // 3. А когда пользователь захочет "вернуть всё, как было",
-        // мы просто запишем исходный массив
-        this._films = this._sourceFilms.slice();
-    }
-
-    this._currentSortType = sortType;
-  }
-
   _handleSortTypeChange(sortType) {
     if (this._currentSortType === sortType) {
       return;
@@ -91,7 +74,12 @@ export default class FilmList {
       case UserAction.ADD_COMMENT:
         this._filmsModel.updateFilm(updateType, update);
         break;
+
+      case UserAction.CLOSE_POPUP:
+        this._handleModelEvent(updateType, null);
+        break;
     }
+
     // Здесь будем вызывать обновление модели.
     // actionType - действие пользователя, нужно чтобы понять, какой метод модели вызвать
     // updateType - тип изменений, нужно чтобы понять, что после нужно обновить
@@ -108,8 +96,8 @@ export default class FilmList {
         this._renderFilmList();
         break;
       case UpdateType.MAJOR:
-        this._clearFilmList();
-        this._renderFilmList({resetSortType: true});
+        this._clearFilmList({resetSortType: true, resetRenderedFilmCount: true});
+        this._renderFilmList();
         break;
       case UpdateType.INIT:
         this._isLoading = false;
@@ -123,7 +111,7 @@ export default class FilmList {
     if (this._sortComponent !== null) {
       this._sortComponent = null;
     }
-    this._sortComponent = new SortingView(this._currentSortType);
+    this._sortComponent = new SortView(this._currentSortType);
     render(this._containerFilms, this._sortComponent.getElement(), RenderPosition.BEFOREEND);
     this._sortComponent.setSortTypeChangeHandler(this._handleSortTypeChange);
   }
@@ -141,9 +129,6 @@ export default class FilmList {
     films.forEach((film) => this._renderFilm(film));
   }
 
-  _renderNoFilms() {
-    render(this._containerFilms, this._noFilms, RenderPosition.AFTERBEGIN);
-  }
 
   _handleLoadMoreButtonClick() {
     const films = this._films;
@@ -166,7 +151,7 @@ export default class FilmList {
     this._ShowMoreButton.setClickHandler(this._handleLoadMoreButtonClick.bind(this));
   }
 
-  _clearFilmList() {
+  _clearFilmList({resetSortType = false, resetRenderedFilmCount = false} = {}) {
     Object
       .values(this._filmPresenter)
       .forEach((presenter) => presenter.destroy());
@@ -175,14 +160,20 @@ export default class FilmList {
     remove(this._filmsComponent);
     remove(this._sortComponent);
     remove(this._noFilms);
-
-    this._renderedFilmCount = FILM_COUNT_PER_STEP;
+    if (resetSortType) {
+      this._currentSortType = SortType.DEFAULT;
+    }
+    if (resetRenderedFilmCount) {
+      this._renderedFilmCount = FILM_COUNT_PER_STEP;
+    } else {
+      this._renderedFilmCount = Math.min(this._getFilms().length, this._renderedFilmCount);
+    }
   }
 
   _getFilms() {
     const filterType = this._filterModel.getFilter();
     const films = this._filmsModel.getFilms().slice();
-    const filteredFilms = filterType ? filter[filterType](films) : [];
+    const filteredFilms = filterType ? filter[filterType](films) : films;
 
     switch (this._currentSortType) {
       case SortType.DATE_UP:
@@ -199,14 +190,12 @@ export default class FilmList {
   }
 
 
-  _renderFilmList({resetSortType = false} = {}) {
+  _renderFilmList() {
     if (this._isLoading) {
       this._renderLoading();
       return;
     }
-    if (resetSortType) {
-      this._currentSortType = SortType.DEFAULT;
-    }
+
     this._renderSort();
     this._films = this._getFilms();
     const filmCount = this._films.length;
@@ -216,21 +205,16 @@ export default class FilmList {
     }
 
     render(this._containerFilms, this._filmsComponent.getElement(), RenderPosition.BEFOREEND);
-    this._renderFilms(this._films.slice(0, Math.min(filmCount, FILM_COUNT_PER_STEP)));
-    if (filmCount > FILM_COUNT_PER_STEP) {
+    this._renderFilms(this._films.slice(0, Math.min(filmCount, this._renderedFilmCount)));
+    if (filmCount > this._renderedFilmCount) {
       this._renderLoadMoreButton();
     }
   }
 
-  _renderFilmsElements() {
-    this._renderSort();
-    this._renderFilmList();
-  }
-
-
   _closeAllPopup() {
-
-    Object.values(this._filmPresenter).forEach((presenter) => presenter.closeItemPopup());
+    Object.values(this._filmPresenter).forEach((presenter) => {
+      presenter.closeItemPopup();
+    });
   }
 
   destroy() {

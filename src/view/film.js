@@ -1,5 +1,6 @@
 import AbstractView from "./abstract.js";
 import moment from 'moment';
+import {UpdateType} from "../const.js";
 
 const createFilmTemplate = (film) => {
   return (
@@ -57,7 +58,7 @@ export default class Film extends AbstractView {
   _clickHandlerWatchlist(evt) {
     evt.preventDefault();
 
-    this._callback.clickWatchlist(evt);
+    this._callback.clickWatchlist(UpdateType.MINOR);
 
   }
 
@@ -68,7 +69,7 @@ export default class Film extends AbstractView {
 
   _clickHandlerWatched(evt) {
     evt.preventDefault();
-    this._callback.clicWatched(evt);
+    this._callback.clicWatched(UpdateType.MINOR);
 
   }
 
@@ -79,7 +80,7 @@ export default class Film extends AbstractView {
 
   _clickHandlerFavorite(evt) {
     evt.preventDefault();
-    this._callback.clickFavorite(evt);
+    this._callback.clickFavorite(UpdateType.MINOR);
 
   }
 

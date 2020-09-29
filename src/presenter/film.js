@@ -21,6 +21,7 @@ export default class Film {
     this._mode = Mode.DEFAULT;
     this._api = api;
     this._closeAllPopup = closeAllPopup;
+    this.isChange = false;
     this._commentModel = new CommentsModel();
     this._addCommentComponent = null;
     this._clickWatchlist = this._clickWatchlist.bind(this);
@@ -68,10 +69,11 @@ export default class Film {
     remove(prevFilmComponent);
   }
 
-  _clickWatchlist() {
+  _clickWatchlist(updateType) {
+    this.isChange = true;
     this._changeData(
         UserAction.UPDATE_FILM,
-        UpdateType.PATCH,
+        updateType,
         Object.assign(
             {},
             this._film,
@@ -89,10 +91,12 @@ export default class Film {
     );
   }
 
-  _clickWatched() {
+  _clickWatched(updateType) {
+    this.isChange = true;
+
     this._changeData(
         UserAction.UPDATE_FILM,
-        UpdateType.PATCH,
+        updateType,
         Object.assign(
             {},
             this._film,
@@ -111,10 +115,12 @@ export default class Film {
     );
   }
 
-  _clickFavorite() {
+  _clickFavorite(updateType) {
+    this.isChange = true;
+
     this._changeData(
         UserAction.UPDATE_FILM,
-        UpdateType.PATCH,
+        updateType,
         Object.assign(
             {},
             this._film,
@@ -142,15 +148,13 @@ export default class Film {
     if (evt.target.classList.contains(`film-card__controls-item`)) {
       return;
     }
-
+    this._closeAllPopup();
     if (this._commentModel.getComments().length === 0) {
       this._api.getComments(this._film.id).then((items) => {
         this._commentModel.setComments(items);
-        this._closeAllPopup();
         this._renderPopup();
       });
     } else {
-      this._closeAllPopup();
       this._renderPopup();
     }
   }
@@ -236,10 +240,18 @@ export default class Film {
   }
 
   _closePopup() {
+    if (this._mode === Mode.DEFAULT) {
+      return;
+    }
     document.removeEventListener(`keydown`, this._escKeyDownHandler);
     remove(this._filmPopupComponent);
     this._mode = Mode.DEFAULT;
     this._commentModel.removeObserver(this._handleModelEvent);
+    if (this.isChange) {
+      this.isChange = false;
+      this._changeData(UserAction.CLOSE_POPUP, UpdateType.MINOR, this._film);
+    }
+
   }
 
   destroy() {
